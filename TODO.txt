@@ -11,11 +11,9 @@ TODO for version 0.2
 
 * allow the user to cancel the connection while trying to connect to a server
 
-* bug: cannot remove server from the GUI and the store
-
 * when creating a new meta job, should check that it does not use an output folder shared with another metajob
 
-* clicking Demo deletes all the stuff that another job is potentially using --> prevent that (or should I?)
+* clicking "Load Demo" deletes all the stuff that another job is potentially using --> prevent that (or should I?)
 
 * problem with stdin!! it has to be included in the inputFiles...
 
@@ -23,6 +21,7 @@ TODO for version 0.2
 
 * use the SQLLite format for the persistent store
 
+X * bug: cannot remove server from the GUI and the store
 X * when a task fail, should not let the data source treat the data, but should save results in a special 'failures folder'
 X * use a hierachical structure for the results, so that one does not get 1000000 folders in one folder.
 X * bug in number of commands per submission: the number of commands per job is actually one more that set in the GUI and metajob attribute

@@ -195,7 +195,7 @@ static NSString *XgridServiceDomain = @"local.";
 {
 	if ( [aServer isConnected] || [aServer isConnecting] || [aServer isAvailable] )
 		return;
-	if ( [[aServer valueForKey:@"jobs"] count] > 0 )
+	if ( [[aServer valueForKeyPath:@"grids.jobs"] count] > 0 )
 		return;
 	[[self managedObjectContext] deleteObject:aServer];
 }

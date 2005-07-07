@@ -224,8 +224,29 @@
 {
 	XGSServer *aServer;
 	aServer = [self selectedServerInTheTableView];
-	if ( [aServer isConnecting] || [aServer isConnected] || [aServer isAvailable] )
+	if ( [aServer isConnecting] ) {
+		NSBeginAlertSheet(@"Not allowed", @"OK", nil,  nil, [self window], nil, NULL, NULL, NULL,
+						  @"You cannot delete a controller from the list while it is connecting.");
 		return;
+	}
+	if ( [aServer isConnected] ) {
+		NSBeginAlertSheet(@"Not allowed", @"OK", nil,  nil, [self window], nil, NULL, NULL, NULL,
+						  @"You cannot delete a controller from the list while it is connected.");
+		return;
+	}
+	
+	//this should not even happen, because of the Bindings set up in the nib
+	if ( [aServer isAvailable] ) {
+		NSBeginAlertSheet(@"Not allowed", @"OK", nil,  nil, [self window], nil, NULL, NULL, NULL,
+						  @"You cannot delete from the list a controller using Bonjour to advertise its service.");
+		return;
+	}
+	
+	if ( [[aServer valueForKeyPath:@"grids.jobs"] count] > 0 ) {
+		NSBeginAlertSheet(@"Error", @"OK", nil,  nil, [self window], nil, NULL, NULL, NULL,
+						  @"This controller still have jobs running. You cannot delete it.");
+		return;
+	}
 	[serverList removeServer:aServer];
 }
 
