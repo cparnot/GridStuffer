@@ -35,7 +35,7 @@ Image processing. Imagine we have a complex program for image filtering that is 
 
 #### Input file for Example 2
 
-	-in ~/MyFilter.bundle -files ~/Pictures exec_wrapper.pl file1.jpg
+	-in ~/MyFilter.bundle -dirs ~/Pictures exec_wrapper.pl file1.jpg
 	exec_wrapper.pl ilovethatpicture.jpg
 	exec_wrapper.pl ilovethatpicturetoo.jpg
 	exec_wrapper.pl picture15.tif
@@ -67,28 +67,28 @@ file to use for standard input (similar to the xgrid command)
 
 working directory to submit with the task (similar to the xgrid command)
 
-	-so stdout (similar to the xgrid command)
+	-so stdout
 
-file to write the standard output stream to
+file to write the standard output stream to (similar to the xgrid command)
 
-	-se stderr (similar to the xgrid command)
+	-se stderr
 
-file to write the standard error stream to
+file to write the standard error stream to (similar to the xgrid command)
 
-	-out outdir (similar to the xgrid command)
+	-out outdir
 
-directory to store the task results in, which are the files created by the task
+directory to store the task results in, which are the files created by the task (similar to the xgrid command; I think I already said that)
 
 
 ### Options specific to GridStuffer
 
 	-dirs dirpath1 [, dirpath2]*
 
-the -dirs flag takes a list of paths; only directories are valid, and paths corresponds to a files are ignored; this option is different from the -in option; the files contained in the directories are not submitted with the task; only files explicitely listed in the '-files' argument are used for the task; this option is useful to define a task prototype; read more below about the -dirs and -files arguments
+the -dirs flag takes a list of paths; only directories are valid, and paths corresponding to files are ignored; this option is different from the -in option; the files contained in the directories are not submitted with the task and downloaded to the agents; only files also explicitely listed in the '-files' argument are used for the task; this option is mostly useful in the task prototype (first line of the file); read more below about the -dirs and -files arguments
 
 	-files filepath1 [, filepath2]*
 	
-additional files to submit with the job; if no file is found at the path passed as argument, it is looked for in the directories passed as argument to the 'dirs' option; this allows you to only pass filenames as arguments, without providing full paths (see Example 2 above); read more below about the use of the -dirs arguments in task prototype
+additional files to submit with the job; if no file is found at the path passed as argument, it is looked for in the directories passed as argument to the 'dirs' option; this allows you to only pass filenames as arguments, without providing full paths (see Example 2 above); read more below about the use of the -dirs and -files arguments
 
 
 
@@ -156,13 +156,13 @@ Note that the existence of a path will be tested even for arguments that are obv
 
 ### Task prototype
 
-As explained above, the first line of the input file plays a particular role in the job submission. In particular, it can be used to define a template. In the terminology of the batch plist format, that would be called a task prototype. To differentiate the two mechanisms, only the name 'template' will be used.
+The first line of the input file plays a particular role in the job submission: it can be used to define a template. In the terminology of the batch plist format, that would be called a task prototype. To differentiate the two mechanisms, only the name 'template' will be used here.
 
-GridStuffer will make the options used in the first line the default values for all the other tasks. These default values can be overriden by the other tasks, of course. GridStuffer will use the first line to set the default value for the options  -si, -in, -files, -so, -se and -out. Remember that the prototype applies to the command and argument strings too.
+GridStuffer will make the options used in the first line the default values for all the other tasks. These default values can be overriden by the other tasks, of course. GridStuffer will use the first line to set not only the default value for the options  -si, -in, -files, -so, -se and -out, but also for the command and argument strings.
 
 For instance, one can define in the first line the working directory, the output directory (-in and -out options) and the command. Then each line could consist of an stdin file, e.g. '-si file1.txt', without even the need to repeat the command.
 
-The first line can still be used to define a task. It can also be used to only define a prototype, by simply not providing any command, but only the default options to apply to the other tasks. If you don't want ANY prototype, simply leave the first line empty. Conversely, if you simply want to run the exact same task as the prototype, create an empty line in the input file. Read that last sentence again. Now, remember to not end your input file with a empty line, as this would prompt GridStuffer to repeat the task defined in the first line.
+The first line can still be used to define a task. It can also be used to only define a prototype, by simply not providing any command, but only the default options to apply to the other tasks. If you DON'T want a prototype, simply leave the first line empty. Conversely, if you simply want to run a task exactly identical to the prototype, create an empty line in the input file. Read that last sentence again. Now, remember to not end your input file with a empty line, as this would prompt GridStuffer to repeat the task defined in the first line.
 
 
 ### The -dirs and -files arguments
@@ -177,9 +177,9 @@ Third, additional files can be explicitely added using the -files option. In its
 
 Fourth, to easily manage large trees of files, one can use the -dirs option. Its use is similar to the 'inputFiles' entry in the batch plist format. The idea is that -dirs provides an easy way to provide a bunch of files at once, without necessarily using them all in a given task. Unlike -in or -files, the -dirs option will not force the enclosed files to be uploaded to the agent. Only files refered to in the command or argument strings, or using the -files argument will be used. The main advantage of using -dirs is that you don't need to use full paths to refer to files located in these directories. Just the file name is sufficient (it could be considered a symbolic name for the path to the file).
 
-To illustrate the use of -dirs, imagine you have a repository of data files of your current project in directory ~/Projects/project1. In this directory, you have 10 different folders, with 10-100 files in each. You could use '-dirs ~/Projects/project1' in the first line of the input file to let GridStuffer know that some tasks will use files inside that directory. Now, imagine you need the file ~/Projects/project1/tifs/356.tif in one of the task. All you need to do is use the option '-files afile356.tif'. Alternatively, you could simply have the command 'myscript.pl afile356.tif', and GridStuffer will automatically create a path project1/tifs/afile356.tif on the agent and modify the command so it becomes 'myscript.pl project1/tifs/afile356.tif' and refers to the right path on the agent. Importantly, even if the folder project1 contains 1000 files, but you use only 14 of them in 14 different tasks, only 14 of them will really be uploaded, one for ech of the corresponding task.
+To illustrate the use of -dirs, imagine you have a repository of data files of your current project in directory ~/Projects/project1. In this directory, you have 10 different folders, with 10-100 files in each. You could use '-dirs ~/Projects/project1' in the first line of the input file to let GridStuffer know that some tasks will use files inside that directory. Now, imagine you need the file ~/Projects/project1/tifs/356.tif in one of the task. All you need to do is use the option '-files 356.tif'. Alternatively, you could simply have the command 'myscript.pl 356.tif', and GridStuffer will automatically create a path project1/tifs/356.tif on the agent and modify the command so it becomes 'myscript.pl project1/tifs/356.tif' and refers to the right path on the agent. Importantly, even if the folder project1 contains 1000 files, but you use only 14 of them in 14 different tasks, only 14 of them will really be uploaded, one for each of the corresponding task.
 
-In general, the only item created on the agent is the final path component. For instance, if GridStuffer determines that '~/perl-scripts/myscript.pl' should be uploaded, only the file 'myscript.pl' will be created on the agent, without the parent directories. However, the '-dirs' option will also trigger the creation of the corresponding directories in the working directory on the agent. For instance, if you use '-dirs ~/Projects/project1', there will be a directory 'project1', no matter what. It might be empty (actually, an empty dummy file named '.GridStuffer_dummy_file_to_force_dir_creation' is uploaded to force the creation of the directory). If one of the files contained in '~/Projects/project1' is also uploaded, then the path to it will be created inside that directory. For instance, the file '~/Projects/project1/tifs/356.tif' will be at path 'project1/tifs/afile356.tif' on the agent.
+In general, the only item created on the agent is the final path component. For instance, if GridStuffer determines that '~/perl-scripts/myscript.pl' should be uploaded, only the file 'myscript.pl' will be created on the agent, without the parent directories. However, the '-dirs' option will also trigger the creation of the corresponding directories in the working directory on the agent. For instance, if you use '-dirs ~/Projects/project1', there will be a directory 'project1', no matter what. It might be empty (actually, an empty dummy file named '.GridStuffer_dummy_file_to_force_dir_creation' is uploaded to force the creation of the directory). If one of the files contained in '~/Projects/project1' is also uploaded, then the path to it will be created inside that directory. For instance, the file '~/Projects/project1/tifs/356.tif' will be at path 'project1/tifs/356.tif' on the agent.
  
 Because -dirs can refer to a directory that contains subdirectories, there might be several files with the same name in the directory. In case of ambiguities, only one of the files with the ambiguous name wil be used (in an undefined way). To remove the ambiguity, you should use a partial path when refering to the file. For instance, if the directory contains two subdirectories, '2003' and '2004', and both contain a file results1.txt, you can refer unambiguously to each file using either '2003/results1.txt', or '2004/results1.txt'.
 
@@ -193,7 +193,7 @@ Files that are executable will be made executable on the agent. It seems xgrid p
 
 ### File duplicates
 
-If the same file is used in two different places in the same command or in different commands, it will not generate duplicate entries in the final job submission. In most cases, GridStuffer should be able to aggregate the files in the job description.
+If the same file is used in two different places in the same command or in different commands, it will not generate duplicate entries in the final job submission.
 
 
 ### Symbolic links

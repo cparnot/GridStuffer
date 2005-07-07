@@ -1,5 +1,4 @@
 </html>
-
 <h1>GridStuffer</h1>
 
 <h2>Input File Format</h2>
@@ -34,7 +33,7 @@
 
 <h4>Input file for Example 2</h4>
 
-<pre><code>-in ~/MyFilter.bundle -files ~/Pictures exec_wrapper.pl file1.jpg
+<pre><code>-in ~/MyFilter.bundle -dirs ~/Pictures exec_wrapper.pl file1.jpg
 exec_wrapper.pl ilovethatpicture.jpg
 exec_wrapper.pl ilovethatpicturetoo.jpg
 exec_wrapper.pl picture15.tif
@@ -67,32 +66,32 @@ exec_wrapper.pl vacation.tif
 
 <p>working directory to submit with the task (similar to the xgrid command)</p>
 
-<pre><code>-so stdout (similar to the xgrid command)
+<pre><code>-so stdout
 </code></pre>
 
-<p>file to write the standard output stream to</p>
+<p>file to write the standard output stream to (similar to the xgrid command)</p>
 
-<pre><code>-se stderr (similar to the xgrid command)
+<pre><code>-se stderr
 </code></pre>
 
-<p>file to write the standard error stream to</p>
+<p>file to write the standard error stream to (similar to the xgrid command)</p>
 
-<pre><code>-out outdir (similar to the xgrid command)
+<pre><code>-out outdir
 </code></pre>
 
-<p>directory to store the task results in, which are the files created by the task</p>
+<p>directory to store the task results in, which are the files created by the task (similar to the xgrid command; I think I already said that)</p>
 
 <h3>Options specific to GridStuffer</h3>
 
 <pre><code>-dirs dirpath1 [, dirpath2]*
 </code></pre>
 
-<p>the -dirs flag takes a list of paths; only directories are valid, and paths corresponds to a files are ignored; this option is different from the -in option; the files contained in the directories are not submitted with the task; only files explicitely listed in the '-files' argument are used for the task; this option is useful to define a task prototype; read more below about the -dirs and -files arguments</p>
+<p>the -dirs flag takes a list of paths; only directories are valid, and paths corresponding to files are ignored; this option is different from the -in option; the files contained in the directories are not submitted with the task and downloaded to the agents; only files also explicitely listed in the '-files' argument are used for the task; this option is mostly useful in the task prototype (first line of the file); read more below about the -dirs and -files arguments</p>
 
 <pre><code>-files filepath1 [, filepath2]*
 </code></pre>
 
-<p>additional files to submit with the job; if no file is found at the path passed as argument, it is looked for in the directories passed as argument to the 'dirs' option; this allows you to only pass filenames as arguments, without providing full paths (see Example 2 above); read more below about the use of the -dirs arguments in task prototype</p>
+<p>additional files to submit with the job; if no file is found at the path passed as argument, it is looked for in the directories passed as argument to the 'dirs' option; this allows you to only pass filenames as arguments, without providing full paths (see Example 2 above); read more below about the use of the -dirs and -files arguments</p>
 
 <h3>General considerations on paths</h3>
 
