@@ -3,7 +3,7 @@ TODO for version 0.2
 
 * cleaner GUI:
 	X * use the toolbar
-	* add metajob status
+	X * add metajob status
 	X * fix metajob progress
 	X * add xgrid job table view
 	* add metatask table view
@@ -38,7 +38,8 @@ TODO for version 0.3
 * use a delegate with XGSServer
 * probably entity names need also a suffix, like class names, if GridStuffer is going to be a framework..
 * more comments in the class headers
-
+* Application Support folder: use a hierarchical structure instead of just different names for different versions/debug
+* Persistent store: there might be several different stores in use by different apps or the same app
 ----------------------------
 
 * maybe the submission timer in meta jobs could be triggered only when needed --> in other words, use notifications rather than polling for job submissions

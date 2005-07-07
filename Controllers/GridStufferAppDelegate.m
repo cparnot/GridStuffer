@@ -200,12 +200,17 @@
 - (NSString *)applicationSupportFolder
 {
     NSString *applicationSupportFolder = nil;
-	NSString *folderName;
+	NSString *folderName,*version;
 
-#ifdef DEBUG
-	folderName = @"GridStuffer_DEBUG";
-#else
+	//there might be several stores at the same time:
+	//	- in use by different applications or by the same application
+	//	- in addition, each version will use a different location because backward compatibility is not yet implemented
+	//	- finally, the store is different in debug mode
 	folderName = @"GridStuffer";
+	version = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
+	folderName = [folderName stringByAppendingFormat:@"_version_%@",version];
+#ifdef DEBUG
+	folderName = [folderName stringByAppendingString:@"_DEBUG";
 #endif
 	
     FSRef foundRef;
