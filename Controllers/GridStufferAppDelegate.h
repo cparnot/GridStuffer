@@ -22,7 +22,7 @@
 	XGSServerListController *serverListController;
 	XGSJobListController *jobListController;
 	IBOutlet NSArrayController *jobArrayController;
-	
+	IBOutlet NSTableView *metaJobTableView;
 }
 
 // Actions

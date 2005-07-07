@@ -57,6 +57,7 @@
 {
 	metaJobToolbarController = [[XGSToolbarController alloc] initWithToolbarDescriptionFile:@"MetaJobToolbar"];
 	[metaJobListWindow setToolbar:[metaJobToolbarController toolbar]];
+	[[[metaJobTableView tableColumnWithIdentifier:@"progress"] dataCell] setControlSize:NSMiniControlSize];
 }
 
 
@@ -210,7 +211,7 @@
 	version = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
 	folderName = [folderName stringByAppendingFormat:@"_version_%@",version];
 #ifdef DEBUG
-	folderName = [folderName stringByAppendingString:@"_DEBUG";
+	folderName = [folderName stringByAppendingString:@"_DEBUG"];
 #endif
 	
     FSRef foundRef;

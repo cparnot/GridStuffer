@@ -354,7 +354,7 @@ static NSArray *demoDictionaries = nil;
 	[taskSource setValue:filter      forKey:@"validator"];
 		
 	//then the metaJob
-	[metaJob setName:@"name"];
+	[metaJob setName:[jobNameTextField stringValue]];
 	[metaJob    setDataSource:taskSource];
 	[metaJob    setValue:output      forKey:@"outputInterface"];
 	[metaJob    setValue:successes   forKey:@"successCounts"];

@@ -23,6 +23,7 @@
                 jobArrayController = NSArrayController; 
                 metaJobInspectorPanel = NSPanel; 
                 metaJobListWindow = NSWindow; 
+                metaJobTableView = NSTableView; 
             }; 
             SUPERCLASS = NSObject; 
         }, 

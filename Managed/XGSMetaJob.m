@@ -15,6 +15,8 @@
 
 @class XGSTaskSource;
 
+//this defines the maximum number of folder results that can be saved in one folder
+
 @implementation XGSMetaJob
 
 #pragma mark *** Initializations ***
@@ -369,6 +371,30 @@ NSNumber *FloatNumberWithPercentRatioOfNumbers(NSNumber *number1,NSNumber *numbe
 	[aJob setDelegate:nil];
 	[[self mutableSetValueForKey:@"jobs"] removeObject:aJob];
 	[aJob delete];
+}
+
+- (void)incrementCountDismissedTasks
+{
+	int old = [[self valueForKey:@"countDismissedTasks"] intValue];
+	[self setValue:[NSNumber numberWithInt:old+1] forKey:@"countDismissedTasks"];
+}
+
+- (void)decrementCountDismissedTasks
+{
+	int old = [[self valueForKey:@"countDismissedTasks"] intValue];
+	[self setValue:[NSNumber numberWithInt:old-1] forKey:@"countDismissedTasks"];
+}
+
+- (void)incrementCountCompletedTasks
+{
+	int old = [[self valueForKey:@"countCompletedTasks"] intValue];
+	[self setValue:[NSNumber numberWithInt:old+1] forKey:@"countCompletedTasks"];
+}
+
+- (void)decrementCountCompletedTasks
+{
+	int old = [[self valueForKey:@"countCompletedTasks"] intValue];
+	[self setValue:[NSNumber numberWithInt:old-1] forKey:@"countCompletedTasks"];
 }
 
 
@@ -873,6 +899,8 @@ NOTE: I cannot have different sets of paths for different tasks, because the key
 	dataSource = [self dataSource];
 	e = [results keyEnumerator];
 	while ( taskIdentifier = [e nextObject] ) {
+		
+		//each task has: an index, a taskItem and a resultDictionary
 		metaTaskIndex = [taskMap objectForKey:taskIdentifier];
 		index = [metaTaskIndex intValue];
 		taskItem = [dataSource metaJob:self taskAtIndex:index];
@@ -888,59 +916,86 @@ NOTE: I cannot have different sets of paths for different tasks, because the key
 		stderrData = [resultDictionary objectForKey:XGSJobResultsStandardErrorKey];
 
 		//the data source may want to validate the results and decide if they are good or not
-		BOOL flag;
+		BOOL resultsAreValid;
 		if ( [dataSource respondsToSelector:@selector(metaJob:validateResultsWithFiles:standardOutput:standardError:forTask:)] )
-			flag = [dataSource metaJob:self validateResultsWithFiles:resultFiles standardOutput:stdoutData standardError:stderrData forTask:taskItem];
+			resultsAreValid = [dataSource metaJob:self validateResultsWithFiles:resultFiles standardOutput:stdoutData standardError:stderrData forTask:taskItem];
 		else
-			flag = YES;
-		int newCount;
-		if ( flag == YES ) {
-			newCount = [successCounts incrementIntValueAtIndex:index];
-			if ( newCount == [self successCountsThreshold] ) {
-				int old = [[self valueForKey:@"countCompletedTasks"] intValue];
-				[self setValue:[NSNumber numberWithInt:old+1] forKey:@"countCompletedTasks"];
+			resultsAreValid = YES;
+
+		//based on the validation result, the task was either a success or a failure
+		//then, depending on how many successes and failures, the task could be considered completed or be dismissed
+		int numberOfSuccesses,numberOfFailures;
+		int successCountsThreshold = [self successCountsThreshold];
+		int failureCountsThreshold = [self failureCountsThreshold];
+		if ( resultsAreValid ) {
+			numberOfSuccesses = [successCounts incrementIntValueAtIndex:index];
+			numberOfFailures = [successCounts intValueAtIndex:index];
+			if ( numberOfSuccesses == successCountsThreshold ) {
+				[self incrementCountCompletedTasks];
+				if ( failureCountsThreshold > 0 && numberOfFailures >= failureCountsThreshold )
+					[self decrementCountDismissedTasks];
 			}
-			
+		} else {
+			numberOfSuccesses = [successCounts intValueAtIndex:index];
+			numberOfFailures = [failureCounts incrementIntValueAtIndex:index];
+			if ( ( failureCountsThreshold > 0 ) && ( numberOfFailures == failureCountsThreshold ) && ( numberOfSuccesses < successCountsThreshold ) )
+				[self incrementCountDismissedTasks];
 		}
-		else {
-			newCount = [failureCounts incrementIntValueAtIndex:index];
-			if ( newCount == [self failureCountsThreshold] ) {
-				int old = [[self valueForKey:@"countDismissedTasks"] intValue];
-				[self setValue:[NSNumber numberWithInt:old+1] forKey:@"countDismissedTasks"];
-			}
 			
-		}
-		
 		//some of the results may be handled by the data source, and if not they will be handled by the output interface
+		BOOL shouldSaveStdout = YES;
+		BOOL shouldSaveStderr = YES;
+		BOOL shouldSaveFiles  = YES;
 		NSMutableDictionary *resultsHandledByOutputInterface;
 		resultsHandledByOutputInterface = [NSMutableDictionary dictionary];
 		
-		//the data source of the output interface saves the STDOUT
-		if ( [dataSource respondsToSelector:@selector(metaJob:saveStandardOutput:forTask:)] )
-			flag = [dataSource metaJob:self saveStandardOutput:stdoutData forTask:taskItem];
-		else
-			flag = NO;
-		if ( ( flag == NO)  && ( stdoutData !=nil ) )
+		//if the results are valid, the data source is given a chance to save the results
+		if ( resultsAreValid ) {
+			if ( [dataSource respondsToSelector:@selector(metaJob:saveStandardOutput:forTask:)] 
+				 && [dataSource metaJob:self saveStandardOutput:stdoutData forTask:taskItem] )
+				shouldSaveStdout = NO;
+			if ( [dataSource respondsToSelector:@selector(metaJob:saveStandardError:forTask:)]
+				 && [dataSource metaJob:self saveStandardError:stderrData forTask:taskItem] )
+				shouldSaveStderr = NO;
+			if ( [dataSource respondsToSelector:@selector(metaJob:saveFiles:forTask:)] 
+				 && [dataSource metaJob:self saveFiles:resultFiles forTask:taskItem] )
+				shouldSaveFiles  = NO;
+		}
+		
+		//if the results are not valid, they might still be handled by the output interface
+		else if ( [[self valueForKey:@"shouldSaveFailedTasks"] boolValue] == NO ) {
+			shouldSaveStdout = NO;
+			shouldSaveStderr = NO;
+			shouldSaveFiles  = NO;
+		}
+		
+		//whatever is left to be saved will be handled by the output interface
+		if ( ( shouldSaveStdout )  && ( stdoutData !=nil ) )
 			[resultsHandledByOutputInterface setObject:stdoutData forKey:XGSJobResultsStandardOutputKey];
-
-		//the data source of the output interface saves the STDERR
-		if ( [dataSource respondsToSelector:@selector(metaJob:saveStandardError:forTask:)] )
-			flag = [dataSource metaJob:self saveStandardError:stderrData forTask:taskItem];
-		else
-			flag = NO;
-		if ( ( flag == NO ) && ( stderrData !=nil ) )
+		if ( ( shouldSaveStderr ) && ( stderrData !=nil ) )
 			[resultsHandledByOutputInterface setObject:stderrData forKey:XGSJobResultsStandardErrorKey];
-
-		//the data source of the output interface saves the other files
-		if ( [dataSource respondsToSelector:@selector(metaJob:saveFiles:forTask:)] )
-			flag = [dataSource metaJob:self saveFiles:resultFiles forTask:taskItem];
-		else
-			flag = NO;
-		if ( flag == NO )
+		if ( shouldSaveFiles )
 			[resultsHandledByOutputInterface addEntriesFromDictionary:resultFiles];
 		
-		//whatever is left is for the OutputInterface
-		[[self outputInterface] saveFiles:resultsHandledByOutputInterface inFolder:[metaTaskIndex stringValue]];
+		//the path to use for the output interface is different for valid and invalid results
+		//also, results are grouped in subfolders if more than the max allowed
+		NSString *resultSubPath;
+		if ( resultsAreValid )
+			resultSubPath = @"";
+		else
+			resultSubPath = @"failures";
+		int total = [[self countTotalTasks] intValue];
+		int max = [[self valueForKey:@"maxTasksPerFolder"] intValue];
+		if ( total > max ) {
+			int start, end;
+			start = index / max;
+			start *= max;
+			end = start + max - 1;
+			NSString *rangeSubPath = [NSString stringWithFormat:@"%d-%d/",start,end];
+			resultSubPath = [resultSubPath stringByAppendingPathComponent:rangeSubPath];
+		}
+		resultSubPath = [resultSubPath stringByAppendingPathComponent:[metaTaskIndex stringValue]];
+		[[self outputInterface] saveFiles:resultsHandledByOutputInterface inFolder:resultSubPath];
 		
 	}
 	
