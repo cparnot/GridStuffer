@@ -319,10 +319,6 @@ static NSArray *demoDictionaries = nil;
 	XGSMetaJob *metaJob;
 	NSManagedObject *taskSource, *failures,*successes, *submissions, *input, *output, *filter;
 		
-	//check the paths
-	if (![self checkPaths])
-		return;
-	
 	//get the context
 	context=[[NSApp delegate] managedObjectContext];
 
@@ -367,15 +363,21 @@ static NSArray *demoDictionaries = nil;
 
 - (IBAction)addMetaJob:(id)sender
 {
+	//check the paths
+	if (![self checkPaths])
+		return;
+
 	[self addMetaJobToManagedObjectContext];
 	[self close];
 }
 
+/*
 - (IBAction)addAndStartMetaJob:(id)sender
 {
 	[self addMetaJobToManagedObjectContext];
 	// SOME CODE MISSING !!!
 	[self close];
 }
+*/
 
 @end

@@ -26,7 +26,7 @@
 - (IBAction)loadDemo:(id)sender;
 
 - (IBAction)addMetaJob:(id)sender;
-- (IBAction)addAndStartMetaJob:(id)sender;
+//- (IBAction)addAndStartMetaJob:(id)sender;
 
 //used for bindings to notify KVO of changes
 - (IBAction)updateObservedKeys:(id)sender;

@@ -17,8 +17,9 @@
 	//for the main window
 	IBOutlet NSArrayController *serverArrayController;
 	IBOutlet NSTextField *serverAddressTextField;
-	
-	//for the connection
+	IBOutlet NSButton *mainWindowConnectButton;
+
+	//for the connection sheet
 	XGSServer *currentServer;
 	IBOutlet NSWindow *connectSheet;
 	IBOutlet NSMatrix *authenticationTypeMatrix;

@@ -88,6 +88,13 @@
 	
 	if ([aServer isConnected])
 		return;
+	
+	//change the Connect button into a Cancel button
+	[mainWindowConnectButton setKeyEquivalent:@"\e"];
+	[mainWindowConnectButton setTitle:@"Cancel"];
+	[mainWindowConnectButton setAction:@selector(cancelConnect:)];
+	
+	//start the connection
 	currentServer = [aServer retain];
 	[self setValue:[NSNumber numberWithBool:YES] forKey:@"isConnecting"];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(serverDidConnectNotification:) name:XGSServerDidConnectNotification object:aServer];
@@ -99,6 +106,11 @@
 {
 	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
 	
+	//change the Cancel button into a Connect button
+	[mainWindowConnectButton setKeyEquivalent:@"\r"];
+	[mainWindowConnectButton setTitle:@"Connect"];
+	[mainWindowConnectButton setAction:@selector(connect:)];
+
 	//reset the currentServer
 	[[NSNotificationCenter defaultCenter] removeObserver:self]; 
 	[currentServer release];

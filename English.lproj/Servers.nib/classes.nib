@@ -14,6 +14,7 @@
                 authenticationFailedTextField = NSTextField; 
                 authenticationTypeMatrix = NSMatrix; 
                 connectSheet = NSWindow; 
+                mainWindowConnectButton = NSButton; 
                 passwordField = NSSecureTextField; 
                 serverAddressTextField = NSTextField; 
                 serverArrayController = NSArrayController; 
