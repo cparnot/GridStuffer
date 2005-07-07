@@ -1,0 +1,26 @@
+{
+    IBClasses = (
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            ACTIONS = {
+                cancelConnect = id; 
+                connect = id; 
+                connectToFirstAvailableServer = id; 
+                removeSelectedServer = id; 
+            }; 
+            CLASS = XGSServerListController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                authenticationFailedTextField = NSTextField; 
+                authenticationTypeMatrix = NSMatrix; 
+                connectSheet = NSWindow; 
+                passwordField = NSSecureTextField; 
+                serverAddressTextField = NSTextField; 
+                serverArrayController = NSArrayController; 
+                serverNameField = NSTextField; 
+            }; 
+            SUPERCLASS = NSWindowController; 
+        }
+    ); 
+    IBVersion = 1; 
+}

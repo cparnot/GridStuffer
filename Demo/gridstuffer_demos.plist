@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+
+	<dict>
+		<key>Name</key>
+		<string>1 long task</string>
+		<key>Description</key>
+		<string>1 task with one long sleep</string>
+		<key>Path</key>
+		<string>~/Desktop/gridstuffer_demo0</string>
+		<key>Commands</key>
+		<string>commands_demo0.txt</string>
+		<key>Files</key>
+		<array>
+			<string>demo0.pl</string>
+		</array>
+	</dict>
+
+	<dict>
+		<key>Name</key>
+		<string>1 script - 2 files</string>
+		<key>Description</key>
+		<string>1 dummy perl script printing its argument and 2 very informative text files sometimes there, sometimes not...</string>
+		<key>Path</key>
+		<string>~/Desktop/gridstuffer_demo1</string>
+		<key>Commands</key>
+		<string>commands_demo1.txt</string>
+		<key>Files</key>
+		<array>
+			<string>demo1.pl</string>
+			<string>file1.txt</string>
+			<string>file2.txt</string>
+		</array>
+	</dict>
+
+	<dict>
+		<key>Name</key>
+		<string>Calendar 2000-2005</string>
+		<key>Description</key>
+		<string>Call to /usr/bin/cal for all the months from january 2000 to december 2005</string>
+		<key>Path</key>
+		<string>~/Desktop/gridstuffer_demo2</string>
+		<key>Commands</key>
+		<string>commands_demo2.txt</string>
+		<key>Files</key>
+		<array>
+		</array>
+	</dict>
+
+</array>
+</plist>

@@ -1,0 +1,16 @@
+# GridStuffer
+
+
+## General description
+
+GridStuffer is an application in development (starting in May 2005), for which a first version should be available for download by the end of the month. It is a Cocoa-based GUI application that allows easy submission and result retrieval of complex multi-task jobs.
+
+The input file that you should feed GridStuffer with has a syntax very similar to the syntax of the command 'xgrid' (pre-installed in all Mac OS X.4 computers). The 'xgrid' command is used to submit Xgrid jobs to a controller ('man xgrid' in the Terminal application to learn more about it). In its simplest 'bsd-like' use, the xgrid command uses a few simple tags to define a job, in a very human-readable format. However, in this format, a job is limited to one task. To submit multi-tasks jobs, the xgrid command can take a 'batch' file as argument. The format for the bacth file is an XML property list, which allows complex multi-task job definition. It is very powerful, but at the same time, has lost the conciseness and readability of the simple bsd-like command format.
+
+The purpose of GridStuffer is to give the best of both worlds. You can specify complex mutli-task jobs using a format that emulates the flag-based bsd-like format of the xgrid command. The input file is a text file, and represents a job. Each line in the file represents a command, which will be run as one task of the job. Commands are thus separated by carriage returns or return characters (\r or \n).
+
+Each line resembles very much the 'xgrid -job submit/run' format defined by the xgrid command. GridStuffer supports all the flags defined for 'job submit/run', and adds a number of flags to extend the basic job format. Note that GridStuffer does NOT call the xgrid command line and is not a simple wrapper around it. It has its own parser and will simply emulate the xgrid command line. It is thus not guaranteed to behave exactly the same way, particularly in complicated job format situations. Importantly, the input file used by GridStuffer will only deal with the submit part of the xgrid command line, and will not recognize things like '-job status', '-job delete', -grid attributes',... In fact, it is possible to add the words 'xgrid -job submit' or 'xgrid -job run' at the beginning of a line, but this is only for convenience and to be used as a hint about the meaning of the file. The words 'xgrid -job submit' or 'xgrid -job run' are optional and will be basically ignored by the parser (or be implicitely added, depending which way you put it).
+
+The first line of the input file is special, as it allows additional flags to specify job-specific options. These special options only make sense in the context of the whole job and the flags will be ignored in any line but the first (for instance, the -email or -name options). In addition to these special flags, the first line is used as a 'task prototype', or template, for the subsequent lines. For instance, the first line might set a working directory that will be used by all the other tasks, and it will only have to be explicitely added on the first line.
+
+The conventions for the input file format, the different options, the way task prototype work, and much more, is explained in more details below.

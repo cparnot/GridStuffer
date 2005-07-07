@@ -1,0 +1,26 @@
+{
+    IBClasses = (
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            ACTIONS = {
+                addAndStartMetaJob = id; 
+                addMetaJob = id; 
+                browse = id; 
+                cancel = id; 
+                loadDemo = id; 
+                openWithFinder = id; 
+                updateObservedKeys = id; 
+            }; 
+            CLASS = XGSNewJobController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                inputFileTextField = NSTextField; 
+                jobNameTextField = NSTextField; 
+                loadDemoPopUpButton = NSPopUpButton; 
+                outputFolderTextField = NSTextField; 
+            }; 
+            SUPERCLASS = NSWindowController; 
+        }
+    ); 
+    IBVersion = 1; 
+}

@@ -1,0 +1,10 @@
+xgrid -job submit -dirs ~/Desktop/gridstuffer_demo1/ -files file1.txt demo1.pl 1
+demo1.pl 2
+-files file2.txt demo1.pl 3
+demo1.pl 4 hello hi bonjour
+demo1.pl 5
+demo1.pl 6
+demo1.pl 7
+demo1.pl 8 le dernier
+-files file2.txt /usr/bin/perl -e print0/0;
+/bin/ls -Ral /var/xgrid/agent/tasks demo1.pl

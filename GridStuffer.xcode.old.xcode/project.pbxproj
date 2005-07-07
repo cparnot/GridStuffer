@@ -1,0 +1,1148 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 39;
+	objects = {
+		080E96DDFE201D6D7F000001 = {
+			children = (
+				56F42315083BBBA90011D12B,
+				56F42316083BBBA90011D12B,
+				56F42317083BBBA90011D12B,
+				56F42318083BBBA90011D12B,
+				56F42475083C0C100011D12B,
+				56F42476083C0C100011D12B,
+			);
+			isa = PBXGroup;
+			name = Controllers;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		089C165CFE840E0CC02AAC07 = {
+			children = (
+				089C165DFE840E0CC02AAC07,
+			);
+			isa = PBXVariantGroup;
+			name = InfoPlist.strings;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		089C165DFE840E0CC02AAC07 = {
+			fileEncoding = 10;
+			isa = PBXFileReference;
+			lastKnownFileType = text.plist.strings;
+			name = English;
+			path = English.lproj/InfoPlist.strings;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+//080
+//081
+//082
+//083
+//084
+//100
+//101
+//102
+//103
+//104
+		1058C7A0FEA54F0111CA2CBB = {
+			children = (
+				1058C7A1FEA54F0111CA2CBB,
+				56F42344083BBCC10011D12B,
+			);
+			isa = PBXGroup;
+			name = "Linked Frameworks";
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		1058C7A1FEA54F0111CA2CBB = {
+			isa = PBXFileReference;
+			lastKnownFileType = wrapper.framework;
+			name = Cocoa.framework;
+			path = /System/Library/Frameworks/Cocoa.framework;
+			refType = 0;
+			sourceTree = "<absolute>";
+		};
+		1058C7A2FEA54F0111CA2CBB = {
+			children = (
+				77C82804067257F0000B614F,
+				29B97325FDCFA39411CA2CEA,
+				29B97324FDCFA39411CA2CEA,
+			);
+			isa = PBXGroup;
+			name = "Other Frameworks";
+			refType = 4;
+			sourceTree = "<group>";
+		};
+//100
+//101
+//102
+//103
+//104
+//190
+//191
+//192
+//193
+//194
+		19C28FACFE9D520D11CA2CBB = {
+			children = (
+				8D1107320486CEB800E47090,
+			);
+			isa = PBXGroup;
+			name = Products;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+//190
+//191
+//192
+//193
+//194
+//290
+//291
+//292
+//293
+//294
+		29B97313FDCFA39411CA2CEA = {
+			buildSettings = {
+			};
+			buildStyles = (
+				4A9504CCFFE6A4B311CA0CBA,
+				4A9504CDFFE6A4B311CA0CBA,
+			);
+			hasScannedForEncodings = 1;
+			isa = PBXProject;
+			mainGroup = 29B97314FDCFA39411CA2CEA;
+			projectDirPath = "";
+			targets = (
+				8D1107260486CEB800E47090,
+			);
+		};
+		29B97314FDCFA39411CA2CEA = {
+			children = (
+				56F42A6F083E9AA80011D12B,
+				56A1EB5B083523BC0073CA7F,
+				5606B7000833F76B003D0371,
+				080E96DDFE201D6D7F000001,
+				7756732906782D8800D1FEB8,
+				29B97315FDCFA39411CA2CEA,
+				56A1EAF2083520AB0073CA7F,
+				29B97317FDCFA39411CA2CEA,
+				29B97323FDCFA39411CA2CEA,
+				19C28FACFE9D520D11CA2CBB,
+			);
+			isa = PBXGroup;
+			name = GridStuffer;
+			path = "";
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		29B97315FDCFA39411CA2CEA = {
+			children = (
+				32CA4F630368D1EE00C91783,
+				29B97316FDCFA39411CA2CEA,
+			);
+			isa = PBXGroup;
+			name = "Other Sources";
+			path = "";
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		29B97316FDCFA39411CA2CEA = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
+			path = main.m;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		29B97317FDCFA39411CA2CEA = {
+			children = (
+				56D80460084E7C4800E1A13E,
+				8D1107310486CEB800E47090,
+				089C165CFE840E0CC02AAC07,
+				29B97318FDCFA39411CA2CEA,
+				56F422F0083BB83C0011D12B,
+				56CFA439084D797700242584,
+				56A1EAFD083520C10073CA7F,
+				56DC814E0845404F008962AB,
+			);
+			isa = PBXGroup;
+			name = Resources;
+			path = "";
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		29B97318FDCFA39411CA2CEA = {
+			children = (
+				29B97319FDCFA39411CA2CEA,
+			);
+			isa = PBXVariantGroup;
+			name = MainMenu.nib;
+			path = "";
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		29B97319FDCFA39411CA2CEA = {
+			isa = PBXFileReference;
+			lastKnownFileType = wrapper.nib;
+			name = English;
+			path = English.lproj/MainMenu.nib;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		29B97323FDCFA39411CA2CEA = {
+			children = (
+				1058C7A0FEA54F0111CA2CBB,
+				1058C7A2FEA54F0111CA2CBB,
+			);
+			isa = PBXGroup;
+			name = Frameworks;
+			path = "";
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		29B97324FDCFA39411CA2CEA = {
+			isa = PBXFileReference;
+			lastKnownFileType = wrapper.framework;
+			name = AppKit.framework;
+			path = /System/Library/Frameworks/AppKit.framework;
+			refType = 0;
+			sourceTree = "<absolute>";
+		};
+		29B97325FDCFA39411CA2CEA = {
+			isa = PBXFileReference;
+			lastKnownFileType = wrapper.framework;
+			name = Foundation.framework;
+			path = /System/Library/Frameworks/Foundation.framework;
+			refType = 0;
+			sourceTree = "<absolute>";
+		};
+//290
+//291
+//292
+//293
+//294
+//320
+//321
+//322
+//323
+//324
+		32CA4F630368D1EE00C91783 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			path = GridStuffer_Prefix.pch;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+//320
+//321
+//322
+//323
+//324
+//4A0
+//4A1
+//4A2
+//4A3
+//4A4
+		4A9504CCFFE6A4B311CA0CBA = {
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				PREBINDING = NO;
+				ZERO_LINK = YES;
+			};
+			isa = PBXBuildStyle;
+			name = Development;
+		};
+		4A9504CDFFE6A4B311CA0CBA = {
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				PREBINDING = NO;
+				ZERO_LINK = NO;
+			};
+			isa = PBXBuildStyle;
+			name = Deployment;
+		};
+//4A0
+//4A1
+//4A2
+//4A3
+//4A4
+//560
+//561
+//562
+//563
+//564
+		5606B7000833F76B003D0371 = {
+			children = (
+				56F42332083BBC6D0011D12B,
+				56F42333083BBC6D0011D12B,
+				56F42334083BBC6D0011D12B,
+				56F42335083BBC6D0011D12B,
+				56F42336083BBC6D0011D12B,
+				56F42337083BBC6D0011D12B,
+				56F42338083BBC6D0011D12B,
+				56F42339083BBC6D0011D12B,
+				56F4233A083BBC6D0011D12B,
+				56F4233B083BBC6D0011D12B,
+				56F4233C083BBC6D0011D12B,
+				56F4233D083BBC6D0011D12B,
+				56F423EC083BE6F50011D12B,
+				56F423ED083BE6F50011D12B,
+				56F42436083BFA850011D12B,
+				56F42437083BFA850011D12B,
+				56DC7DDC0842722C008962AB,
+				56DC7DDD0842722C008962AB,
+				56DC81FF084627FF008962AB,
+				56DC8200084627FF008962AB,
+			);
+			isa = PBXGroup;
+			name = "Managed classes";
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		56A1EACE083519C60073CA7F = {
+			isa = PBXFileReference;
+			lastKnownFileType = wrapper.nib;
+			name = English;
+			path = English.lproj/NewJob.nib;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		56A1EAF2083520AB0073CA7F = {
+			children = (
+				56A1EAF3083520AB0073CA7F,
+				56A1EAF4083520AB0073CA7F,
+				56A1EAF5083520AB0073CA7F,
+				56A1EAF6083520AB0073CA7F,
+				56A1EAF7083520AB0073CA7F,
+			);
+			isa = PBXGroup;
+			name = Demo1;
+			path = Demo;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		56A1EAF3083520AB0073CA7F = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = text;
+			path = gridstuffer_demo1_commands.txt;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		56A1EAF4083520AB0073CA7F = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = text;
+			path = gridstuffer_demo1_file1.txt;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		56A1EAF5083520AB0073CA7F = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = text;
+			path = gridstuffer_demo1_file2.txt;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		56A1EAF6083520AB0073CA7F = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = text.script.perl;
+			path = gridstuffer_demo1_script.pl;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		56A1EAF7083520AB0073CA7F = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = text.xml;
+			path = gridstuffer_demo1_files.plist;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		56A1EAF8083520AB0073CA7F = {
+			fileRef = 56A1EAF3083520AB0073CA7F;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		56A1EAF9083520AB0073CA7F = {
+			fileRef = 56A1EAF4083520AB0073CA7F;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		56A1EAFA083520AC0073CA7F = {
+			fileRef = 56A1EAF5083520AB0073CA7F;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		56A1EAFB083520AC0073CA7F = {
+			fileRef = 56A1EAF6083520AB0073CA7F;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		56A1EAFC083520AC0073CA7F = {
+			fileRef = 56A1EAF7083520AB0073CA7F;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		56A1EAFD083520C10073CA7F = {
+			children = (
+				56F42909083E58320011D12B,
+				56F42863083DB69E0011D12B,
+				56F42864083DB69E0011D12B,
+				56F425C1083D589D0011D12B,
+				56F425C4083D589D0011D12B,
+			);
+			isa = PBXGroup;
+			path = Images;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		56A1EB5B083523BC0073CA7F = {
+			children = (
+				56F4232B083BBC170011D12B,
+				56F4232C083BBC170011D12B,
+				56F4232D083BBC170011D12B,
+				56F4232E083BBC170011D12B,
+				56F425A5083D55280011D12B,
+				56F425A6083D55280011D12B,
+			);
+			isa = PBXGroup;
+			name = Utilities;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		56A1EDD7083931510073CA7F = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = wrapper.xcdatamodel;
+			path = GridStuffer_DataModel.xcdatamodel;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		56A1EDD8083931510073CA7F = {
+			fileRef = 56A1EDD7083931510073CA7F;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		56CFA439084D797700242584 = {
+			children = (
+				56F42553083D3F380011D12B,
+			);
+			isa = PBXVariantGroup;
+			name = Servers.nib;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		56CFA43A084D797700242584 = {
+			fileRef = 56CFA439084D797700242584;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		56D80460084E7C4800E1A13E = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = text.plist;
+			path = GridStufferFactoryDefaults.plist;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		56D80461084E7C4800E1A13E = {
+			fileRef = 56D80460084E7C4800E1A13E;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		56DC7DDC0842722C008962AB = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			path = XGSJob.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		56DC7DDD0842722C008962AB = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
+			path = XGSJob.m;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		56DC7DDE0842722C008962AB = {
+			fileRef = 56DC7DDD0842722C008962AB;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		56DC814E0845404F008962AB = {
+			isa = PBXFileReference;
+			lastKnownFileType = wrapper.nib;
+			path = ModelExplorer.nib;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		56DC814F0845404F008962AB = {
+			fileRef = 56DC814E0845404F008962AB;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		56DC81FF084627FF008962AB = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			path = XGSGrid.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		56DC8200084627FF008962AB = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
+			path = XGSGrid.m;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		56DC8201084627FF008962AB = {
+			fileRef = 56DC8200084627FF008962AB;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		56F422F0083BB83C0011D12B = {
+			children = (
+				56A1EACE083519C60073CA7F,
+			);
+			isa = PBXVariantGroup;
+			name = NewJob.nib;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		56F422F1083BB83C0011D12B = {
+			fileRef = 56F422F0083BB83C0011D12B;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		56F42315083BBBA90011D12B = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = GridStufferAppDelegate.h;
+			path = Controllers/GridStufferAppDelegate.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		56F42316083BBBA90011D12B = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
+			name = GridStufferAppDelegate.m;
+			path = Controllers/GridStufferAppDelegate.m;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		56F42317083BBBA90011D12B = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = XGSNewJobController.h;
+			path = Controllers/XGSNewJobController.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		56F42318083BBBA90011D12B = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
+			name = XGSNewJobController.m;
+			path = Controllers/XGSNewJobController.m;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		56F42319083BBBA90011D12B = {
+			fileRef = 56F42316083BBBA90011D12B;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		56F4231A083BBBA90011D12B = {
+			fileRef = 56F42318083BBBA90011D12B;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		56F4232B083BBC170011D12B = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = DebugLog.h;
+			path = Utilities/DebugLog.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		56F4232C083BBC170011D12B = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
+			name = DebugLog.m;
+			path = Utilities/DebugLog.m;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		56F4232D083BBC170011D12B = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = XGSCategories.h;
+			path = Utilities/XGSCategories.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		56F4232E083BBC170011D12B = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
+			name = XGSCategories.m;
+			path = Utilities/XGSCategories.m;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		56F4232F083BBC170011D12B = {
+			fileRef = 56F4232C083BBC170011D12B;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		56F42330083BBC170011D12B = {
+			fileRef = 56F4232E083BBC170011D12B;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		56F42332083BBC6D0011D12B = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = XGSInputInterface.h;
+			path = Managed/XGSInputInterface.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		56F42333083BBC6D0011D12B = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
+			name = XGSInputInterface.m;
+			path = Managed/XGSInputInterface.m;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		56F42334083BBC6D0011D12B = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = XGSIntegerArray.h;
+			path = Managed/XGSIntegerArray.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		56F42335083BBC6D0011D12B = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
+			name = XGSIntegerArray.m;
+			path = Managed/XGSIntegerArray.m;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		56F42336083BBC6D0011D12B = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = XGSMetaJob.h;
+			path = Managed/XGSMetaJob.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		56F42337083BBC6D0011D12B = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
+			name = XGSMetaJob.m;
+			path = Managed/XGSMetaJob.m;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		56F42338083BBC6D0011D12B = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = XGSOutputInterface.h;
+			path = Managed/XGSOutputInterface.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		56F42339083BBC6D0011D12B = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
+			name = XGSOutputInterface.m;
+			path = Managed/XGSOutputInterface.m;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		56F4233A083BBC6D0011D12B = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = XGSParser.h;
+			path = Managed/XGSParser.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		56F4233B083BBC6D0011D12B = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
+			name = XGSParser.m;
+			path = Managed/XGSParser.m;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		56F4233C083BBC6D0011D12B = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = XGSTaskSource.h;
+			path = Managed/XGSTaskSource.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		56F4233D083BBC6D0011D12B = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
+			name = XGSTaskSource.m;
+			path = Managed/XGSTaskSource.m;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		56F4233E083BBC6D0011D12B = {
+			fileRef = 56F42333083BBC6D0011D12B;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		56F4233F083BBC6D0011D12B = {
+			fileRef = 56F42335083BBC6D0011D12B;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		56F42340083BBC6D0011D12B = {
+			fileRef = 56F42337083BBC6D0011D12B;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		56F42341083BBC6D0011D12B = {
+			fileRef = 56F42339083BBC6D0011D12B;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		56F42342083BBC6D0011D12B = {
+			fileRef = 56F4233B083BBC6D0011D12B;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		56F42343083BBC6D0011D12B = {
+			fileRef = 56F4233D083BBC6D0011D12B;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		56F42344083BBCC10011D12B = {
+			isa = PBXFileReference;
+			lastKnownFileType = wrapper.framework;
+			name = XgridFoundation.framework;
+			path = /System/Library/Frameworks/XgridFoundation.framework;
+			refType = 0;
+			sourceTree = "<absolute>";
+		};
+		56F42345083BBCC10011D12B = {
+			fileRef = 56F42344083BBCC10011D12B;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		56F423EC083BE6F50011D12B = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = XGSServerList.h;
+			path = Managed/XGSServerList.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		56F423ED083BE6F50011D12B = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
+			name = XGSServerList.m;
+			path = Managed/XGSServerList.m;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		56F423EE083BE6F50011D12B = {
+			fileRef = 56F423ED083BE6F50011D12B;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		56F42436083BFA850011D12B = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = XGSServer.h;
+			path = Managed/XGSServer.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		56F42437083BFA850011D12B = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
+			name = XGSServer.m;
+			path = Managed/XGSServer.m;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		56F42438083BFA850011D12B = {
+			fileRef = 56F42437083BFA850011D12B;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		56F42475083C0C100011D12B = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = XGSServerListController.h;
+			path = Managed/XGSServerListController.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		56F42476083C0C100011D12B = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
+			name = XGSServerListController.m;
+			path = Managed/XGSServerListController.m;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		56F42477083C0C100011D12B = {
+			fileRef = 56F42476083C0C100011D12B;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		56F42553083D3F380011D12B = {
+			isa = PBXFileReference;
+			lastKnownFileType = wrapper.nib;
+			name = English;
+			path = English.lproj/Servers.nib;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		56F425A5083D55280011D12B = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			name = XGSStringToImageTransformer.h;
+			path = Managed/XGSStringToImageTransformer.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		56F425A6083D55280011D12B = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
+			name = XGSStringToImageTransformer.m;
+			path = Managed/XGSStringToImageTransformer.m;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		56F425A7083D55280011D12B = {
+			fileRef = 56F425A6083D55280011D12B;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		56F425C1083D589D0011D12B = {
+			isa = PBXFileReference;
+			lastKnownFileType = image.tiff;
+			path = Connected.tiff;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		56F425C4083D589D0011D12B = {
+			isa = PBXFileReference;
+			lastKnownFileType = image.tiff;
+			path = Offline.tiff;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		56F425C6083D589D0011D12B = {
+			fileRef = 56F425C1083D589D0011D12B;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		56F425C9083D589D0011D12B = {
+			fileRef = 56F425C4083D589D0011D12B;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		56F42863083DB69E0011D12B = {
+			isa = PBXFileReference;
+			lastKnownFileType = image.tiff;
+			path = Available.tiff;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		56F42864083DB69E0011D12B = {
+			isa = PBXFileReference;
+			lastKnownFileType = image.tiff;
+			path = Connecting.tiff;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		56F42865083DB69E0011D12B = {
+			fileRef = 56F42863083DB69E0011D12B;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		56F42866083DB69E0011D12B = {
+			fileRef = 56F42864083DB69E0011D12B;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		56F42909083E58320011D12B = {
+			isa = PBXFileReference;
+			lastKnownFileType = image.tiff;
+			path = Disconnected.tiff;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		56F4290A083E58320011D12B = {
+			fileRef = 56F42909083E58320011D12B;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		56F42A6F083E9AA80011D12B = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = text;
+			path = TODO.txt;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+//560
+//561
+//562
+//563
+//564
+//770
+//771
+//772
+//773
+//774
+		7756732906782D8800D1FEB8 = {
+			children = (
+				56A1EDD7083931510073CA7F,
+			);
+			isa = PBXGroup;
+			name = Models;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		77C82804067257F0000B614F = {
+			isa = PBXFileReference;
+			lastKnownFileType = wrapper.framework;
+			name = CoreData.framework;
+			path = /System/Library/Frameworks/CoreData.framework;
+			refType = 0;
+			sourceTree = "<absolute>";
+		};
+//770
+//771
+//772
+//773
+//774
+//8D0
+//8D1
+//8D2
+//8D3
+//8D4
+		8D1107260486CEB800E47090 = {
+			buildPhases = (
+				8D1107290486CEB800E47090,
+				8D11072C0486CEB800E47090,
+				8D11072E0486CEB800E47090,
+			);
+			buildRules = (
+			);
+			buildSettings = {
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = GridStuffer_Prefix.pch;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Applications";
+				PREBINDING = NO;
+				PRODUCT_NAME = GridStuffer;
+				WRAPPER_EXTENSION = app;
+			};
+			dependencies = (
+			);
+			isa = PBXNativeTarget;
+			name = GridStuffer;
+			productInstallPath = "$(HOME)/Applications";
+			productName = GridStuffer;
+			productReference = 8D1107320486CEB800E47090;
+			productType = "com.apple.product-type.application";
+		};
+		8D1107290486CEB800E47090 = {
+			buildActionMask = 2147483647;
+			files = (
+				8D11072A0486CEB800E47090,
+				8D11072B0486CEB800E47090,
+				56F422F1083BB83C0011D12B,
+				56A1EAF8083520AB0073CA7F,
+				56A1EAF9083520AB0073CA7F,
+				56A1EAFA083520AC0073CA7F,
+				56A1EAFB083520AC0073CA7F,
+				56A1EAFC083520AC0073CA7F,
+				56CFA43A084D797700242584,
+				56F425C6083D589D0011D12B,
+				56F425C9083D589D0011D12B,
+				56F42865083DB69E0011D12B,
+				56F42866083DB69E0011D12B,
+				56F4290A083E58320011D12B,
+				56DC814F0845404F008962AB,
+				56D80461084E7C4800E1A13E,
+			);
+			isa = PBXResourcesBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8D11072A0486CEB800E47090 = {
+			fileRef = 29B97318FDCFA39411CA2CEA;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		8D11072B0486CEB800E47090 = {
+			fileRef = 089C165CFE840E0CC02AAC07;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		8D11072C0486CEB800E47090 = {
+			buildActionMask = 2147483647;
+			files = (
+				8D11072D0486CEB800E47090,
+				56A1EDD8083931510073CA7F,
+				56F42319083BBBA90011D12B,
+				56F4231A083BBBA90011D12B,
+				56F4232F083BBC170011D12B,
+				56F42330083BBC170011D12B,
+				56F4233E083BBC6D0011D12B,
+				56F4233F083BBC6D0011D12B,
+				56F42340083BBC6D0011D12B,
+				56F42341083BBC6D0011D12B,
+				56F42342083BBC6D0011D12B,
+				56F42343083BBC6D0011D12B,
+				56F423EE083BE6F50011D12B,
+				56F42438083BFA850011D12B,
+				56F42477083C0C100011D12B,
+				56F425A7083D55280011D12B,
+				56DC7DDE0842722C008962AB,
+				56DC8201084627FF008962AB,
+			);
+			isa = PBXSourcesBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8D11072D0486CEB800E47090 = {
+			fileRef = 29B97316FDCFA39411CA2CEA;
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+				);
+			};
+		};
+		8D11072E0486CEB800E47090 = {
+			buildActionMask = 2147483647;
+			files = (
+				8D11072F0486CEB800E47090,
+				56F42345083BBCC10011D12B,
+			);
+			isa = PBXFrameworksBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8D11072F0486CEB800E47090 = {
+			fileRef = 1058C7A1FEA54F0111CA2CBB;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		8D1107310486CEB800E47090 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = text.plist;
+			path = Info.plist;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		8D1107320486CEB800E47090 = {
+			explicitFileType = wrapper.application;
+			includeInIndex = 0;
+			isa = PBXFileReference;
+			path = GridStuffer.app;
+			refType = 3;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA;
+}

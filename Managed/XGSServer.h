@@ -1,0 +1,72 @@
+//
+//  XGSServer.h
+//  GridStuffer
+//
+//  Created by Charles Parnot on 5/18/05.
+//  Copyright 2005 Charles Parnot. All rights reserved.
+//
+
+/*
+This class is a wrapper for the XGController class. Because they are managed objects,
+they can be saved and remembered  between sessions, particularly useful for servers
+with ip addresses). The connection step is also simpler.
+
+To add and retrieve servers, use the XGSServerList class. Then call one of the
+two -connect... method. These methods take care of all the implementation details.
+In particular, it will try first to connect without authenticating, and only try
+the password or the single sign on if it fails the easy way. 
+
+After calling the connect methods, use KVO on the key 'isConnected' to check
+the connection status and get notified when the server is ready.
+
+IMPORTANT: the password will NOT be remembered or saved to disk.
+*/
+
+//Constants to use to subscribe to notifications
+APPKIT_EXTERN NSString *XGSServerDidConnectNotification;
+APPKIT_EXTERN NSString *XGSServerDidNotConnectNotification;
+APPKIT_EXTERN NSString *XGSServerDidDisconnectNotification;
+
+
+
+@class XGSGrid;
+
+@interface XGSServer : XGSManagedObject
+{
+	XGController *xgridController;
+	XGConnection *xgridConnection;
+	id delegate;
+	NSMutableSet *availableGrids;
+}
+
+//accessors
+- (XGController *)xgridController;
+- (XGSGrid *)defaultGrid;
+
+//see below, the informal protocol for the delegate and notifications
+- (id)delegate;
+- (void)setDelegate:(id)newDelegate;
+
+//after calling these methods, use KVO on the key 'isConnected' to check the connection status
+- (void)connectWithoutAuthentication;
+- (void)connectWithSingleSignOnCredentials;
+- (void)connectWithPassword:(NSString *)password;
+- (void)disconnect;
+
+//These keys can be observed with KVO
+//To get a notification that the connection is ready, observe isConnecting until NO, then check if isConnected is YES
+- (BOOL)isAvailable;
+- (BOOL)isConnected;
+- (BOOL)isConnecting;
+- (NSString *)statusString;
+
+@end
+
+//methods that can be implemented by the delegate
+@interface NSObject (XGSServerDelegate)
+- (void)serverDidConnect:(XGSServer *)aServer;
+- (void)serverDidNotConnect:(XGSServer *)aServer;
+- (void)serverDidDisconnect:(XGSServer *)aServer;
+//- (void)server:(XGSServer *)aServer didAddGrid:(XGSGrid *)aGrid;
+//- (void)server:(XGSServer *)aServer didRemoveGrid:(XGSGrid *)aGrid;
+@end

@@ -1,0 +1,383 @@
+</html>
+
+<h1>GridStuffer</h1>
+
+<h2>Input File Format</h2>
+
+<p>The input file that you should feed GridStuffer with has a syntax very similar to the syntax of the command 'xgrid' (pre-installed in all Mac OS X.4 computers). You can specify complex mutli-task jobs using a format that emulates the flag-based bsd-like format of the xgrid command.</p>
+
+<p>The input file is a text file, and represents a job. Each line in the file represents a command, which will be run as one task of the job. Commands are thus separated by carriage returns or return characters (\r or \n). Each line resembles very much the 'xgrid -job submit/run' format defined by the xgrid command. GridStuffer supports all the flags defined for 'job submit/run', and adds a number of flags to extend the basic job format. Note that GridStuffer does NOT call the xgrid command line and is not a simple wrapper around it. It has its own parser and will simply emulate the xgrid command line. It is thus not guaranteed to behave exactly the same way, particularly in complicated job format situations. Importantly, the input file used by GridStuffer will only deal with the submit part of the xgrid command line, and will not recognize things like '-job status', '-job delete', -grid attributes',... In fact, it is possible to add the words 'xgrid -job submit' or 'xgrid -job run' at the beginning of a line, but this is only for convenience and to be used as a hint about the meaning of the file. The words 'xgrid -job submit' or 'xgrid -job run' are optional and will be basically ignored by the parser (or be implicitely added, depending which way you put it).</p>
+
+<p>The first line of the input file is special. It is used as a 'task prototype', or template, for the subsequent lines. For instance, the first line might set a working directory that will be used by all the other tasks, and it will only have to be explicitely added on the first line.</p>
+
+<h2>Examples of Grid Stuffer input files</h2>
+
+<p>Examples are often the best way to explain things. So, before going into the details of the format, here are two simple examples that should be easy to understand.</p>
+
+<h3>Example 1</h3>
+
+<p>The first example is the useless but now classical /usr/bin/cal example, where we are trying to get a calendar for January, February, March, July, August and December.</p>
+
+<h4>Input file for Example 1</h4>
+
+<pre><code>/usr/bin/cal 1 2005
+/usr/bin/cal 2 2005
+/usr/bin/cal 3 2005
+/usr/bin/cal 7 2005
+/usr/bin/cal 8 2005
+/usr/bin/cal 12 2005
+</code></pre>
+
+<h3>Example 2</h3>
+
+<p>Image processing. Imagine we have a complex program for image filtering that is all embedded in a directory 'MyFilter.bundle', which includes librairies,... We also have a wrapper script (for simplicity, located in the same folder as the input file itself) that takes a file name as argument, and takes care of calling the program used for filtering (the executable is buried in MyFilter.bundle), and to save the result in a new file. We run that program on a bunch of files in the user Pictures folder.</p>
+
+<h4>Input file for Example 2</h4>
+
+<pre><code>-in ~/MyFilter.bundle -files ~/Pictures exec_wrapper.pl file1.jpg
+exec_wrapper.pl ilovethatpicture.jpg
+exec_wrapper.pl ilovethatpicturetoo.jpg
+exec_wrapper.pl picture15.tif
+exec_wrapper.pl vacation.tif
+...
+</code></pre>
+
+<h2>Format of the input file</h2>
+
+<h3>Synopsis</h3>
+
+<p>Format for each line of the input file:</p>
+
+<pre><code>[xgrid -job submit | run] 
+[-si stdin] [-in indir] [-dirs dirpath1 [, dirpath2]*]
+[-files filepath1 [, filepath2]*]
+[-so stdout] [-se stderr] [-out outdir]
+[cmd [arg1 [...]]]
+</code></pre>
+
+<h3>Options also defined by the xgrid command</h3>
+
+<pre><code>-si stdin
+</code></pre>
+
+<p>file to use for standard input (similar to the xgrid command)</p>
+
+<pre><code>-in indir
+</code></pre>
+
+<p>working directory to submit with the task (similar to the xgrid command)</p>
+
+<pre><code>-so stdout (similar to the xgrid command)
+</code></pre>
+
+<p>file to write the standard output stream to</p>
+
+<pre><code>-se stderr (similar to the xgrid command)
+</code></pre>
+
+<p>file to write the standard error stream to</p>
+
+<pre><code>-out outdir (similar to the xgrid command)
+</code></pre>
+
+<p>directory to store the task results in, which are the files created by the task</p>
+
+<h3>Options specific to GridStuffer</h3>
+
+<pre><code>-dirs dirpath1 [, dirpath2]*
+</code></pre>
+
+<p>the -dirs flag takes a list of paths; only directories are valid, and paths corresponds to a files are ignored; this option is different from the -in option; the files contained in the directories are not submitted with the task; only files explicitely listed in the '-files' argument are used for the task; this option is useful to define a task prototype; read more below about the -dirs and -files arguments</p>
+
+<pre><code>-files filepath1 [, filepath2]*
+</code></pre>
+
+<p>additional files to submit with the job; if no file is found at the path passed as argument, it is looked for in the directories passed as argument to the 'dirs' option; this allows you to only pass filenames as arguments, without providing full paths (see Example 2 above); read more below about the use of the -dirs arguments in task prototype</p>
+
+<h3>General considerations on paths</h3>
+
+<p>The use of paths in the context of xgrid-distributed programs brings with it a number potential ambiguities. Some of the paths will apply to the client filesystem, others to the agent filesystem, and some will apply to both. Files will be present both on the client and on the agent, potentially at different paths. Using absolute paths only makes sense if the file or executable is guarantedd to be on the agent. Otherwise, relative paths have to be used. But relative paths are relative to the current working directory in the client, which will be at a different path on the agent. In conclusion, when submitting a job, the rules applied to resolve paths have to cover all situations and be non-ambiguous. In addition, it is nice if these rules makes the syntax short and simple, and do The Right Thing in most cases. The xgrid command line developed by Apple is already quite good at it. Thus GridStuffer is based on the xgrid command behavior and expands its functionality.</p>
+
+<h3>The working directory on the client</h3>
+
+<p>Because GridStuffer is a GUI program, the current working directory on the client can not be defined the way a CLI program would set it (e.g. the PWD environment variable, usually the same as the output of the <code>pwd</code> command). The relative paths for files expected to be on the client are prepended with the path to the directory in which the input file is located. This is the "working directory" on the client.</p>
+
+<h3>The working directory on the agent</h3>
+
+<p>The working directory on the agent is /var/xgrid/agent/tasks/XXXXXXXXX/working where 'XXXXXXXX' is a random string. The directory is automatically created and destroyed by the agent process, and for each new task, a different random string is used.</p>
+
+<p>If you supply a '-in' argument, the whole contents of the corresponding directory will be uploaded in the working directories. Only the last path component is used and is appended to /var/xgrid. None of the parent directories is created in the working directory. For instance, if you use '-in ~/work/xgrid/dir1', then the working directory on the agent will not include the dir1 directory or any of the parent directory, but only its contents. Of course, there might still be subdirectories, if ~/work/xgrid/dir1 contains any.</p>
+
+<p>In addition to the contents of the directory supplied in the -in option, the working directory will also be populated with files provided in the -files option, as well as files provided in the command string and the argument strings. The exact rules for these additions are explained in more detail below.</p>
+
+<h3>Absolute and relative paths</h3>
+
+<p>Paths refering to files and directories on the client can be absolute or relative. It is important to know when a path is considered absolute and when it is considered relative by GridStuffer, as this may decide wether a file is uploaded to the agent or not. It is very simple. A path is absolute if it starts with the character '/', and it is otherwise relative. Paths starting with '~/' are considered relative paths. It makes sense to consider paths starting with '~' as relative, because in most occasions, files installed in the user directory is not installed by default with Mac OS X, and such paths would not make sense on the agents. Paths starting with '.' or '..' are also considered relative. For instance, ~/../../usr/bin is a relative path, while /usr/bin is an absolute path.</p>
+
+<h3>Client-only paths</h3>
+
+<p>The options -si, -so, -se and -out take as arguments paths on the client, and are never used in the context of the agent. They can be absolute paths, use the '~' path, or be genuine relative path, in which case the path is relative to the directory in which the input file is located, as explained above.</p>
+
+<h3>The command string</h3>
+
+<p>The rule relative/absolute path applies for the command string. When you use an absolute path for the command, the corresponding file is NOT uploaded to the agent and is considered to be installed there. When you use a relative path, the corresponding file is uploaded to the agent <em>if the file does exist</em> at the indicated path on the client. Otherwise, the file is not uploaded and the command string is used 'as is' in the context of the working directory on the agent.</p>
+
+<p>If the file is uploaded, it is installed in the working directory on the agent. Only the last component of the path is uploaded, and <em>not</em> the parent directories. If the file is not uploaded (because it is an absolute path, or because it is not found on the client), the command string is used 'as is', including any of the special paths '.', '..' and '~'. These special paths will be expanded once the agent runs the command (remember that '~' will usually not be expandable in the context of the agent, though).</p>
+
+<p>Finally, the mechanism described in the section below about the -dirs and -files options applies to the command string. Briefly, if the command string corresponds to a filename included by the -dirs or the -files options, the path will be expanded to be properly interpreted in the context of the agent working directory. Read more about it below.</p>
+
+<h4>Example A.</h4>
+
+<p>The command is '/usr/bin/cal'. No file is uploaded to the agent. The command is run with the string '/usr/bin/cal', which will use the local version of the cal command.</p>
+
+<h4>Example B.</h4>
+
+<p>The command is 'scripts/myscript.pl' and a directory 'scripts' exists in the directory where the input file is located, and a file 'myscript.pl' exists in the 'scripts' directory. Then the file 'myscript.pl' is copied on the agent working directory, but not the parent directory, and the command string on the agent will simply be 'myscript.pl', but not 'scripts/myscript.pl'.</p>
+
+<h4>Example C.</h4>
+
+<p>The command is '~/perl-scripts/myscript.pl' and a file exists at the indicated path. The result is the same as Example B.</p>
+
+<h4>Example D.</h4>
+
+<p>The command is 'scripts/myscript.pl' and there is no directory 'scripts' in the directory containing the input file. So the file does not exist on the client at the indicated path. No command file is uploaded to the agent. The string 'scripts/myscript.pl' is used as is to run the command. This will work if, for instance, you have also used a '-in' option to upload a working directory and there is a 'scripts' directory and a 'myscript.pl' file in it.</p>
+
+<h4>Example E.</h4>
+
+<p>The command is '~/perl-scripts/myscript.pl' but there is no such file at the indicated path. So the file does not exist on the client at the indicated path. No command file is uploaded to the agent. The string '~/perl-scripts/myscript.pl' is used as is to run the command. This will work if the xgrid agent user has a home folder, e.g. using Kerberos single sign-on, and you have installed the script at the indicated path on all the agents.</p>
+
+<h3>The argument strings</h3>
+
+<p>The mechanism described above for the command string also applies to the argument strings that follow the command string. When parsing, every argument will be considered a potential path, and will be resolved according to the rules described above for the command string. Like the command string, an argument will be interpreted as a file to be uploaded only if the path is a relative path and a file does exist at this path. In addition, the mechanism provided by the '-dirs' and '-files' options will be used when appropriate. If there is no file on the client that seems to correspond to the argument, then the argument string is used 'as is' when run on the agent.</p>
+
+<p>Note that the existence of a path will be tested even for arguments that are obviously not paths, such as 'print$var". But GridStuffer is just a computer program, so it will still try to find such a file before deciding to simply use 'print$var' as a string. Thus make sure that you don't have a file named 'print$var'...</p>
+
+<h3>Task prototype</h3>
+
+<p>As explained above, the first line of the input file plays a particular role in the job submission. In particular, it can be used to define a template. In the terminology of the batch plist format, that would be called a task prototype. To differentiate the two mechanisms, only the name 'template' will be used.</p>
+
+<p>GridStuffer will make the options used in the first line the default values for all the other tasks. These default values can be overriden by the other tasks, of course. GridStuffer will use the first line to set the default value for the options  -si, -in, -files, -so, -se and -out. Remember that the prototype applies to the command and argument strings too.</p>
+
+<p>For instance, one can define in the first line the working directory, the output directory (-in and -out options) and the command. Then each line could consist of an stdin file, e.g. '-si file1.txt', without even the need to repeat the command.</p>
+
+<p>The first line can still be used to define a task. It can also be used to only define a prototype, by simply not providing any command, but only the default options to apply to the other tasks. If you don't want ANY prototype, simply leave the first line empty. Conversely, if you simply want to run the exact same task as the prototype, create an empty line in the input file. Read that last sentence again. Now, remember to not end your input file with a empty line, as this would prompt GridStuffer to repeat the task defined in the first line.</p>
+
+<h3>The -dirs and -files arguments</h3>
+
+<p>There are four mechanisms by which a file will be uploaded to the working directory.</p>
+
+<p>First, all the files in the argument of the -in option will be uploaded. This is explained above in the section 'The working directory on the agent'.</p>
+
+<p>Second, files are automatically looked for in the command string and in the argument strings. If the command string or the argument string is a relative path and corresponds to a file existing in the client filesystem, the file will be automatically added to the uploaded files, and the string will be changed to correspond to the final path in the agent, so that it should do The Right Thing. This mechanism has been described in the above sections 'The command string' and 'The argument strings'.</p>
+
+<p>Third, additional files can be explicitely added using the -files option. In its simplest form, the -files option simply duplicates the functionality of the -in option and uploads the file or the directory at the path(s) passed as argument(s). One potential use is to have a -in defined in the task prototype, which applies to every task, and then have for each task an additional unique file or folder, defined using -files.</p>
+
+<p>Fourth, to easily manage large trees of files, one can use the -dirs option. Its use is similar to the 'inputFiles' entry in the batch plist format. The idea is that -dirs provides an easy way to provide a bunch of files at once, without necessarily using them all in a given task. Unlike -in or -files, the -dirs option will not force the enclosed files to be uploaded to the agent. Only files refered to in the command or argument strings, or using the -files argument will be used. The main advantage of using -dirs is that you don't need to use full paths to refer to files located in these directories. Just the file name is sufficient (it could be considered a symbolic name for the path to the file).</p>
+
+<p>To illustrate the use of -dirs, imagine you have a repository of data files of your current project in directory ~/Projects/project1. In this directory, you have 10 different folders, with 10-100 files in each. You could use '-dirs ~/Projects/project1' in the first line of the input file to let GridStuffer know that some tasks will use files inside that directory. Now, imagine you need the file ~/Projects/project1/tifs/356.tif in one of the task. All you need to do is use the option '-files afile356.tif'. Alternatively, you could simply have the command 'myscript.pl afile356.tif', and GridStuffer will automatically create a path project1/tifs/afile356.tif on the agent and modify the command so it becomes 'myscript.pl project1/tifs/afile356.tif' and refers to the right path on the agent. Importantly, even if the folder project1 contains 1000 files, but you use only 14 of them in 14 different tasks, only 14 of them will really be uploaded, one for ech of the corresponding task.</p>
+
+<p>In general, the only item created on the agent is the final path component. For instance, if GridStuffer determines that '~/perl-scripts/myscript.pl' should be uploaded, only the file 'myscript.pl' will be created on the agent, without the parent directories. However, the '-dirs' option will also trigger the creation of the corresponding directories in the working directory on the agent. For instance, if you use '-dirs ~/Projects/project1', there will be a directory 'project1', no matter what. It might be empty (actually, an empty dummy file named '.GridStuffer<em>dummy</em>file<em>to</em>force<em>dir</em>creation' is uploaded to force the creation of the directory). If one of the files contained in '~/Projects/project1' is also uploaded, then the path to it will be created inside that directory. For instance, the file '~/Projects/project1/tifs/356.tif' will be at path 'project1/tifs/afile356.tif' on the agent.</p>
+
+<p>Because -dirs can refer to a directory that contains subdirectories, there might be several files with the same name in the directory. In case of ambiguities, only one of the files with the ambiguous name wil be used (in an undefined way). To remove the ambiguity, you should use a partial path when refering to the file. For instance, if the directory contains two subdirectories, '2003' and '2004', and both contain a file results1.txt, you can refer unambiguously to each file using either '2003/results1.txt', or '2004/results1.txt'.</p>
+
+<p>Finally, there is a potential conflict between the -dirs and -in arguments. The path used in the '-in' option should <em>not</em> be a subpath of one of the '-dirs' arguments.</p>
+
+<h3>Executables</h3>
+
+<p>Files that are executable will be made executable on the agent. It seems xgrid puts the executable files in a separate directory, specifically /var/xgrid/agent/tasks/XXXXXXXXX/executable where 'XXXXXXXX' is a random string specific for the task. But these files are also present in /var/xgrid/agent/tasks/XXXXXXXXX/working. So they can be accessed both ways. The fact that the file is in the latter directory is all that matters to get GridStuffer and Xgrid to do The Right Thing.</p>
+
+<h3>File duplicates</h3>
+
+<p>If the same file is used in two different places in the same command or in different commands, it will not generate duplicate entries in the final job submission. In most cases, GridStuffer should be able to aggregate the files in the job description.</p>
+
+<h3>Symbolic links</h3>
+
+<p>I am not sure how symbolic links will be processed, and the behavior of GridStuffer when dealing with symbolic links is thus not defined at this point.</p>
+
+<h3>Results and failures</h3>
+
+<p>The -se, -so and -out flags can be used to specify a location on disk to save the results to. This is however optional and the GridStuffer application will provide other mechanisms to save the results automatically to disk in an orderly manner (read the other parts of the documentation). In addition, GridStuffer can decide when a task has failed based on simple criteria, like the absence of output files, the absence or presence of a stdout or stderr stream, etc... This is all part of the GUI and is managed by the user though a series of check boxes (read the other parts of the documentation).</p>
+
+<h2>Comparison with other job format submission</h2>
+
+<h3>Example 1 with the GridSuffer format</h3>
+
+<p>The first example is the useless but now classical /usr/bin/cal example, where we are trying to get a calendar for January, February, March, July, August and December. The GridStuffer format is human-readable, easy to understand, and concise.</p>
+
+<h4>Input file for Example 1</h4>
+
+<pre><code>/usr/bin/cal 1 2005
+/usr/bin/cal 2 2005
+/usr/bin/cal 3 2005
+/usr/bin/cal 7 2005
+/usr/bin/cal 8 2005
+/usr/bin/cal 12 2005
+</code></pre>
+
+<h3>Example 1 with the flag-based xgrid command line</h3>
+
+<p>To submit the same cal jobs (but not as a bunch of tasks inside a single job), you could use the Terminal application and type the following commands:</p>
+
+<pre><code>%xgrid -job submit /usr/bin/cal 1 2005
+    { jobIdentifier = 1; }
+%xgrid -job submit /usr/bin/cal 2 2005
+    { jobIdentifier = 2; }
+%xgrid -job submit /usr/bin/cal 3 2005
+    { jobIdentifier = 3; }
+%xgrid -job submit /usr/bin/cal 7 2005
+    { jobIdentifier = 4; }
+%xgrid -job submit /usr/bin/cal 8 2005
+    { jobIdentifier = 5; }
+%xgrid -job submit /usr/bin/cal 12 2005
+    { jobIdentifier = 6; }
+</code></pre>
+
+<h3>Example 1 with the batch format of the xgrid command line</h3>
+
+<p>In the Terminal application, we could type the following command:</p>
+
+<pre><code>%xgrid -job batch cal-batch.xml
+</code></pre>
+
+<p>The batch format provides more features than GridStuffer, but loses a lot of the conciseness and readbility. The cal-batch.xml file would have to have the following contents:</p>
+
+<pre><code>&lt;!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN"
+    "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;
+&lt;plist version="1.0"&gt;
+&lt;array&gt;
+    &lt;dict&gt;
+        &lt;key&gt;name&lt;/key&gt;
+        &lt;string&gt;CalJob&lt;/string&gt;
+        &lt;key&gt;taskSpecifications&lt;/key&gt;
+        &lt;dict&gt;
+            &lt;key&gt;0&lt;/key&gt;
+            &lt;dict&gt;
+                &lt;key&gt;command&lt;/key&gt;
+                &lt;string&gt;/usr/bin/cal&lt;/string&gt;
+                &lt;key&gt;arguments&lt;/key&gt;
+                &lt;array&gt;
+                    &lt;string&gt;1&lt;/string&gt;
+                    &lt;string&gt;2005&lt;/string&gt;
+                &lt;/array&gt;
+            &lt;/dict&gt;
+            &lt;key&gt;1&lt;/key&gt;
+            &lt;dict&gt;
+                &lt;key&gt;command&lt;/key&gt;
+                &lt;string&gt;/usr/bin/cal&lt;/string&gt;
+                &lt;key&gt;arguments&lt;/key&gt;
+                &lt;array&gt;
+                    &lt;string&gt;2&lt;/string&gt;
+                    &lt;string&gt;2005&lt;/string&gt;
+                &lt;/array&gt;
+            &lt;/dict&gt;
+            &lt;key&gt;2&lt;/key&gt;
+            &lt;dict&gt;
+                &lt;key&gt;command&lt;/key&gt;
+                &lt;string&gt;/usr/bin/cal&lt;/string&gt;
+                &lt;key&gt;arguments&lt;/key&gt;
+                &lt;array&gt;
+                    &lt;string&gt;3&lt;/string&gt;
+                    &lt;string&gt;2005&lt;/string&gt;
+                &lt;/array&gt;
+            &lt;/dict&gt;
+            &lt;key&gt;3&lt;/key&gt;
+            &lt;dict&gt;
+                &lt;key&gt;command&lt;/key&gt;
+                &lt;string&gt;/usr/bin/cal&lt;/string&gt;
+                &lt;key&gt;arguments&lt;/key&gt;
+                &lt;array&gt;
+                    &lt;string&gt;7&lt;/string&gt;
+                    &lt;string&gt;2005&lt;/string&gt;
+                &lt;/array&gt;
+            &lt;/dict&gt;
+            &lt;key&gt;4&lt;/key&gt;
+            &lt;dict&gt;
+                &lt;key&gt;command&lt;/key&gt;
+                &lt;string&gt;/usr/bin/cal&lt;/string&gt;
+                &lt;key&gt;arguments&lt;/key&gt;
+                &lt;array&gt;
+                    &lt;string&gt;8&lt;/string&gt;
+                    &lt;string&gt;2005&lt;/string&gt;
+                &lt;/array&gt;
+            &lt;/dict&gt;
+            &lt;key&gt;5&lt;/key&gt;
+            &lt;dict&gt;
+                &lt;key&gt;command&lt;/key&gt;
+                &lt;string&gt;/usr/bin/cal&lt;/string&gt;
+                &lt;key&gt;arguments&lt;/key&gt;
+                &lt;array&gt;
+                    &lt;string&gt;12&lt;/string&gt;
+                    &lt;string&gt;2005&lt;/string&gt;
+                &lt;/array&gt;
+            &lt;/dict&gt;
+        &lt;/dict&gt;
+    &lt;/dict&gt;
+&lt;/array&gt;
+&lt;/plist&gt;
+</code></pre>
+
+<h2>Appendix</h2>
+
+<h3>The gory details about paths</h3>
+
+<p>Here is the EXACT way GridStuffer decides that a file should be uploaded on the agent. Internally, the different options are parsed and their arguments are used to populate a list of absolute paths.</p>
+
+<h4>1. The -in option</h4>
+
+<p>Provided the path, <em>relative or absolute</em>, correspond to an existing file or directory, the path is added to the list, as well as all the subpaths if applicable. Note that if it is a directory and it is empty, no path is added to the list.</p>
+
+<p>Example:
+* The option is '-in ~/Desktop/environment'
+* The paths added are:
+    /Users/myusername/Desktop/environment/dir1/file1
+    /Users/myusername/Desktop/environment/dir1/file2
+    /Users/myusername/Desktop/environment/dir2/file3</p>
+
+<h4>2. The -dirs option</h4>
+
+<p>Provided the paths, <em>relative or absolute</em>, correspond to existing directories on the client, they are added to the list.</p>
+
+<p>Example:
+* The option is '-dirs ~/mydata/project1 ~/myresults/2005 ~/myresults/2015 /Library/Scripts/Science'
+* The paths added are:
+    /Users/myusername/mydata/project1
+    /Users/myusername/mydata/project1
+    /Library/Scripts/Science</p>
+
+<p>In addition, all the contents are visited and indexed to allow 'shortcuts' to be used in the other parts of the command. For instance, GridStuffer will know that any reference to 'picture512.tif' will correspond to path '/Users/myusername/mydata/project1/images/1998/May/picture512.tif'</p>
+
+<h4>3. The -files option</h4>
+
+<p>Provided the paths, <em>relative or absolute</em>, correspond to existing directories on the client, they are added to the list. Also, if they are found in the 'shortcut' index created by the -dirs option, the corresponding paths are added.</p>
+
+<p>Example:
+* The option is '-files file1.txt data/file3.txt picture512.tif /tmp/abcxyz.jpg'
+* The paths added are:
+    /Users/myusername/Desktop/xgrid-run1/file1.txt
+    /Users/myusername/Desktop/xgrid-run1/data/file3.txt
+    /Users/myusername/mydata/project1/images/1998/May/picture512.tif
+    /tmp/abcxyz.jpg</p>
+
+<h4>4. The command string</h4>
+
+<p>If the command string, interpreted as a <em>relative</em> path, corresponds to an existing file on the client, the path is added to the list. Also, if the string is found in the 'shortcut' index created by the -dirs option, the corresponding path  is added.</p>
+
+<p>Example:
+* The command string is '~/myscripts/2004/tellmemore.py'
+* The paths added are:
+    /Users/myusername/myscripts/2004/tellmemore.py</p>
+
+<h4>5. The argument strings</h4>
+
+<p>The very same rule applies for the command and the arguments strings. If an argument string, interpreted as a <em>relative</em> path, corresponds to an existing file on the client, the path is added to the list. Also, if the string is found in the 'shortcut' index created by the -dirs option, the corresponding path  is added.</p>
+
+<p>Example:
+* The arguments  are 'print$var picture512.tif file1.txt ~/Pictures/vacation<em>1973/me.tif'
+* The paths added are:
+    /Users/myusername/mydata/project1/images/1998/May/picture512.tif
+    /Users/myusername/Desktop/xgrid-run1/file1.txt
+    /Users/myusername/Pictures/vacation</em>1973/me.tif</p>
+
+<h4>6. Paths on the client and on the agent</h4>
+
+</html>

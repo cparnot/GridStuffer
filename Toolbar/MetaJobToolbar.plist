@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+
+	<key>XGSToolbar1NewJobItemIdentifier</key>
+	<dict>
+		<key>Label</key>
+		<string>New Job</string>
+		<key>ImageName</key>
+		<string>New</string>
+		<key>Action</key>
+		<string>insertNewMetaJob:</string>
+		<key>ToolTip</key>
+		<string>Add a new job defined by a list of commands in a text file</string>
+	</dict>
+
+	<key>XGSToolbar2InspectJobItemIdentifier</key>
+	<dict>
+		<key>Label</key>
+		<string>Settings</string>
+		<key>ImageName</key>
+		<string>Inspect</string>
+		<key>Action</key>
+		<string>showMetaJobInspectorPanel:</string>
+		<key>ToolTip</key>
+		<string>Change the job settings</string>
+	</dict>
+
+	<key>XGSToolbar3StartJobItemIdentifier</key>
+	<dict>
+		<key>Label</key>
+		<string>Start</string>
+		<key>ImageName</key>
+		<string>Start</string>
+		<key>Action</key>
+		<string>startMetaJob:</string>
+		<key>ToolTip</key>
+		<string>Submit to Xgrid the commands defined by the selected job</string>
+	</dict>
+
+	<key>XGSToolbar4SuspendJobItemIdentifier</key>
+	<dict>
+		<key>Label</key>
+		<string>Suspend</string>
+		<key>ImageName</key>
+		<string>Suspend</string>
+		<key>Action</key>
+		<string>suspendMetaJob:</string>
+		<key>ToolTip</key>
+		<string>Suspend submissions of the commands defined by the selected job (commands already submitted will continue)</string>
+	</dict>
+
+	<key>XGSToolbar5DeleteJobItemIdentifier</key>
+	<dict>
+		<key>Label</key>
+		<string>Delete</string>
+		<key>ImageName</key>
+		<string>Delete</string>
+		<key>Action</key>
+		<string>deleteSelectedMetaJobs:</string>
+		<key>ToolTip</key>
+		<string>Delete the selected jobs</string>
+	</dict>
+
+
+</dict>
+</plist>
