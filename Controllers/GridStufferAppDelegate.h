@@ -23,6 +23,10 @@
 	XGSJobListController *jobListController;
 	IBOutlet NSArrayController *jobArrayController;
 	IBOutlet NSTableView *metaJobTableView;
+	
+	//Progress tab
+	IBOutlet NSTableView *taskInspectorTableView;
+	IBOutlet NSTextField *taskDescriptionTextField;
 }
 
 // Actions

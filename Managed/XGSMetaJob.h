@@ -54,6 +54,12 @@ In GridStuffer, the data source is an instance of XGSTaskSource.
 - (NSNumber *)percentDismissed;
 - (NSNumber *)percentSubmitted;
 
+//info about the individual tasks
+- (int)countFailuresForTaskAtIndex:(int)index;
+- (int)countSuccessesForTaskAtIndex:(int)index;
+- (int)countSubmissionsForTaskAtIndex:(int)index;
+- (NSString *)statusStringForTaskAtIndex:(int)index;
+
 //short description, handy for debugging
 - (NSString *)shortDescription;
 
@@ -107,6 +113,8 @@ In GridStuffer, the data source is an instance of XGSTaskSource.
 @interface NSObject(XGSMetaJobDelegate)
 - (void)metaJobDidStart:(XGSMetaJob *)metaJob;
 - (void)metaJobDidSuspend:(XGSMetaJob *)metaJob;
+- (void)metaJob:(XGSMetaJob *)metaJob didSubmitTaskAtIndex:(int)index;
+- (void)metaJob:(XGSMetaJob *)metaJob didProcessTaskAtIndex:(int)index;
 @end
 	
 /*

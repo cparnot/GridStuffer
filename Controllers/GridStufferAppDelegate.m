@@ -58,6 +58,7 @@
 	metaJobToolbarController = [[XGSToolbarController alloc] initWithToolbarDescriptionFile:@"MetaJobToolbar"];
 	[metaJobListWindow setToolbar:[metaJobToolbarController toolbar]];
 	[[[metaJobTableView tableColumnWithIdentifier:@"progress"] dataCell] setControlSize:NSMiniControlSize];
+	[taskInspectorTableView reloadData];
 }
 
 
@@ -101,6 +102,8 @@
 {
 	DLog(NSStringFromClass([self class]),10,@"[<%@:%p> %s]",[self class],self,_cmd);
 
+	//it is a rare case where the release is handled by the object itself
+	//so do not worry about the alloc below
 	XGSNewJobController *newJobWindowController;
 	newJobWindowController = [[XGSNewJobController alloc] init];
 	[newJobWindowController showWindow:self];
@@ -113,8 +116,10 @@
 	DLog(NSStringFromClass([self class]),10,@"[<%@:%p> %s]",[self class],self,_cmd);
 	
 	selectedJob = [self uniquelySelectedMetaJobInTheTableView];
+	[selectedJob setDelegate:self];
 	[[[selectedJob dataSource] inputInterface] loadFile];
 	[selectedJob start];
+	[taskInspectorTableView reloadData];
 }
 
 - (IBAction)suspendMetaJob:(id)sender
@@ -126,6 +131,7 @@
 	selectedJob = [self uniquelySelectedMetaJobInTheTableView];
 	[[[selectedJob dataSource] inputInterface] loadFile];
 	[selectedJob suspend];
+	[taskInspectorTableView reloadData];
 }
 
 - (IBAction)deleteSelectedMetaJobs:(id)sender
@@ -138,6 +144,7 @@
 	e = [metaJobs objectEnumerator];
 	while ( aMetaJob = [e nextObject] )
 		[aMetaJob deleteFromStore];
+	[taskInspectorTableView reloadData];
 }
 
 /*
@@ -304,6 +311,76 @@
         }
     }
     return reply;
+}
+
+
+#pragma mark *** NSTableView data source and delegate ***
+
+
+//data source for the command progress table view
+- (int)numberOfRowsInTableView:(NSTableView *)aTableView
+{
+	return [[[self uniquelySelectedMetaJobInTheTableView] countTotalTasks] intValue];
+}
+
+//data source for the command progress table view
+- (id)tableView:(NSTableView *)aTableView objectValueForTableColumn:(NSTableColumn *)aTableColumn row:(int)rowIndex
+{
+	NSString *idf;
+	idf=[aTableColumn identifier];
+	
+	if ([idf isEqualToString:@"index"])
+		return [NSNumber numberWithInt:rowIndex];
+	if ([idf isEqualToString:@"status"])
+		return [NSImage imageNamed:[[self uniquelySelectedMetaJobInTheTableView] statusStringForTaskAtIndex:rowIndex]];
+	
+	int integerValue = 0;
+	XGSMetaJob *selectedJob = [self uniquelySelectedMetaJobInTheTableView];
+	if ([idf isEqualToString:@"successes"])
+		integerValue = [selectedJob countSuccessesForTaskAtIndex:rowIndex];
+	else if ([idf isEqualToString:@"failures"])
+		integerValue = [selectedJob countFailuresForTaskAtIndex:rowIndex];
+	else if ([idf isEqualToString:@"submissions"])
+		integerValue = [selectedJob countSubmissionsForTaskAtIndex:rowIndex];
+	if ( integerValue )
+		return [NSNumber numberWithInt:integerValue];
+	else
+		return @"";
+}
+
+//delegate for the MetaJobs list --> triggers update of command list
+//delegete for the Command list --> shows the command from the file
+- (void)tableViewSelectionDidChange:(NSNotification *)aNotification
+{
+	NSTableView *selectedTableView = [aNotification object];
+	DLog(NSStringFromClass([self class]),10,@"[<%@:%p> %s]",[self class],self,_cmd);
+	if ( selectedTableView == metaJobTableView ) {
+		DLog(NSStringFromClass([self class]),10,@"[<%@:%p> %s] for MetaJobs table",[self class],self,_cmd);
+		[taskInspectorTableView reloadData];		
+	}
+	else if ( selectedTableView == taskInspectorTableView ) {
+		DLog(NSStringFromClass([self class]),10,@"[<%@:%p> %s] for Tasks table",[self class],self,_cmd);
+		XGSMetaJob *selectedJob = [self uniquelySelectedMetaJobInTheTableView];
+		int index = [taskInspectorTableView selectedRow];
+		NSString *taskString = [[selectedJob valueForKeyPath:@"dataSource.inputInterface"] lineAtIndex:index];
+		[taskDescriptionTextField setStringValue:taskString];
+	}
+}
+
+
+#pragma mark *** MetaJob delegate methods --> used for the GUI ***
+
+//- (void)metaJobDidStart:(XGSMetaJob *)metaJob;
+//- (void)metaJobDidSuspend:(XGSMetaJob *)metaJob;
+
+-(void)metaJob:(XGSMetaJob *)metaJob didSubmitTaskAtIndex:(int)index
+{
+	[taskInspectorTableView reloadData];
+}
+
+- (void)metaJob:(XGSMetaJob *)metaJob didProcessTaskAtIndex:(int)index
+{
+	[taskInspectorTableView reloadData];
 }
 
 @end

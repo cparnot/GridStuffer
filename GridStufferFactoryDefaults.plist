@@ -4,10 +4,11 @@
 <dict>
 
 	<key>DebugLogVerboseLevel</key>
-	<string>15</string>
+	<string>10</string>
 	
 	<key>DebugIdentifiers</key>
 	<array>
+		<string>GridStufferAppDelegate</string>
 		<string>XGSMetaJob</string>
 		<string>XGSIntegerArray</string>
 		<string>XGSTaskSource</string>

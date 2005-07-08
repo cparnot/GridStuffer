@@ -35,7 +35,7 @@
 		keys=[NSArray arrayWithObjects:@"countCompletedTasks",@"countDismissedTasks",nil];
 		[self setKeys:keys triggerChangeNotificationsForDependentKey:@"countDone"];
 		[self setKeys:keys triggerChangeNotificationsForDependentKey:@"percentDone"];
-		[self setKeys:keys triggerChangeNotificationsForDependentKey:@"countPending"];
+		[self setKeys:keys triggerChangeNotificationsForDependentKey:@"countPendingTasks"];
 		[self setKeys:keys triggerChangeNotificationsForDependentKey:@"percentPending"];
 		keys=[NSArray arrayWithObjects:@"countDismissedTasks",nil];
 		[self setKeys:keys triggerChangeNotificationsForDependentKey:@"percentDismissed"];
@@ -350,7 +350,7 @@ NSNumber *FloatNumberWithPercentRatioOfNumbers(NSNumber *number1,NSNumber *numbe
 }
 */
 
-//convenience method called by several other methods to decrement the submission count of a finished job
+//convenience method called by several other methods to decrement the submission counts for the tasks of a finished job
 - (void)removeJob:(XGSJob *)aJob
 {
 	NSDictionary *taskMap;
@@ -367,6 +367,10 @@ NSNumber *FloatNumberWithPercentRatioOfNumbers(NSNumber *number1,NSNumber *numbe
 			int old = [[self valueForKey:@"countSubmittedTasks"] intValue];
 			[self setValue:[NSNumber numberWithInt:old-1] forKey:@"countSubmittedTasks"];
 		}
+		//the delegate might want to know the task was processed
+		if ( [delegate respondsToSelector:@selector(metaJob:didProcessTaskAtIndex:)] )
+			[delegate metaJob:self didProcessTaskAtIndex:[metaTaskIndex intValue]];
+		
 	}
 	[aJob setDelegate:nil];
 	[[self mutableSetValueForKey:@"jobs"] removeObject:aJob];
@@ -397,6 +401,34 @@ NSNumber *FloatNumberWithPercentRatioOfNumbers(NSNumber *number1,NSNumber *numbe
 	[self setValue:[NSNumber numberWithInt:old-1] forKey:@"countCompletedTasks"];
 }
 
+- (int)countFailuresForTaskAtIndex:(int)index
+{
+	return [[self failureCounts] intValueAtIndex:index];
+}
+
+- (int)countSuccessesForTaskAtIndex:(int)index
+{
+	return [[self successCounts] intValueAtIndex:index];
+}
+
+- (int)countSubmissionsForTaskAtIndex:(int)index
+{
+	return [[self submissionCounts] intValueAtIndex:index];
+}
+
+- (NSString *)statusStringForTaskAtIndex:(int)index
+{
+	if ( [self countSuccessesForTaskAtIndex:index] >= [self successCountsThreshold] )
+		return @"Completed";
+	if ( [self countSubmissionsForTaskAtIndex:index] > 0 )
+		return @"Submitted";
+	
+	int threshold = [self failureCountsThreshold];
+	if ( threshold > 0 &&  [self countFailuresForTaskAtIndex:index] >= threshold)
+		return @"Dismissed";
+	
+	return @"Pending";
+}
 
 #pragma mark *** task specifications ***
 
@@ -696,6 +728,8 @@ NOTE: I cannot have different sets of paths for different tasks, because the key
 			int old = [[self valueForKey:@"countSubmittedTasks"] intValue];
 			[self setValue:[NSNumber numberWithInt:old+1] forKey:@"countSubmittedTasks"];
 		}
+		if ( [delegate respondsToSelector:@selector(metaJob:didSubmitTaskAtIndex:)] )
+			[delegate metaJob:self didSubmitTaskAtIndex:taskIndex];
 		taskCount ++;
 		
 		//to be in the same jobs, tasks need to have the same uploaded paths

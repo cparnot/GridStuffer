@@ -24,6 +24,8 @@
                 metaJobInspectorPanel = NSPanel; 
                 metaJobListWindow = NSWindow; 
                 metaJobTableView = NSTableView; 
+                taskDescriptionTextField = NSTextField; 
+                taskInspectorTableView = NSTableView; 
             }; 
             SUPERCLASS = NSObject; 
         }, 

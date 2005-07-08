@@ -322,34 +322,24 @@ static NSArray *demoDictionaries = nil;
 	//get the context
 	context=[[NSApp delegate] managedObjectContext];
 
-	//create a new MetaJob and associated objects
-	metaJob     = [NSEntityDescription insertNewObjectForEntityForName:@"MetaJob"
-											   inManagedObjectContext:context];
-	submissions = [NSEntityDescription insertNewObjectForEntityForName:@"IntegerArray"
-											   inManagedObjectContext:context];
-	successes   = [NSEntityDescription insertNewObjectForEntityForName:@"IntegerArray"
-											   inManagedObjectContext:context];
-	failures    = [NSEntityDescription insertNewObjectForEntityForName:@"IntegerArray"
-											   inManagedObjectContext:context];
-	taskSource  = [NSEntityDescription insertNewObjectForEntityForName:@"TaskSource"
-											   inManagedObjectContext:context];
-	input       = [NSEntityDescription insertNewObjectForEntityForName:@"InputInterface"
-											   inManagedObjectContext:context];
-	output      = [NSEntityDescription insertNewObjectForEntityForName:@"OutputInterface"
-											   inManagedObjectContext:context];
-	filter      = [NSEntityDescription insertNewObjectForEntityForName:@"Validator"
-											   inManagedObjectContext:context];
-	
 	//set up the input and output interface first
+	input       = [NSEntityDescription insertNewObjectForEntityForName:@"InputInterface" inManagedObjectContext:context];
+	output      = [NSEntityDescription insertNewObjectForEntityForName:@"OutputInterface" inManagedObjectContext:context];
 	[input   setValue:[inputFileTextField stringValue]    forKey:@"filePath"];
 	[output  setValue:[outputFolderTextField stringValue] forKey:@"folderPath"];
 	
 	//... then the task source ...
+	filter      = [NSEntityDescription insertNewObjectForEntityForName:@"Validator" inManagedObjectContext:context];
+	taskSource  = [NSEntityDescription insertNewObjectForEntityForName:@"TaskSource" inManagedObjectContext:context];
 	[taskSource setValue:input       forKey:@"inputInterface"];
 	[taskSource setValue:output      forKey:@"outputInterface"];
 	[taskSource setValue:filter      forKey:@"validator"];
 		
 	//then the metaJob
+	submissions = [NSEntityDescription insertNewObjectForEntityForName:@"IntegerArray" inManagedObjectContext:context];
+	successes   = [NSEntityDescription insertNewObjectForEntityForName:@"IntegerArray" inManagedObjectContext:context];
+	failures    = [NSEntityDescription insertNewObjectForEntityForName:@"IntegerArray" inManagedObjectContext:context];
+	metaJob     = [NSEntityDescription insertNewObjectForEntityForName:@"MetaJob" inManagedObjectContext:context];
 	[metaJob setName:[jobNameTextField stringValue]];
 	[metaJob    setDataSource:taskSource];
 	[metaJob    setValue:output      forKey:@"outputInterface"];
