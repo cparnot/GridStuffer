@@ -42,6 +42,11 @@
             SUPERCLASS = NSWindowController; 
         }, 
         {
+            CLASS = XGSMetaJobArrayController; 
+            LANGUAGE = ObjC; 
+            SUPERCLASS = NSArrayController; 
+        }, 
+        {
             ACTIONS = {
                 cancelConnect = id; 
                 connect = id; 

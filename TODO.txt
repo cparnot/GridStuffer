@@ -1,9 +1,9 @@
 ----------------------------
 TODO for version 0.2
 
-* problem with stdin!! it has to be included in the inputFiles...
-
 * really honor -so and -se and -out
+
+* problem with stdin!! it has to be included in the inputFiles...
 
 * use the SQLLite format for the persistent store
 
@@ -34,6 +34,8 @@ TODO for version 0.3
 * Application Support folder: use a hierarchical structure instead of just different names for different versions/debug
 * Persistent store: there might be several different stores in use by different apps or the same app
 ----------------------------
+
+* have a 'default' metaJob, editable when no MetaJob is displayed. To do it, I could have the default metaJob in the store, and subclass NSArrayController and add one of NSPlaceholder methods. Well, I tried, it is not that easy... I may have to go to the user defaults. OK --> create a dictionary in the user defaults. If it does not exist, do not use it (!). A selected job can be used to 'Set Default Settings' in the menu or with a button
 
 * when creating a new meta job, could check that it does not use an output folder shared with another metajob. In fact, it could work fine (if the same thread probably!).
 

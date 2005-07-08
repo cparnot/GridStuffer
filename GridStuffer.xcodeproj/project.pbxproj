@@ -354,6 +354,7 @@
 				561FF6C6086E0BC0004DEAF4 /* Demo0 */,
 				56A1EAF2083520AB0073CA7F /* Demo1 */,
 				56FFEDD90872664600FF6E8D /* Demo2 */,
+				563C82B3087F3CE7004B2D09 /* Demo3 */,
 			);
 			name = Demos;
 			path = Demo;
@@ -366,6 +367,13 @@
 				561FF6CF086E0C09004DEAF4 /* demo0.pl */,
 			);
 			name = Demo0;
+			sourceTree = "<group>";
+		};
+		563C82B3087F3CE7004B2D09 /* Demo3 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Demo3;
 			sourceTree = "<group>";
 		};
 		56A1EAF2083520AB0073CA7F /* Demo1 */ = {
