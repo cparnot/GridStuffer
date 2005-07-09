@@ -533,8 +533,18 @@ static NSString *OutputPathKey=@"Output path";
 	if ( outputPath == nil )
 		return NO;
 	
-	//otherwise, let the outputInterface take care of it
-	return [[self ouputInterface] saveFiles:dictionaryRepresentation inFolder:outputPath];
+	//otherwise, let the outputInterface take care of the different files
+	BOOL allSaved = YES;
+	XGSOutputInterface *outputInterface = [self ouputInterface];
+	NSEnumerator *e = [dictionaryRepresentation keyEnumerator];
+	NSString *filePath;
+	NSData *fileData;
+	while ( filePath = [e nextObject] ) {
+		fileData = [dictionaryRepresentation objectForKey:filePath];
+		filePath = [outputPath stringByAppendingPathComponent:filePath];
+		allSaved = allSaved && [outputInterface saveData:fileData withPath:filePath];
+	}
+	return allSaved;
 }
 
 //unused data source methods
