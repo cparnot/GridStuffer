@@ -102,7 +102,7 @@ In GridStuffer, the data source is an instance of XGSTaskSource.
 - (BOOL)metaJob:(XGSMetaJob *)metaJob validateResultsWithFiles:(NSDictionary *)dictionaryRepresentation standardOutput:(NSData *)stdoutData standardError:(NSData *)stderrData forTask:(id)task;
 - (BOOL)metaJob:(XGSMetaJob *)metaJob saveStandardOutput:(NSData *)data forTask:(id)task;
 - (BOOL)metaJob:(XGSMetaJob *)metaJob saveStandardError:(NSData *)data forTask:(id)task;
-- (BOOL)metaJob:(XGSMetaJob *)metaJob saveFiles:(NSDictionary *)dictionaryRepresentation forTask:(id)task;
+- (BOOL)metaJob:(XGSMetaJob *)metaJob saveOutputFiles:(NSDictionary *)dictionaryRepresentation forTask:(id)task;
 
 //- (BOOL)metaJob:(XGSMetaJob *)metaJob saveResults:(NSDictionary *)results forTask:(id)task;
 

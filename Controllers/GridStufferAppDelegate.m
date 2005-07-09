@@ -362,7 +362,9 @@
 		DLog(NSStringFromClass([self class]),10,@"[<%@:%p> %s] for Tasks table",[self class],self,_cmd);
 		XGSMetaJob *selectedJob = [self uniquelySelectedMetaJobInTheTableView];
 		int index = [taskInspectorTableView selectedRow];
-		NSString *taskString = [[selectedJob valueForKeyPath:@"dataSource.inputInterface"] lineAtIndex:index];
+		NSString *taskString = @"No Selection";;
+		if ( index >= 0 )
+			taskString = [[selectedJob valueForKeyPath:@"dataSource.inputInterface"] lineAtIndex:index];
 		[taskDescriptionTextField setStringValue:taskString];
 	}
 }

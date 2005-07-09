@@ -84,10 +84,10 @@ static NSString *OutputPathKey=@"Output path";
 - (NSString *)workingDirectoryPath
 {
 	NSString *result;
-	DLog(NSStringFromClass([self class]),15,@"[%@:%p %s] - %@",[self class],self,_cmd,[self shortDescription]);
-	result=[self valueForKeyPath:@"inputInterface.filePath"];
-	result=[result stringByStandardizingPath];
-	result=[result stringByDeletingLastPathComponent];
+	DLog (NSStringFromClass([self class]),15,@"[%@:%p %s] - %@",[self class],self,_cmd,[self shortDescription]);
+	result = [self valueForKeyPath:@"inputInterface.filePath"];
+	result = [result stringByStandardizingPath];
+	result = [result stringByDeletingLastPathComponent];
 	return result;
 }
 
@@ -95,17 +95,17 @@ static NSString *OutputPathKey=@"Output path";
 - (NSString *)absolutePathForString:(NSString *)relativePath
 {
 	NSString *finalPath;
-	DLog(NSStringFromClass([self class]),15,@"[%@:%p %s] - %@",[self class],self,_cmd,[self shortDescription]);
+	DLog (NSStringFromClass([self class]),15,@"[%@:%p %s] - %@",[self class],self,_cmd,[self shortDescription]);
 	
 	//is it really a relative path??
-	finalPath=[relativePath stringByExpandingTildeInPath];
-	if ([finalPath isAbsolutePath])
+	finalPath = [relativePath stringByExpandingTildeInPath];
+	if ( [finalPath isAbsolutePath] )
 		return [finalPath stringByStandardizingPath];
 	
 	//yes, so we need to prefix it with the working directory path
-	finalPath=[self workingDirectoryPath];
-	finalPath=[finalPath stringByAppendingPathComponent:relativePath];
-	finalPath=[finalPath stringByStandardizingPath];
+	finalPath = [self workingDirectoryPath];
+	finalPath = [finalPath stringByAppendingPathComponent:relativePath];
+	finalPath = [finalPath stringByStandardizingPath];
 
 	return finalPath;
 }
@@ -497,7 +497,14 @@ static NSString *OutputPathKey=@"Output path";
 	DLog(NSStringFromClass([self class]),15,@"[%@:%p %s]",[self class],self,_cmd);
 	DLog(NSStringFromClass([self class]),15,@"\nTask:\n%@",[task description]);	
 	DLog(NSStringFromClass([self class]),15,@"\nStdout:\n%@",[[[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding:NSUTF8StringEncoding] autorelease]);
-	return NO;
+	
+	//if there is no -so flag set in the command, return NO and let the metaJod save the stdout
+	NSString *stdoutPath = [task objectForKey:StdoutPathKey];
+	if ( stdoutPath == nil )
+		return NO;
+
+	//otherwise, let the outputInterface take care of it
+	return [[self ouputInterface] saveData:data withPath:stdoutPath];
 }
 
 - (BOOL)metaJob:(XGSMetaJob *)metaJob saveStandardError:(NSData *)data forTask:(id)task
@@ -505,15 +512,29 @@ static NSString *OutputPathKey=@"Output path";
 	DLog(NSStringFromClass([self class]),15,@"[%@:%p %s]",[self class],self,_cmd);
 	DLog(NSStringFromClass([self class]),15,@"\nTask:\n%@",[task description]);	
 	DLog(NSStringFromClass([self class]),10,@"\nStderr:\n%@",[[[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding:NSUTF8StringEncoding] autorelease]);
-	return NO;
+	
+	//if there is no -se flag set in the command, return NO and let the metaJod save the stderr
+	NSString *stderrPath = [task objectForKey:StderrPathKey];
+	if ( stderrPath == nil )
+		return NO;
+	
+	//otherwise, let the outputInterface take care of it
+	return [[self ouputInterface] saveData:data withPath:stderrPath];
 }
 
-- (BOOL)metaJob:(XGSMetaJob *)metaJob saveFiles:(NSDictionary *)dictionaryRepresentation forTask:(id)task
+- (BOOL)metaJob:(XGSMetaJob *)metaJob saveOutputFiles:(NSDictionary *)dictionaryRepresentation forTask:(id)task
 {
 	DLog(NSStringFromClass([self class]),15,@"[%@:%p %s]",[self class],self,_cmd);
 	DLog(NSStringFromClass([self class]),15,@"\nTask:\n%@",[task description]);	
-	DLog(NSStringFromClass([self class]),15,@"\nFiles:\n%@",[dictionaryRepresentation description]);
-	return NO;
+	DLog(NSStringFromClass([self class]),15,@"\nOutput files:\n%@",[dictionaryRepresentation description]);
+	
+	//if there is no -out flag set in the command, return NO and let the metaJod save the output files
+	NSString *outputPath = [task objectForKey:OutputPathKey];
+	if ( outputPath == nil )
+		return NO;
+	
+	//otherwise, let the outputInterface take care of it
+	return [[self ouputInterface] saveFiles:dictionaryRepresentation inFolder:outputPath];
 }
 
 //unused data source methods

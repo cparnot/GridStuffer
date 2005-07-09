@@ -48,6 +48,21 @@
 		<array>
 		</array>
 	</dict>
+	
+	<dict>
+		<key>Name</key>
+		<string>Testing -so -se and -out</string>
+		<key>Description</key>
+		<string>A perl script creates some stdout, some stderr and some files, all saved in costum locations</string>
+		<key>Path</key>
+		<string>~/Desktop/gridstuffer_demo3</string>
+		<key>Commands</key>
+		<string>commands_demo3.txt</string>
+		<key>Files</key>
+		<array>
+			<string>demo3.pl</string>
+		</array>
+	</dict>
 
 </array>
 </plist>

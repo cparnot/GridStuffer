@@ -991,8 +991,8 @@ NOTE: I cannot have different sets of paths for different tasks, because the key
 			if ( [dataSource respondsToSelector:@selector(metaJob:saveStandardError:forTask:)]
 				 && [dataSource metaJob:self saveStandardError:stderrData forTask:taskItem] )
 				shouldSaveStderr = NO;
-			if ( [dataSource respondsToSelector:@selector(metaJob:saveFiles:forTask:)] 
-				 && [dataSource metaJob:self saveFiles:resultFiles forTask:taskItem] )
+			if ( [dataSource respondsToSelector:@selector(metaJob:saveOutputFiles:forTask:)] 
+				 && [dataSource metaJob:self saveOutputFiles:resultFiles forTask:taskItem] )
 				shouldSaveFiles  = NO;
 		}
 		

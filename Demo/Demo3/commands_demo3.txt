@@ -1,0 +1,4 @@
+-se stderr/myerr0.txt -so stdout/myout0.txt -out all_the_files demo3.pl file0.1.txt file0.2.txt
+-se stderr/myerr1.txt -so stdout/myout1.txt -out all_the_files demo3.pl file1.1.txt file1.2.txt file1.3.txt
+-se stderr/myerr2.txt -so stdout/myout2.txt -out all_the_files demo3.pl file2.1.txt
+-se stderr/myerr3.txt -so stdout/myout3.txt -out all_the_files demo3.pl file3.1.txt file3+++.text file3++++++.html
