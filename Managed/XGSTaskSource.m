@@ -66,7 +66,7 @@ static NSString *OutputPathKey=@"Output path";
 	return result;
 }
 
-- (XGSOutputInterface *)ouputInterface;
+- (XGSOutputInterface *)outputInterface;
 {
 	XGSOutputInterface *result;
 	DLog(NSStringFromClass([self class]),15,@"[%@:%p %s] - %@",[self class],self,_cmd,[self shortDescription]);
@@ -504,7 +504,7 @@ static NSString *OutputPathKey=@"Output path";
 		return NO;
 
 	//otherwise, let the outputInterface take care of it
-	return [[self ouputInterface] saveData:data withPath:stdoutPath];
+	return [[self outputInterface] saveData:data withPath:stdoutPath];
 }
 
 - (BOOL)metaJob:(XGSMetaJob *)metaJob saveStandardError:(NSData *)data forTask:(id)task
@@ -519,7 +519,7 @@ static NSString *OutputPathKey=@"Output path";
 		return NO;
 	
 	//otherwise, let the outputInterface take care of it
-	return [[self ouputInterface] saveData:data withPath:stderrPath];
+	return [[self outputInterface] saveData:data withPath:stderrPath];
 }
 
 - (BOOL)metaJob:(XGSMetaJob *)metaJob saveOutputFiles:(NSDictionary *)dictionaryRepresentation forTask:(id)task
@@ -534,6 +534,8 @@ static NSString *OutputPathKey=@"Output path";
 		return NO;
 	
 	//otherwise, let the outputInterface take care of the different files
+	/*
+	//Instead of being sent all at once to the ouput interface, they are sent one by one so that they are not put together in one folder in case of duplicates
 	BOOL allSaved = YES;
 	XGSOutputInterface *outputInterface = [self ouputInterface];
 	NSEnumerator *e = [dictionaryRepresentation keyEnumerator];
@@ -545,6 +547,8 @@ static NSString *OutputPathKey=@"Output path";
 		allSaved = allSaved && [outputInterface saveData:fileData withPath:filePath];
 	}
 	return allSaved;
+	 */
+	return [[self outputInterface] saveFiles:dictionaryRepresentation inFolder:outputPath duplicatesInSubfolder:nil];
 }
 
 //unused data source methods

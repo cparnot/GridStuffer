@@ -70,11 +70,11 @@ static BOOL CreateDirectory(NSString *aPath)
 	return ( CreateDirectory(parent) && [fileManager createDirectoryAtPath:aPath attributes:nil] );
 }
 
-//given a path, e.g. '/some/path/to/file.txt', returns the first suffix i > 0 such that file_i.txt does not exist yet
-static NSString *UniqueNameWithPath(NSString *path)
+
+//given a path, e.g. '/some/path/to/file.txt', returns the path for a non-existing file with the first suffix i >= suffix, such that file_i.txt does not exist yet; the 'suffix' pointer is used both as the starting value and to return the final value
+static NSString *UniqueNameWithPath(NSString *path, unsigned int *suffix)
 {
     NSFileManager *fileManager;
-	int n;
 	NSString *name, *parent, *extension;
 	BOOL hasExtension;
 	
@@ -90,28 +90,34 @@ static NSString *UniqueNameWithPath(NSString *path)
 	//now test different integer suffixes until the file does not exist
 	// (testing n>0 ensures that the loop will end, when n reaches MAX_INT)
 	fileManager = [NSFileManager defaultManager];
-	n=0;
+	unsigned int n = *suffix - 1;
 	do {
 		n++;
 		path = [NSString stringWithFormat:@"%@_%d",name,n];
 		if ( hasExtension ) 
 			 path = [path stringByAppendingPathExtension:extension];
 		path = [parent stringByAppendingPathComponent:path];
-	} while ( (n > 0) && ([fileManager fileExistsAtPath:path]) );
+	} while ( [fileManager fileExistsAtPath:path] );
+	*suffix=n;
 	return path;
 }
 
 - (BOOL)saveFiles:(NSDictionary *)dictionaryRepresentation inFolder:(NSString *)path
 {
+	return [self saveFiles:dictionaryRepresentation inFolder:path duplicatesInSubfolder:nil];
+}
+
+- (BOOL)saveFiles:(NSDictionary *)files inFolder:(NSString *)path duplicatesInSubfolder:(NSString *)duplicatesPath;
+{
 	NSString *rootPath,*aString,*aPath;
 	NSData *someData;
 	NSFileManager *fileManager;
-	BOOL isDir,exists,success;
-	NSArray *files;
+	BOOL isDir,success;
 	NSEnumerator *e;
+	unsigned int suffix;
 
 	DLog(NSStringFromClass([self class]),10,@"[<%@:%p> %s]",[self class],self,_cmd);
-	DLog(NSStringFromClass([self class]),10,@"\nFiles:\n%@",[dictionaryRepresentation description]);
+	DLog(NSStringFromClass([self class]),10,@"\nFiles:\n%@",[files description]);
 
 	//determine the root path
 	if ( [path isAbsolutePath] )
@@ -128,29 +134,60 @@ static NSString *UniqueNameWithPath(NSString *path)
 	if ( CreateDirectory(rootPath)==NO )
 		return NO;
 	
-	//if one of the file already exists, we need to create inside rootpath
-	//a subdirectory for that particular set, with the naming convention 'results_1', 'results_2', ...
-	files = [dictionaryRepresentation allKeys];
-	e = [files objectEnumerator];
-	exists = NO;
-	while ( ( exists==NO ) && (aPath = [e nextObject]) )
-		exists = [fileManager fileExistsAtPath:[rootPath stringByAppendingPathComponent:aPath]];
-	if ( exists ) {
-		aPath = [rootPath stringByAppendingPathComponent:@"results"];
-		rootPath = UniqueNameWithPath(aPath);
+	//if one of the file already exists, we need to handle things differently
+	e = [files keyEnumerator];
+	BOOL oneOfTheFileAlreadyExists = NO;
+	while ( ( oneOfTheFileAlreadyExists==NO ) && (aPath = [e nextObject]) )
+		oneOfTheFileAlreadyExists = [fileManager fileExistsAtPath:[rootPath stringByAppendingPathComponent:aPath]];
+
+	//if oneOfTheFileAlreadyExists, we check the value of 'duplicatesPath'
+	//if non-nil, use the string to create a subdirectoty inside rootpath
+	//for that particular set, with the naming convention e.g. 'results_1', 'results_2', ...
+	if ( oneOfTheFileAlreadyExists && (duplicatesPath != nil) ) {
+		aPath = [rootPath stringByAppendingPathComponent:duplicatesPath];
+		suffix = 1;
+		rootPath = UniqueNameWithPath(aPath, &suffix);
 		if ( CreateDirectory(rootPath) == NO )
 			return NO;
+	}
+
+	//if oneOfTheFileAlreadyExists, and 'duplicatesPath' == nil
+	//all the files need to be renamed with the first free _i suffix
+	if ( oneOfTheFileAlreadyExists && (duplicatesPath == nil) ) {
+		unsigned int lastSuffix = 0;
+		suffix = 1;
+		
+		//loop until suffix is valid for all the paths
+		while ( suffix != lastSuffix ) {
+			lastSuffix = suffix;
+			e = [files keyEnumerator];
+			while ( aString = [e nextObject] ) {
+				aPath = [rootPath stringByAppendingPathComponent:aString];
+				aPath = UniqueNameWithPath(aPath, &suffix);				
+			}
+		}
+		
+		//update the files array to add the suffix
+		NSMutableDictionary *modifiedFiles = [NSMutableDictionary dictionaryWithCapacity:[files count]];
+		e = [files keyEnumerator];
+		while ( aString = [e nextObject] ) {
+			aPath = [rootPath stringByAppendingPathComponent:aString];
+			aPath = UniqueNameWithPath(aPath,&suffix);
+			[modifiedFiles setObject:[files objectForKey:aString] forKey:[aPath lastPathComponent]];
+		}
+		files = modifiedFiles;
+
 	}
 	
 	//now save the files to disk in rootPath
 	success=YES;
-	e = [files objectEnumerator];
+	e = [files keyEnumerator];
 	while ( aString = [e nextObject] ) {
 		aPath = [rootPath stringByAppendingPathComponent:aString];
 		if ( CreateDirectory([aPath stringByDeletingLastPathComponent]) == NO )
 			success = NO;
 		else {
-			someData = [dictionaryRepresentation objectForKey:aString];
+			someData = [files objectForKey:aString];
 			if ( [someData writeToFile:aPath atomically:NO] == NO )
 				success = NO;
 		}
@@ -162,6 +199,7 @@ static NSString *UniqueNameWithPath(NSString *path)
 - (BOOL)saveData:(NSData *)someData withPath:(NSString *)path
 {
 	NSFileManager *fileManager;
+	unsigned int suffix = 1;
 	
 	//determine the absolute path
 	if ( [path isAbsolutePath] ==NO )
@@ -170,7 +208,7 @@ static NSString *UniqueNameWithPath(NSString *path)
 	//if the file already exists, the file name must be changed, e.g. afile_1.txt instead of afile.txt
 	fileManager=[NSFileManager defaultManager];
 	if ( [fileManager fileExistsAtPath:path] )
-		path = UniqueNameWithPath(path);
+		path = UniqueNameWithPath(path, &suffix);
 	
 	//try to create the parent dir and the file with someData
 	if ( CreateDirectory([path stringByDeletingLastPathComponent]) == NO )

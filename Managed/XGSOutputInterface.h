@@ -36,8 +36,14 @@
 
 //save files using the 'folderPath' as root if 'path' is relative
 //the dictionaryRepresentation uses the keys as paths and the values as data
-//if the one of the files already exists at the path, a 'results' folder will be created with a number (e.g. 'results_1') inside which ALL the files will be saved, even if some of them are NOT already present; this way, files stay "together"
+//if ONE of the file already exists at the path, ALL have the SAME number appended to their name, e.g. thefile_1, theotherfile_1.txt,... this way, files that go 'together' have the same suffix
 - (BOOL)saveFiles:(NSDictionary *)dictionaryRepresentation inFolder:(NSString *)path;
+
+//same as above, except that
+//if ONE of the files already exists at the path, a subfolder will be created with a number (e.g. 'results_1') inside which ALL the files will be saved; this way, files stay "together"
+//if the last argument is nil, then it behaves as '-saveFiles:inFolder:'
+- (BOOL)saveFiles:(NSDictionary *)dictionaryRepresentation inFolder:(NSString *)path duplicatesInSubfolder:(NSString *)duplicatesPath;
+
 
 //if the file already exists, a number is appended to it, e.g. thefile.txt, thefile_1.txt, thefile_2.txt,...
 - (BOOL)saveData:(NSData *)someData withPath:(NSString *)path;

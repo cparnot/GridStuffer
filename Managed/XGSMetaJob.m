@@ -1029,7 +1029,7 @@ NOTE: I cannot have different sets of paths for different tasks, because the key
 			resultSubPath = [resultSubPath stringByAppendingPathComponent:rangeSubPath];
 		}
 		resultSubPath = [resultSubPath stringByAppendingPathComponent:[metaTaskIndex stringValue]];
-		[[self outputInterface] saveFiles:resultsHandledByOutputInterface inFolder:resultSubPath];
+		[[self outputInterface] saveFiles:resultsHandledByOutputInterface inFolder:resultSubPath duplicatesInSubfolder:@"results"];
 		
 	}
 	

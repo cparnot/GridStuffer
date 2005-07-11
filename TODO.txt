@@ -35,6 +35,8 @@ TODO for version 0.3
 * Persistent store: there might be several different stores in use by different apps or the same app
 ----------------------------
 
+OTHER BUGS/FEATURES
+
 * have a 'default' metaJob, editable when no MetaJob is displayed. To do it, I could have the default metaJob in the store, and subclass NSArrayController and add one of NSPlaceholder methods. Well, I tried, it is not that easy... I may have to go to the user defaults. OK --> create a dictionary in the user defaults. If it does not exist, do not use it (!). A selected job can be used to 'Set Default Settings' in the menu or with a button
 
 * when creating a new meta job, could check that it does not use an output folder shared with another metajob. In fact, it could work fine (if the same thread probably!).
@@ -44,3 +46,18 @@ TODO for version 0.3
 * maybe the submission timer in meta jobs could be triggered only when needed --> in other words, use notifications rather than polling for job submissions
 
 * run the job submission and retrieval in a different thread if too much spinning wheel...
+
+
+
+----------------------------
+TO THINK ABOUT:
+
+* problems when saving files through the -out flag:
+	* same task run twice, but different number of files --> all the files should have the same suffix
+	* same thing with 2 different tasks sharing some file names and the same -out path; the user should not do that, but it should be better handled anyway
+	* grouping files in the same folder is a good thing when save to the default output folder, but not for the -out flag
+	* maybe the solution is to make have an non-optional and an optional suffixing folder (used only if duplicates):
+		* files saved to -out path : non-optional = -out path ; optional suffix folder = [taskRange/]taskIndex/results
+		* files saved to default output path : non-optional = [taskRange/]taskIndex/ ; optional suffix folder = results
+	* but then the problem is : the data source is not supposed to know the taskIndex, even less about the taskRange
+	* so maybe the data source should simply return a path, nil if it want to let the metaJob handle it

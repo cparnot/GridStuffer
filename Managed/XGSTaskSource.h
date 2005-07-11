@@ -21,7 +21,7 @@
 }
 
 - (XGSInputInterface *)inputInterface;
-- (XGSOutputInterface *)ouputInterface;
+- (XGSOutputInterface *)outputInterface;
 
 
 //MetaJob data source methods
