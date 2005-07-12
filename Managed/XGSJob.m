@@ -15,7 +15,7 @@
 #define XGSJOB_MAX_SUBMISSIONS 3
 #define XGSJOB_SUBMISSION_INTERVAL 5
 #define XGSJOB_MAX_DELETION_ATTEMPTS 3
-#define XGSJOB_DELETION_ATTEMPT_INTERVAL 300
+#define XGSJOB_DELETION_ATTEMPT_INTERVAL 120
 
 
 //public global
@@ -86,11 +86,15 @@ static NSString *StateStrings[XGSJobStateDeleted+1];
 	shouldLoadResultsWhenFinished = NO;
 	
 	//if state = submitting, it means the object was left in an undefined state (submitting) and we did not get the jobID
-	/*** TO DO: we could try to get the job using the job name when the grid becomes available ***/
 	if ( [self state] == XGSJobStateSubmitting )
-		[self setState:XGSJobStateInvalid];
-	else
-		[self awakeFromServerConnection];
+		[self setState:XGSJobStateDeleting];
+	
+	//this will try to initialize the xgrid object
+	[self awakeFromServerConnection];
+	
+	//start the deletion process if needed
+	if ( [self state] == XGSJobStateDeleting )
+		[self delete];
 }
 
 //very thorough clean-up
@@ -132,6 +136,21 @@ static NSString *StateStrings[XGSJobStateDeleted+1];
 	[self didChangeValueForKey:@"state"];
 }
 
+- (NSString *)jobID
+{
+	NSString *jobIDLocal;
+	[self willAccessValueForKey:@"jobID"];
+	jobIDLocal = [self primitiveValueForKey:@"jobID"];
+	[self didAccessValueForKey:@"jobID"];
+	return jobIDLocal;
+}
+
+- (void)setJobID:(NSString *)jobIDNew
+{
+	[self willChangeValueForKey:@"jobID"];
+	[self setPrimitiveValue:jobIDNew forKey:@"jobID"];
+	[self didChangeValueForKey:@"jobID"];
+}
 
 #pragma mark *** Public accessors ***
 
@@ -373,7 +392,7 @@ So the bottom line:
  * at some point, give up if connection was not possible or the XGJob never showed up
 */
 
-//private
+//private method
 - (void)deleteFromStore
 {
 	DLog(NSStringFromClass([self class]),10,@"[%@:%p %s] - %@",[self class],self,_cmd,[self shortDescription]);
@@ -382,9 +401,18 @@ So the bottom line:
 
 - (void)deleteLater
 {
+	DLog(NSStringFromClass([self class]),10,@"[%@:%p %s] - %@",[self class],self,_cmd,[self shortDescription]);
 	[NSTimer scheduledTimerWithTimeInterval:XGSJOB_DELETION_ATTEMPT_INTERVAL target:self selector:@selector(deleteWithTimer:) userInfo:nil repeats:NO];
 }
 
+//private method
+- (void)deleteWithTimer:(NSTimer *)aTimer
+{
+	DLog(NSStringFromClass([self class]),10,@"[%@:%p %s] - %@",[self class],self,_cmd,[self shortDescription]);
+	[self delete];
+}
+
+//public method
 - (void)delete
 {
 	XGJob *myJob;
@@ -392,24 +420,23 @@ So the bottom line:
 	DLog(NSStringFromClass([self class]),10,@"[%@:%p %s] - %@",[self class],self,_cmd,[self shortDescription]);
 
 	//if the XGJob is already deleted from the server, then just delete from the store now
-	if ( [self state] == XGSJobStateDeleted ) {
+	if ( [self state] == XGSJobStateDeleted || [self grid] == nil || [[self jobID] intValue] < 0 ) {
 		[self deleteFromStore];
 		return;
 	}
 	
-	//otherwise, mark it for deletion
-	[self setValue:[NSNumber numberWithBool:YES] forKey:@"shouldDelete"];
+	//mark the job for deletion in case it still needs to be done later
+	[self setState:XGSJobStateDeleting];
 
-	//if pending submission or deletion, do not delete now anyway
-	if ( submissionMonitor != nil || deletionMonitor != nil || [self state] == XGSJobStateDeleting )
+	//if pending submission or deletion, do not delete now
+	if ( submissionMonitor != nil || deletionMonitor != nil )
 		return;
 	
 	//if the XGJob is available, start the deletion process
 	if ( myJob = [self xgridJob] ) {
 		//delete from server, it will be deleted from the store when the action monitor returns
 		[self cancelLoadResults];
-		[self setState:XGSJobStateDeleting];
-		deletionMonitor = [[self xgridJob] performDeleteAction];
+		deletionMonitor = [myJob performDeleteAction];
 		[deletionMonitor retain];
 		[deletionMonitor addObserver:self forKeyPath:@"outcome" options:NSKeyValueObservingOptionNew context:NULL];
 		return;
@@ -420,6 +447,9 @@ So the bottom line:
 		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(gridDidBecomeAvailableNotification:) name:XGSGridDidBecomeAvailableNotification object:[self grid]];
 		return;
 	} else {
+		//the grid is loaded, and the job is not showing there...
+		//the job might have been deleted externally or might not be showing up yet
+		//so we give the grid 3 chances to load it each time the program is run and the job loaded from persistent store
 		//try deleting again later if not already max allowed
 		countDeletionAttempts++;
 		if ( countDeletionAttempts > XGSJOB_MAX_DELETION_ATTEMPTS ) {
@@ -429,20 +459,6 @@ So the bottom line:
 			[self deleteLater];
 	}
 
-}
-
-- (void)deleteWithTimer:(NSTimer *)aTimer
-{
-	DLog(NSStringFromClass([self class]),10,@"[%@:%p %s] - %@",[self class],self,_cmd,[self shortDescription]);
-	
-	//that should not happen, but just in case
-	if ( deletionMonitor!=nil) {
-		[aTimer invalidate];
-		return;
-	}
-	
-	//try to delete again
-	[self delete];
 }
 
 - (void)gridDidBecomeAvailableNotification:(NSNotification *)notification
@@ -554,14 +570,13 @@ Result loading can also be triggered automatically when it becomes available and
 	jobID = [self valueForKey:@"jobID"];
 	xgridJob = [[[self grid] xgridGrid] jobForIdentifier:jobID];
 	
-	
 	if ( xgridJob != nil ) {
 		[xgridJob retain];
 		[self xgridJobStateDidChange];
 		[self xgridJobCompletedTaskCountDidChange];
 		[xgridJob addObserver:self forKeyPath:@"state" options:NSKeyValueObservingOptionOld context:NULL];
 		[xgridJob addObserver:self forKeyPath:@"completedTaskCount" options:NSKeyValueObservingOptionOld context:NULL];
-		if ( [[self valueForKey:@"shouldDelete"] boolValue] == YES )
+		if ( [self state] == XGSJobStateDeleting )
 			[self delete];
 		if ( shouldLoadResultsWhenFinished )
 			[self loadResultsWhenFinished];

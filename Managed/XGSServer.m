@@ -314,8 +314,9 @@ static NSString *XgridServiceDomain = @"local.";
 	[self setValue:[NSNumber numberWithBool:YES] forKey:@"wasAvailableInPreviousSession"];
 	[self setValue:[NSDate date] forKey:@"lastConnection"];
 	
-	//register to know when the grids are ready
-	[[self xgridController] addObserver:self forKeyPath:@"grids" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:NULL];
+	//make sure we have initialized the XGController
+	XGController *bogusVariable;
+	bogusVariable = [self xgridController];
 
 	//notifications
 	if ( [delegate respondsToSelector:@selector(serverDidConnect:)] )

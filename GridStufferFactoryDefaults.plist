@@ -8,18 +8,19 @@
 	
 	<key>DebugIdentifiers</key>
 	<array>
-		<string>XGSMetaJob</string>
-		<string>XGSMetaJobArrayController</string>
-		<string>XGSTaskSource</string>
 		<string>XGSJob</string>
 		<string>XGSGrid</string>
 		<string>XGSServer</string>
+		<string>GridStufferAppDelegate</string>
 	</array>
 
 	<key>NoDebugIdentifiers</key>
 	<array>
+		<string>XGSMetaJob</string>
+		<string>XGSMetaJobArrayController</string>
+		<string>XGSTaskSource</string>
+
 		<string>XGSIntegerArray</string>
-		<string>GridStufferAppDelegate</string>
 		<string>XGSInputInterface</string>
 		<string>XGSOutputInterface</string>
 		<string>XGSParser</string>

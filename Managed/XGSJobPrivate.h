@@ -15,6 +15,8 @@
 @interface XGSJob (XGSJobPrivate)
 
 - (void)awakeFromServerConnection;
+- (void)deleteLater;
+- (void)deleteWithTimer:(NSTimer *)aTimer;
 
 - (XGSJobState)state;
 - (void)setState:(XGSJobState)newState;
@@ -24,5 +26,8 @@
 - (void)syncStateWithXgridJob;
 - (void)xgridJobStateDidChange;
 - (void)xgridJobCompletedTaskCountDidChange;
+
+- (NSString *)jobID;
+- (void)setJobID:(NSString *)jobIDNew;
 
 @end
