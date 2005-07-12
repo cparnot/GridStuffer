@@ -10,6 +10,7 @@
 #import "XGSServerListController.h"
 #import "XGSJobListController.h"
 #import "XGSMetaJob.h"
+#import "XGSMetaJobPrivateAccessors.h"
 #import "XGSTaskSource.h"
 #import "XGSOutputInterface.h"
 #import "XGSInputInterface.h"
@@ -147,27 +148,28 @@
 	[taskInspectorTableView reloadData];
 }
 
-/*
+
 #define OPEN_INPUT_FILE 1
 #define OPEN_OUTPUT_FOLDER 2
 //open the input file or output folder in the Finder
-- (IBAction)openInputOrOutput:(id)sender
+- (IBAction)openWithFinder:(id)sender
 {
 	NSString *path;
 	int tag;
 	
 	//tag value is dependent on which 'Open' button was pressed
 	tag=[sender tag];
+	if ( (tag!=OPEN_INPUT_FILE) && (tag!=OPEN_OUTPUT_FOLDER) )
+		return;	
 	if (tag==OPEN_INPUT_FILE)
-		path=[someObject valueForKeyPath:];
+		path = [[[[self uniquelySelectedMetaJobInTheTableView] dataSource] inputInterface] filePath];
 	else if (tag==OPEN_OUTPUT_FOLDER)
-		pathTextField=outputFolderTextField;
+		path = [[[self uniquelySelectedMetaJobInTheTableView] outputInterface] folderPath];
 	
-	//open the path set up in the GUI in the finder
-	path=[pathTextField stringValue];
+	//open the path in the finder
 	[[NSWorkspace sharedWorkspace] openFile:[path stringByStandardizingPath]];
 }
-*/
+
 
 #pragma mark *** KVC and KVO ***
 

@@ -37,6 +37,7 @@
 - (IBAction)deleteSelectedMetaJobs:(id)sender;
 - (IBAction)showServerListWindow:(id)sender;
 - (IBAction)showJobListWindow:(id)sender;
+- (IBAction)openWithFinder:(id)sender;
 
 // CoreData stuff
 - (NSManagedObjectModel *)managedObjectModel;

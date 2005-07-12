@@ -18,4 +18,7 @@
 - (NSString *)lineAtIndex:(unsigned int)index;
 - (void)loadFile;
 
+- (NSString *)filePath;
+- (void)setFilePath:(NSString *)filePathNew;
+
 @end

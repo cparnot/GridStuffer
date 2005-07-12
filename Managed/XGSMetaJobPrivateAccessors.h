@@ -16,7 +16,6 @@
 
 @interface XGSMetaJob (XGSMetaJobPrivateAccessors)
 
-- (XGSInputInterface *)inputInterface;
 - (XGSOutputInterface *)outputInterface;
 
 - (XGSIntegerArray *)failureCounts;

@@ -23,6 +23,25 @@
 	[super dealloc];
 }
 
+
+NSString *filePath;
+
+- (NSString *)filePath
+{
+	NSString *filePathLocal;
+	[self willAccessValueForKey:@"filePath"];
+	filePathLocal = [self primitiveValueForKey:@"filePath"];
+	[self didAccessValueForKey:@"filePath"];
+	return filePathLocal;
+}
+
+- (void)setFilePath:(NSString *)filePathNew
+{
+	[self willChangeValueForKey:@"filePath"];
+	[self setPrimitiveValue:filePathNew forKey:@"filePath"];
+	[self didChangeValueForKey:@"filePath"];
+}
+
 - (void)setLines:(NSArray *)newArray
 {
 	DLog(NSStringFromClass([self class]),15,@"[%@:%p %s] - %@",[self class],self,_cmd,[self shortDescription]);

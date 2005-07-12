@@ -10,6 +10,7 @@
             ACTIONS = {
                 deleteSelectedMetaJobs = id; 
                 insertNewMetaJob = id; 
+                openWithFinder = id; 
                 saveAction = id; 
                 showJobListWindow = id; 
                 showMetaJobInspectorPanel = id; 

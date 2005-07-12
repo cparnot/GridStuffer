@@ -11,17 +11,6 @@
 
 @implementation XGSMetaJob (XGSMetaJobPrivateAccessors)
 
-- (XGSInputInterface *)inputInterface
-{
-	DLog(NSStringFromClass([self class]),15,@"[%@:%p %s] - %@",[self class],self,_cmd,[self shortDescription]);
-
-	XGSInputInterface *result;
-	[self willAccessValueForKey:@"inputInterface"];
-	result = [self primitiveValueForKey:@"inputInterface"];
-	[self didAccessValueForKey:@"inputInterface"];
-	return result;
-}
-
 - (XGSOutputInterface *)outputInterface
 {
 	DLog(NSStringFromClass([self class]),15,@"[%@:%p %s] - %@",[self class],self,_cmd,[self shortDescription]);

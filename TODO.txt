@@ -1,10 +1,10 @@
 ----------------------------
 TODO for version 0.2
 
-* problem with stdin!! it has to be included in the inputFiles...
 
 * use the SQLLite format for the persistent store
 
+X * problem with stdin!! it has to be included in the inputFiles...
 X * allow the user to cancel the connection while trying to connect to a server
 X * bug: cannot remove server from the GUI and the store
 X * when a task fail, should not let the data source treat the data, but should save results in a special 'failures folder'
