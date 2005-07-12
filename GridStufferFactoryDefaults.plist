@@ -11,6 +11,7 @@
 		<string>XGSJob</string>
 		<string>XGSGrid</string>
 		<string>XGSServer</string>
+		<string>XGSServerList</string>
 		<string>GridStufferAppDelegate</string>
 	</array>
 

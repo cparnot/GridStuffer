@@ -45,6 +45,8 @@ static NSString *XgridServiceDomain = @"local.";
 
 	[super awakeFromFetch];
 	
+	[self setPrimitiveValue:[NSNumber numberWithBool:NO] forKey:@"isConnected"];
+	
 	availableGrids = [[NSMutableSet alloc] init];
 	e = [[self valueForKey:@"grids"] objectEnumerator];
 	while ( aGrid = [e nextObject] )
