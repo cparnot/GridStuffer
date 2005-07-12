@@ -66,7 +66,7 @@ static NSString *XgridServiceDomain = @"local.";
 
 - (BOOL)isBusy
 {
-	return [[self valueForKey:@"isConnecting"] boolValue] || [[self valueForKey:@"isConnected"] boolValue];
+	return [self isConnecting] || [self isConnected];
 }
 
 - (XGConnection *)xgridConnection
@@ -142,11 +142,11 @@ static NSString *XgridServiceDomain = @"local.";
 //this is an 'abstract' ivar, which should be KVO compliant thanks to the +initialize method
 - (NSString *)statusString
 {
-	if ([[self valueForKey:@"isConnected"] boolValue])
+	if ([self isConnected])
 		return @"Connected";
-	if ([[self valueForKey:@"isConnecting"] boolValue])
+	if ([self isConnecting])
 		return @"Connecting";
-	if ([[self valueForKey:@"isAvailable"] boolValue])
+	if ([self isAvailable])
 		return @"Available";
 	if ([[self valueForKey:@"wasConnectedInCurrentSession"] boolValue])
 		return @"Disconnected";

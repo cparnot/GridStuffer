@@ -14,43 +14,6 @@ static NSString *XgridServiceDomain = @"local.";
 
 @implementation XGSServerList
 
-#pragma mark *** initializations ***
-
-+ (void)initialize
-{
-	//make sure that any change in the list of connected servers notifies for the change of xgridController key
-	NSArray *keys;
-	if ( self == [XGSServerList class] ) {
-		keys = [NSArray arrayWithObjects:@"servers",nil];
-		[self setKeys:keys triggerChangeNotificationsForDependentKey:@"xgridController"];
-		[self setKeys:keys triggerChangeNotificationsForDependentKey:@"connectedServers"];
-		[self setKeys:keys triggerChangeNotificationsForDependentKey:@"validServers"];
-	}
-}
-
-
-#pragma mark *** KVO stuff to keep server lists up to date ***
-
-- (void)updateFetchedProperties
-{
-	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
-	NSArray *servers;
-	servers = [self valueForKey:@"servers"];
-	servers = [self valueForKey:@"validServers"];
-	[self willChangeValueForKey:@"servers"];
-	[self  didChangeValueForKey:@"servers"];
-	//[[self managedObjectContext] refreshObject:self mergeChanges:YES];
-}
-
-/*
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-{
-	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s\nObject = <%@:%p>\nKey Path = %@",[self class],self,_cmd,[object class], object, keyPath);
-	if ( [object class] == [XGSServer class] )
-		[self updateFetchedProperties];
-}
-*/
-
 #pragma mark *** adding and retrieving servers ***
 
 //create the sharedListServer object in the managed object context if it does not exist yet
@@ -75,21 +38,7 @@ static NSString *XgridServiceDomain = @"local.";
 		sharedServerList = [results objectAtIndex:0];
 	else
 		sharedServerList = [NSEntityDescription insertNewObjectForEntityForName:@"ServerList" inManagedObjectContext:context];
-	
-	/*
-	//add the server list as an observer of all servers
-	request = [[[NSFetchRequest alloc] init] autorelease];
-	[request setEntity:[NSEntityDescription entityForName:@"Server" inManagedObjectContext:context]];
-	results=[context executeFetchRequest:request error:&error];
-	servers = [sharedServerList valueForKey:@"servers"];
-	e = [servers objectEnumerator];
-	while ( aServer = [e nextObject] )
-		[sharedServerList startObservingServer:aServer];
-	e = [results objectEnumerator];
-	while ( aServer = [e nextObject] )
-		[sharedServerList startObservingServer:aServer];
-	*/
-	 
+		 
 	//return the server list
 	return sharedServerList;
 }
@@ -125,9 +74,6 @@ static NSString *XgridServiceDomain = @"local.";
 	[newServer setValue:[NSNumber numberWithBool:YES] forKey:@"isNetService"];
 	[newServer setValue:name forKey:@"name"];
 	
-	//keep the server list updated
-	[self updateFetchedProperties];
-	
 	return newServer;
 }
 
@@ -160,9 +106,6 @@ static NSString *XgridServiceDomain = @"local.";
 	[newServer setValue:[NSNumber numberWithBool:NO] forKey:@"isNetService"];
 	[newServer setValue:name forKey:@"name"];
 
-	//keep the server list updated
-	[self updateFetchedProperties];
-	
 	return newServer;
 }
 
@@ -246,20 +189,6 @@ static NSString *XgridServiceDomain = @"local.";
 		return nil;
 }
 
-//returns the first object in the connectedServers
-//future implementations might choose the controller with the most resources
-- (XGController *)xgridController
-{
-	NSArray *connectedServers;
-
-	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
-
-	connectedServers = [self valueForKey:@"connectedServers"];
-	if ([connectedServers count]>0) {
-		return [[connectedServers objectAtIndex:0] valueForKey:@"xgridController"];
-	} else
-		return nil;
-}
 
 #pragma mark *** browsing services ***
 
@@ -288,7 +217,6 @@ static NSString *XgridServiceDomain = @"local.";
 - (void)stopBrowsing
 {
 	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
-	[self updateFetchedProperties];
 	[netServiceBrowser stop];
 }
 

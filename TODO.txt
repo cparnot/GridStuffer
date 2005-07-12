@@ -4,6 +4,7 @@ TODO for version 0.2
 
 * use the SQLLite format for the persistent store
 
+X * Fixed deletion of jobs (problem: if not found on the xgrid, a job could be deleted from another program... or maybe not loaded yet) --> need some timers
 X * problem with stdin!! it has to be included in the inputFiles...
 X * allow the user to cancel the connection while trying to connect to a server
 X * bug: cannot remove server from the GUI and the store
@@ -22,6 +23,7 @@ X * cleaner GUI:
 
 ----------------------------
 TODO for version 0.3
+* continuous save of the store (?)
 * really honor maxBytesPerSubmission in MetaJob submissions
 * submit to several grids, take available agents into account
 * refactor to better separate GridStuffer model and views, and to separate it from the app delegate --> ultimately a framework
