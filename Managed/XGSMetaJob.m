@@ -927,6 +927,32 @@ NOTE: I cannot have different sets of paths for different tasks, because the key
 - (void)jobDidFail:(XGSJob *)aJob
 {
 	DLog(NSStringFromClass([self class]),10,@"[<%@:%p> %s %@]",[self class],self,_cmd,[aJob name]);
+
+	//the taskMap allows to convert taskID into metaTaskIndex
+	NSDictionary *taskMap = [[aJob jobInfo] objectForKey:@"TaskMap"];
+	if ( taskMap == nil )
+		[NSException raise:@"XGSMetaJobError" format:@"No task map stored in the job"];
+		
+	//loop over the dictionary values to get all the metaTask indices
+	NSEnumerator *e = [taskMap objectEnumerator];
+	NSString *metaTaskIndex;
+	while ( metaTaskIndex = [e nextObject] ) {
+		
+		//update the count of failures for the metaTask
+		int index = [metaTaskIndex intValue];
+		int numberOfFailures = [[self failureCounts] incrementIntValueAtIndex:index];
+		
+		//do we need to update the count of dismissed metaTasks?
+		int failureCountsThreshold = [self failureCountsThreshold];
+		if ( failureCountsThreshold > 0 && numberOfFailures == failureCountsThreshold ) {
+			int numberOfSuccesses = [[self successCounts] intValueAtIndex:index];
+			int successCountsThreshold = [self successCountsThreshold];
+			if ( numberOfSuccesses < successCountsThreshold )
+				[self incrementCountDismissedTasks];
+		}
+	}		
+	
+	//we can now dump the job
 	[self removeJob:aJob];
 }
 

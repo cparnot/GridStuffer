@@ -83,5 +83,20 @@
 		</array>
 	</dict>
 
+	<dict>
+		<key>Name</key>
+		<string>Testing failed jobs</string>
+		<key>Description</key>
+		<string>One of the task runs a program that crashes</string>
+		<key>Path</key>
+		<string>~/Desktop/gridstuffer_demo5</string>
+		<key>Commands</key>
+		<string>commands_demo5.txt</string>
+		<key>Files</key>
+		<array>
+			<string>demo5.pl</string>
+		</array>
+	</dict>
+
 </array>
 </plist>

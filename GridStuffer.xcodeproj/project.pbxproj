@@ -18,6 +18,8 @@
 		563C845208839A99004B2D09 /* stdin42.txt in Resources */ = {isa = PBXBuildFile; fileRef = 563C844F08839A99004B2D09 /* stdin42.txt */; };
 		563C845308839A99004B2D09 /* stdin43.txt in Resources */ = {isa = PBXBuildFile; fileRef = 563C845008839A99004B2D09 /* stdin43.txt */; };
 		563C845408839A99004B2D09 /* stdin44.txt in Resources */ = {isa = PBXBuildFile; fileRef = 563C845108839A99004B2D09 /* stdin44.txt */; };
+		563C867F0884847D004B2D09 /* commands_demo5.txt in Resources */ = {isa = PBXBuildFile; fileRef = 563C867D0884847D004B2D09 /* commands_demo5.txt */; };
+		563C86800884847D004B2D09 /* demo5.pl in Resources */ = {isa = PBXBuildFile; fileRef = 563C867E0884847D004B2D09 /* demo5.pl */; };
 		5643E8500870C01D000838CF /* XGSValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5643E84F0870C01D000838CF /* XGSValidator.m */; };
 		5697594108635C2200A09FB5 /* XGSGrid.m in Sources */ = {isa = PBXBuildFile; fileRef = 5697593B08635C2200A09FB5 /* XGSGrid.m */; };
 		5697594208635C2200A09FB5 /* XGSJob.m in Sources */ = {isa = PBXBuildFile; fileRef = 5697593D08635C2200A09FB5 /* XGSJob.m */; };
@@ -130,6 +132,8 @@
 		563C844F08839A99004B2D09 /* stdin42.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; name = stdin42.txt; path = Demo4/stdin42.txt; sourceTree = "<group>"; };
 		563C845008839A99004B2D09 /* stdin43.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; name = stdin43.txt; path = Demo4/stdin43.txt; sourceTree = "<group>"; };
 		563C845108839A99004B2D09 /* stdin44.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; name = stdin44.txt; path = Demo4/stdin44.txt; sourceTree = "<group>"; };
+		563C867D0884847D004B2D09 /* commands_demo5.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; name = commands_demo5.txt; path = Demo5/commands_demo5.txt; sourceTree = "<group>"; };
+		563C867E0884847D004B2D09 /* demo5.pl */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.perl; name = demo5.pl; path = Demo5/demo5.pl; sourceTree = "<group>"; };
 		5643E84E0870C01D000838CF /* XGSValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XGSValidator.h; path = Managed/XGSValidator.h; sourceTree = "<group>"; };
 		5643E84F0870C01D000838CF /* XGSValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XGSValidator.m; path = Managed/XGSValidator.m; sourceTree = "<group>"; };
 		5667FA5A0869CA45009705CB /* XGSJobPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XGSJobPrivate.h; path = Managed/XGSJobPrivate.h; sourceTree = "<group>"; };
@@ -372,6 +376,7 @@
 				56FFEDD90872664600FF6E8D /* Demo2 */,
 				563C82B3087F3CE7004B2D09 /* Demo3 */,
 				563C840D08838A30004B2D09 /* Demo4 */,
+				563C867C08848464004B2D09 /* Demo5 */,
 			);
 			name = Demos;
 			path = Demo;
@@ -406,6 +411,15 @@
 				563C845108839A99004B2D09 /* stdin44.txt */,
 			);
 			name = Demo4;
+			sourceTree = "<group>";
+		};
+		563C867C08848464004B2D09 /* Demo5 */ = {
+			isa = PBXGroup;
+			children = (
+				563C867D0884847D004B2D09 /* commands_demo5.txt */,
+				563C867E0884847D004B2D09 /* demo5.pl */,
+			);
+			name = Demo5;
 			sourceTree = "<group>";
 		};
 		56A1EAF2083520AB0073CA7F /* Demo1 */ = {
@@ -614,6 +628,8 @@
 				563C845208839A99004B2D09 /* stdin42.txt in Resources */,
 				563C845308839A99004B2D09 /* stdin43.txt in Resources */,
 				563C845408839A99004B2D09 /* stdin44.txt in Resources */,
+				563C867F0884847D004B2D09 /* commands_demo5.txt in Resources */,
+				563C86800884847D004B2D09 /* demo5.pl in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
