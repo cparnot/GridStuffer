@@ -12,6 +12,12 @@
 		561FF6D1086E0C09004DEAF4 /* demo0.pl in Resources */ = {isa = PBXBuildFile; fileRef = 561FF6CF086E0C09004DEAF4 /* demo0.pl */; };
 		563C82C3087F4186004B2D09 /* commands_demo3.txt in Resources */ = {isa = PBXBuildFile; fileRef = 563C82C1087F4186004B2D09 /* commands_demo3.txt */; };
 		563C82C4087F4186004B2D09 /* demo3.pl in Resources */ = {isa = PBXBuildFile; fileRef = 563C82C2087F4186004B2D09 /* demo3.pl */; };
+		563C841508838C29004B2D09 /* commands_demo4.txt in Resources */ = {isa = PBXBuildFile; fileRef = 563C841208838C29004B2D09 /* commands_demo4.txt */; };
+		563C841608838C29004B2D09 /* demo4.pl in Resources */ = {isa = PBXBuildFile; fileRef = 563C841308838C29004B2D09 /* demo4.pl */; };
+		563C841708838C29004B2D09 /* stdin41.txt in Resources */ = {isa = PBXBuildFile; fileRef = 563C841408838C29004B2D09 /* stdin41.txt */; };
+		563C845208839A99004B2D09 /* stdin42.txt in Resources */ = {isa = PBXBuildFile; fileRef = 563C844F08839A99004B2D09 /* stdin42.txt */; };
+		563C845308839A99004B2D09 /* stdin43.txt in Resources */ = {isa = PBXBuildFile; fileRef = 563C845008839A99004B2D09 /* stdin43.txt */; };
+		563C845408839A99004B2D09 /* stdin44.txt in Resources */ = {isa = PBXBuildFile; fileRef = 563C845108839A99004B2D09 /* stdin44.txt */; };
 		5643E8500870C01D000838CF /* XGSValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5643E84F0870C01D000838CF /* XGSValidator.m */; };
 		5697594108635C2200A09FB5 /* XGSGrid.m in Sources */ = {isa = PBXBuildFile; fileRef = 5697593B08635C2200A09FB5 /* XGSGrid.m */; };
 		5697594208635C2200A09FB5 /* XGSJob.m in Sources */ = {isa = PBXBuildFile; fileRef = 5697593D08635C2200A09FB5 /* XGSJob.m */; };
@@ -118,6 +124,12 @@
 		561FF6CF086E0C09004DEAF4 /* demo0.pl */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.perl; name = demo0.pl; path = Demo0/demo0.pl; sourceTree = "<group>"; };
 		563C82C1087F4186004B2D09 /* commands_demo3.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; name = commands_demo3.txt; path = Demo3/commands_demo3.txt; sourceTree = "<group>"; };
 		563C82C2087F4186004B2D09 /* demo3.pl */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.perl; name = demo3.pl; path = Demo3/demo3.pl; sourceTree = "<group>"; };
+		563C841208838C29004B2D09 /* commands_demo4.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; name = commands_demo4.txt; path = Demo4/commands_demo4.txt; sourceTree = "<group>"; };
+		563C841308838C29004B2D09 /* demo4.pl */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.perl; name = demo4.pl; path = Demo4/demo4.pl; sourceTree = "<group>"; };
+		563C841408838C29004B2D09 /* stdin41.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; name = stdin41.txt; path = Demo4/stdin41.txt; sourceTree = "<group>"; };
+		563C844F08839A99004B2D09 /* stdin42.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; name = stdin42.txt; path = Demo4/stdin42.txt; sourceTree = "<group>"; };
+		563C845008839A99004B2D09 /* stdin43.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; name = stdin43.txt; path = Demo4/stdin43.txt; sourceTree = "<group>"; };
+		563C845108839A99004B2D09 /* stdin44.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; name = stdin44.txt; path = Demo4/stdin44.txt; sourceTree = "<group>"; };
 		5643E84E0870C01D000838CF /* XGSValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XGSValidator.h; path = Managed/XGSValidator.h; sourceTree = "<group>"; };
 		5643E84F0870C01D000838CF /* XGSValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XGSValidator.m; path = Managed/XGSValidator.m; sourceTree = "<group>"; };
 		5667FA5A0869CA45009705CB /* XGSJobPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XGSJobPrivate.h; path = Managed/XGSJobPrivate.h; sourceTree = "<group>"; };
@@ -359,6 +371,7 @@
 				56A1EAF2083520AB0073CA7F /* Demo1 */,
 				56FFEDD90872664600FF6E8D /* Demo2 */,
 				563C82B3087F3CE7004B2D09 /* Demo3 */,
+				563C840D08838A30004B2D09 /* Demo4 */,
 			);
 			name = Demos;
 			path = Demo;
@@ -380,6 +393,19 @@
 				563C82C2087F4186004B2D09 /* demo3.pl */,
 			);
 			name = Demo3;
+			sourceTree = "<group>";
+		};
+		563C840D08838A30004B2D09 /* Demo4 */ = {
+			isa = PBXGroup;
+			children = (
+				563C841208838C29004B2D09 /* commands_demo4.txt */,
+				563C841308838C29004B2D09 /* demo4.pl */,
+				563C841408838C29004B2D09 /* stdin41.txt */,
+				563C844F08839A99004B2D09 /* stdin42.txt */,
+				563C845008839A99004B2D09 /* stdin43.txt */,
+				563C845108839A99004B2D09 /* stdin44.txt */,
+			);
+			name = Demo4;
 			sourceTree = "<group>";
 		};
 		56A1EAF2083520AB0073CA7F /* Demo1 */ = {
@@ -582,6 +608,12 @@
 				56EE6982087DF94900DA99AF /* Submitted.tiff in Resources */,
 				563C82C3087F4186004B2D09 /* commands_demo3.txt in Resources */,
 				563C82C4087F4186004B2D09 /* demo3.pl in Resources */,
+				563C841508838C29004B2D09 /* commands_demo4.txt in Resources */,
+				563C841608838C29004B2D09 /* demo4.pl in Resources */,
+				563C841708838C29004B2D09 /* stdin41.txt in Resources */,
+				563C845208839A99004B2D09 /* stdin42.txt in Resources */,
+				563C845308839A99004B2D09 /* stdin43.txt in Resources */,
+				563C845408839A99004B2D09 /* stdin44.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

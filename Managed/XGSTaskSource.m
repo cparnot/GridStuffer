@@ -20,7 +20,7 @@ static NSString *PathsKey=@"Paths to upload";
 static NSString *FilesKey=@"Files to upload";
 static NSString *WorkingDirectoryKey=@"Working directory to upload";
 static NSString *StdinPathKey=@"Stdin path";
-static NSString *StdinStringKey=@"Stdin string";
+//static NSString *StdinStringKey=@"Stdin string";
 static NSString *StdoutPathKey=@"Stdout path";
 static NSString *StderrPathKey=@"Stderr path";
 static NSString *OutputPathKey=@"Output path";
@@ -230,7 +230,7 @@ static NSString *OutputPathKey=@"Output path";
 		[commandDictionary setObject:aPath forKey:OutputPathKey];
 	}
 	
-	//standard in
+	//standard in path
 	args=[options objectForKey:@"si"];
 	if ([args count]>0) {
 		aString=[args objectAtIndex:0];
@@ -238,9 +238,6 @@ static NSString *OutputPathKey=@"Output path";
 		if ([fileManager fileExistsAtPath:aPath])
 			//the argument for the -si option is a path
 			[commandDictionary setObject:aPath forKey:StdinPathKey];
-		else
-			//consider that the argument is in fact a string
-			[commandDictionary setObject:aString forKey:StdinStringKey];
 	}
 		
 	//working directory
@@ -429,8 +426,8 @@ static NSString *OutputPathKey=@"Output path";
 		[finalDictionary setObject:finalArgs forKey:ArgumentsKey];
 	}
 	
-	//all of the paths in the command and argument strings have been changed to absolute paths if they correspond to existing files
-	//now, to make sure they get uploaded, we keep track of those files using the PathsKey (the FilesKey were from the -files arguments)
+	//all of the paths from the working dir, the command and the argument strings have been changed to absolute paths as needed, and have been stored in the 'paths' variable
+	//these paths are stored in the finalDictionary, PathsKey (different from the FilesKey = from the -files arguments)
 	[finalDictionary setObject:paths forKey:PathsKey];
 	
 	//return a non-mutable dictionary
@@ -477,12 +474,6 @@ static NSString *OutputPathKey=@"Output path";
 {
 	DLog(NSStringFromClass([self class]),15,@"[%@:%p %s] - %@",[self class],self,_cmd,[self shortDescription]);
 	return [task objectForKey:StdinPathKey];
-}
-
-- (NSString *)metaJob:(XGSMetaJob *)metaJob stdinStringForTask:(id)task;
-{
-	DLog(NSStringFromClass([self class]),15,@"[%@:%p %s] - %@",[self class],self,_cmd,[self shortDescription]);
-	return [task objectForKey:StdinStringKey];
 }
 
 - (BOOL)metaJob:(XGSMetaJob *)metaJob validateResultsWithFiles:(NSDictionary *)files standardOutput:(NSData *)stdoutData standardError:(NSData *)stderrData forTask:(id)task;

@@ -1,0 +1,4 @@
+-si stdin41.txt demo4.pl
+-si stdin42.txt
+-si stdin43.txt
+-si stdin44.txt

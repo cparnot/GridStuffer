@@ -32,8 +32,6 @@
 - (NSString *)metaJob:(XGSMetaJob *)metaJob commandStringForTask:(id)task;
 - (NSArray *)metaJob:(XGSMetaJob *)metaJob argumentStringsForTask:(id)task;
 - (NSArray *)metaJob:(XGSMetaJob *)metaJob pathsToUploadForTask:(id)task;
-/* - (NSData *)metaJob:(XGSMetaJob *)metaJob stdinDataForTask:(id)task; */
-- (NSString *)metaJob:(XGSMetaJob *)metaJob stdinStringForTask:(id)task;
 - (NSString *)metaJob:(XGSMetaJob *)metaJob stdinPathForTask:(id)task;
 
 - (BOOL)metaJob:(XGSMetaJob *)metaJob validateResultsWithFiles:(NSDictionary *)dictionaryRepresentation standardOutput:(NSData *)stdoutData standardError:(NSData *)stderrData forTask:(id)task;

@@ -437,22 +437,43 @@ NSNumber *FloatNumberWithPercentRatioOfNumbers(NSNumber *number1,NSNumber *numbe
 
 - (NSString *)commandStringForTask:(id)taskItem
 {
-	return [[self dataSource] metaJob:self commandStringForTask:taskItem];	
+	id dataSource = [self dataSource];
+	if ( [dataSource respondsToSelector:@selector(metaJob:commandStringForTask:)] )
+		return [dataSource metaJob:self commandStringForTask:taskItem];
+	else
+		return nil;
 }
 
 - (NSArray *)argumentStringsForTask:(id)taskItem
 {
-	return [[self dataSource] metaJob:self argumentStringsForTask:taskItem];	
+	id dataSource = [self dataSource];
+	if ( [dataSource respondsToSelector:@selector(metaJob:argumentStringsForTask:)] )
+		return [dataSource metaJob:self argumentStringsForTask:taskItem];
+	else
+		return nil;
+}
+
+- (NSString *)stdinPathForTask:(id)taskItem
+{
+	id dataSource = [self dataSource];
+	if ( [dataSource respondsToSelector:@selector(metaJob:stdinPathForTask:)] )
+		return [dataSource metaJob:self stdinPathForTask:taskItem];
+	else
+		return nil;
 }
 
 - (NSArray *)pathsToUploadForTask:(id)taskItem
 {
-	return [[self dataSource] metaJob:self pathsToUploadForTask:taskItem];	
-}
+	NSMutableArray *pathsToUpload = [NSMutableArray array];
+	
+	NSString *stdinPath = [self stdinPathForTask:taskItem];
+	if ( stdinPath != nil )
+		[pathsToUpload addObject:stdinPath];		
 
-- (NSData *)stdinDataForTask:(id)taskItem
-{
-	return [NSData data];	
+	id dataSource = [self dataSource];
+	if ( [dataSource respondsToSelector:@selector(metaJob:pathsToUploadForTask:)] )
+		[pathsToUpload addObjectsFromArray:[dataSource metaJob:self pathsToUploadForTask:taskItem]];
+	return pathsToUpload;
 }
 
 
@@ -476,14 +497,13 @@ NOTE: I cannot have different sets of paths for different tasks, because the key
 	NSArray *paths;
 	NSDictionary *fileDictionary,*jobSpecification;
 	NSMutableDictionary *taskSpecifications, *oneTaskDictionary, *inputFiles, *fileMap;
-	NSString *currentPath,*currentDir, *subPath, *commandString, *temp1, *temp2;
+	NSString *currentPath,*currentDir, *subPath, *commandString, *temp1, *temp2, *stdinPath;
 	NSMutableString *jobName;
 	NSArray *argumentStrings;
 	NSMutableArray *args;
 	NSFileManager *fileManager;
 	BOOL exists,isDir,isSubPath;
 	NSRange pathRange;
-	NSData *stdinStream;
 	XGSJob *newJob;
 	int taskID;
 	NSMutableDictionary *taskMap;
@@ -590,25 +610,33 @@ NOTE: I cannot have different sets of paths for different tasks, because the key
 		taskItem = [taskList objectForKey:metaTaskIndex];
 		commandString = [self commandStringForTask:taskItem];
 		argumentStrings = [self argumentStringsForTask:taskItem];
+		stdinPath = [self stdinPathForTask:taskItem];
 
 		//the dictionary for one task has at most 4 entries
 		oneTaskDictionary = [NSMutableDictionary dictionaryWithCapacity:4];
 		
-		/* TO DO !!! */
-		//the standard-in stream
-		stdinStream = [self stdinDataForTask:taskItem];
-		//if ( [stdin length] > 0)
-		//	[oneTaskDictionary setObject:stdin forKey:XGJobSpecificationInputStreamKey];
 		
 		//if the task has no paths, we need to add an inputFileMap to prevent inputFiles addition to that task
 		paths = [self pathsToUploadForTask:taskItem];
 		if ( [paths count] == 0 )
 			[oneTaskDictionary setObject:[NSDictionary dictionary] forKey:XGJobSpecificationInputFileMapKey];
 		
-		//otherwise the command and argument strings might need to be changed if corresponding to one of the uploaded paths
+		//otherwise the stdin, the command and argument strings might need to be changed if corresponding to one of the uploaded paths
 		else if ( [inputFiles count]>0 ) {
+
+			//the standard-in value should be the path on the agent, and has to be one of the file in the fileMap
+			if ( ( stdinPath != nil ) && ( temp1 = [fileMap objectForKey:stdinPath] ) )
+				stdinPath = temp1;
+			else
+				stdinPath = nil;
+			
+			//the command string might need to be changed
+			//use the 'working' directory instead of the 'executable' directory because the executable might not be in 'executable'
+			//it seems to be a bug of xgrid: a path with several components will not be properly uploaded to the 'executable', only the 'working' directory
 			if ( (commandString!=nil) && (temp1=[fileMap objectForKey:commandString]) )
-				commandString = [@"../working" stringByAppendingPathComponent:temp1]; //trying to use the 'working' directory instead of the 'executable' directory
+				commandString = [@"../working" stringByAppendingPathComponent:temp1];
+			
+			//the argument sstrings may need to be changed
 			args = [NSMutableArray arrayWithCapacity:[argumentStrings count]];
 			NSEnumerator *e2 = [argumentStrings objectEnumerator];
 			while ( temp2 = [e2 nextObject] ){
@@ -619,6 +647,8 @@ NOTE: I cannot have different sets of paths for different tasks, because the key
 		}
 		
 		//add final dictionary to tasksSpecification dictionary
+		if ( stdinPath != nil )
+			[oneTaskDictionary setObject:stdinPath forKey:XGJobSpecificationInputStreamKey];
 		if ( commandString!=nil)
 			[oneTaskDictionary setObject:commandString forKey:XGJobSpecificationCommandKey];
 		if ( [argumentStrings count]>0 )
@@ -733,7 +763,7 @@ NOTE: I cannot have different sets of paths for different tasks, because the key
 		taskCount ++;
 		
 		//to be in the same jobs, tasks need to have the same uploaded paths
-		//so I use that criteria to group tasks in jobs (sorting paths allows for more accurate comparison and is needed in the next steps anyway)
+		//so I use that criteria to group tasks in jobs (sorting paths allows to direwctly compare arrays and is needed in the next steps anyway)
 		/* TO DO : have a 'NSArray *StandardizedPaths (NSArray *paths)' function to make sure we get standardized paths */
 		newPaths = [self pathsToUploadForTask:taskItem];
 		newPaths = [newPaths sortedArrayUsingSelector:@selector(compare:)];

@@ -1,8 +1,6 @@
 ----------------------------
 TODO for version 0.2
 
-* really honor -so and -se and -out
-
 * problem with stdin!! it has to be included in the inputFiles...
 
 * use the SQLLite format for the persistent store
@@ -12,6 +10,7 @@ X * bug: cannot remove server from the GUI and the store
 X * when a task fail, should not let the data source treat the data, but should save results in a special 'failures folder'
 X * use a hierachical structure for the results, so that one does not get 1000000 folders in one folder.
 X * bug in number of commands per submission: the number of commands per job is actually one more that set in the GUI and metajob attribute
+X * really honor -so and -se and -out
 X * cleaner GUI:
 	X * use the toolbar
 	X * add metajob status
@@ -56,8 +55,5 @@ TO THINK ABOUT:
 	* same task run twice, but different number of files --> all the files should have the same suffix
 	* same thing with 2 different tasks sharing some file names and the same -out path; the user should not do that, but it should be better handled anyway
 	* grouping files in the same folder is a good thing when save to the default output folder, but not for the -out flag
-	* maybe the solution is to make have an non-optional and an optional suffixing folder (used only if duplicates):
-		* files saved to -out path : non-optional = -out path ; optional suffix folder = [taskRange/]taskIndex/results
-		* files saved to default output path : non-optional = [taskRange/]taskIndex/ ; optional suffix folder = results
 	* but then the problem is : the data source is not supposed to know the taskIndex, even less about the taskRange
-	* so maybe the data source should simply return a path, nil if it want to let the metaJob handle it
+	* so maybe the data source could optionally return a path for -out, -se or -so, nil if it want to let the metaJob handle it

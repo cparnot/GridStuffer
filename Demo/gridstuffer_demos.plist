@@ -64,5 +64,24 @@
 		</array>
 	</dict>
 
+	<dict>
+		<key>Name</key>
+		<string>Testing -si</string>
+		<key>Description</key>
+		<string>A perl script takes the stdin and removes the string passed as arguments from it</string>
+		<key>Path</key>
+		<string>~/Desktop/gridstuffer_demo4</string>
+		<key>Commands</key>
+		<string>commands_demo4.txt</string>
+		<key>Files</key>
+		<array>
+			<string>demo4.pl</string>
+			<string>stdin41.txt</string>
+			<string>stdin42.txt</string>
+			<string>stdin43.txt</string>
+			<string>stdin44.txt</string>
+		</array>
+	</dict>
+
 </array>
 </plist>

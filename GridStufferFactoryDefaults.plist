@@ -4,14 +4,12 @@
 <dict>
 
 	<key>DebugLogVerboseLevel</key>
-	<string>10</string>
+	<string>15</string>
 	
 	<key>DebugIdentifiers</key>
 	<array>
-		<string>GridStufferAppDelegate</string>
 		<string>XGSMetaJob</string>
 		<string>XGSMetaJobArrayController</string>
-		<string>XGSIntegerArray</string>
 		<string>XGSTaskSource</string>
 		<string>XGSJob</string>
 		<string>XGSGrid</string>
@@ -20,6 +18,8 @@
 
 	<key>NoDebugIdentifiers</key>
 	<array>
+		<string>XGSIntegerArray</string>
+		<string>GridStufferAppDelegate</string>
 		<string>XGSInputInterface</string>
 		<string>XGSOutputInterface</string>
 		<string>XGSParser</string>
