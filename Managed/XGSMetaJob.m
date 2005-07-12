@@ -1059,7 +1059,10 @@ NOTE: I cannot have different sets of paths for different tasks, because the key
 			resultSubPath = [resultSubPath stringByAppendingPathComponent:rangeSubPath];
 		}
 		resultSubPath = [resultSubPath stringByAppendingPathComponent:[metaTaskIndex stringValue]];
-		[[self outputInterface] saveFiles:resultsHandledByOutputInterface inFolder:resultSubPath duplicatesInSubfolder:@"results"];
+		
+		//create a folder only if one of the 'shouldSave' flag is YES (this prevents the creation of an empty folder when it does not make sense)
+		if ( shouldSaveStdout || shouldSaveStderr || shouldSaveFiles )
+			[[self outputInterface] saveFiles:resultsHandledByOutputInterface inFolder:resultSubPath duplicatesInSubfolder:@"results"];
 		
 	}
 	
