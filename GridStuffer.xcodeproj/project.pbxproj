@@ -34,6 +34,7 @@
 		56A1EDD8083931510073CA7F /* GridStuffer_DataModel.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 56A1EDD7083931510073CA7F /* GridStuffer_DataModel.xcdatamodel */; };
 		56CFA43A084D797700242584 /* Servers.nib in Resources */ = {isa = PBXBuildFile; fileRef = 56CFA439084D797700242584 /* Servers.nib */; };
 		56D80461084E7C4800E1A13E /* GridStufferFactoryDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 56D80460084E7C4800E1A13E /* GridStufferFactoryDefaults.plist */; };
+		56E457AA088861410096D72B /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = 56E457A9088861410096D72B /* README.txt */; };
 		56EE6980087DF94900DA99AF /* Completed.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 56EE697D087DF94900DA99AF /* Completed.tiff */; };
 		56EE6981087DF94900DA99AF /* Dismissed.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 56EE697E087DF94900DA99AF /* Dismissed.tiff */; };
 		56EE6982087DF94900DA99AF /* Submitted.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 56EE697F087DF94900DA99AF /* Submitted.tiff */; };
@@ -154,6 +155,8 @@
 		56A1EAF7083520AB0073CA7F /* gridstuffer_demos.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; path = gridstuffer_demos.plist; sourceTree = "<group>"; };
 		56A1EDD7083931510073CA7F /* GridStuffer_DataModel.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = wrapper.xcdatamodel; path = GridStuffer_DataModel.xcdatamodel; sourceTree = "<group>"; };
 		56D80460084E7C4800E1A13E /* GridStufferFactoryDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = GridStufferFactoryDefaults.plist; sourceTree = "<group>"; };
+		56E457A40888612E0096D72B /* License-GPL.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = "License-GPL.txt"; sourceTree = "<group>"; };
+		56E457A9088861410096D72B /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		56EE697D087DF94900DA99AF /* Completed.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Completed.tiff; sourceTree = "<group>"; };
 		56EE697E087DF94900DA99AF /* Dismissed.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Dismissed.tiff; sourceTree = "<group>"; };
 		56EE697F087DF94900DA99AF /* Submitted.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Submitted.tiff; sourceTree = "<group>"; };
@@ -282,6 +285,8 @@
 			isa = PBXGroup;
 			children = (
 				56F42A6F083E9AA80011D12B /* TODO.txt */,
+				56E457A40888612E0096D72B /* License-GPL.txt */,
+				56E457A9088861410096D72B /* README.txt */,
 				56FFEE91087505AA00FF6E8D /* Documentation */,
 				56A1EB5B083523BC0073CA7F /* Utilities */,
 				5606B7000833F76B003D0371 /* Managed classes */,
@@ -630,6 +635,7 @@
 				563C845408839A99004B2D09 /* stdin44.txt in Resources */,
 				563C867F0884847D004B2D09 /* commands_demo5.txt in Resources */,
 				563C86800884847D004B2D09 /* demo5.pl in Resources */,
+				56E457AA088861410096D72B /* README.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

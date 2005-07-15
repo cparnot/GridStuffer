@@ -2920,6 +2920,13 @@
 		vrLen = 1247;
 		vrLoc = 1920;
 	};
+	56E457A40888612E0096D72B /* License-GPL.txt */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {827, 4774}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRect = "{{0, 0}, {827, 655}}";
+		};
+	};
 	56EE68B1087DDFDA00DA99AF /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 56FFF114087B571600FF6E8D /* XGSJobListController.h */;
