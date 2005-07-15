@@ -3,8 +3,6 @@
 //  CLIckXG
 //
 
-
-
 /*
 	DLog is equivalent to NSLog
 	but is only used and compiled #ifdef DEBUG
