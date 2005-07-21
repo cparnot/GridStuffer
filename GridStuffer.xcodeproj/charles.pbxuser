@@ -572,7 +572,7 @@
 		fRef = 56F42316083BBBA90011D12B /* GridStufferAppDelegate.m */;
 		name = "GridStufferAppDelegate.m: 377";
 		rLen = 0;
-		rLoc = 13126;
+		rLoc = 13256;
 		rType = 0;
 		vrLen = 1659;
 		vrLoc = 10829;
@@ -1632,9 +1632,9 @@
 	};
 	56D80460084E7C4800E1A13E /* GridStufferFactoryDefaults.plist */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {827, 655}}";
-			sepNavSelRange = "{551, 0}";
-			sepNavVisRect = "{{0, 0}, {827, 655}}";
+			sepNavIntBoundsRect = "{{0, 0}, {827, 453}}";
+			sepNavSelRange = "{380, 0}";
+			sepNavVisRect = "{{0, 0}, {827, 453}}";
 		};
 	};
 	56DC7DDD0842722C008962AB /* XGSJob.m */ = {
@@ -3691,9 +3691,9 @@
 	};
 	56E457A9088861410096D72B /* README.txt */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {827, 655}}";
-			sepNavSelRange = "{1492, 0}";
-			sepNavVisRect = "{{0, 0}, {827, 655}}";
+			sepNavIntBoundsRect = "{{0, 0}, {827, 700}}";
+			sepNavSelRange = "{769, 0}";
+			sepNavVisRect = "{{0, 89}, {827, 453}}";
 		};
 	};
 	56E457B00888623A0096D72B /* PBXTextBookmark */ = {
@@ -4111,7 +4111,7 @@
 		fRef = 56E457A9088861410096D72B /* README.txt */;
 		name = "README.txt: 3";
 		rLen = 0;
-		rLoc = 1492;
+		rLoc = 1858;
 		rType = 0;
 		vrLen = 56;
 		vrLoc = 0;
@@ -4146,7 +4146,7 @@
 		fRef = 56E457A9088861410096D72B /* README.txt */;
 		name = "README.txt: 42";
 		rLen = 0;
-		rLoc = 1492;
+		rLoc = 1858;
 		rType = 0;
 		vrLen = 1492;
 		vrLoc = 0;
@@ -4266,7 +4266,7 @@
 		fRef = 56E457A9088861410096D72B /* README.txt */;
 		name = "README.txt: 20";
 		rLen = 0;
-		rLoc = 406;
+		rLoc = 772;
 		rType = 0;
 		vrLen = 407;
 		vrLoc = 0;
@@ -4286,7 +4286,7 @@
 		fRef = 56E457A9088861410096D72B /* README.txt */;
 		name = "README.txt: 42";
 		rLen = 0;
-		rLoc = 1492;
+		rLoc = 1858;
 		rType = 0;
 		vrLen = 1492;
 		vrLoc = 0;

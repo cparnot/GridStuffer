@@ -16,6 +16,10 @@ http://cmgm.stanford.edu/~cparnot/xgrid-stanford/html/goodies/GridStuffer-detail
 Change Log
 ----------
 
+version 0.2.1
+
+* Bug fix: path with the ~ were considered absolute paths when used in the command or argument strings, when they should have been considered relative and should not have been used as is if they corresponded to an existing file on the client. Now, these paths are properly modified and the corresponding files are uploaded to the agents when needed.
+
 version 0.2
 
 * use the SQLLite format for the persistent store
