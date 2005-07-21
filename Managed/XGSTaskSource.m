@@ -104,7 +104,7 @@ static NSString *OutputPathKey=@"Output path";
 	NSString *finalPath;
 	DLog (NSStringFromClass([self class]),15,@"[%@:%p %s] - %@",[self class],self,_cmd,[self shortDescription]);
 	
-	//is it really a relative path??
+	//a path relative to the home folder is considered relative and will become an absolute path
 	finalPath = [relativePath stringByExpandingTildeInPath];
 	if ( [finalPath isAbsolutePath] )
 		return [finalPath stringByStandardizingPath];
@@ -388,8 +388,8 @@ static NSString *OutputPathKey=@"Output path";
 	//scan the command string for relative paths and shortcuts, otherwise keep the string as is
 	aPath=[finalDictionary objectForKey:CommandKey];
 	if (aPath!=nil) {
-		//if absolute path, use as is...
-		if ([aPath isAbsolutePath]) {
+		//if absolute path but not using '~' to get to the home folder, use as is...
+		if ( ( [aPath rangeOfString:@"~"].location != 0 ) && [aPath isAbsolutePath] ) {
 			[finalDictionary setObject:aPath forKey:CommandKey];
 		} else {
 			//is it a path relative to the working directory or home directory, for a file that exists?
@@ -414,7 +414,7 @@ static NSString *OutputPathKey=@"Output path";
 		//we call it 'aPath', but it could be anything; if it is indeed a path, then it is interesting
 		while (aPath=[e nextObject]) {
 			//if absolute path, use as is...
-			if ([aPath isAbsolutePath]) {
+			if ( ( [aPath rangeOfString:@"~"].location != 0 ) && [aPath isAbsolutePath] ) {
 				[finalArgs addObject:aPath];
 			} else {
 				//is it a path relative to the working directory or home directory, for a file that exists?

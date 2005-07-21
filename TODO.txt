@@ -1,7 +1,7 @@
 
 ----------------------------
 TODO for version 0.3
-* continuous save of the store (?)
+* continuous auto-save of the store (?)
 * submit to several grids, take available agents into account
 * detect when a MetaJob is finished --> stop the timer and update statusString (and revert when changing some of the settings)
 * refactor to better separate GridStuffer model and views, and to separate it from the app delegate --> ultimately a framework
@@ -13,6 +13,10 @@ TODO for version 0.3
 * more comments in the class headers
 * Application Support folder: use a hierarchical structure instead of just different names for different versions/debug
 * Persistent store: there might be several different stores in use by different apps or the same app
+* drag-and-drop files from the Finder
+* copy contents from the tables in the GUI
+* allow to remove xgrid jobs
+* look more into xgrid jobs status: add 'Pending' state, and add 'Unknown' state when connected but no id found (?)
 
 ----------------------------
 
