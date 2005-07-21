@@ -225,6 +225,8 @@
 	//	- finally, the store is different in debug mode
 	folderName = @"GridStuffer";
 	version = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"];
+	if ( [version isEqualToString:@"0.2.1"] )
+		version = @"0.2.0"; //versions 0.2.1 and 0.2.0 have compatible managed object models
 	folderName = [folderName stringByAppendingFormat:@"_version_%@",version];
 #ifdef DEBUG
 	folderName = [folderName stringByAppendingString:@"_DEBUG"];
