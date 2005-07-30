@@ -185,48 +185,7 @@
 	<key>Notifications</key>
 	<array/>
 	<key>OpenEditors</key>
-	<array>
-		<dict>
-			<key>Content</key>
-			<dict>
-				<key>PBXProjectModuleGUID</key>
-				<string>563C8308087F4BA1004B2D09</string>
-				<key>PBXProjectModuleLabel</key>
-				<string>GridStuffer_DataModel.xcdatamodel</string>
-				<key>PBXSplitModuleInNavigatorKey</key>
-				<dict>
-					<key>Split0</key>
-					<dict>
-						<key>PBXProjectModuleGUID</key>
-						<string>563C8309087F4BA1004B2D09</string>
-						<key>PBXProjectModuleLabel</key>
-						<string>GridStuffer_DataModel.xcdatamodel</string>
-						<key>_historyCapacity</key>
-						<integer>0</integer>
-						<key>bookmark</key>
-						<string>56E2AED3089060720097E200</string>
-						<key>history</key>
-						<array>
-							<string>56E45993088DCDE90096D72B</string>
-						</array>
-					</dict>
-					<key>SplitCount</key>
-					<string>1</string>
-				</dict>
-				<key>StatusBarVisibility</key>
-				<true/>
-			</dict>
-			<key>Geometry</key>
-			<dict>
-				<key>Frame</key>
-				<string>{{0, 20}, {1008, 663}}</string>
-				<key>PBXModuleWindowStatusBarHidden2</key>
-				<false/>
-				<key>RubberWindowFrame</key>
-				<string>22 123 1008 704 0 0 1280 832 </string>
-			</dict>
-		</dict>
-	</array>
+	<array/>
 	<key>PerspectiveWidths</key>
 	<array>
 		<integer>-1</integer>
@@ -316,13 +275,13 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>19</integer>
-									<integer>6</integer>
+									<integer>38</integer>
+									<integer>36</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 0}, {231, 659}}</string>
+							<string>{{0, 188}, {231, 659}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -341,7 +300,7 @@
 							<real>231</real>
 						</array>
 						<key>RubberWindowFrame</key>
-						<string>91 80 1127 718 0 0 1280 832 </string>
+						<string>62 87 1127 718 0 0 1280 832 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -359,7 +318,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>XGSTaskSource.m</string>
+								<string>GridStufferAppDelegate.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -367,11 +326,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>XGSTaskSource.m</string>
+										<string>GridStufferAppDelegate.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>56E2AED2089060720097E200</string>
+										<string>56E2AEF80890647D0097E200</string>
 										<key>history</key>
 										<array>
 											<string>56F42A78083EA2500011D12B</string>
@@ -419,12 +378,9 @@
 											<string>563C846C08839E51004B2D09</string>
 											<string>563C84D408845323004B2D09</string>
 											<string>563C862508847102004B2D09</string>
-											<string>563C862608847102004B2D09</string>
 											<string>563C867508848444004B2D09</string>
 											<string>563C869008848825004B2D09</string>
 											<string>563C869208848825004B2D09</string>
-											<string>563C869308848825004B2D09</string>
-											<string>563C869408848825004B2D09</string>
 											<string>56E457B00888623A0096D72B</string>
 											<string>56E457B10888623A0096D72B</string>
 											<string>56E457B20888623A0096D72B</string>
@@ -462,8 +418,6 @@
 											<string>56E457DB0888623A0096D72B</string>
 											<string>56E457DD0888623A0096D72B</string>
 											<string>56E457DE0888623A0096D72B</string>
-											<string>56E45978088DCDE80096D72B</string>
-											<string>56E45979088DCDE80096D72B</string>
 											<string>56E4597A088DCDE80096D72B</string>
 											<string>56E4597B088DCDE80096D72B</string>
 											<string>56E4597C088DCDE80096D72B</string>
@@ -474,7 +428,12 @@
 											<string>56E45981088DCDE80096D72B</string>
 											<string>56E2AE9D08905A860097E200</string>
 											<string>56E2AE9E08905A860097E200</string>
-											<string>56E2AEC708905E7B0097E200</string>
+											<string>56E2AEEC0890647D0097E200</string>
+											<string>56E2AEED0890647D0097E200</string>
+											<string>56E2AEEE0890647D0097E200</string>
+											<string>56E2AEEF0890647D0097E200</string>
+											<string>56E2AEF00890647D0097E200</string>
+											<string>56E2AEF10890647D0097E200</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -566,6 +525,12 @@
 											<string>56E4598F088DCDE80096D72B</string>
 											<string>56E2AEA008905A860097E200</string>
 											<string>56E2AEA108905A860097E200</string>
+											<string>56E2AEF20890647D0097E200</string>
+											<string>56E2AEF30890647D0097E200</string>
+											<string>56E2AEF40890647D0097E200</string>
+											<string>56E2AEF50890647D0097E200</string>
+											<string>56E2AEF60890647D0097E200</string>
+											<string>56E2AEF70890647D0097E200</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -579,7 +544,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {874, 672}}</string>
 								<key>RubberWindowFrame</key>
-								<string>91 80 1127 718 0 0 1280 832 </string>
+								<string>62 87 1127 718 0 0 1280 832 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -599,7 +564,7 @@
 								<key>Frame</key>
 								<string>{{0, 677}, {874, 0}}</string>
 								<key>RubberWindowFrame</key>
-								<string>91 80 1127 718 0 0 1280 832 </string>
+								<string>62 87 1127 718 0 0 1280 832 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
@@ -762,15 +727,14 @@
 		<string>56E2AEAE08905A860097E200</string>
 		<string>56E2AEAF08905A860097E200</string>
 		<string>56E2AEAA08905A860097E200</string>
-		<string>563C8308087F4BA1004B2D09</string>
 		<string>56E2AEAC08905A860097E200</string>
-		<string>1C0AD2B3069F1EA900FABCE6</string>
-		<string>/Users/charles/Docs/Development/cocoa_dev/GridStuffer/trunk/GridStuffer.xcodeproj</string>
 		<string>56A1EAF008351DC20073CA7F</string>
 		<string>1CD10A99069EF8BA00B06720</string>
+		<string>1C0AD2B3069F1EA900FABCE6</string>
+		<string>/Users/charles/Docs/Development/cocoa_dev/GridStuffer/trunk/GridStuffer.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
-	<string>91 80 1127 718 0 0 1280 832 </string>
+	<string>62 87 1127 718 0 0 1280 832 </string>
 	<key>WindowTools</key>
 	<array>
 		<dict>

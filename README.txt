@@ -1,4 +1,4 @@
-GridStuffer version 0.2.0
+GridStuffer version 0.2.1
 
 Created by Charles Parnot, 2005.
 Copyright Charles Parnot 2005 . All rights reserved.
