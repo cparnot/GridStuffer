@@ -224,6 +224,8 @@
 			<key>Layout</key>
 			<array>
 				<dict>
+					<key>BecomeActive</key>
+					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -260,6 +262,7 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateExpansionKey</key>
 							<array>
 								<string>29B97314FDCFA39411CA2CEA</string>
+								<string>56842061089C25C90078AFB7</string>
 								<string>5606B7000833F76B003D0371</string>
 								<string>080E96DDFE201D6D7F000001</string>
 								<string>56FFEF50087901B500FF6E8D</string>
@@ -275,13 +278,13 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>38</integer>
-									<integer>36</integer>
+									<integer>48</integer>
+									<integer>46</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 188}, {231, 659}}</string>
+							<string>{{0, 0}, {231, 659}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -311,14 +314,12 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>GridStufferAppDelegate.m</string>
+								<string>XGSToolbarController.h</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -326,11 +327,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>GridStufferAppDelegate.m</string>
+										<string>XGSToolbarController.h</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>56E2AEF80890647D0097E200</string>
+										<string>56842097089EEE850078AFB7</string>
 										<key>history</key>
 										<array>
 											<string>56F42A78083EA2500011D12B</string>
@@ -413,7 +414,6 @@
 											<string>56E457D50888623A0096D72B</string>
 											<string>56E457D60888623A0096D72B</string>
 											<string>56E457D70888623A0096D72B</string>
-											<string>56E457D80888623A0096D72B</string>
 											<string>56E457D90888623A0096D72B</string>
 											<string>56E457DB0888623A0096D72B</string>
 											<string>56E457DD0888623A0096D72B</string>
@@ -433,7 +433,8 @@
 											<string>56E2AEEE0890647D0097E200</string>
 											<string>56E2AEEF0890647D0097E200</string>
 											<string>56E2AEF00890647D0097E200</string>
-											<string>56E2AEF10890647D0097E200</string>
+											<string>56842095089EEE850078AFB7</string>
+											<string>56E457D80888623A0096D72B</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -523,14 +524,7 @@
 											<string>56E458140888623A0096D72B</string>
 											<string>56E458150888623A0096D72B</string>
 											<string>56E4598F088DCDE80096D72B</string>
-											<string>56E2AEA008905A860097E200</string>
-											<string>56E2AEA108905A860097E200</string>
-											<string>56E2AEF20890647D0097E200</string>
-											<string>56E2AEF30890647D0097E200</string>
-											<string>56E2AEF40890647D0097E200</string>
-											<string>56E2AEF50890647D0097E200</string>
-											<string>56E2AEF60890647D0097E200</string>
-											<string>56E2AEF70890647D0097E200</string>
+											<string>56842096089EEE850078AFB7</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -588,9 +582,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>56E2AE92089048F50097E200</string>
+				<string>56842098089EEE850078AFB7</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>56E2AE93089048F50097E200</string>
+				<string>56842099089EEE850078AFB7</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -724,14 +718,10 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>56E2AEAE08905A860097E200</string>
-		<string>56E2AEAF08905A860097E200</string>
-		<string>56E2AEAA08905A860097E200</string>
-		<string>56E2AEAC08905A860097E200</string>
-		<string>56A1EAF008351DC20073CA7F</string>
 		<string>1CD10A99069EF8BA00B06720</string>
+		<string>56842090089EEE770078AFB7</string>
 		<string>1C0AD2B3069F1EA900FABCE6</string>
-		<string>/Users/charles/Docs/Development/cocoa_dev/GridStuffer/trunk/GridStuffer.xcodeproj</string>
+		<string>/Users/charles/Docs/Development/cocoa_dev/GridStuffer/GridStuffer.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
 	<string>62 87 1127 718 0 0 1280 832 </string>
@@ -855,8 +845,8 @@
 										<string>yes</string>
 										<key>sizes</key>
 										<array>
-											<string>{{0, 0}, {513, 225}}</string>
-											<string>{{513, 0}, {417, 225}}</string>
+											<string>{{0, 0}, {502, 223}}</string>
+											<string>{{502, 0}, {428, 223}}</string>
 										</array>
 									</dict>
 									<key>VerticalSplitView</key>
@@ -871,8 +861,8 @@
 										<string>yes</string>
 										<key>sizes</key>
 										<array>
-											<string>{{0, 0}, {930, 225}}</string>
-											<string>{{0, 225}, {930, 474}}</string>
+											<string>{{0, 0}, {930, 223}}</string>
+											<string>{{0, 223}, {930, 476}}</string>
 										</array>
 									</dict>
 								</dict>
@@ -919,14 +909,14 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1CD10A99069EF8BA00B06720</string>
-				<string>56E2AEA408905A860097E200</string>
+				<string>5684208A089EEE770078AFB7</string>
 				<string>1C162984064C10D400B95A72</string>
-				<string>56E2AEA508905A860097E200</string>
-				<string>56E2AEA608905A860097E200</string>
-				<string>56E2AEA708905A860097E200</string>
-				<string>56E2AEA808905A860097E200</string>
-				<string>56E2AEA908905A860097E200</string>
-				<string>56E2AEAA08905A860097E200</string>
+				<string>5684208B089EEE770078AFB7</string>
+				<string>5684208C089EEE770078AFB7</string>
+				<string>5684208D089EEE770078AFB7</string>
+				<string>5684208E089EEE770078AFB7</string>
+				<string>5684208F089EEE770078AFB7</string>
+				<string>56842090089EEE770078AFB7</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.debug</string>
@@ -935,7 +925,7 @@
 			<key>WindowToolGUID</key>
 			<string>1CD10A99069EF8BA00B06720</string>
 			<key>WindowToolIsVisible</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>FirstTimeWindowDisplayed</key>
@@ -1127,8 +1117,8 @@
 										<string>yes</string>
 										<key>sizes</key>
 										<array>
-											<string>{{0, 0}, {366, 168}}</string>
-											<string>{{0, 173}, {366, 270}}</string>
+											<string>{{0, 0}, {491, 168}}</string>
+											<string>{{0, 173}, {491, 270}}</string>
 										</array>
 									</dict>
 									<key>VerticalSplitView</key>
@@ -1177,9 +1167,9 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C0AD2B3069F1EA900FABCE6</string>
-				<string>56E2AE95089048F50097E200</string>
+				<string>56842091089EEE770078AFB7</string>
 				<string>1CD0528B0623707200166675</string>
-				<string>56E2AE96089048F50097E200</string>
+				<string>56842092089EEE770078AFB7</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.run</string>
@@ -1188,7 +1178,7 @@
 			<key>WindowToolGUID</key>
 			<string>1C0AD2B3069F1EA900FABCE6</string>
 			<key>WindowToolIsVisible</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>Identifier</key>
