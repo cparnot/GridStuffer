@@ -14,7 +14,7 @@
  */
 
 /*
-This class is a wrapper for the XGController class. Because they are managed objects,
+The XGSServer class is a wrapper for the XGController class. Because they are managed objects,
 they can be saved and remembered  between sessions, particularly useful for servers
 with ip addresses). The connection step is also simpler.
 
@@ -33,8 +33,6 @@ IMPORTANT: the password will NOT be remembered or saved to disk.
 APPKIT_EXTERN NSString *XGSServerDidConnectNotification;
 APPKIT_EXTERN NSString *XGSServerDidNotConnectNotification;
 APPKIT_EXTERN NSString *XGSServerDidDisconnectNotification;
-
-
 
 @class XGSGrid;
 

@@ -1,15 +1,15 @@
 
 ----------------------------
 TODO for version 0.3
-* continuous auto-save of the store (?)
-* submit to several grids, take available agents into account
-* detect when a MetaJob is finished --> stop the timer and update statusString (and revert when changing some of the settings)
+* use a delegate with XGSServer
 * refactor to better separate GridStuffer model and views, and to separate it from the app delegate --> ultimately a framework
  --> this means I will also need a separate class to play the role of the application delegate in the framework, e.g. class 'GridStufferInterface'
 * entity names need also a suffix, like class names, if GridStuffer is going to be a framework..
+* submit to several grids, take available agents into account
+* continuous auto-save of the store (?)
+* detect when a MetaJob is finished --> stop the timer and update statusString (and revert when changing some of the settings)
 * really honor maxBytesPerSubmission in MetaJob submissions
 * the data source of a metajob should not have any idea of indexes, but just 'nextTask'. Or maybe leave the possibility for two types of data source, one called with indexes and one called using 'nextTask'.
-* use a delegate with XGSServer
 * more comments in the class headers
 * Application Support folder: use a hierarchical structure instead of just different names for different versions/debug
 * Persistent store: there might be several different stores in use by different apps or the same app

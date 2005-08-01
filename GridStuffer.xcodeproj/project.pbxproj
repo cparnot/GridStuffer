@@ -287,6 +287,7 @@
 				56F42A6F083E9AA80011D12B /* TODO.txt */,
 				56E457A40888612E0096D72B /* License-GPL.txt */,
 				56E457A9088861410096D72B /* README.txt */,
+				56842061089C25C90078AFB7 /* Framework */,
 				56FFEE91087505AA00FF6E8D /* Documentation */,
 				56A1EB5B083523BC0073CA7F /* Utilities */,
 				5606B7000833F76B003D0371 /* Managed classes */,
@@ -358,16 +359,6 @@
 				56F42339083BBC6D0011D12B /* XGSOutputInterface.m */,
 				56F4233A083BBC6D0011D12B /* XGSParser.h */,
 				56F4233B083BBC6D0011D12B /* XGSParser.m */,
-				56F423EC083BE6F50011D12B /* XGSServerList.h */,
-				56F423ED083BE6F50011D12B /* XGSServerList.m */,
-				56F42436083BFA850011D12B /* XGSServer.h */,
-				56F42437083BFA850011D12B /* XGSServer.m */,
-				5697593A08635C2200A09FB5 /* XGSGrid.h */,
-				56975A850868B97B00A09FB5 /* XGSGridPrivate.h */,
-				5697593B08635C2200A09FB5 /* XGSGrid.m */,
-				5697593C08635C2200A09FB5 /* XGSJob.h */,
-				5667FA5A0869CA45009705CB /* XGSJobPrivate.h */,
-				5697593D08635C2200A09FB5 /* XGSJob.m */,
 			);
 			name = "Managed classes";
 			sourceTree = "<group>";
@@ -425,6 +416,23 @@
 				563C867E0884847D004B2D09 /* demo5.pl */,
 			);
 			name = Demo5;
+			sourceTree = "<group>";
+		};
+		56842061089C25C90078AFB7 /* Framework */ = {
+			isa = PBXGroup;
+			children = (
+				56F423EC083BE6F50011D12B /* XGSServerList.h */,
+				56F423ED083BE6F50011D12B /* XGSServerList.m */,
+				56F42436083BFA850011D12B /* XGSServer.h */,
+				56F42437083BFA850011D12B /* XGSServer.m */,
+				5697593A08635C2200A09FB5 /* XGSGrid.h */,
+				56975A850868B97B00A09FB5 /* XGSGridPrivate.h */,
+				5697593B08635C2200A09FB5 /* XGSGrid.m */,
+				5697593C08635C2200A09FB5 /* XGSJob.h */,
+				5667FA5A0869CA45009705CB /* XGSJobPrivate.h */,
+				5697593D08635C2200A09FB5 /* XGSJob.m */,
+			);
+			name = Framework;
 			sourceTree = "<group>";
 		};
 		56A1EAF2083520AB0073CA7F /* Demo1 */ = {
