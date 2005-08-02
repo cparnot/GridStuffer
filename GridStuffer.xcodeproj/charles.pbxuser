@@ -2548,8 +2548,8 @@
 	56F423EC083BE6F50011D12B /* XGSServerList.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {827, 840}}";
-			sepNavSelRange = "{1887, 0}";
-			sepNavVisRect = "{{0, 185}, {827, 655}}";
+			sepNavSelRange = "{1424, 0}";
+			sepNavVisRect = "{{0, 0}, {827, 655}}";
 		};
 	};
 	56F423ED083BE6F50011D12B /* XGSServerList.m */ = {
@@ -2562,8 +2562,8 @@
 	56F42436083BFA850011D12B /* XGSServer.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {827, 1134}}";
-			sepNavSelRange = "{2013, 0}";
-			sepNavVisRect = "{{0, 479}, {827, 655}}";
+			sepNavSelRange = "{1859, 0}";
+			sepNavVisRect = "{{0, 205}, {827, 655}}";
 			sepNavWindowFrame = "{{15, 315}, {750, 558}}";
 		};
 	};

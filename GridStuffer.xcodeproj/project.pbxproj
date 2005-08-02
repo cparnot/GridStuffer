@@ -137,16 +137,16 @@
 		563C867E0884847D004B2D09 /* demo5.pl */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.perl; name = demo5.pl; path = Demo5/demo5.pl; sourceTree = "<group>"; };
 		5643E84E0870C01D000838CF /* XGSValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XGSValidator.h; path = Managed/XGSValidator.h; sourceTree = "<group>"; };
 		5643E84F0870C01D000838CF /* XGSValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XGSValidator.m; path = Managed/XGSValidator.m; sourceTree = "<group>"; };
-		5667FA5A0869CA45009705CB /* XGSJobPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XGSJobPrivate.h; path = Managed/XGSJobPrivate.h; sourceTree = "<group>"; };
-		5697593A08635C2200A09FB5 /* XGSGrid.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = XGSGrid.h; path = Managed/XGSGrid.h; sourceTree = "<group>"; };
-		5697593B08635C2200A09FB5 /* XGSGrid.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = XGSGrid.m; path = Managed/XGSGrid.m; sourceTree = "<group>"; };
-		5697593C08635C2200A09FB5 /* XGSJob.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = XGSJob.h; path = Managed/XGSJob.h; sourceTree = "<group>"; };
-		5697593D08635C2200A09FB5 /* XGSJob.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = XGSJob.m; path = Managed/XGSJob.m; sourceTree = "<group>"; };
+		5667FA5A0869CA45009705CB /* XGSJobPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XGSJobPrivate.h; path = Framework/XGSJobPrivate.h; sourceTree = "<group>"; };
+		5697593A08635C2200A09FB5 /* XGSGrid.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = XGSGrid.h; path = Framework/XGSGrid.h; sourceTree = "<group>"; };
+		5697593B08635C2200A09FB5 /* XGSGrid.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = XGSGrid.m; path = Framework/XGSGrid.m; sourceTree = "<group>"; };
+		5697593C08635C2200A09FB5 /* XGSJob.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = XGSJob.h; path = Framework/XGSJob.h; sourceTree = "<group>"; };
+		5697593D08635C2200A09FB5 /* XGSJob.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = XGSJob.m; path = Framework/XGSJob.m; sourceTree = "<group>"; };
 		5697593E08635C2200A09FB5 /* XGSMetaJobAccessors.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = XGSMetaJobAccessors.m; path = Managed/XGSMetaJobAccessors.m; sourceTree = "<group>"; };
 		5697593F08635C2200A09FB5 /* XGSMetaJobPrivateAccessors.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = XGSMetaJobPrivateAccessors.h; path = Managed/XGSMetaJobPrivateAccessors.h; sourceTree = "<group>"; };
 		5697594008635C2200A09FB5 /* XGSMetaJobPrivateAccessors.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = XGSMetaJobPrivateAccessors.m; path = Managed/XGSMetaJobPrivateAccessors.m; sourceTree = "<group>"; };
 		56975A400865551600A09FB5 /* GridStufferIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = GridStufferIcon.icns; sourceTree = "<group>"; };
-		56975A850868B97B00A09FB5 /* XGSGridPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XGSGridPrivate.h; path = Managed/XGSGridPrivate.h; sourceTree = "<group>"; };
+		56975A850868B97B00A09FB5 /* XGSGridPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XGSGridPrivate.h; path = Framework/XGSGridPrivate.h; sourceTree = "<group>"; };
 		56A1EACE083519C60073CA7F /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/NewJob.nib; sourceTree = "<group>"; };
 		56A1EAF3083520AB0073CA7F /* commands_demo1.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; name = commands_demo1.txt; path = Demo1/commands_demo1.txt; sourceTree = "<group>"; };
 		56A1EAF4083520AB0073CA7F /* file1.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; name = file1.txt; path = Demo1/file1.txt; sourceTree = "<group>"; };
@@ -183,8 +183,8 @@
 		56F42344083BBCC10011D12B /* XgridFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XgridFoundation.framework; path = /System/Library/Frameworks/XgridFoundation.framework; sourceTree = "<absolute>"; };
 		56F423EC083BE6F50011D12B /* XGSServerList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XGSServerList.h; path = Managed/XGSServerList.h; sourceTree = "<group>"; };
 		56F423ED083BE6F50011D12B /* XGSServerList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XGSServerList.m; path = Managed/XGSServerList.m; sourceTree = "<group>"; };
-		56F42436083BFA850011D12B /* XGSServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XGSServer.h; path = Managed/XGSServer.h; sourceTree = "<group>"; };
-		56F42437083BFA850011D12B /* XGSServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XGSServer.m; path = Managed/XGSServer.m; sourceTree = "<group>"; };
+		56F42436083BFA850011D12B /* XGSServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XGSServer.h; path = Framework/XGSServer.h; sourceTree = "<group>"; };
+		56F42437083BFA850011D12B /* XGSServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XGSServer.m; path = Framework/XGSServer.m; sourceTree = "<group>"; };
 		56F42475083C0C100011D12B /* XGSServerListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XGSServerListController.h; path = Managed/XGSServerListController.h; sourceTree = "<group>"; };
 		56F42476083C0C100011D12B /* XGSServerListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XGSServerListController.m; path = Managed/XGSServerListController.m; sourceTree = "<group>"; };
 		56F42553083D3F380011D12B /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/Servers.nib; sourceTree = "<group>"; };
@@ -340,6 +340,8 @@
 		5606B7000833F76B003D0371 /* Managed classes */ = {
 			isa = PBXGroup;
 			children = (
+				56F423EC083BE6F50011D12B /* XGSServerList.h */,
+				56F423ED083BE6F50011D12B /* XGSServerList.m */,
 				561FF4C9086BD372004DEAF4 /* XGSManagedObject.h */,
 				561FF4CA086BD372004DEAF4 /* XGSManagedObject.m */,
 				56F42332083BBC6D0011D12B /* XGSInputInterface.h */,
@@ -421,8 +423,6 @@
 		56842061089C25C90078AFB7 /* Framework */ = {
 			isa = PBXGroup;
 			children = (
-				56F423EC083BE6F50011D12B /* XGSServerList.h */,
-				56F423ED083BE6F50011D12B /* XGSServerList.m */,
 				56F42436083BFA850011D12B /* XGSServer.h */,
 				56F42437083BFA850011D12B /* XGSServer.m */,
 				5697593A08635C2200A09FB5 /* XGSGrid.h */,
