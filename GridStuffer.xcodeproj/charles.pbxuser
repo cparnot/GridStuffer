@@ -293,6 +293,15 @@
 			5684222108A16EB10078AFB7 /* PBXTextBookmark */ = 5684222108A16EB10078AFB7 /* PBXTextBookmark */;
 			5684222208A16EB10078AFB7 /* PBXTextBookmark */ = 5684222208A16EB10078AFB7 /* PBXTextBookmark */;
 			5684222308A16EB10078AFB7 /* XDModelBookmark */ = 5684222308A16EB10078AFB7 /* XDModelBookmark */;
+			5684222E08A179880078AFB7 /* PBXTextBookmark */ = 5684222E08A179880078AFB7 /* PBXTextBookmark */;
+			5684222F08A179880078AFB7 /* PBXTextBookmark */ = 5684222F08A179880078AFB7 /* PBXTextBookmark */;
+			5684223008A179880078AFB7 /* PBXTextBookmark */ = 5684223008A179880078AFB7 /* PBXTextBookmark */;
+			5684223108A179880078AFB7 /* PBXTextBookmark */ = 5684223108A179880078AFB7 /* PBXTextBookmark */;
+			5684223208A179880078AFB7 /* PBXTextBookmark */ = 5684223208A179880078AFB7 /* PBXTextBookmark */;
+			5684223308A179880078AFB7 /* PBXTextBookmark */ = 5684223308A179880078AFB7 /* PBXTextBookmark */;
+			5684223408A179880078AFB7 /* PBXTextBookmark */ = 5684223408A179880078AFB7 /* PBXTextBookmark */;
+			5684223508A179880078AFB7 /* PBXTextBookmark */ = 5684223508A179880078AFB7 /* PBXTextBookmark */;
+			5684223608A179880078AFB7 /* XDModelBookmark */ = 5684223608A179880078AFB7 /* XDModelBookmark */;
 			569759C80863904B00A09FB5 = 569759C80863904B00A09FB5 /* PBXTextBookmark */;
 			569759C90863904B00A09FB5 = 569759C90863904B00A09FB5 /* PBXTextBookmark */;
 			56975A5B0867FA0D00A09FB5 = 56975A5B0867FA0D00A09FB5 /* PBXBookmark */;
@@ -1316,16 +1325,16 @@
 	};
 	5684209E08A040080078AFB7 /* XGSServerConnection.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {827, 952}}";
-			sepNavSelRange = "{1774, 0}";
-			sepNavVisRect = "{{0, 47}, {827, 453}}";
+			sepNavIntBoundsRect = "{{0, 0}, {827, 938}}";
+			sepNavSelRange = "{2227, 0}";
+			sepNavVisRect = "{{0, 269}, {827, 655}}";
 		};
 	};
 	5684209F08A040080078AFB7 /* XGSServerConnection.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {827, 5894}}";
-			sepNavSelRange = "{9655, 0}";
-			sepNavVisRect = "{{0, 4093}, {827, 453}}";
+			sepNavIntBoundsRect = "{{0, 0}, {827, 5992}}";
+			sepNavSelRange = "{11665, 0}";
+			sepNavVisRect = "{{0, 4818}, {827, 655}}";
 			sepNavWindowFrame = "{{38, 50}, {1129, 756}}";
 		};
 	};
@@ -1447,8 +1456,8 @@
 		isa = PBXTextBookmark;
 		fRef = 56F42436083BFA850011D12B /* XGSServer.h */;
 		name = "XGSServer.h: 41";
-		rLen = 64;
-		rLoc = 1902;
+		rLen = 68;
+		rLoc = 1930;
 		rType = 0;
 		vrLen = 1681;
 		vrLoc = 778;
@@ -1488,7 +1497,7 @@
 		fRef = 5684209E08A040080078AFB7 /* XGSServerConnection.h */;
 		name = "XGSServerConnection.h: 43";
 		rLen = 0;
-		rLoc = 2085;
+		rLoc = 2130;
 		rType = 0;
 		vrLen = 1597;
 		vrLoc = 0;
@@ -1507,7 +1516,7 @@
 		isa = PBXTextBookmark;
 		fRef = 5684209E08A040080078AFB7 /* XGSServerConnection.h */;
 		name = "XGSServerConnection.h: 41";
-		rLen = 142;
+		rLen = 187;
 		rLoc = 1972;
 		rType = 0;
 		vrLen = 1624;
@@ -1538,7 +1547,7 @@
 		fRef = 5684209F08A040080078AFB7 /* XGSServerConnection.m */;
 		name = "XGSServerConnection.m: 28";
 		rLen = 0;
-		rLoc = 12317;
+		rLoc = 12426;
 		rType = 0;
 		vrLen = 584;
 		vrLoc = 0;
@@ -1811,7 +1820,7 @@
 		fRef = 56F42436083BFA850011D12B /* XGSServer.h */;
 		name = "XGSServer.h: connectWithoutAuthentication";
 		rLen = 132;
-		rLoc = 2307;
+		rLoc = 2464;
 		rType = 0;
 		vrLen = 1478;
 		vrLoc = 1616;
@@ -1831,7 +1840,7 @@
 		fRef = 5684209E08A040080078AFB7 /* XGSServerConnection.h */;
 		name = "XGSServerConnection.h: 43";
 		rLen = 0;
-		rLoc = 2076;
+		rLoc = 2121;
 		rType = 0;
 		vrLen = 1826;
 		vrLoc = 45;
@@ -1851,7 +1860,7 @@
 		fRef = 56F42436083BFA850011D12B /* XGSServer.h */;
 		name = "XGSServer.h: connectWithoutAuthentication";
 		rLen = 132;
-		rLoc = 2307;
+		rLoc = 2464;
 		rType = 0;
 		vrLen = 1402;
 		vrLoc = 1403;
@@ -1861,7 +1870,7 @@
 		fRef = 5684209E08A040080078AFB7 /* XGSServerConnection.h */;
 		name = "XGSServerConnection.h: 43";
 		rLen = 0;
-		rLoc = 2076;
+		rLoc = 2121;
 		rType = 0;
 		vrLen = 1826;
 		vrLoc = 45;
@@ -1871,7 +1880,7 @@
 		fRef = 56F42436083BFA850011D12B /* XGSServer.h */;
 		name = "XGSServer.h: connectWithoutAuthentication";
 		rLen = 132;
-		rLoc = 2307;
+		rLoc = 2464;
 		rType = 0;
 		vrLen = 1478;
 		vrLoc = 1616;
@@ -1911,7 +1920,7 @@
 		fRef = 5684209F08A040080078AFB7 /* XGSServerConnection.m */;
 		name = "XGSServerConnection.m: 77";
 		rLen = 0;
-		rLoc = 9881;
+		rLoc = 10011;
 		rType = 0;
 		vrLen = 910;
 		vrLoc = 1259;
@@ -1921,7 +1930,7 @@
 		fRef = 5684209E08A040080078AFB7 /* XGSServerConnection.h */;
 		name = "XGSServerConnection.h: 43";
 		rLen = 0;
-		rLoc = 2076;
+		rLoc = 2121;
 		rType = 0;
 		vrLen = 1826;
 		vrLoc = 45;
@@ -1941,7 +1950,7 @@
 		fRef = 5684209E08A040080078AFB7 /* XGSServerConnection.h */;
 		name = "XGSServerConnection.h: 43";
 		rLen = 0;
-		rLoc = 2076;
+		rLoc = 2121;
 		rType = 0;
 		vrLen = 1826;
 		vrLoc = 45;
@@ -2179,7 +2188,7 @@
 		fRef = 5684209F08A040080078AFB7 /* XGSServerConnection.m */;
 		name = "XGSServerConnection.m: 305";
 		rLen = 0;
-		rLoc = 9655;
+		rLoc = 9785;
 		rType = 0;
 		vrLen = 1057;
 		vrLoc = 9174;
@@ -2199,7 +2208,7 @@
 		fRef = 56F42436083BFA850011D12B /* XGSServer.h */;
 		name = XGConnection;
 		rLen = 0;
-		rLoc = 1902;
+		rLoc = 1930;
 		rType = 0;
 		vrLen = 1022;
 		vrLoc = 1615;
@@ -2219,7 +2228,7 @@
 		fRef = 5684209E08A040080078AFB7 /* XGSServerConnection.h */;
 		name = "XGSServerConnection.h: 43";
 		rLen = 0;
-		rLoc = 2076;
+		rLoc = 2121;
 		rType = 0;
 		vrLen = 1826;
 		vrLoc = 45;
@@ -2229,7 +2238,7 @@
 		fRef = 5684209F08A040080078AFB7 /* XGSServerConnection.m */;
 		name = "XGSServerConnection.m: connect";
 		rLen = 0;
-		rLoc = 12334;
+		rLoc = 12443;
 		rType = 0;
 		vrLen = 956;
 		vrLoc = 1237;
@@ -2239,7 +2248,7 @@
 		fRef = 5684209E08A040080078AFB7 /* XGSServerConnection.h */;
 		name = "XGSServerConnection.h: connectWithoutAuthentication";
 		rLen = 0;
-		rLoc = 2094;
+		rLoc = 2139;
 		rType = 0;
 		vrLen = 1826;
 		vrLoc = 45;
@@ -2249,7 +2258,7 @@
 		fRef = 5684209F08A040080078AFB7 /* XGSServerConnection.m */;
 		name = "XGSServerConnection.m: 93";
 		rLen = 0;
-		rLoc = 12314;
+		rLoc = 12423;
 		rType = 0;
 		vrLen = 637;
 		vrLoc = 1704;
@@ -2259,7 +2268,7 @@
 		fRef = 56F42436083BFA850011D12B /* XGSServer.h */;
 		name = "XGSServer.h: connectWithoutAuthentication";
 		rLen = 132;
-		rLoc = 2307;
+		rLoc = 2464;
 		rType = 0;
 		vrLen = 1479;
 		vrLoc = 1615;
@@ -2269,7 +2278,7 @@
 		fRef = 5684209F08A040080078AFB7 /* XGSServerConnection.m */;
 		name = "XGSServerConnection.m: 93";
 		rLen = 0;
-		rLoc = 12314;
+		rLoc = 12423;
 		rType = 0;
 		vrLen = 637;
 		vrLoc = 1704;
@@ -2299,7 +2308,7 @@
 		fRef = 5684209E08A040080078AFB7 /* XGSServerConnection.h */;
 		name = "XGSServerConnection.h: connect";
 		rLen = 0;
-		rLoc = 2093;
+		rLoc = 2138;
 		rType = 0;
 		vrLen = 1823;
 		vrLoc = 48;
@@ -2309,7 +2318,7 @@
 		fRef = 5684209F08A040080078AFB7 /* XGSServerConnection.m */;
 		name = "XGSServerConnection.m: connectWithoutAuthentication";
 		rLen = 0;
-		rLoc = 9945;
+		rLoc = 10075;
 		rType = 0;
 		vrLen = 609;
 		vrLoc = 1736;
@@ -2319,7 +2328,7 @@
 		fRef = 5684209E08A040080078AFB7 /* XGSServerConnection.h */;
 		name = "XGSServerConnection.h: connect";
 		rLen = 0;
-		rLoc = 2093;
+		rLoc = 2138;
 		rType = 0;
 		vrLen = 1826;
 		vrLoc = 45;
@@ -2329,7 +2338,7 @@
 		fRef = 5684209F08A040080078AFB7 /* XGSServerConnection.m */;
 		name = "XGSServerConnection.m: 232";
 		rLen = 0;
-		rLoc = 9929;
+		rLoc = 10059;
 		rType = 0;
 		vrLen = 861;
 		vrLoc = 6410;
@@ -2339,7 +2348,7 @@
 		fRef = 5684209E08A040080078AFB7 /* XGSServerConnection.h */;
 		name = "XGSServerConnection.h: 52";
 		rLen = 0;
-		rLoc = 2253;
+		rLoc = 2271;
 		rType = 0;
 		vrLen = 1784;
 		vrLoc = 89;
@@ -2349,7 +2358,7 @@
 		fRef = 5684209F08A040080078AFB7 /* XGSServerConnection.m */;
 		name = "XGSServerConnection.m: 232";
 		rLen = 0;
-		rLoc = 9929;
+		rLoc = 10059;
 		rType = 0;
 		vrLen = 889;
 		vrLoc = 6382;
@@ -2369,7 +2378,7 @@
 		fRef = 5684209F08A040080078AFB7 /* XGSServerConnection.m */;
 		name = "XGSServerConnection.m: connectWithPassword:";
 		rLen = 0;
-		rLoc = 12333;
+		rLoc = 12442;
 		rType = 0;
 		vrLen = 861;
 		vrLoc = 6410;
@@ -2389,7 +2398,7 @@
 		fRef = 5684209F08A040080078AFB7 /* XGSServerConnection.m */;
 		name = "XGSServerConnection.m: 260";
 		rLen = 0;
-		rLoc = 13451;
+		rLoc = 13560;
 		rType = 0;
 		vrLen = 1092;
 		vrLoc = 6961;
@@ -2409,7 +2418,7 @@
 		fRef = 5684209F08A040080078AFB7 /* XGSServerConnection.m */;
 		name = "XGSServerConnection.m: 242";
 		rLen = 0;
-		rLoc = 11507;
+		rLoc = 11637;
 		rType = 0;
 		vrLen = 1100;
 		vrLoc = 6953;
@@ -2429,7 +2438,7 @@
 		fRef = 5684209F08A040080078AFB7 /* XGSServerConnection.m */;
 		name = "XGSServerConnection.m: 249";
 		rLen = 0;
-		rLoc = 13451;
+		rLoc = 13560;
 		rType = 0;
 		vrLen = 1100;
 		vrLoc = 6953;
@@ -2479,7 +2488,7 @@
 		fRef = 5684209F08A040080078AFB7 /* XGSServerConnection.m */;
 		name = "XGSServerConnection.m: 280";
 		rLen = 0;
-		rLoc = 13486;
+		rLoc = 13595;
 		rType = 0;
 		vrLen = 1387;
 		vrLoc = 7278;
@@ -2499,7 +2508,7 @@
 		fRef = 5684209F08A040080078AFB7 /* XGSServerConnection.m */;
 		name = "XGSServerConnection.m: 214";
 		rLen = 0;
-		rLoc = 6960;
+		rLoc = 7090;
 		rType = 0;
 		vrLen = 1593;
 		vrLoc = 4575;
@@ -2519,7 +2528,7 @@
 		fRef = 5684209F08A040080078AFB7 /* XGSServerConnection.m */;
 		name = "XGSServerConnection.m: 248";
 		rLen = 0;
-		rLoc = 8424;
+		rLoc = 8554;
 		rType = 0;
 		vrLen = 1327;
 		vrLoc = 6696;
@@ -2579,7 +2588,7 @@
 		fRef = 5684209F08A040080078AFB7 /* XGSServerConnection.m */;
 		name = xgridConnection;
 		rLen = 0;
-		rLoc = 13600;
+		rLoc = 13709;
 		rType = 0;
 		vrLen = 1702;
 		vrLoc = 11967;
@@ -2589,7 +2598,7 @@
 		fRef = 56F42436083BFA850011D12B /* XGSServer.h */;
 		name = XGConnection;
 		rLen = 0;
-		rLoc = 1902;
+		rLoc = 1930;
 		rType = 0;
 		vrLen = 1479;
 		vrLoc = 1615;
@@ -2609,7 +2618,7 @@
 		fRef = 5684209F08A040080078AFB7 /* XGSServerConnection.m */;
 		name = "XGSServerConnection.m: 416";
 		rLen = 0;
-		rLoc = 13671;
+		rLoc = 13780;
 		rType = 0;
 		vrLen = 1668;
 		vrLoc = 12077;
@@ -2629,7 +2638,7 @@
 		fRef = 5684209F08A040080078AFB7 /* XGSServerConnection.m */;
 		name = "XGSServerConnection.m: 232";
 		rLen = 0;
-		rLoc = 7069;
+		rLoc = 7199;
 		rType = 0;
 		vrLen = 1025;
 		vrLoc = 6640;
@@ -2649,7 +2658,7 @@
 		fRef = 5684209F08A040080078AFB7 /* XGSServerConnection.m */;
 		name = "XGSServerConnection.m: 305";
 		rLen = 0;
-		rLoc = 9655;
+		rLoc = 9785;
 		rType = 0;
 		vrLen = 1057;
 		vrLoc = 9174;
@@ -2669,12 +2678,243 @@
 		fRef = 56F42436083BFA850011D12B /* XGSServer.h */;
 		name = "XGSServer.h: xgridController";
 		rLen = 0;
-		rLoc = 1903;
+		rLoc = 1933;
 		rType = 0;
 		vrLen = 1477;
 		vrLoc = 1612;
 	};
 	5684222308A16EB10078AFB7 /* XDModelBookmark */ = {
+		isa = XDModelBookmark;
+		fRef = 56A1EDD7083931510073CA7F /* GridStuffer_DataModel.xcdatamodel */;
+		fallbackIsa = PBXBookmark;
+		uiCtxt = {
+			UIContextForDetailArea = {
+				_indexOfSelectedPane = 0;
+				_indexOfSelectedView = 0;
+			};
+			UIContextForEntityArea = {
+				_indexOfSelectedView = 0;
+				chosenTableColumnns = (
+					"ET Entity",
+					"ET Abstract",
+					"ET Class",
+				);
+				chosenTableColumnns_sortDirections = (
+					YES,
+				);
+				chosenTableColumnns_sortKeys = (
+					name,
+				);
+				chosenTableColumnns_sortSelectors = (
+					"compare:",
+				);
+				chosenTableWidths = (
+					103.000000,
+					22.000000,
+					124.080078,
+				);
+			};
+			UIContextForLayoutManager = {
+				detailSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {677, 222}}",
+						"{{682, 0}, {326, 222}}",
+					);
+				};
+				diagramSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {1008, 222}}",
+						"{{0, 227}, {1008, 419}}",
+					);
+				};
+				tableSplitGeometry = {
+					_collapsingFrameDimension = 0;
+					_indexOfCollapsedView = 0;
+					_percentageOfCollapsedView = 0;
+					isCollapsed = yes;
+					sizes = (
+						"{{0, 0}, {267, 222}}",
+						"{{272, 0}, {405, 222}}",
+					);
+				};
+			};
+			UIContextForPropertyArea = {
+				_indexOfSelectedView = 0;
+				chosenTableColumnnFRTs = (
+					"FT Fetch Request",
+					"FT Predicate",
+				);
+				chosenTableColumnnFRTs_sortDirections = (
+				);
+				chosenTableColumnnFRTs_sortKeys = (
+				);
+				chosenTableColumnnFRTs_sortSelectors = (
+				);
+				chosenTableColumnnsAT = (
+					"AT Attribute",
+					"AT Type",
+				);
+				chosenTableColumnnsAT_sortDirections = (
+				);
+				chosenTableColumnnsAT_sortKeys = (
+				);
+				chosenTableColumnnsAT_sortSelectors = (
+				);
+				chosenTableColumnnsFPT = (
+					"FP FetchedProperty",
+					"FP Destination",
+					"FP Predicate",
+				);
+				chosenTableColumnnsFPT_sortDirections = (
+				);
+				chosenTableColumnnsFPT_sortKeys = (
+				);
+				chosenTableColumnnsFPT_sortSelectors = (
+				);
+				chosenTableColumnnsPT = (
+					"PT Property",
+					"PT Kind",
+					"PT SharedKeyOne",
+				);
+				chosenTableColumnnsPT_sortDirections = (
+					YES,
+				);
+				chosenTableColumnnsPT_sortKeys = (
+					name,
+				);
+				chosenTableColumnnsPT_sortSelectors = (
+					"compare:",
+				);
+				chosenTableColumnnsRT = (
+					"RT Relationship",
+					"RT Destination",
+				);
+				chosenTableColumnnsRT_sortDirections = (
+				);
+				chosenTableColumnnsRT_sortKeys = (
+				);
+				chosenTableColumnnsRT_sortSelectors = (
+				);
+				chosenTableWidthsAT = (
+					128.000000,
+					64.000000,
+				);
+				chosenTableWidthsFPT = (
+					128.000000,
+					64.000000,
+					144.764160,
+				);
+				chosenTableWidthsFRT = (
+					128.000000,
+					249.764160,
+				);
+				chosenTableWidthsPT = (
+					182.000000,
+					84.110840,
+					107.570801,
+				);
+				chosenTableWidthsRT = (
+					128.000000,
+					64.000000,
+				);
+			};
+			"xdesign model browser state key - shown/hidden" = 1;
+			"xdesign model diagram view visible rect key" = "{{-173, 456}, {993, 404}}";
+			"xdesign model selected entities key" = (
+			);
+			"xdesign model selected properties key" = (
+			);
+		};
+	};
+	5684222E08A179880078AFB7 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5684209F08A040080078AFB7 /* XGSServerConnection.m */;
+		name = "XGSServerConnection.m: connectWithSingleSignOnCredentials";
+		rLen = 0;
+		rLoc = 11665;
+		rType = 0;
+		vrLen = 1588;
+		vrLoc = 10857;
+	};
+	5684222F08A179880078AFB7 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5684209E08A040080078AFB7 /* XGSServerConnection.h */;
+		name = "XGSServerConnection.h: connectWithSingleSignOnCredentials";
+		rLen = 0;
+		rLoc = 2227;
+		rType = 0;
+		vrLen = 1601;
+		vrLoc = 676;
+	};
+	5684223008A179880078AFB7 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 56F42436083BFA850011D12B /* XGSServer.h */;
+		name = "XGSServer.h: serverWithAddress:";
+		rLen = 0;
+		rLoc = 2139;
+		rType = 0;
+		vrLen = 1608;
+		vrLoc = 1177;
+	};
+	5684223108A179880078AFB7 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 56F42436083BFA850011D12B /* XGSServer.h */;
+		name = "XGSServer.h: serverWithAddress:";
+		rLen = 0;
+		rLoc = 2139;
+		rType = 0;
+		vrLen = 1687;
+		vrLoc = 1098;
+	};
+	5684223208A179880078AFB7 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5684209E08A040080078AFB7 /* XGSServerConnection.h */;
+		name = "- (void)setPassword:(NSString *)newPassword;";
+		rLen = 45;
+		rLoc = 2076;
+		rType = 0;
+		vrLen = 1622;
+		vrLoc = 676;
+	};
+	5684223308A179880078AFB7 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5684209F08A040080078AFB7 /* XGSServerConnection.m */;
+		name = "XGSServerConnection.m: connectWithSingleSignOnCredentials";
+		rLen = 0;
+		rLoc = 11665;
+		rType = 0;
+		vrLen = 1588;
+		vrLoc = 10857;
+	};
+	5684223408A179880078AFB7 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 5684209E08A040080078AFB7 /* XGSServerConnection.h */;
+		name = "XGSServerConnection.h: connectWithSingleSignOnCredentials";
+		rLen = 0;
+		rLoc = 2227;
+		rType = 0;
+		vrLen = 1601;
+		vrLoc = 676;
+	};
+	5684223508A179880078AFB7 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 56F42436083BFA850011D12B /* XGSServer.h */;
+		name = "XGSServer.h: 59";
+		rLen = 0;
+		rLoc = 2463;
+		rType = 0;
+		vrLen = 1494;
+		vrLoc = 1615;
+	};
+	5684223608A179880078AFB7 /* XDModelBookmark */ = {
 		isa = XDModelBookmark;
 		fRef = 56A1EDD7083931510073CA7F /* GridStuffer_DataModel.xcdatamodel */;
 		fallbackIsa = PBXBookmark;
@@ -3938,8 +4178,8 @@
 		isa = PBXTextBookmark;
 		fRef = 56F42436083BFA850011D12B /* XGSServer.h */;
 		name = "XGSServer.h: xgridController";
-		rLen = 64;
-		rLoc = 1902;
+		rLen = 68;
+		rLoc = 1930;
 		rType = 0;
 		vrLen = 1642;
 		vrLoc = 785;
@@ -4180,9 +4420,9 @@
 	};
 	56F42436083BFA850011D12B /* XGSServer.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {827, 1134}}";
-			sepNavSelRange = "{1903, 0}";
-			sepNavVisRect = "{{0, 451}, {827, 655}}";
+			sepNavIntBoundsRect = "{{0, 0}, {827, 1190}}";
+			sepNavSelRange = "{2463, 0}";
+			sepNavVisRect = "{{0, 474}, {827, 655}}";
 			sepNavWindowFrame = "{{15, 315}, {750, 558}}";
 		};
 	};
@@ -4391,7 +4631,7 @@
 		fRef = 56F42436083BFA850011D12B /* XGSServer.h */;
 		name = "XGSServer.h: 31";
 		rLen = 0;
-		rLoc = 1842;
+		rLoc = 1843;
 		rType = 0;
 		vrLen = 923;
 		vrLoc = 819;

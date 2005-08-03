@@ -34,15 +34,19 @@ APPKIT_EXTERN NSString *XGSServerDidConnectNotification;
 APPKIT_EXTERN NSString *XGSServerDidNotConnectNotification;
 APPKIT_EXTERN NSString *XGSServerDidDisconnectNotification;
 
+@class XGSServerConnection;
 @class XGSGrid;
 
 @interface XGSServer : XGSManagedObject
 {
-	XGController *xgridController;
-	XGConnection *xgridConnection;
+	//XGController *xgridController;
+	//XGConnection *xgridConnection;
+	XGSServerConnection *serverConnection;
 	id delegate;
 	NSMutableSet *availableGrids;
 }
+
++ (XGSServer *)serverWithAddress:(NSString *)address;
 
 //accessors
 - (XGController *)xgridController;
@@ -52,7 +56,7 @@ APPKIT_EXTERN NSString *XGSServerDidDisconnectNotification;
 - (id)delegate;
 - (void)setDelegate:(id)newDelegate;
 
-//after calling these methods, use KVO on the key 'isConnected' to check the connection status
+//after calling these methods, use the delegate or the notifications to be notified asynchronously of the connection results
 - (void)connectWithoutAuthentication;
 - (void)connectWithSingleSignOnCredentials;
 - (void)connectWithPassword:(NSString *)password;

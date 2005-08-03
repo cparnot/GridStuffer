@@ -54,14 +54,13 @@ typedef enum {
 
 - (id)initWithAddress:(NSString *)address password:(NSString *)password;
 + (XGSServerConnection *)serverConnectionWithAddress:(NSString *)address password:(NSString *)password;
+- (void)setPassword:(NSString *)newPassword;
 
 - (void)connect;
 - (void)disconnect;
 
-/*
 - (void)connectWithoutAuthentication;
+- (void)connectWithPassword;
 - (void)connectWithSingleSignOnCredentials;
-- (void)connectWithPassword:(NSString *)password;
-*/
 
 @end

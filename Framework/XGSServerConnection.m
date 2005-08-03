@@ -109,6 +109,13 @@ NSMutableDictionary *serverConnectionInstances=nil;
 		selectorEnumerator = [[connectionSelectors objectEnumerator] retain];
 }
 
+- (void)setPassword:(NSString *)newPassword
+{
+	[newPassword retain];
+	[serverPassword release];
+	serverPassword = newPassword;
+}
+
 #pragma mark *** Private connection methods ***
 
 //trying to use a Bonjour connection without password
@@ -357,7 +364,7 @@ NSMutableDictionary *serverConnectionInstances=nil;
 	[self startNextConnectionAttempt];
 }
 
-- (void)connectWithPassword:(NSString *)password
+- (void)connectWithPassword
 {
 	//exit if already connecting or connected
 	if ( serverState == XGSServerConnectionStateConnecting || serverState == XGSServerConnectionStateConnected )
