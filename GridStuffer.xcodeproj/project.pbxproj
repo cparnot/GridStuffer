@@ -184,8 +184,8 @@
 		56F4233C083BBC6D0011D12B /* XGSTaskSource.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = XGSTaskSource.h; path = Managed/XGSTaskSource.h; sourceTree = "<group>"; };
 		56F4233D083BBC6D0011D12B /* XGSTaskSource.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = XGSTaskSource.m; path = Managed/XGSTaskSource.m; sourceTree = "<group>"; };
 		56F42344083BBCC10011D12B /* XgridFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XgridFoundation.framework; path = /System/Library/Frameworks/XgridFoundation.framework; sourceTree = "<absolute>"; };
-		56F423EC083BE6F50011D12B /* XGSServerList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XGSServerList.h; path = Managed/XGSServerList.h; sourceTree = "<group>"; };
-		56F423ED083BE6F50011D12B /* XGSServerList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XGSServerList.m; path = Managed/XGSServerList.m; sourceTree = "<group>"; };
+		56F423EC083BE6F50011D12B /* XGSServerList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XGSServerList.h; path = Framework/XGSServerList.h; sourceTree = "<group>"; };
+		56F423ED083BE6F50011D12B /* XGSServerList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XGSServerList.m; path = Framework/XGSServerList.m; sourceTree = "<group>"; };
 		56F42436083BFA850011D12B /* XGSServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XGSServer.h; path = Framework/XGSServer.h; sourceTree = "<group>"; };
 		56F42437083BFA850011D12B /* XGSServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XGSServer.m; path = Framework/XGSServer.m; sourceTree = "<group>"; };
 		56F42475083C0C100011D12B /* XGSServerListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XGSServerListController.h; path = Managed/XGSServerListController.h; sourceTree = "<group>"; };
@@ -343,8 +343,6 @@
 		5606B7000833F76B003D0371 /* Managed classes */ = {
 			isa = PBXGroup;
 			children = (
-				56F423EC083BE6F50011D12B /* XGSServerList.h */,
-				56F423ED083BE6F50011D12B /* XGSServerList.m */,
 				561FF4C9086BD372004DEAF4 /* XGSManagedObject.h */,
 				561FF4CA086BD372004DEAF4 /* XGSManagedObject.m */,
 				56F42332083BBC6D0011D12B /* XGSInputInterface.h */,
@@ -426,6 +424,8 @@
 		56842061089C25C90078AFB7 /* Framework */ = {
 			isa = PBXGroup;
 			children = (
+				56F423EC083BE6F50011D12B /* XGSServerList.h */,
+				56F423ED083BE6F50011D12B /* XGSServerList.m */,
 				5684209E08A040080078AFB7 /* XGSServerConnection.h */,
 				5684209F08A040080078AFB7 /* XGSServerConnection.m */,
 				56F42436083BFA850011D12B /* XGSServer.h */,

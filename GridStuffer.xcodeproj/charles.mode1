@@ -204,7 +204,7 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>5684223608A179880078AFB7</string>
+						<string>5684224308A17CEE0078AFB7</string>
 						<key>history</key>
 						<array>
 							<string>568420A908A041E20078AFB7</string>
@@ -265,6 +265,8 @@
 			<key>Layout</key>
 			<array>
 				<dict>
+					<key>BecomeActive</key>
+					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -317,7 +319,7 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>7</integer>
+									<integer>5</integer>
 									<integer>4</integer>
 									<integer>0</integer>
 								</array>
@@ -353,14 +355,12 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>XGSServer.h</string>
+								<string>XGSServerList.h</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -368,11 +368,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>XGSServer.h</string>
+										<string>XGSServerList.h</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>5684223508A179880078AFB7</string>
+										<string>5684224208A17CEE0078AFB7</string>
 										<key>history</key>
 										<array>
 											<string>56F42A78083EA2500011D12B</string>
@@ -471,13 +471,13 @@
 											<string>56E2AEF00890647D0097E200</string>
 											<string>56842095089EEE850078AFB7</string>
 											<string>568420D508A098630078AFB7</string>
-											<string>568421ED08A16EB10078AFB7</string>
-											<string>568421EE08A16EB10078AFB7</string>
-											<string>568421EF08A16EB10078AFB7</string>
 											<string>568421F008A16EB10078AFB7</string>
 											<string>5684222E08A179880078AFB7</string>
 											<string>5684222F08A179880078AFB7</string>
-											<string>5684223008A179880078AFB7</string>
+											<string>5684223908A17CE40078AFB7</string>
+											<string>5684223A08A17CE40078AFB7</string>
+											<string>5684223F08A17CEE0078AFB7</string>
+											<string>5684224008A17CEE0078AFB7</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -517,7 +517,6 @@
 											<string>5643E8970870C710000838CF</string>
 											<string>5643E8E90870CC1B000838CF</string>
 											<string>56FFED9E08725FE000FF6E8D</string>
-											<string>56FFEDA208725FE000FF6E8D</string>
 											<string>56FFEDA608725FE000FF6E8D</string>
 											<string>56FFEDB308725FE000FF6E8D</string>
 											<string>56FFEDB508725FE000FF6E8D</string>
@@ -568,9 +567,6 @@
 											<string>56E4598F088DCDE80096D72B</string>
 											<string>56842096089EEE850078AFB7</string>
 											<string>568420DB08A098630078AFB7</string>
-											<string>568420DC08A098630078AFB7</string>
-											<string>568420DD08A098630078AFB7</string>
-											<string>568420DE08A098630078AFB7</string>
 											<string>568420DF08A098630078AFB7</string>
 											<string>568420E008A098630078AFB7</string>
 											<string>568420E108A098630078AFB7</string>
@@ -609,7 +605,6 @@
 											<string>568421F808A16EB10078AFB7</string>
 											<string>568421F908A16EB10078AFB7</string>
 											<string>568421FA08A16EB10078AFB7</string>
-											<string>568421FB08A16EB10078AFB7</string>
 											<string>568421FC08A16EB10078AFB7</string>
 											<string>568421FD08A16EB10078AFB7</string>
 											<string>568421FE08A16EB10078AFB7</string>
@@ -652,6 +647,8 @@
 											<string>5684223208A179880078AFB7</string>
 											<string>5684223308A179880078AFB7</string>
 											<string>5684223408A179880078AFB7</string>
+											<string>5684223B08A17CE40078AFB7</string>
+											<string>5684224108A17CEE0078AFB7</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
