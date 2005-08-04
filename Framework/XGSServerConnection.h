@@ -25,19 +25,13 @@
  
 */
 
+typedef XGSServerConnectionState;
+
 //Constants to use to subscribe to notifications
 APPKIT_EXTERN NSString *XGSServerConnectionDidConnectNotification;
+APPKIT_EXTERN NSString *XGSServerConnectionDidBecomeAvailableNotification;
 APPKIT_EXTERN NSString *XGSServerConnectionDidNotConnectNotification;
 APPKIT_EXTERN NSString *XGSServerConnectionDidDisconnectNotification;
-
-typedef enum {
-	XGSServerConnectionStateUninitialized = 1,
-	XGSServerConnectionStateConnecting,
-	XGSServerConnectionStateConnected,
-	XGSServerConnectionStateDisconnected,
-	XGSServerConnectionStateFailed
-} XGSServerConnectionState;
-
 
 @interface XGSServerConnection : NSObject
 {
@@ -54,11 +48,15 @@ typedef enum {
 
 - (id)initWithAddress:(NSString *)address password:(NSString *)password;
 + (XGSServerConnection *)serverConnectionWithAddress:(NSString *)address password:(NSString *)password;
+
+//accessors
+- (XGConnection *)xgridConnection;
+- (XGController *)xgridController;
 - (void)setPassword:(NSString *)newPassword;
 
+//connection
 - (void)connect;
 - (void)disconnect;
-
 - (void)connectWithoutAuthentication;
 - (void)connectWithPassword;
 - (void)connectWithSingleSignOnCredentials;

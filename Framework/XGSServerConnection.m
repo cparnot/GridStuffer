@@ -8,6 +8,18 @@
 
 #import "XGSServerConnection.h"
 
+typedef enum {
+	XGSServerConnectionStateUninitialized = 1,
+	XGSServerConnectionStateConnecting,
+	XGSServerConnectionStateConnected,
+	XGSServerConnectionStateAvailable,
+	XGSServerConnectionStateDisconnected,
+	XGSServerConnectionStateFailed
+} XGSServerConnectionState;
+
+
+
+
 @implementation XGSServerConnection
 
 
@@ -81,6 +93,32 @@ NSMutableDictionary *serverConnectionInstances=nil;
 
 #pragma mark *** Accessors ***
 
+//public
+//do not return xgridConnection object that are transient and may be dumped later
+- (XGConnection *)xgridConnection
+{
+	if ( serverState == XGSServerConnectionStateConnecting )
+		return nil;
+	else
+		return xgridConnection;
+}
+
+//public
+- (XGController *)xgridController;
+{
+	return xgridController;
+}
+
+
+//public
+- (void)setPassword:(NSString *)newPassword
+{
+	[newPassword retain];
+	[serverPassword release];
+	serverPassword = newPassword;
+}
+
+//PRIVATE
 //when the xgridConnection is set, always use self as its delegate
 - (void)setXgridConnection:(XGConnection *)newXgridConnection
 {
@@ -93,6 +131,7 @@ NSMutableDictionary *serverConnectionInstances=nil;
 	}
 }
 
+//PRIVATE
 //when the connectionSelectors is set, also reset the selectorEnumerator
 - (void)setConnectionSelectors:(NSArray *)anArray
 {
@@ -107,13 +146,6 @@ NSMutableDictionary *serverConnectionInstances=nil;
 		selectorEnumerator = nil;
 	else
 		selectorEnumerator = [[connectionSelectors objectEnumerator] retain];
-}
-
-- (void)setPassword:(NSString *)newPassword
-{
-	[newPassword retain];
-	[serverPassword release];
-	serverPassword = newPassword;
 }
 
 #pragma mark *** Private connection methods ***
@@ -275,7 +307,7 @@ NSMutableDictionary *serverConnectionInstances=nil;
 	}
 }
 
-#pragma mark *** XGConnection delegate methods ***
+#pragma mark *** XGConnection delegate methods and XGController observing ***
 
 - (void)connectionDidOpen:(XGConnection *)connection;
 {
@@ -291,6 +323,23 @@ NSMutableDictionary *serverConnectionInstances=nil;
 	//change the current state
 	serverState= XGSServerConnectionStateConnected;
 	[[NSNotificationCenter defaultCenter] postNotificationName:XGSServerConnectionDidConnectNotification object:self];
+	
+	//next step is to get the controller 'available' = all the grids and jobs loaded from the server
+	[xgridController addObserver:self forKeyPath:@"state" options:0 context:NULL];
+}
+
+//when the XGController state = XGResourceStateAvailable, the XGController object has all the info (grids and jobs)
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+	if ( serverState == XGSServerConnectionStateConnected ) {
+		if ( [xgridController state] == XGResourceStateAvailable ) {
+			[xgridController removeObserver:self forKeyPath:@"state"];
+			serverState = XGSServerConnectionStateAvailable;
+			[[NSNotificationCenter defaultCenter] postNotificationName:XGSServerConnectionDidBecomeAvailableNotification object:self];
+		}
+	} else {
+		[xgridController removeObserver:self forKeyPath:@"state"];
+	}
 }
 
 - (void)connectionDidNotOpen:(XGConnection *)connection withError:(NSError *)error
@@ -323,7 +372,7 @@ NSMutableDictionary *serverConnectionInstances=nil;
 - (void)connectWithoutAuthentication
 {
 	//exit if already connecting or connected
-	if ( serverState == XGSServerConnectionStateConnecting || serverState == XGSServerConnectionStateConnected )
+	if ( serverState == XGSServerConnectionStateConnecting || serverState == XGSServerConnectionStateConnected || serverState == XGSServerConnectionStateAvailable )
 		return;
 	
 	//change the state of the serverConnection
@@ -345,7 +394,7 @@ NSMutableDictionary *serverConnectionInstances=nil;
 - (void)connectWithSingleSignOnCredentials
 {
 	//exit if already connecting or connected
-	if ( serverState == XGSServerConnectionStateConnecting || serverState == XGSServerConnectionStateConnected )
+	if ( serverState == XGSServerConnectionStateConnecting || serverState == XGSServerConnectionStateConnected || serverState == XGSServerConnectionStateAvailable )
 		return;
 	
 	//change the state of the serverConnection
@@ -367,7 +416,7 @@ NSMutableDictionary *serverConnectionInstances=nil;
 - (void)connectWithPassword
 {
 	//exit if already connecting or connected
-	if ( serverState == XGSServerConnectionStateConnecting || serverState == XGSServerConnectionStateConnected )
+	if ( serverState == XGSServerConnectionStateConnecting || serverState == XGSServerConnectionStateConnected || serverState == XGSServerConnectionStateAvailable )
 		return;
 	
 	//change the state of the serverConnection
@@ -389,7 +438,7 @@ NSMutableDictionary *serverConnectionInstances=nil;
 - (void)connect
 {
 	//exit if already connecting or connected
-	if ( serverState == XGSServerConnectionStateConnecting || serverState == XGSServerConnectionStateConnected )
+	if ( serverState == XGSServerConnectionStateConnecting || serverState == XGSServerConnectionStateConnected || serverState == XGSServerConnectionStateAvailable )
 		return;
 	
 	//change the state of the serverConnection
