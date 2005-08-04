@@ -1,5 +1,5 @@
 //
-//  XGSServerList.h
+//  XGSServerBrowser.h
 //  GridStuffer
 //
 //  Created by Charles Parnot on 5/18/05.
@@ -27,13 +27,13 @@ It can then be used to create/retrieve servers with the instance method '-server
 
 @class XGSServer;
 
-@interface XGSServerList : XGSManagedObject
+@interface XGSServerBrowser : XGSObject
 {
     NSNetServiceBrowser *netServiceBrowser;
 }
 
-//there is one instance of XGSServerList per context that should only be accessed through this method
-+ (XGSServerList *)sharedServerListForContext:(NSManagedObjectContext *)context;
+//it is best to only use the singleton instance
++ (XGSServerBrowser *)sharedServerBrowser;
 
 //methods used to start and stop browsing for servers using Bonjour
 //servers found get automatically added to the store
