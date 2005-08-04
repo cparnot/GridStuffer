@@ -18,6 +18,7 @@ TODO for version 0.3
 * allow to remove xgrid jobs
 * look more into xgrid jobs status: add 'Pending' state, and add 'Unknown' state when connected but no id found (?)
 
+* What happens when a server gets disconnected and then comes back? Can we connect again w/o password?
 ----------------------------
 
 OTHER BUGS/FEATURES

@@ -33,7 +33,7 @@ static NSString *XgridServiceDomain = @"local.";
 
 @implementation XGSServer
 
-#pragma mark *** Initializations ***
+#pragma mark *** Class methods ***
 
 + (void)initialize
 {
@@ -44,6 +44,36 @@ static NSString *XgridServiceDomain = @"local.";
 		[self setKeys:keys triggerChangeNotificationsForDependentKey:@"statusString"];
 	}
 }
+
+
++ (XGSServer *)serverWithAddress:(NSString *)address inManagedObjectContext:(NSManagedObjectContext *)context
+{
+	NSFetchRequest *request;
+	NSArray *results;
+	NSError *error;
+	
+	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
+	
+	//fetch request to see if there is already a server by that name in the context
+	request = [[[NSFetchRequest alloc] init] autorelease];
+	[request setEntity:[NSEntityDescription entityForName:@"Server" inManagedObjectContext:context]];
+	[request setPredicate:[NSPredicate predicateWithFormat:@"(name == %@)",name]];
+	results=[context executeFetchRequest:request error:&error];
+	
+	//if already there, return it
+	if ([results count]>0)
+		return [results objectAtIndex:0];
+	
+	//if not, create the new server object
+	XGSServer *newServer;
+	newServer = [NSEntityDescription insertNewObjectForEntityForName:@"Server" inManagedObjectContext:context];
+	[newServer setValue:name forKey:@"name"];
+	return newServer;
+}
+
+
+
+#pragma mark *** Initializations ***
 
 - (void)awakeFromFetch
 {

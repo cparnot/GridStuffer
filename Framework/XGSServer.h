@@ -46,7 +46,8 @@ APPKIT_EXTERN NSString *XGSServerDidDisconnectNotification;
 	NSMutableSet *availableGrids;
 }
 
-+ (XGSServer *)serverWithAddress:(NSString *)address;
+//this is the prefered way to create or retrieve server objects, as it makes sure there is only one object per server address and per context
++ (XGSServer *)serverWithAddress:(NSString *)address inManagedObjectContext:(NSManagedObjectContext *)context;
 
 //accessors
 - (XGController *)xgridController;
