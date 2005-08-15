@@ -15,8 +15,9 @@
 
 #ifdef DEBUG
 
-#import "XGSManagedObject.h"
-#import "DebugLog.h"
+//If I do the import, I get a compilation error, probably because the header is already in the precompiled header. Weird.
+//#import "XGSManagedObject.h"
+//#import "DebugLog.h"
 
 @implementation XGSManagedObject
 
