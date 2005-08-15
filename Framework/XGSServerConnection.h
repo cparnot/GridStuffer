@@ -9,20 +9,11 @@
 #import <Cocoa/Cocoa.h>
 
 /*
- The XGSServerConnection class is a private class used by the framework to ensure that
- each Xgrid Server establishes only one connection with the application.
- The uniqueness is based on the server address: one address, one server.
- The uniqueness is enforced at the implementation level by having a static dictionary
- keeping track of created instances, one instance per address.
+ The XGSServerConnection class is a private class.
  
- The XGSServerConnection is really a wrapper around the XGController and XGConnection class
- provided by the Xgrid APIs.
- The XGSServerConnection objects are used by the XGSServer objects to perform network operations.
- The XGSServeConnection sends notifications to keep the XGSServer objects in sync. There might
- be several XGSServer objects for one XGSServerConnection.
- So the two classes XGSServerConnection and XGSServer are somewhat coupled, though the implementation
- tries to keep them encapsulated.
- 
+ The XGSServerConnection class is a wrapper around the XGController and XGConnection class provided by the Xgrid APIs. The implementation ensures that there is only one instance of XGSServerConnection for each different address, which ensures that network traffic, notifications,... are not duplicated when communicating with the same server. The XGSServer class use the XGSServerConnection class for its network operations. There might thus be several XGSServer objects (living in different managed contexts, see the header) that all use the same XGSServerConnection. The XGSServeConnection sends notifications to keep the XGSServer objects in sync.
+
+So the two classes, XGSServerConnection & XGSServer, are somewhat coupled, though the implementation tries to keep them encapsulated.
 */
 
 
@@ -38,7 +29,7 @@ APPKIT_EXTERN NSString *XGSServerConnectionDidDisconnectNotification;
 	XGController *xgridController;
 	NSString *serverName;
 	NSString *serverPassword;
-	int serverState; //XGSServerConnectionState serverState;
+	int serverState; //private enum
 	
 	//keeping track of connection attempts
 	NSArray *connectionSelectors;

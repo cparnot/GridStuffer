@@ -14,16 +14,8 @@
  */
 
 /**
-The XGSServerBrowser is a singleton class. The singleton is retrieved using the class method 'sharedServerBrowser'.
- 
-The singleton instance does three things:
 
-- Browsing for Xgrid controllers that advertise their services using the Bonjour technology in the local network
-
-- Saving the servers on a persistent store located in the 'Application Support' folder; this persistent store is shared at the application level; there is only one and it is setup automatically by the XGSServerBrowser singleton instance
-
-You can use the XGSServerBrowser singleton instance to retrieve all the servers saved in store, or just one XGSServer instance for a given address. The address does not have to correspond to one of the server available on the local network, but can be a distant address too. In all cases, the returned instance is added to the managed object context corresponding to the persisetent store saved in the Application Support folder.
-
+The XGSServerBrowser is a private class. To use it, one should first retrieve the singleton instance using the class method 'sharedServerBrowser'. The singleton instance can them be used to browse for Xgrid controllers that advertise their services using the Bonjour technology in the local network. Servers found by the browser will then be added to the list of servers by calling the appropriate XGSServer methods. See the XGSServer class for more details: the server instances are saved in the default managed object context as defined by XGSFrameworkSettings.
 */
 
 @class XGSServer;

@@ -8,6 +8,7 @@
 
 /*
  The XGSFrameworkGlobals class is used to retrieve and set framework-wide or application-wide settings and objects.
+ See individual methods for details.
 */
 
 #import <Cocoa/Cocoa.h>
@@ -19,7 +20,7 @@
 	NSManagedObjectContext *managedObjectContext;
 }
 
-//the managed object context is used to store servers; it is unique for the application
+//the managed object context is used to store objects at the application level; this context is unique for the whole application. In particular, it is used to store XGSServer objects. A persistent store is automatically created too, in the 'Application Support' folder. This path is specific for the running application and will not be the same when the framework is used in two different applications.
 + (NSManagedObjectContext *)sharedManagedObjectContext;
 
 @end

@@ -14,17 +14,14 @@
  */
 
 /*
-The XGSServer instances are managed objects that expose a simple interface for Xgrid Controllers.
+The XGSServer instances are managed objects that expose a simple interface for Xgrid Controllers. Behind the scenes, this class uses a number of other private classes for the server connections, the creation of an application-wide shared managed object context and browsing the local network for servers advertising their services.
 
-There are two ways to create/retrieve XGSServer instances:
-
- - using the XGSServerBrowser singleton class: new XGSServer instances are automatically created for you if they are detected on the local network, or can be created using the class method '+serverWithAddress:'. All the instances returned by this method live in a default managed object context shared at the application level, that is automatically created for you
-
-- using the XGSServer class method '+serverWithAddress:inManagedObjectContext:', when you want to have them in a custom managed object context
+Because of all these things happening behind the scenes, instances of XGSServer should only be created/retrieved using the public methods listed here. There are three ways to create/retrieve XGSServer instances:
+ - using the class method '+allServers'. The returned array contain servers already connected, but also servers that were connected to in previous sessions (saved in a persistent store) and servers found on the local network (if browsing was started using the 'startBrowsing').
+ - using the class method '+serverWithAddress:', which may create a new instance or retrieve an existing record from the shared managed object context created by the framework
+ - using the class method '+serverWithAddress:managedObjectContext:', which you can use to create and retrieve server objects in a custom managed object context; to "copy" an existing XGSServer into a different managed object context, you can use '-serverInManagedObjectContext:'
  
-It is recommanded that you only use the above methods to retrieve XGServer instances. This will ensure that only one instance of XGSServer is created per server address and per managed object context. Once retrieved, the returned instance can be retained as long as needed, and will remain valid and in sync until released.
-
-However, it is possible that several instances with the same server address may exist in different managed object contexts. This is fine: connection and network traffic will not be duplicated. The connection process itself is shared by all XGSServer instances with the same address, and these instances are guaranteed to be kept in sync all the time.
+These methods ensure that only one instance of XGSServer exists per server address and per managed object context. Once retrieved, the returned instance can be retained as long as needed, and will remain valid and in sync until released. However, it is possible that several instances with the same server address may exist in different managed object contexts. This is fine: connection and network traffic will not be duplicated. The connection process itself is shared by all XGSServer instances with the same address, and these instances are guaranteed to be kept in sync all the time.
 
 To start the connection, call one of the -connect... method.
 Then use a delegate or notifications to keep track of the connection status asynchronously.
