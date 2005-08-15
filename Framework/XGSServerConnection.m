@@ -12,12 +12,16 @@ typedef enum {
 	XGSServerConnectionStateUninitialized = 1,
 	XGSServerConnectionStateConnecting,
 	XGSServerConnectionStateConnected,
-	XGSServerConnectionStateAvailable,
+	XGSServerConnectionStateLoaded,
 	XGSServerConnectionStateDisconnected,
 	XGSServerConnectionStateFailed
 } XGSServerConnectionState;
 
-
+//global constants used for notifications
+NSString *XGSServerConnectionDidConnectNotification = @"XGSServerConnectionDidConnectNotification";
+NSString *XGSServerConnectionDidLoadNotification = @"XGSServerConnectionDidLoadNotification";
+NSString *XGSServerConnectionDidNotConnectNotification = @"XGSServerConnectionDidNotConnectNotification";
+NSString *XGSServerConnectionDidDisconnectNotification = @"XGSServerConnectionDidDisconnectNotification";
 
 
 @implementation XGSServerConnection
@@ -147,6 +151,22 @@ NSMutableDictionary *serverConnectionInstances=nil;
 	else
 		selectorEnumerator = [[connectionSelectors objectEnumerator] retain];
 }
+
+- (BOOL)isConnecting
+{
+	return serverState == XGSServerConnectionStateConnecting;
+}
+
+- (BOOL)isConnected
+{
+	return serverState == XGSServerConnectionStateConnected || serverState == XGSServerConnectionStateLoaded;
+}
+
+- (BOOL)isLoaded
+{
+	return serverState == XGSServerConnectionStateLoaded;
+}
+
 
 #pragma mark *** Private connection methods ***
 
@@ -334,8 +354,8 @@ NSMutableDictionary *serverConnectionInstances=nil;
 	if ( serverState == XGSServerConnectionStateConnected ) {
 		if ( [xgridController state] == XGResourceStateAvailable ) {
 			[xgridController removeObserver:self forKeyPath:@"state"];
-			serverState = XGSServerConnectionStateAvailable;
-			[[NSNotificationCenter defaultCenter] postNotificationName:XGSServerConnectionDidBecomeAvailableNotification object:self];
+			serverState = XGSServerConnectionStateLoaded;
+			[[NSNotificationCenter defaultCenter] postNotificationName:XGSServerConnectionDidLoadNotification object:self];
 		}
 	} else {
 		[xgridController removeObserver:self forKeyPath:@"state"];
@@ -372,7 +392,7 @@ NSMutableDictionary *serverConnectionInstances=nil;
 - (void)connectWithoutAuthentication
 {
 	//exit if already connecting or connected
-	if ( serverState == XGSServerConnectionStateConnecting || serverState == XGSServerConnectionStateConnected || serverState == XGSServerConnectionStateAvailable )
+	if ( serverState == XGSServerConnectionStateConnecting || serverState == XGSServerConnectionStateConnected || serverState == XGSServerConnectionStateLoaded )
 		return;
 	
 	//change the state of the serverConnection
@@ -394,7 +414,7 @@ NSMutableDictionary *serverConnectionInstances=nil;
 - (void)connectWithSingleSignOnCredentials
 {
 	//exit if already connecting or connected
-	if ( serverState == XGSServerConnectionStateConnecting || serverState == XGSServerConnectionStateConnected || serverState == XGSServerConnectionStateAvailable )
+	if ( serverState == XGSServerConnectionStateConnecting || serverState == XGSServerConnectionStateConnected || serverState == XGSServerConnectionStateLoaded )
 		return;
 	
 	//change the state of the serverConnection
@@ -416,7 +436,7 @@ NSMutableDictionary *serverConnectionInstances=nil;
 - (void)connectWithPassword
 {
 	//exit if already connecting or connected
-	if ( serverState == XGSServerConnectionStateConnecting || serverState == XGSServerConnectionStateConnected || serverState == XGSServerConnectionStateAvailable )
+	if ( serverState == XGSServerConnectionStateConnecting || serverState == XGSServerConnectionStateConnected || serverState == XGSServerConnectionStateLoaded )
 		return;
 	
 	//change the state of the serverConnection
@@ -438,7 +458,7 @@ NSMutableDictionary *serverConnectionInstances=nil;
 - (void)connect
 {
 	//exit if already connecting or connected
-	if ( serverState == XGSServerConnectionStateConnecting || serverState == XGSServerConnectionStateConnected || serverState == XGSServerConnectionStateAvailable )
+	if ( serverState == XGSServerConnectionStateConnecting || serverState == XGSServerConnectionStateConnected || serverState == XGSServerConnectionStateLoaded )
 		return;
 	
 	//change the state of the serverConnection

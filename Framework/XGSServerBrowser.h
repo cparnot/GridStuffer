@@ -14,20 +14,21 @@
  */
 
 /**
-The XGSServerList class is used to manage list of XGSServer (wrappers for XGControllers).
-It encapsulates the fetch request needed to ensure that each ServerInterface is
-present only once in the persistent store of a managed object context.
-The XGSServerList is thus the prefered way to retrieve servers.
+The XGSServerBrowser is a singleton class. The singleton is retrieved using the class method 'sharedServerBrowser'.
+ 
+The singleton instance does three things:
 
-There should be only one instance of XGSServerList per managed object context,
-which can be retrieved with the class method '+sharedServerListForContext:',
-It can then be used to create/retrieve servers with the instance method '-serverWithName:'.
+- Browsing for Xgrid controllers that advertise their services using the Bonjour technology in the local network
+
+- Saving the servers on a persistent store located in the 'Application Support' folder; this persistent store is shared at the application level; there is only one and it is setup automatically by the XGSServerBrowser singleton instance
+
+You can use the XGSServerBrowser singleton instance to retrieve all the servers saved in store, or just one XGSServer instance for a given address. The address does not have to correspond to one of the server available on the local network, but can be a distant address too. In all cases, the returned instance is added to the managed object context corresponding to the persisetent store saved in the Application Support folder.
 
 */
 
 @class XGSServer;
 
-@interface XGSServerBrowser : XGSObject
+@interface XGSServerBrowser : NSObject
 {
     NSNetServiceBrowser *netServiceBrowser;
 }
@@ -35,22 +36,9 @@ It can then be used to create/retrieve servers with the instance method '-server
 //it is best to only use the singleton instance
 + (XGSServerBrowser *)sharedServerBrowser;
 
-//methods used to start and stop browsing for servers using Bonjour
-//servers found get automatically added to the store
+//methods used to start and stop browsing for Xgrid servers avertising on Bonjour
+//the servers found get automatically added to the application-level persistent store
 - (void)startBrowsing;
 - (void)stopBrowsing;
-
-//this is the prefered way to add/retrieve servers
-//if no server is found using Bonjour, it will try to use the name as an internet hostname
-- (XGSServer *)serverWithName:(NSString *)name;
-- (XGSServer *)firstAvailableServer;
-- (XGSServer *)firstConnectedServer;
-
-- (void)removeServer:(XGSServer *)aServer;
-
-//retrieve a XGController, if any is connected
-//the key "xgridController" is KVO-compliant and can thus be 'observed' (but can not be used for KVC)
-//- (XGController *)xgridController;
-
 
 @end

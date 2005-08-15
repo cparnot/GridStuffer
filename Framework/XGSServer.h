@@ -14,23 +14,27 @@
  */
 
 /*
-The XGSServer class is a wrapper for the XGController class. Because they are managed objects,
-they can be saved and remembered  between sessions, particularly useful for servers
-with ip addresses). The connection step is also simpler.
+The XGSServer instances are managed objects that expose a simple interface for Xgrid Controllers.
 
-To add and retrieve servers, use the XGSServerList class. Then call one of the
-two -connect... method. These methods take care of all the implementation details.
-In particular, it will try first to connect without authenticating, and only try
-the password or the single sign on if it fails the easy way. 
+There are two ways to create/retrieve XGSServer instances:
 
-After calling the connect methods, use KVO on the key 'isConnected' to check
-the connection status and get notified when the server is ready.
+ - using the XGSServerBrowser singleton class: new XGSServer instances are automatically created for you if they are detected on the local network, or can be created using the class method '+serverWithAddress:'. All the instances returned by this method live in a default managed object context shared at the application level, that is automatically created for you
 
-IMPORTANT: the password will NOT be remembered or saved to disk.
+- using the XGSServer class method '+serverWithAddress:inManagedObjectContext:', when you want to have them in a custom managed object context
+ 
+It is recommanded that you only use the above methods to retrieve XGServer instances. This will ensure that only one instance of XGSServer is created per server address and per managed object context. Once retrieved, the returned instance can be retained as long as needed, and will remain valid and in sync until released.
+
+However, it is possible that several instances with the same server address may exist in different managed object contexts. This is fine: connection and network traffic will not be duplicated. The connection process itself is shared by all XGSServer instances with the same address, and these instances are guaranteed to be kept in sync all the time.
+
+To start the connection, call one of the -connect... method.
+Then use a delegate or notifications to keep track of the connection status asynchronously.
+
+IMPORTANT: in the current implementation, the password will NOT be saved to disk.
 */
 
 //Constants to use to subscribe to notifications
 APPKIT_EXTERN NSString *XGSServerDidConnectNotification;
+APPKIT_EXTERN NSString *XGSServerDidLoadNotification;
 APPKIT_EXTERN NSString *XGSServerDidNotConnectNotification;
 APPKIT_EXTERN NSString *XGSServerDidDisconnectNotification;
 
@@ -39,15 +43,21 @@ APPKIT_EXTERN NSString *XGSServerDidDisconnectNotification;
 
 @interface XGSServer : XGSManagedObject
 {
-	//XGController *xgridController;
-	//XGConnection *xgridConnection;
 	XGSServerConnection *serverConnection;
 	id delegate;
-	NSMutableSet *availableGrids;
 }
 
-//this is the prefered way to create or retrieve server objects, as it makes sure there is only one object per server address and per context
+// The browser methods will automatically detect servers advertising on the Bonjour network. These will be asynchronously added to the list returned by allServers
++ (void)startBrowsing;
++ (void)stopBrowsing;
+
+// This is the recommanded way to retrieve servers (which might also trigger the creation of a new server if it does not exist yet)
++ (NSArray *)allServers;
++ (XGSServer *)serverWithAddress:(NSString *)address;
+
+// The XGSServer instances returned by the above methods live in a managed object context set up by the framework, and this context is unique for the whole application. If you want to use XGSServer objects in a custom managed object context, do not create them yourself but use one of the methods below. These methods will set up the connection properly and they guarantee that there is only one XGSServer object per server address and per context.
 + (XGSServer *)serverWithAddress:(NSString *)address inManagedObjectContext:(NSManagedObjectContext *)context;
+- (XGSServer *)serverInManagedObjectContext:(NSManagedObjectContext *)context;
 
 //accessors
 - (XGController *)xgridController;

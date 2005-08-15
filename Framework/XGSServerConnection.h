@@ -11,9 +11,9 @@
 /*
  The XGSServerConnection class is a private class used by the framework to ensure that
  each Xgrid Server establishes only one connection with the application.
- The uniqueness is based on the server name: one name, one server.
+ The uniqueness is based on the server address: one address, one server.
  The uniqueness is enforced at the implementation level by having a static dictionary
- keeping track of created instances, one instance per name.
+ keeping track of created instances, one instance per address.
  
  The XGSServerConnection is really a wrapper around the XGController and XGConnection class
  provided by the Xgrid APIs.
@@ -21,15 +21,14 @@
  The XGSServeConnection sends notifications to keep the XGSServer objects in sync. There might
  be several XGSServer objects for one XGSServerConnection.
  So the two classes XGSServerConnection and XGSServer are somewhat coupled, though the implementation
- tries to keep them encapsulated and separated from each other.
+ tries to keep them encapsulated.
  
 */
 
-typedef XGSServerConnectionState;
 
 //Constants to use to subscribe to notifications
 APPKIT_EXTERN NSString *XGSServerConnectionDidConnectNotification;
-APPKIT_EXTERN NSString *XGSServerConnectionDidBecomeAvailableNotification;
+APPKIT_EXTERN NSString *XGSServerConnectionDidLoadNotification;
 APPKIT_EXTERN NSString *XGSServerConnectionDidNotConnectNotification;
 APPKIT_EXTERN NSString *XGSServerConnectionDidDisconnectNotification;
 
@@ -39,7 +38,7 @@ APPKIT_EXTERN NSString *XGSServerConnectionDidDisconnectNotification;
 	XGController *xgridController;
 	NSString *serverName;
 	NSString *serverPassword;
-	XGSServerConnectionState serverState;
+	int serverState; //XGSServerConnectionState serverState;
 	
 	//keeping track of connection attempts
 	NSArray *connectionSelectors;
@@ -53,6 +52,9 @@ APPKIT_EXTERN NSString *XGSServerConnectionDidDisconnectNotification;
 - (XGConnection *)xgridConnection;
 - (XGController *)xgridController;
 - (void)setPassword:(NSString *)newPassword;
+- (BOOL)isConnecting;
+- (BOOL)isConnected;
+- (BOOL)isLoaded;
 
 //connection
 - (void)connect;

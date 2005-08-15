@@ -14,21 +14,26 @@
  */
 
 #import "XGSServer.h"
+#import "XGSServerConnection.h"
 #import "XGSGrid.h"
 #import "XGSGridPrivate.h"
+#import "XGSServerBrowser.h"
+#import "XGSFrameworkSettings.h"
 
 //global constants used for notifications
 NSString *XGSServerDidConnectNotification = @"XGSServerDidConnectNotification";
+NSString *XGSServerDidLoadNotification = @"XGSServerDidLoadNotification";
 NSString *XGSServerDidNotConnectNotification = @"XGSServerDidNotConnectNotification";
 NSString *XGSServerDidDisconnectNotification = @"XGSServerDidDisconnectNotification";
 
 
-static NSString *XgridServiceType = @"_xgrid._tcp.";
-static NSString *XgridServiceDomain = @"local.";
+//static NSString *XgridServiceType = @"_xgrid._tcp.";
+//static NSString *XgridServiceDomain = @"local.";
 
 
 @interface XGSServer (XGSServerPrivate)
 - (XGSGrid *)gridWithID:(NSString *)gridID;
+- (void)setServerConnection:(XGSServerConnection *)newServerConnection;
 @end
 
 @implementation XGSServer
@@ -45,6 +50,40 @@ static NSString *XgridServiceDomain = @"local.";
 	}
 }
 
++ (void)startBrowsing
+{
+	[[XGSServerBrowser sharedServerBrowser] startBrowsing];
+}
+
++ (void)stopBrowsing
+{
+	[[XGSServerBrowser sharedServerBrowser] stopBrowsing];
+}
+
+
+#pragma mark *** Create/Retrieve servers ***
+
++ (NSArray *)allServers
+{
+	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
+	
+	//I am not sure what is the best way to retrieve ALL records for a given entity so I use a fetch request with a dummy predicate : 'name != ""', which should get them all but is probably not very efficient
+	NSFetchRequest *request;
+	NSArray *results;
+	NSError *error;
+	NSManagedObjectContext *context = [XGSFrameworkSettings sharedManagedObjectContext];
+	request = [[[NSFetchRequest alloc] init] autorelease];
+	[request setEntity:[NSEntityDescription entityForName:@"Server" inManagedObjectContext:context]];
+	[request setPredicate:[NSPredicate predicateWithFormat:@"(name != "")"]];
+	results=[context executeFetchRequest:request error:&error];
+	
+	return results;
+}
+
++ (XGSServer *)serverWithAddress:(NSString *)address
+{
+	return [XGSServer serverWithAddress:address inManagedObjectContext:[XGSFrameworkSettings sharedManagedObjectContext]];
+}
 
 + (XGSServer *)serverWithAddress:(NSString *)address inManagedObjectContext:(NSManagedObjectContext *)context
 {
@@ -57,7 +96,7 @@ static NSString *XgridServiceDomain = @"local.";
 	//fetch request to see if there is already a server by that name in the context
 	request = [[[NSFetchRequest alloc] init] autorelease];
 	[request setEntity:[NSEntityDescription entityForName:@"Server" inManagedObjectContext:context]];
-	[request setPredicate:[NSPredicate predicateWithFormat:@"(name == %@)",name]];
+	[request setPredicate:[NSPredicate predicateWithFormat:@"(name == %@)",address]];
 	results=[context executeFetchRequest:request error:&error];
 	
 	//if already there, return it
@@ -67,37 +106,41 @@ static NSString *XgridServiceDomain = @"local.";
 	//if not, create the new server object
 	XGSServer *newServer;
 	newServer = [NSEntityDescription insertNewObjectForEntityForName:@"Server" inManagedObjectContext:context];
-	[newServer setValue:name forKey:@"name"];
+	[newServer setValue:address forKey:@"name"];
+	[newServer setServerConnection:[XGSServerConnection serverConnectionWithAddress:address password:@""]];
 	return newServer;
 }
 
 
+- (XGSServer *)serverInManagedObjectContext:(NSManagedObjectContext *)context
+{
+	NSString *address = [self valueForKey:@"name"];
+	return [[self class] serverWithAddress:address inManagedObjectContext:context];
+}
 
 #pragma mark *** Initializations ***
 
 - (void)awakeFromFetch
 {
-	NSEnumerator *e;
-	XGSGrid *aGrid;
-
 	[super awakeFromFetch];
 	
 	[self setPrimitiveValue:[NSNumber numberWithBool:NO] forKey:@"isConnected"];
 	
-	availableGrids = [[NSMutableSet alloc] init];
+	/*
+	 NSEnumerator *e;
+	 XGSGrid *aGrid;
+	 availableGrids = [[NSMutableSet alloc] init];
 	e = [[self valueForKey:@"grids"] objectEnumerator];
 	while ( aGrid = [e nextObject] )
 		if ( [aGrid isConnected] )
 			[availableGrids addObject:aGrid];
+	 */
 }
 
 - (void)dealloc
 {
-	[xgridConnection setDelegate:nil];
-	[xgridController removeObserver:self forKeyPath:@"grids"];
-	[xgridConnection release];
-	[xgridController release];
-	[availableGrids release];
+	//[availableGrids release];
+	[self setServerConnection:nil];
 	[super dealloc];
 }
 
@@ -110,62 +153,54 @@ static NSString *XgridServiceDomain = @"local.";
 
 - (XGConnection *)xgridConnection
 {
-	NSString *name;
-	NSNetService *netService;
-	if ( xgridConnection == nil ) {
-		//create the connection object
-		name=[self valueForKey:@"name"];
-		if ( [[self valueForKey:@"isNetService"] boolValue] == YES ) {
-			netService = [[NSNetService alloc] initWithDomain:XgridServiceDomain
-														 type:XgridServiceType
-														 name:name];
-			xgridConnection=[[XGConnection alloc] initWithNetService:netService];
-			[netService release];
-		}
-		else {
-			xgridConnection = [[XGConnection alloc] initWithHostname:name portnumber:0];
-		}
-		[xgridConnection setAuthenticator:nil];
-		//make self the delegate for the connection
-		[xgridConnection setDelegate:self];		
-	}
-	return xgridConnection;
+	return [serverConnection xgridConnection];
 }
 
-/*
-- (void)connectWithAuthenticator
+- (XGSServerConnection *)serverConnection
 {
-	XGGSSAuthenticator *authenticator1;
-	XGTwoWayRandomAuthenticator *authenticator2;
-	NSString *servicePrincipal;
-	XGController *xgridController;
-	XGConnection *xgridConnection;
-	
-	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
-	
-	//add an authentificator to the connection
-	xgridController = [self valueForKey:@"xgridController"];
-	xgridConnection = [xgridController connection];
-	if ( shouldAuthenticateWithSingleSignOnCredentials ) {
-		authenticator1 = [[[XGGSSAuthenticator alloc] init] autorelease];
-		servicePrincipal = [xgridConnection servicePrincipal];
-		if (servicePrincipal == nil)
-			servicePrincipal=[NSString stringWithFormat:@"xgrid/%@", [xgridConnection name]];		
-		[authenticator1 setServicePrincipal:servicePrincipal];
-		[xgridConnection setAuthenticator:authenticator1];
-	}
-	else {
-		authenticator2 = [[[XGTwoWayRandomAuthenticator alloc] init] autorelease];
-		[authenticator2 setUsername:@"one-xgrid-client"];
-		[authenticator2 setPassword:password];
-		[xgridConnection setAuthenticator:authenticator2];
-		[password autorelease];
-	}
-	
-	//try to open the connection again
-	[xgridConnection open];
+	return serverConnection;
 }
-*/
+
+//When the serverConnection is set, we need to observe notifications sent by it
+- (void)setServerConnection:(XGSServerConnection *)newServerConnection
+{
+	if ( serverConnection != newServerConnection ) {
+		
+		//stop notifications from the old ivar
+		[[NSNotificationCenter defaultCenter] removeObserver:self name:nil object:serverConnection];
+		
+		//change the serverConnection ivar to the new value
+		[newServerConnection retain];
+		[serverConnection release];
+		serverConnection = newServerConnection;
+		
+		if ( newServerConnection !=nil ) {
+			
+			//We need to be notified of all the activity of the XGSServerConnection object
+			[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(serverConnectionDidConnect:) name:XGSServerConnectionDidConnectNotification object:serverConnection];
+			[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(serverConnectionDidLoad:) name:XGSServerConnectionDidLoadNotification object:serverConnection];
+			[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(serverConnectionDidNotConnect:) name:XGSServerConnectionDidNotConnectNotification object:serverConnection];
+			[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(serverConnectionDidDisconnect:) name:XGSServerConnectionDidDisconnectNotification object:serverConnection];
+			
+			//we need to update the status of the server, based on the status of the serverConnection
+			if ( [serverConnection isConnected] || [serverConnection isLoaded] ) {
+				[self setValue:[NSNumber numberWithBool:YES] forKey:@"isAvailable"];
+				[self setValue:[NSNumber numberWithBool:YES] forKey:@"isConnected"];
+				[self setValue:[NSNumber numberWithBool:NO]  forKey:@"isConnecting"];
+				[self setValue:[NSNumber numberWithBool:YES] forKey:@"wasConnectedInCurrentSession"];
+				[self setValue:[NSNumber numberWithBool:YES] forKey:@"wasConnectedInPreviousSession"];
+				[self setValue:[NSNumber numberWithBool:YES] forKey:@"wasAvailableInCurrentSession"];
+				[self setValue:[NSNumber numberWithBool:YES] forKey:@"wasAvailableInPreviousSession"];
+				[self setValue:[NSDate date] forKey:@"lastConnection"];
+			} else if ( [serverConnection isConnecting] ) {
+				[self setValue:[NSNumber numberWithBool:NO] forKey:@"isConnected"];
+				[self setValue:[NSNumber numberWithBool:YES]  forKey:@"isConnecting"];
+			}
+		}
+		
+	}
+}
+
 #pragma mark *** Public accessors ***
 
 - (id)delegate
@@ -217,12 +252,7 @@ static NSString *XgridServiceDomain = @"local.";
 
 - (XGController *)xgridController
 {
-	if ( xgridController == nil ) {
-		xgridConnection = [self xgridConnection];
-		xgridController = [[XGController alloc] initWithConnection:xgridConnection];
-		[xgridController addObserver:self forKeyPath:@"grids" options:NSKeyValueObservingOptionNew context:NULL];
-	}
-	return xgridController;
+	return [serverConnection xgridController];
 }
 
 - (XGSGrid *)defaultGrid
@@ -262,81 +292,50 @@ static NSString *XgridServiceDomain = @"local.";
 
 - (void)connectWithoutAuthentication
 {
-	XGConnection *theConnection;
-
-	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
-
-	if ([self isBusy])
-		return;
-	
-	//update the attribute 'isConnecting'
-	[self setValue:[NSNumber numberWithBool:YES] forKey:@"isConnecting"];
-	
-	//set up a connection without authenticator
-	theConnection = [self xgridConnection];
-	[theConnection setAuthenticator:nil];
-	
-	//try to open the connection
-	[theConnection open];
+	[serverConnection connectWithoutAuthentication];
 }
 
 - (void)connectWithPassword:(NSString *)password
 {
-	XGTwoWayRandomAuthenticator *authenticator;
-	XGConnection *theConnection;
-
-	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
-	
-	if ([self isBusy])
-		return;
-	
-	//update the attribute 'isConnecting'
-	[self setValue:[NSNumber numberWithBool:YES] forKey:@"isConnecting"];
-	
-	//add an authentificator to the connection
-	theConnection = [self xgridConnection];
-	authenticator = [[[XGTwoWayRandomAuthenticator alloc] init] autorelease];
-	[authenticator setUsername:@"one-xgrid-client"];
-	[authenticator setPassword:password];
-	[theConnection setAuthenticator:authenticator];
-	
-	//try to open the connection
-	[theConnection open];
+	[serverConnection setPassword:password];
+	[serverConnection connectWithPassword];
 }
 
 - (void)connectWithSingleSignOnCredentials;
 {
-	XGGSSAuthenticator *authenticator;
-	XGConnection *theConnection;
-	NSString *servicePrincipal;
-	
-	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
-	
-	if ([self isBusy])
-		return;
-	
-	//update the attribute 'isConnecting'
-	[self setValue:[NSNumber numberWithBool:YES] forKey:@"isConnecting"];
-	
-	//add an authentificator to the connection
-	theConnection = [self xgridConnection];
-	authenticator = [[[XGGSSAuthenticator alloc] init] autorelease];
-	servicePrincipal = [theConnection servicePrincipal];
-	if (servicePrincipal == nil)
-		servicePrincipal=[NSString stringWithFormat:@"xgrid/%@", [theConnection name]];		
-	[authenticator setServicePrincipal:servicePrincipal];
-	[theConnection setAuthenticator:authenticator];
-	
-	//try to open the connection
-	[theConnection open];
+	[serverConnection connectWithSingleSignOnCredentials];
 }
 
 - (void)disconnect
 {
-	[[self xgridConnection] close];
+	[serverConnection disconnect];
 }
 
 
+#pragma mark *** XGSServerConnection notifications ***
+
+- (void)serverConnectionDidConnect:(NSNotification *)aNotification
+{
+	[[NSNotificationCenter defaultCenter] postNotificationName:XGSServerDidConnectNotification object:self];
+}
+
+- (void)serverConnectionDidNotConnect:(NSNotification *)aNotification
+{
+	[[NSNotificationCenter defaultCenter] postNotificationName:XGSServerDidNotConnectNotification object:self];
+}
+
+- (void)serverConnectionDidDisconnect:(NSNotification *)aNotification
+{
+	[[NSNotificationCenter defaultCenter] postNotificationName:XGSServerDidDisconnectNotification object:self];
+}
+
+- (void)serverConnectionDidLoad:(NSNotification *)aNotification
+{
+	[[NSNotificationCenter defaultCenter] postNotificationName:XGSServerDidLoadNotification object:self];
+}
+
+
+/*
 #pragma mark *** XGConnection delegate methods ***
 
 - (void)connectionDidOpen:(XGConnection *)connection;
@@ -397,7 +396,10 @@ static NSString *XgridServiceDomain = @"local.";
 	[[NSNotificationCenter defaultCenter] postNotificationName:XGSServerDidDisconnectNotification object:self];
 }
 
+*/
 
+
+/*
 #pragma mark *** KVO protocol ***
 
 //convenience method to add a grid to the list of available grids
@@ -476,6 +478,6 @@ static NSString *XgridServiceDomain = @"local.";
 		}
 	}
 }
-
+*/
 
 @end
