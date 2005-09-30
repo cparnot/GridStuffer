@@ -9,17 +9,17 @@
 	<key>CFBundleIconFile</key>
 	<string>GridStufferIcon</string>
 	<key>CFBundleIdentifier</key>
-	<string>parnot.charles.gridstuffer.0.2.0</string>
+	<string>parnot.charles.gridstuffer.0.3.0</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>0.2.1</string>
+	<string>0.3.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>0.2.1</string>
+	<string>0.3.0</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>

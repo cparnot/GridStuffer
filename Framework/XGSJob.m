@@ -15,7 +15,7 @@
 
 #import "XGSJob.h"
 #import "XGSJobPrivate.h"
-#import "XGSServerList.h"
+#import "XGSServerBrowser.h"
 #import "XGSServer.h"
 #import "XGSGrid.h"
 
@@ -279,7 +279,7 @@ static NSString *StateStrings[XGSJobStateDeleted+1];
 	//define the grid and the server (if not defined yet, use a default grid)
 	grid = [self grid];
 	if ( grid ==nil ) {
-		server = [[XGSServerList sharedServerListForContext:[self managedObjectContext]] firstConnectedServer];
+		server = [[XGSServerBrowser sharedServerListForContext:[self managedObjectContext]] firstConnectedServer];
 		grid = [server defaultGrid];
 		[self setGrid:grid];
 	}

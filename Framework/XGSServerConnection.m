@@ -63,10 +63,11 @@ NSMutableDictionary *serverConnectionInstances=nil;
 - (id)initWithAddress:(NSString *)address password:(NSString *)password
 {
 	//do not create a new instance if the address is registered in the serverConnectionInstances dictionary
+	//there is a memory management gotcha, as the instance get retained when added to the global dictionary 'serverConnectionInstances', so we have to be careful to release self after adding it to the dictionary, or retaining the instance if already in the dictionary, and then to retain the instance before removing it from the dictionary in the dealloc method
 	id uniqueInstance;
 	if ( uniqueInstance = [serverConnectionInstances objectForKey:address] ) {
 		[self release];
-		self = uniqueInstance;
+		self = [uniqueInstance retain];
 	} else {
 		self = [super init];
 		if ( self !=  nil ) {
@@ -173,7 +174,7 @@ NSMutableDictionary *serverConnectionInstances=nil;
 //trying to use a Bonjour connection without password
 - (void)connect_B1
 {
-	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
+	DLog(NSStringFromClass([self class]),12,@"<%@:%p> %s",[self class],self,_cmd);
 	
 	//create a new XGConnection with a NSNetService
 	NSNetService *netService = [[NSNetService alloc] initWithDomain:@"local."
@@ -194,7 +195,7 @@ NSMutableDictionary *serverConnectionInstances=nil;
 //trying to use a Bonjour connection with a password
 - (void)connect_B2
 {
-	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
+	DLog(NSStringFromClass([self class]),12,@"<%@:%p> %s",[self class],self,_cmd);
 	
 	//create a new XGConnection with a NSNetService
 	NSNetService *netService = [[NSNetService alloc] initWithDomain:@"local."
@@ -219,7 +220,7 @@ NSMutableDictionary *serverConnectionInstances=nil;
 //trying to use a Bonjour connection with Kerberos
 - (void)connect_B3
 {
-	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
+	DLog(NSStringFromClass([self class]),12,@"<%@:%p> %s",[self class],self,_cmd);
 	
 	//create a new XGConnection with a NSNetService
 	NSNetService *netService = [[NSNetService alloc] initWithDomain:@"local."
@@ -247,7 +248,7 @@ NSMutableDictionary *serverConnectionInstances=nil;
 //trying to use a remote connection without a password
 - (void)connect_H1
 {
-	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
+	DLog(NSStringFromClass([self class]),12,@"<%@:%p> %s",[self class],self,_cmd);
 	
 	//create a new XGConnection
 	XGConnection *newConnection = [[XGConnection alloc] initWithHostname:serverName portnumber:0];
@@ -264,7 +265,7 @@ NSMutableDictionary *serverConnectionInstances=nil;
 //trying to use a remote connection with a password
 - (void)connect_H2
 {
-	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
+	DLog(NSStringFromClass([self class]),12,@"<%@:%p> %s",[self class],self,_cmd);
 	
 	//create a new XGConnection
 	XGConnection *newConnection = [[XGConnection alloc] initWithHostname:serverName portnumber:0];
@@ -285,7 +286,7 @@ NSMutableDictionary *serverConnectionInstances=nil;
 //trying to use a remote connection with Kerberos
 - (void)connect_H3
 {
-	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
+	DLog(NSStringFromClass([self class]),12,@"<%@:%p> %s",[self class],self,_cmd);
 	
 	//create a new XGConnection
 	XGConnection *newConnection = [[XGConnection alloc] initWithHostname:serverName portnumber:0];
@@ -307,6 +308,8 @@ NSMutableDictionary *serverConnectionInstances=nil;
 
 - (void)startNextConnectionAttempt
 {
+	DLog(NSStringFromClass([self class]),12,@"<%@:%p> %s",[self class],self,_cmd);
+
 	//depending on the hostname and password values, we have decided on a series of connection type to make,
 	//as defined by the array connectionSelectors, enumerated by selectorEnumerator
 	NSString *selectorString = [selectorEnumerator nextObject];
@@ -391,6 +394,8 @@ NSMutableDictionary *serverConnectionInstances=nil;
 
 - (void)connectWithoutAuthentication
 {
+	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
+
 	//exit if already connecting or connected
 	if ( serverState == XGSServerConnectionStateConnecting || serverState == XGSServerConnectionStateConnected || serverState == XGSServerConnectionStateLoaded )
 		return;
@@ -406,6 +411,7 @@ NSMutableDictionary *serverConnectionInstances=nil;
 		selectors = [NSArray arrayWithObjects:@"H1",@"H2",@"B1",@"B2",nil];
 	else
 		selectors = [NSArray arrayWithObjects:@"B1",@"B2",@"H1",@"H2",nil];
+	[self setConnectionSelectors:selectors];
 	
 	//start the connection process
 	[self startNextConnectionAttempt];
@@ -413,6 +419,8 @@ NSMutableDictionary *serverConnectionInstances=nil;
 
 - (void)connectWithSingleSignOnCredentials
 {
+	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
+
 	//exit if already connecting or connected
 	if ( serverState == XGSServerConnectionStateConnecting || serverState == XGSServerConnectionStateConnected || serverState == XGSServerConnectionStateLoaded )
 		return;
@@ -428,6 +436,7 @@ NSMutableDictionary *serverConnectionInstances=nil;
 		selectors = [NSArray arrayWithObjects:@"H2",@"B2",nil];
 	else
 		selectors = [NSArray arrayWithObjects:@"B2",@"H2",nil];
+	[self setConnectionSelectors:selectors];
 	
 	//start the connection process
 	[self startNextConnectionAttempt];
@@ -435,6 +444,8 @@ NSMutableDictionary *serverConnectionInstances=nil;
 
 - (void)connectWithPassword
 {
+	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
+
 	//exit if already connecting or connected
 	if ( serverState == XGSServerConnectionStateConnecting || serverState == XGSServerConnectionStateConnected || serverState == XGSServerConnectionStateLoaded )
 		return;
@@ -450,6 +461,7 @@ NSMutableDictionary *serverConnectionInstances=nil;
 		selectors = [NSArray arrayWithObjects:@"H2",@"B2",@"H3",@"B3",nil];
 	else
 		selectors = [NSArray arrayWithObjects:@"B2",@"H2",@"B3",@"H3",nil];
+	[self setConnectionSelectors:selectors];
 	
 	//start the connection process
 	[self startNextConnectionAttempt];
@@ -457,6 +469,8 @@ NSMutableDictionary *serverConnectionInstances=nil;
 
 - (void)connect
 {
+	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
+
 	//exit if already connecting or connected
 	if ( serverState == XGSServerConnectionStateConnecting || serverState == XGSServerConnectionStateConnected || serverState == XGSServerConnectionStateLoaded )
 		return;
@@ -485,6 +499,8 @@ NSMutableDictionary *serverConnectionInstances=nil;
 
 - (void)disconnect
 {
+	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
+
 	[xgridConnection close];
 	if ( serverState == XGSServerConnectionStateConnecting ) {
 		[selectorEnumerator allObjects];

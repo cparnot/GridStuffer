@@ -57,6 +57,7 @@ APPKIT_EXTERN NSString *XGSServerDidDisconnectNotification;
 - (XGSServer *)serverInManagedObjectContext:(NSManagedObjectContext *)context;
 
 //accessors
+- (NSString *)address;
 - (XGController *)xgridController;
 - (XGSGrid *)defaultGrid;
 

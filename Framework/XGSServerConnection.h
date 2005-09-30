@@ -33,7 +33,7 @@ APPKIT_EXTERN NSString *XGSServerConnectionDidDisconnectNotification;
 	
 	//keeping track of connection attempts
 	NSArray *connectionSelectors;
-	NSEnumerator *selectorEnumerator;	
+	NSEnumerator *selectorEnumerator;
 }
 
 - (id)initWithAddress:(NSString *)address password:(NSString *)password;

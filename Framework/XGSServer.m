@@ -33,6 +33,7 @@ NSString *XGSServerDidDisconnectNotification = @"XGSServerDidDisconnectNotificat
 
 @interface XGSServer (XGSServerPrivate)
 - (XGSGrid *)gridWithID:(NSString *)gridID;
+- (XGSServerConnection *)serverConnection;
 - (void)setServerConnection:(XGSServerConnection *)newServerConnection;
 @end
 
@@ -52,11 +53,13 @@ NSString *XGSServerDidDisconnectNotification = @"XGSServerDidDisconnectNotificat
 
 + (void)startBrowsing
 {
+	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
 	[[XGSServerBrowser sharedServerBrowser] startBrowsing];
 }
 
 + (void)stopBrowsing
 {
+	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
 	[[XGSServerBrowser sharedServerBrowser] stopBrowsing];
 }
 
@@ -65,7 +68,7 @@ NSString *XGSServerDidDisconnectNotification = @"XGSServerDidDisconnectNotificat
 
 + (NSArray *)allServers
 {
-	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
+	DLog(NSStringFromClass([self class]),12,@"<%@:%p> %s",[self class],self,_cmd);
 	
 	//I am not sure what is the best way to retrieve ALL records for a given entity so I use a fetch request with a dummy predicate : 'name != ""', which should get them all but is probably not very efficient
 	NSFetchRequest *request;
@@ -82,6 +85,7 @@ NSString *XGSServerDidDisconnectNotification = @"XGSServerDidDisconnectNotificat
 
 + (XGSServer *)serverWithAddress:(NSString *)address
 {
+	DLog(NSStringFromClass([self class]),12,@"<%@:%p> %s",[self class],self,_cmd);
 	return [XGSServer serverWithAddress:address inManagedObjectContext:[XGSFrameworkSettings sharedManagedObjectContext]];
 }
 
@@ -91,7 +95,7 @@ NSString *XGSServerDidDisconnectNotification = @"XGSServerDidDisconnectNotificat
 	NSArray *results;
 	NSError *error;
 	
-	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
+	DLog(NSStringFromClass([self class]),12,@"<%@:%p> %s",[self class],self,_cmd);
 	
 	//fetch request to see if there is already a server by that name in the context
 	request = [[[NSFetchRequest alloc] init] autorelease];
@@ -99,21 +103,27 @@ NSString *XGSServerDidDisconnectNotification = @"XGSServerDidDisconnectNotificat
 	[request setPredicate:[NSPredicate predicateWithFormat:@"(name == %@)",address]];
 	results=[context executeFetchRequest:request error:&error];
 	
-	//if already there, return it
+	//if already there, use the record in store
+	//if not, create a new server object
+	XGSServer *returnedServer;
 	if ([results count]>0)
-		return [results objectAtIndex:0];
+		returnedServer = [results objectAtIndex:0];
+	else {
+		returnedServer = [NSEntityDescription insertNewObjectForEntityForName:@"Server" inManagedObjectContext:context];
+		[returnedServer setValue:address forKey:@"name"];
+	}
 	
-	//if not, create the new server object
-	XGSServer *newServer;
-	newServer = [NSEntityDescription insertNewObjectForEntityForName:@"Server" inManagedObjectContext:context];
-	[newServer setValue:address forKey:@"name"];
-	[newServer setServerConnection:[XGSServerConnection serverConnectionWithAddress:address password:@""]];
-	return newServer;
+	//set up the serverConnection if necessary
+	if ( [returnedServer serverConnection] == nil )
+		[returnedServer setServerConnection:[XGSServerConnection serverConnectionWithAddress:address password:@""]];
+	
+	return returnedServer;
 }
 
 
 - (XGSServer *)serverInManagedObjectContext:(NSManagedObjectContext *)context
 {
+	DLog(NSStringFromClass([self class]),12,@"<%@:%p> %s",[self class],self,_cmd);
 	NSString *address = [self valueForKey:@"name"];
 	return [[self class] serverWithAddress:address inManagedObjectContext:context];
 }
@@ -202,6 +212,15 @@ NSString *XGSServerDidDisconnectNotification = @"XGSServerDidDisconnectNotificat
 }
 
 #pragma mark *** Public accessors ***
+
+- (NSString *)address
+{
+	NSString *address;
+	[self willAccessValueForKey:@"name"];
+	address = [self primitiveValueForKey:@"name"];
+	[self didAccessValueForKey:@"name"];
+	return address;
+}
 
 - (id)delegate
 {
@@ -292,22 +311,26 @@ NSString *XGSServerDidDisconnectNotification = @"XGSServerDidDisconnectNotificat
 
 - (void)connectWithoutAuthentication
 {
+	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
 	[serverConnection connectWithoutAuthentication];
 }
 
 - (void)connectWithPassword:(NSString *)password
 {
+	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
 	[serverConnection setPassword:password];
 	[serverConnection connectWithPassword];
 }
 
 - (void)connectWithSingleSignOnCredentials;
 {
+	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
 	[serverConnection connectWithSingleSignOnCredentials];
 }
 
 - (void)disconnect
 {
+	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
 	[serverConnection disconnect];
 }
 
@@ -316,21 +339,25 @@ NSString *XGSServerDidDisconnectNotification = @"XGSServerDidDisconnectNotificat
 
 - (void)serverConnectionDidConnect:(NSNotification *)aNotification
 {
+	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
 	[[NSNotificationCenter defaultCenter] postNotificationName:XGSServerDidConnectNotification object:self];
 }
 
 - (void)serverConnectionDidNotConnect:(NSNotification *)aNotification
 {
+	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
 	[[NSNotificationCenter defaultCenter] postNotificationName:XGSServerDidNotConnectNotification object:self];
 }
 
 - (void)serverConnectionDidDisconnect:(NSNotification *)aNotification
 {
+	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
 	[[NSNotificationCenter defaultCenter] postNotificationName:XGSServerDidDisconnectNotification object:self];
 }
 
 - (void)serverConnectionDidLoad:(NSNotification *)aNotification
 {
+	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
 	[[NSNotificationCenter defaultCenter] postNotificationName:XGSServerDidLoadNotification object:self];
 }
 

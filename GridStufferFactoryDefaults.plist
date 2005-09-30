@@ -4,14 +4,16 @@
 <dict>
 
 	<key>DebugLogVerboseLevel</key>
-	<string>15</string>
+	<string>10</string>
 	
 	<key>DebugIdentifiers</key>
 	<array>
 		<string>XGSJob</string>
 		<string>XGSGrid</string>
 		<string>XGSServer</string>
-		<string>XGSServerList</string>
+		<string>XGSServerListController</string>
+		<string>XGSServerConnection</string>
+		<string>XGSServerBrowser</string>
 		<string>GridStufferAppDelegate</string>
 	</array>
 

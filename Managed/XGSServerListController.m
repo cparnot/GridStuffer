@@ -14,7 +14,7 @@
  */
 
 #import "XGSServerListController.h"
-#import "XGSServerList.h"
+#import "XGSServerBrowser.h"
 #import "XGSServer.h"
 #import "XGSStringToImageTransformer.h"
 
@@ -37,7 +37,7 @@
 	self = [super initWithWindowNibName:@"Servers"];
 	if (self!=nil) {
 		context = [[NSApp delegate] managedObjectContext];
-		serverList = [[XGSServerList sharedServerListForContext:context] retain];
+		//serverList = [[XGSServerBrowser sharedServerListForContext:context] retain];
 		isConnecting = NO;
 		[self setWindowFrameAutosaveName:@"XGSServerListWindow"];
 	}
@@ -46,13 +46,13 @@
 
 - (void)awakeFromNib
 {
-	[serverList startBrowsing];
+	[XGSServer startBrowsing];
 }
 
 - (void)dealloc
 {
 	[[NSNotificationCenter defaultCenter] removeObserver:self]; 
-	[serverList release];
+	//[serverList release];
 	[super dealloc];
 }
 
@@ -71,15 +71,13 @@
 //returns the server with the name typed in the text field or the one selected in the table view
 - (XGSServer *)selectedServer
 {
-	NSString *name;
-
 	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
 
 	//if the text view has the focus and is not empty, use that for the server
 	if ( [[self window] firstResponder] ) {
-		name =  [serverAddressTextField stringValue];
-		if ( [name length] > 0 )
-			return [serverList serverWithName:name];
+		NSString *address =  [serverAddressTextField stringValue];
+		if ( [address length] > 0 )
+			return [XGSServer serverWithAddress:address];
 	}
 	
 	//otherwise, use the server selected in the table view, if any
@@ -155,7 +153,7 @@
 	//otherwise, it means we need to ask authentication from the user
 	else {
 		[authenticationFailedTextField setHidden:YES];
-		[serverNameField setStringValue:[currentServer valueForKey:@"name"]];
+		[serverNameField setStringValue:[currentServer address]];
 		[NSApp beginSheet:connectSheet modalForWindow:[self window] modalDelegate:self didEndSelector:NULL contextInfo:NULL];
 	}
 }
@@ -211,7 +209,7 @@
 	//if the 'connect' button is from the main window, first try to connect without anthentication
 	if ( [sender tag] == 1 ) {
 		currentServer = [self selectedServer];
-		[self startConnectionProcessWithServer:[self selectedServer]];
+		[self startConnectionProcessWithServer:currentServer];
 	}
 	
 	//if the 'connect' button is from the connect sheet, connect with authentication
@@ -229,8 +227,8 @@
 {
 	XGSServer *aServer;
 	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
-	if ( ([serverList firstConnectedServer]!=nil) && (aServer=[serverList firstAvailableServer]) )
-		[self startConnectionProcessWithServer:aServer];
+	//if ( ([serverList firstConnectedServer]!=nil) && (aServer=[serverList firstAvailableServer]) )
+	//	[self startConnectionProcessWithServer:aServer];
 }
 
 - (IBAction)cancelConnect:(id)sender
@@ -266,7 +264,7 @@
 						  @"This controller still have jobs running. You cannot delete it.");
 		return;
 	}
-	[serverList removeServer:aServer];
+	//[serverList removeServer:aServer];
 }
 
 @end
