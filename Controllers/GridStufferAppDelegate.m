@@ -13,7 +13,7 @@
 
 #import "GridStufferAppDelegate.h"
 #import "XGSNewJobController.h"
-#import "XGSServerList.h"
+#import "XGSServerBrowser.h"
 #import "XGSServerListController.h"
 #import "XGSJobListController.h"
 #import "XGSMetaJob.h"
@@ -22,6 +22,7 @@
 #import "XGSOutputInterface.h"
 #import "XGSInputInterface.h"
 #import "XGSToolbarController.h"
+#import "XGSFrameworkSettings.h"
 
 @implementation GridStufferAppDelegate
 
@@ -248,6 +249,8 @@
 
 - (NSManagedObjectContext *) managedObjectContext
 {
+	return [XGSFrameworkSettings sharedManagedObjectContext];
+	
     NSError *error;
     NSString *applicationSupportFolder = nil;
     NSURL *url;
