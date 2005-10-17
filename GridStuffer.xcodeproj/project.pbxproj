@@ -10,7 +10,7 @@
 		561FF4CB086BD372004DEAF4 /* XGSManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 561FF4CA086BD372004DEAF4 /* XGSManagedObject.m */; };
 		561FF6D0086E0C09004DEAF4 /* commands_demo0.txt in Resources */ = {isa = PBXBuildFile; fileRef = 561FF6CE086E0C09004DEAF4 /* commands_demo0.txt */; };
 		561FF6D1086E0C09004DEAF4 /* demo0.pl in Resources */ = {isa = PBXBuildFile; fileRef = 561FF6CF086E0C09004DEAF4 /* demo0.pl */; };
-		562F55A508AFC40C00D92CC0 /* XGSFrameworkSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 562F55A408AFC40C00D92CC0 /* XGSFrameworkSettings.m */; };
+		562F55A508AFC40C00D92CC0 /* XGSSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 562F55A408AFC40C00D92CC0 /* XGSSettings.m */; };
 		563C82C3087F4186004B2D09 /* commands_demo3.txt in Resources */ = {isa = PBXBuildFile; fileRef = 563C82C1087F4186004B2D09 /* commands_demo3.txt */; };
 		563C82C4087F4186004B2D09 /* demo3.pl in Resources */ = {isa = PBXBuildFile; fileRef = 563C82C2087F4186004B2D09 /* demo3.pl */; };
 		563C841508838C29004B2D09 /* commands_demo4.txt in Resources */ = {isa = PBXBuildFile; fileRef = 563C841208838C29004B2D09 /* commands_demo4.txt */; };
@@ -23,6 +23,7 @@
 		563C86800884847D004B2D09 /* demo5.pl in Resources */ = {isa = PBXBuildFile; fileRef = 563C867E0884847D004B2D09 /* demo5.pl */; };
 		5643E8500870C01D000838CF /* XGSValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5643E84F0870C01D000838CF /* XGSValidator.m */; };
 		568420A008A040080078AFB7 /* XGSServerConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 5684209F08A040080078AFB7 /* XGSServerConnection.m */; };
+		568A029908ED08AA00C77691 /* Dream framework.h in Resources */ = {isa = PBXBuildFile; fileRef = 568A029808ED08AA00C77691 /* Dream framework.h */; };
 		5697594108635C2200A09FB5 /* XGSGrid.m in Sources */ = {isa = PBXBuildFile; fileRef = 5697593B08635C2200A09FB5 /* XGSGrid.m */; };
 		5697594208635C2200A09FB5 /* XGSJob.m in Sources */ = {isa = PBXBuildFile; fileRef = 5697593D08635C2200A09FB5 /* XGSJob.m */; };
 		5697594308635C2200A09FB5 /* XGSMetaJobAccessors.m in Sources */ = {isa = PBXBuildFile; fileRef = 5697593E08635C2200A09FB5 /* XGSMetaJobAccessors.m */; };
@@ -127,8 +128,8 @@
 		561FF4CA086BD372004DEAF4 /* XGSManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XGSManagedObject.m; path = Managed/XGSManagedObject.m; sourceTree = "<group>"; };
 		561FF6CE086E0C09004DEAF4 /* commands_demo0.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; name = commands_demo0.txt; path = Demo0/commands_demo0.txt; sourceTree = "<group>"; };
 		561FF6CF086E0C09004DEAF4 /* demo0.pl */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.perl; name = demo0.pl; path = Demo0/demo0.pl; sourceTree = "<group>"; };
-		562F55A308AFC40C00D92CC0 /* XGSFrameworkSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XGSFrameworkSettings.h; path = Framework/XGSFrameworkSettings.h; sourceTree = "<group>"; };
-		562F55A408AFC40C00D92CC0 /* XGSFrameworkSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XGSFrameworkSettings.m; path = Framework/XGSFrameworkSettings.m; sourceTree = "<group>"; };
+		562F55A308AFC40C00D92CC0 /* XGSSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XGSSettings.h; path = Framework/XGSSettings.h; sourceTree = "<group>"; };
+		562F55A408AFC40C00D92CC0 /* XGSSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XGSSettings.m; path = Framework/XGSSettings.m; sourceTree = "<group>"; };
 		563C82C1087F4186004B2D09 /* commands_demo3.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; name = commands_demo3.txt; path = Demo3/commands_demo3.txt; sourceTree = "<group>"; };
 		563C82C2087F4186004B2D09 /* demo3.pl */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.perl; name = demo3.pl; path = Demo3/demo3.pl; sourceTree = "<group>"; };
 		563C841208838C29004B2D09 /* commands_demo4.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; name = commands_demo4.txt; path = Demo4/commands_demo4.txt; sourceTree = "<group>"; };
@@ -144,6 +145,7 @@
 		5667FA5A0869CA45009705CB /* XGSJobPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XGSJobPrivate.h; path = Framework/XGSJobPrivate.h; sourceTree = "<group>"; };
 		5684209E08A040080078AFB7 /* XGSServerConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XGSServerConnection.h; path = Framework/XGSServerConnection.h; sourceTree = "<group>"; };
 		5684209F08A040080078AFB7 /* XGSServerConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XGSServerConnection.m; path = Framework/XGSServerConnection.m; sourceTree = "<group>"; };
+		568A029808ED08AA00C77691 /* Dream framework.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Dream framework.h"; path = "Framework-doc/Dream framework.h"; sourceTree = "<group>"; };
 		5697593A08635C2200A09FB5 /* XGSGrid.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = XGSGrid.h; path = Framework/XGSGrid.h; sourceTree = "<group>"; };
 		5697593B08635C2200A09FB5 /* XGSGrid.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; name = XGSGrid.m; path = Framework/XGSGrid.m; sourceTree = "<group>"; };
 		5697593C08635C2200A09FB5 /* XGSJob.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = XGSJob.h; path = Framework/XGSJob.h; sourceTree = "<group>"; };
@@ -427,8 +429,8 @@
 		56842061089C25C90078AFB7 /* Framework */ = {
 			isa = PBXGroup;
 			children = (
-				562F55A308AFC40C00D92CC0 /* XGSFrameworkSettings.h */,
-				562F55A408AFC40C00D92CC0 /* XGSFrameworkSettings.m */,
+				562F55A308AFC40C00D92CC0 /* XGSSettings.h */,
+				562F55A408AFC40C00D92CC0 /* XGSSettings.m */,
 				56F423EC083BE6F50011D12B /* XGSServerBrowser.h */,
 				56F423ED083BE6F50011D12B /* XGSServerBrowser.m */,
 				5684209E08A040080078AFB7 /* XGSServerConnection.h */,
@@ -505,6 +507,7 @@
 		56FFEE91087505AA00FF6E8D /* Documentation */ = {
 			isa = PBXGroup;
 			children = (
+				568A029808ED08AA00C77691 /* Dream framework.h */,
 				56FFEE940875152900FF6E8D /* Input-Format.txt */,
 				56FFF375087CA4E600FF6E8D /* Input-Format.html */,
 				56FFEE980875156400FF6E8D /* index.txt */,
@@ -654,6 +657,7 @@
 				563C867F0884847D004B2D09 /* commands_demo5.txt in Resources */,
 				563C86800884847D004B2D09 /* demo5.pl in Resources */,
 				56E457AA088861410096D72B /* README.txt in Resources */,
+				568A029908ED08AA00C77691 /* Dream framework.h in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -689,7 +693,7 @@
 				56FFEF480879016600FF6E8D /* XGSToolbarController.m in Sources */,
 				56FFF116087B571600FF6E8D /* XGSJobListController.m in Sources */,
 				568420A008A040080078AFB7 /* XGSServerConnection.m in Sources */,
-				562F55A508AFC40C00D92CC0 /* XGSFrameworkSettings.m in Sources */,
+				562F55A508AFC40C00D92CC0 /* XGSSettings.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
