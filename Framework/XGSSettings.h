@@ -1,5 +1,5 @@
 //
-//  XGSFrameworkSettings.h
+//  XGSSettings.h
 //  GridStuffer
 //
 //  Created by Charles Parnot on 8/14/05.
@@ -7,14 +7,14 @@
 //
 
 /*
- The XGSFrameworkGlobals class is used to retrieve and set framework-wide or application-wide settings and objects.
+ The XGSSettings class is used to retrieve and set framework-wide or application-wide settings and objects.
  See individual methods for details.
 */
 
 #import <Cocoa/Cocoa.h>
 
 
-@interface XGSFrameworkSettings : NSObject
+@interface XGSSettings : NSObject
 {
 	NSManagedObjectModel *managedObjectModel;
 	NSManagedObjectContext *managedObjectContext;

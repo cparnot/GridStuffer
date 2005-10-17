@@ -1,25 +1,25 @@
 //
-//  XGSFrameworkSettings.m
+//  XGSSettings.m
 //  GridStuffer
 //
 //  Created by Charles Parnot on 8/14/05.
 //  Copyright 2005 __MyCompanyName__. All rights reserved.
 //
 
-#import "XGSFrameworkSettings.h"
+#import "XGSSettings.h"
 
 
-@implementation XGSFrameworkSettings
+@implementation XGSSettings
 
 #pragma mark *** creating and retrieving the singleton instance ***
 
 
-XGSFrameworkSettings *sharedFrameworkSettings = nil;
+XGSSettings *sharedFrameworkSettings = nil;
 
-+ (XGSFrameworkSettings *)sharedFrameworkSettings
++ (XGSSettings *)sharedSettings
 {
 	if ( sharedFrameworkSettings == nil ) {
-		sharedFrameworkSettings = [[XGSFrameworkSettings alloc] init];
+		sharedFrameworkSettings = [[XGSSettings alloc] init];
 	}
 	return sharedFrameworkSettings;
 }
