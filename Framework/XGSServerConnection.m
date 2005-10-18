@@ -8,6 +8,35 @@
 
 #import "XGSServerConnection.h"
 
+/*
+
+From birth to death, an XGSServerConnection object goes through a series of states.
+ 
+1. Uninitialized. This is the state when the object is first created using 'initWithAddress:password:'. However, if there was already an instance with the same address, the object returned is the intance already existing
+ 
+2. Connecting. This is the state after calling 'connect' or one of the similar public methods. Behind the scenes, the object actually makes several connection attempts before giving up, starting with the most likely to succed protocol until the least likely. These different connection attempts are the methods 'connect_B1', 'connect_B2',... that try connections via Bonjour or internet, and authentications with/without password or Kerberos single sign-on. So, depending on the value of the address and the password, the object will decide on a series of methods to try in a certain order (stored in connectionSelectors). For each of these attempts, the object will go through these calls:
+	- 'startNextConnectionAttempt'
+	- if there is no connection attempt left, switch to a 'Failed' state and send notification 
+	- if there is one connection attempt left
+		- call the corresponding method 'connect_XX', which will create a new XGConnection object each time
+		- wait for callback (asynchronouly)
+		- if callback is 'connectionDidOpen', switch to a 'Connected' state and send notification
+		- if callback is 'connectionDidNotOpen' of 'connectionDidClose', start next connection attempt
+
+3. Connected. The server is now connected, but it only means that the object 'XGConnection' is ready. We now have to wait for the object XGController to be ready. This will happen when its state is set to 'available' and the list of its XGGrid objects is loaded from the server. To keep track of that, we can use KVO on the XGController state. When the state changes, it means the XgridFoundation framework has received the information and is changing all the values of the different instance variables of the XGController object. Then, we know the object will be 'ready', or 'loaded', on the next iteration of the run loop. So, here is the process:
+	- set self as observer of the XGController:
+		[xgridController addObserver:self forKeyPath:@"state" options:0 context:NULL];
+	- wait for the callback
+	- when the state changes, call a timer with an interval of 0:
+		 [NSTimer scheduledTimerWithTimeInterval:0 target:self selector:@selector(controllerDidLoadInstanceVariables:) userInfo:nil repeats:NO];
+	- on the next iteration of the run loop, change state to 'Loaded' and send notification
+ 
+4. Loaded. The list of grids and the state of the XGController objects are set. We will now keep an eye on the list of grids to modify the various objects dependent on the grids as needed. ##NOT IMPLEMENTED YET##
+
+*/
+
+
+//the state changes as the connection progresses from not being connected to having loaded all the attributes of the server
 typedef enum {
 	XGSServerConnectionStateUninitialized = 1,
 	XGSServerConnectionStateConnecting,
@@ -29,12 +58,12 @@ NSString *XGSServerConnectionDidDisconnectNotification = @"XGSServerConnectionDi
 
 #pragma mark *** Class Methods ***
 
-//this dictionary keeps track of the instances already created
+//this dictionary keeps track of the instances already created, so that there is only one instance of XGSServerConnection per address
 NSMutableDictionary *serverConnectionInstances=nil;
 
-//create the serverConnectionInstances dictionary early on
+//the serverConnectionInstances dictionary is created early on when the class is initialized
 //I chose not to do lazy instanciation as there is only one dictionary created and the memory footprint is really small
-//it is just simpler this way and less prone to future problems (e.g. multithreading)
+//it is just simpler this way and probably less prone to future problems (e.g. multithreading?)
 + (void)initialize
 {
 	if ( serverConnectionInstances == nil )
@@ -50,7 +79,8 @@ NSMutableDictionary *serverConnectionInstances=nil;
 
 #pragma mark *** Initializations ***
 
-//should not call that method!
+//this method should never be called, as the only allowed initializer takes an address as parameter
+//calling 'init' raises an expection
 - (id)init
 {
 	if ( [self class] == [XGSServerConnection class] )
@@ -330,7 +360,7 @@ NSMutableDictionary *serverConnectionInstances=nil;
 	}
 }
 
-#pragma mark *** XGConnection delegate methods and XGController observing ***
+#pragma mark *** XGConnection delegate methods, going from "Connecting" to "Connected" ***
 
 - (void)connectionDidOpen:(XGConnection *)connection;
 {
@@ -349,20 +379,6 @@ NSMutableDictionary *serverConnectionInstances=nil;
 	
 	//next step is to get the controller 'available' = all the grids and jobs loaded from the server
 	[xgridController addObserver:self forKeyPath:@"state" options:0 context:NULL];
-}
-
-//when the XGController state = XGResourceStateAvailable, the XGController object has all the info (grids and jobs)
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-{
-	if ( serverState == XGSServerConnectionStateConnected ) {
-		if ( [xgridController state] == XGResourceStateAvailable ) {
-			[xgridController removeObserver:self forKeyPath:@"state"];
-			serverState = XGSServerConnectionStateLoaded;
-			[[NSNotificationCenter defaultCenter] postNotificationName:XGSServerConnectionDidLoadNotification object:self];
-		}
-	} else {
-		[xgridController removeObserver:self forKeyPath:@"state"];
-	}
 }
 
 - (void)connectionDidNotOpen:(XGConnection *)connection withError:(NSError *)error
@@ -386,6 +402,32 @@ NSMutableDictionary *serverConnectionInstances=nil;
 	else {
 		serverState = XGSServerConnectionStateDisconnected;
 		[[NSNotificationCenter defaultCenter] postNotificationName:XGSServerConnectionDidDisconnectNotification object:self];
+	}
+}
+
+
+#pragma mark *** XGController observing, going from "Connected" to "Loaded" ***
+
+//when the state of the XGController is modified by the XgridFoundation framework, we know all its instance variables will be set by the end of this run loop
+//so we call a timer with interval 0 to be back when all the instance variables are set (e.g. grids,...)
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+	if ( serverState == XGSServerConnectionStateConnected ) {
+		if ( [xgridController state] == XGResourceStateAvailable ) {
+			[xgridController removeObserver:self forKeyPath:@"state"];
+			[NSTimer scheduledTimerWithTimeInterval:0 target:self selector:@selector(controllerDidLoadInstanceVariables:) userInfo:nil repeats:NO];
+		}
+	} else {
+		[xgridController removeObserver:self forKeyPath:@"state"];
+	}
+}
+
+//callback on the iteration of the run loop following the change in the state of the XGController
+- (void)controllerDidLoadInstanceVariables:(NSTimer *)aTimer
+{
+	if ( serverState == XGSServerConnectionStateConnected && [xgridController state] == XGResourceStateAvailable ) {
+		serverState = XGSServerConnectionStateLoaded;
+		[[NSNotificationCenter defaultCenter] postNotificationName:XGSServerConnectionDidLoadNotification object:self];
 	}
 }
 

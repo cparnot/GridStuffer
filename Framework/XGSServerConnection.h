@@ -19,9 +19,9 @@ So the two classes, XGSServerConnection & XGSServer, are somewhat coupled, thoug
 
 //Constants to use to subscribe to notifications
 APPKIT_EXTERN NSString *XGSServerConnectionDidConnectNotification;
-APPKIT_EXTERN NSString *XGSServerConnectionDidLoadNotification;
 APPKIT_EXTERN NSString *XGSServerConnectionDidNotConnectNotification;
 APPKIT_EXTERN NSString *XGSServerConnectionDidDisconnectNotification;
+APPKIT_EXTERN NSString *XGSServerConnectionDidLoadNotification;
 
 @interface XGSServerConnection : NSObject
 {
