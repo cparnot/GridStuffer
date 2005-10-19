@@ -105,7 +105,7 @@ NSMutableDictionary *serverConnectionInstances=nil;
 			serverPassword = [password copy];
 			xgridController = nil;
 			xgridConnection = nil;
-			serverState = XGSServerConnectionStateUninitialized;
+			serverConnectionState = XGSServerConnectionStateUninitialized;
 			connectionSelectors = nil;
 			selectorEnumerator = nil;
 		}
@@ -132,7 +132,7 @@ NSMutableDictionary *serverConnectionInstances=nil;
 //do not return xgridConnection object that are transient and may be dumped later
 - (XGConnection *)xgridConnection
 {
-	if ( serverState == XGSServerConnectionStateConnecting )
+	if ( serverConnectionState == XGSServerConnectionStateConnecting )
 		return nil;
 	else
 		return xgridConnection;
@@ -185,17 +185,17 @@ NSMutableDictionary *serverConnectionInstances=nil;
 
 - (BOOL)isConnecting
 {
-	return serverState == XGSServerConnectionStateConnecting;
+	return serverConnectionState == XGSServerConnectionStateConnecting;
 }
 
 - (BOOL)isConnected
 {
-	return serverState == XGSServerConnectionStateConnected || serverState == XGSServerConnectionStateLoaded;
+	return serverConnectionState == XGSServerConnectionStateConnected || serverConnectionState == XGSServerConnectionStateLoaded;
 }
 
 - (BOOL)isLoaded
 {
-	return serverState == XGSServerConnectionStateLoaded;
+	return serverConnectionState == XGSServerConnectionStateLoaded;
 }
 
 
@@ -355,7 +355,7 @@ NSMutableDictionary *serverConnectionInstances=nil;
 	else {
 		[self setXgridConnection:nil];
 		[self setConnectionSelectors:nil];
-		serverState = XGSServerConnectionStateFailed;
+		serverConnectionState = XGSServerConnectionStateFailed;
 		[[NSNotificationCenter defaultCenter] postNotificationName:XGSServerConnectionDidNotConnectNotification object:self];
 	}
 }
@@ -374,7 +374,7 @@ NSMutableDictionary *serverConnectionInstances=nil;
 	[self setConnectionSelectors:nil];
 	
 	//change the current state
-	serverState= XGSServerConnectionStateConnected;
+	serverConnectionState= XGSServerConnectionStateConnected;
 	[[NSNotificationCenter defaultCenter] postNotificationName:XGSServerConnectionDidConnectNotification object:self];
 	
 	//next step is to get the controller 'available' = all the grids and jobs loaded from the server
@@ -385,10 +385,10 @@ NSMutableDictionary *serverConnectionInstances=nil;
 {
 	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
 	
-	if ( serverState == XGSServerConnectionStateConnecting )
+	if ( serverConnectionState == XGSServerConnectionStateConnecting )
 		[self startNextConnectionAttempt];
 	else {
-		serverState = XGSServerConnectionStateDisconnected;
+		serverConnectionState = XGSServerConnectionStateDisconnected;
 		[[NSNotificationCenter defaultCenter] postNotificationName:XGSServerConnectionDidDisconnectNotification object:self];
 	}
 }
@@ -397,10 +397,10 @@ NSMutableDictionary *serverConnectionInstances=nil;
 {
 	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
 	
-	if ( serverState == XGSServerConnectionStateConnecting )
+	if ( serverConnectionState == XGSServerConnectionStateConnecting )
 		[self startNextConnectionAttempt];
 	else {
-		serverState = XGSServerConnectionStateDisconnected;
+		serverConnectionState = XGSServerConnectionStateDisconnected;
 		[[NSNotificationCenter defaultCenter] postNotificationName:XGSServerConnectionDidDisconnectNotification object:self];
 	}
 }
@@ -412,7 +412,7 @@ NSMutableDictionary *serverConnectionInstances=nil;
 //so we call a timer with interval 0 to be back when all the instance variables are set (e.g. grids,...)
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-	if ( serverState == XGSServerConnectionStateConnected ) {
+	if ( serverConnectionState == XGSServerConnectionStateConnected ) {
 		if ( [xgridController state] == XGResourceStateAvailable ) {
 			[xgridController removeObserver:self forKeyPath:@"state"];
 			[NSTimer scheduledTimerWithTimeInterval:0 target:self selector:@selector(controllerDidLoadInstanceVariables:) userInfo:nil repeats:NO];
@@ -425,8 +425,8 @@ NSMutableDictionary *serverConnectionInstances=nil;
 //callback on the iteration of the run loop following the change in the state of the XGController
 - (void)controllerDidLoadInstanceVariables:(NSTimer *)aTimer
 {
-	if ( serverState == XGSServerConnectionStateConnected && [xgridController state] == XGResourceStateAvailable ) {
-		serverState = XGSServerConnectionStateLoaded;
+	if ( serverConnectionState == XGSServerConnectionStateConnected && [xgridController state] == XGResourceStateAvailable ) {
+		serverConnectionState = XGSServerConnectionStateLoaded;
 		[[NSNotificationCenter defaultCenter] postNotificationName:XGSServerConnectionDidLoadNotification object:self];
 	}
 }
@@ -439,11 +439,11 @@ NSMutableDictionary *serverConnectionInstances=nil;
 	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
 
 	//exit if already connecting or connected
-	if ( serverState == XGSServerConnectionStateConnecting || serverState == XGSServerConnectionStateConnected || serverState == XGSServerConnectionStateLoaded )
+	if ( serverConnectionState == XGSServerConnectionStateConnecting || serverConnectionState == XGSServerConnectionStateConnected || serverConnectionState == XGSServerConnectionStateLoaded )
 		return;
 	
 	//change the state of the serverConnection
-	serverState = XGSServerConnectionStateConnecting;
+	serverConnectionState = XGSServerConnectionStateConnecting;
 	
 	//decide on the successive attempts that will be made to connect
 	//the choice depends on the address name (Bonjour or remote?) and on the password
@@ -464,11 +464,11 @@ NSMutableDictionary *serverConnectionInstances=nil;
 	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
 
 	//exit if already connecting or connected
-	if ( serverState == XGSServerConnectionStateConnecting || serverState == XGSServerConnectionStateConnected || serverState == XGSServerConnectionStateLoaded )
+	if ( serverConnectionState == XGSServerConnectionStateConnecting || serverConnectionState == XGSServerConnectionStateConnected || serverConnectionState == XGSServerConnectionStateLoaded )
 		return;
 	
 	//change the state of the serverConnection
-	serverState = XGSServerConnectionStateConnecting;
+	serverConnectionState = XGSServerConnectionStateConnecting;
 	
 	//decide on the successive attempts that will be made to connect
 	//the choice depends on the address name (Bonjour or remote?) and on the password
@@ -489,11 +489,11 @@ NSMutableDictionary *serverConnectionInstances=nil;
 	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
 
 	//exit if already connecting or connected
-	if ( serverState == XGSServerConnectionStateConnecting || serverState == XGSServerConnectionStateConnected || serverState == XGSServerConnectionStateLoaded )
+	if ( serverConnectionState == XGSServerConnectionStateConnecting || serverConnectionState == XGSServerConnectionStateConnected || serverConnectionState == XGSServerConnectionStateLoaded )
 		return;
 	
 	//change the state of the serverConnection
-	serverState = XGSServerConnectionStateConnecting;
+	serverConnectionState = XGSServerConnectionStateConnecting;
 	
 	//decide on the successive attempts that will be made to connect
 	//the choice depends on the address name (Bonjour or remote?) and on the password
@@ -514,11 +514,11 @@ NSMutableDictionary *serverConnectionInstances=nil;
 	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
 
 	//exit if already connecting or connected
-	if ( serverState == XGSServerConnectionStateConnecting || serverState == XGSServerConnectionStateConnected || serverState == XGSServerConnectionStateLoaded )
+	if ( serverConnectionState == XGSServerConnectionStateConnecting || serverConnectionState == XGSServerConnectionStateConnected || serverConnectionState == XGSServerConnectionStateLoaded )
 		return;
 	
 	//change the state of the serverConnection
-	serverState = XGSServerConnectionStateConnecting;
+	serverConnectionState = XGSServerConnectionStateConnecting;
 	
 	//decide on the successive attempts that will be made to connect
 	//the choice depends on the address name (Bonjour or remote?) and on the password
@@ -544,7 +544,7 @@ NSMutableDictionary *serverConnectionInstances=nil;
 	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
 
 	[xgridConnection close];
-	if ( serverState == XGSServerConnectionStateConnecting ) {
+	if ( serverConnectionState == XGSServerConnectionStateConnecting ) {
 		[selectorEnumerator allObjects];
 		[self setConnectionSelectors:nil];
 	}

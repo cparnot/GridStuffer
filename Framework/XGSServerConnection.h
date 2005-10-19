@@ -29,7 +29,7 @@ APPKIT_EXTERN NSString *XGSServerConnectionDidLoadNotification;
 	XGController *xgridController;
 	NSString *serverName;
 	NSString *serverPassword;
-	int serverState; //private enum
+	int serverConnectionState; //private enum
 	
 	//keeping track of connection attempts
 	NSArray *connectionSelectors;
