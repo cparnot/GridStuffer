@@ -20,7 +20,7 @@ Classes for advanced users
 /* XGSServer.h */
 
 //Constants to use to subscribe to notifications received in response to the connect call
-//no delegate as there is only one instance of server per address; thus, several client objects trying to be delegate could overwrite each other in unpredictable ways
+//no delegate as there is only one instance of server per address; several client objects trying to be delegate could overwrite each other in unpredictable ways
 APPKIT_EXTERN NSString *XGSServerDidConnectNotification;
 APPKIT_EXTERN NSString *XGSServerDidNotConnectNotification;
 APPKIT_EXTERN NSString *XGSServerDidDisconnectNotification;
@@ -28,11 +28,11 @@ APPKIT_EXTERN NSString *XGSServerDidDisconnectNotification;
 //after connection, it might take a while before the object loads all the information from the server: how many grids,...
 APPKIT_EXTERN NSString *XGSServerDidLoadNotification;
 
-@interface XGSServer : XGSManagedObject
+@interface XGSServer : NSManagedObject
 {}
 
 //Creating server instances
-//Server instances are added to the default persistent store (see XGSFrameworkSettings), that can be used with bindings to display an automatically updated list of all the servers in the GUI
+//Server instances are added to the default persistent store (see XGSSettings), that can be used with bindings to display an automatically updated list of all the servers in the GUI
 + (void)startBrowsing;
 + (void)stopBrowsing;
 + (NSArray *)allServers;
@@ -96,7 +96,7 @@ APPKIT_EXTERN NSString *XGSJobWasDeletedNotification;
 APPKIT_EXTERN NSString *XGSJobDidLoadNotification;
 
 
-@interface XGSJob : XGSManagedObject
+@interface XGSJob : NSManagedObject
 {}
 
 //Creating XGSJob objects
@@ -179,7 +179,7 @@ APPKIT_EXTERN NSString *XGSJobDidLoadNotification;
 //a grid is considered loaded after all its attributes (name, jobs,...) have been uploaded from the server
 APPKIT_EXTERN NSString *XGSServerDidLoadNotification;
 
-@interface XGSGrid : XGSManagedObject
+@interface XGSGrid : NSManagedObject
 {}
 
 //Grid instances are automatically created by XGSServer objects, and should not be created in any other ways
@@ -207,12 +207,30 @@ APPKIT_EXTERN NSString *XGSServerDidLoadNotification;
 - (XGConnection *)xgridConnection;
 - (NSArray *)xgridJobs;  //array of XGJob
 
-//Loading more XGSJob in the managed object context
-//By default, only job submitted in the context are added, and the XGSJob objects can be only a subset of the actual underlying XGJob objects; in a way, XGSJob are client-specific; these methods will create (if necessary) more XGSJob objects in the managed object context even if not initially submitted by the XGSServer
-- (XGSJob *)jobWithIdentifier:(NSString *)identifier;
-- (NSArray *)allJobs; //return XGSJob objects, not XGJob 
+@end
 
-//using this flag, a grid can be set to automatically create more XGSJob objects as more XGJob objects are created by other apps
+
+
+
+/*
+ The XGSSettings class is used to retrieve and set framework-wide or application-wide settings and objects.
+ See individual methods for details.
+ */
+
+#import <Cocoa/Cocoa.h>
+
+
+@interface XGSSettings : NSObject
+{
+}
+
+//singleton instance that should be used to retrieve/change settings
++ (XGSSettings *)sharedSettings;
+
+//the managed object context is used to store objects at the application level; this context is unique for the whole application. In particular, it is used to store XGSServer objects. A persistent store is automatically created too, in the 'Application Support' folder. This path is specific for the running application and will not be the same when the framework is used in two different applications.
+- (NSManagedObjectContext *)sharedManagedObjectContext;
+
+//by default, the framework will only manage jobs created by the application or the document using it, and will not care about other jobs created by other documents or other applications; to let the framework retrieve all jobs and manage them automatically, set this flag to YES
 - (BOOL)shouldLoadAllJobs;
 - (void)setShouldLoadAllJobs:(BOOL)flag;
 
