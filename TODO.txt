@@ -1,3 +1,13 @@
+Agenda
+-------
+
+* is XGSServerBrowser done?
+* is XGSServerConnection done?
+* is XGSServer done?
+
+then I can start testing things, maybe with some minor changes in the controller/view code.
+
+then I can look at XGSJob
 
 ----------------------------
 TODO for version 0.3
