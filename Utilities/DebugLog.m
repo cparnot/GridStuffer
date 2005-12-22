@@ -16,13 +16,21 @@ NSArray *identifiers ()
 	return identifierArray;
 }
 
+//valid identifiers and verbose level may be set using the user defaults
+//if the value for one of the user defaults is nil, just ignore that setting
 void DLog(NSString *identifier, int level, NSString *fmt,...)
 {
-	int currentVerboseLevel = [[[NSUserDefaults standardUserDefaults] valueForKey:@"DebugLogVerboseLevel"] intValue];
-	if ( level > currentVerboseLevel )
+	//check the verbose level
+	id currentVerboseLevel = [[NSUserDefaults standardUserDefaults] valueForKey:@"DebugLogVerboseLevel"];
+	if ( currentVerboseLevel != nil && level > [currentVerboseLevel intValue] )
 		return;
-	if ( (identifier !=nil) && ([identifiers() indexOfObject:identifier] == NSNotFound) )
+	
+	//check the identifer
+	NSArray *ids = identifiers();
+	if ( (identifier !=nil) && ( ids!=nil ) && ([ids indexOfObject:identifier] == NSNotFound) )
 		return;
+	
+	//now, we can log!
     va_list ap;
     va_start(ap,fmt);
     NSLogv(fmt,ap);
