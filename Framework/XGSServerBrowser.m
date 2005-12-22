@@ -13,6 +13,18 @@
  You should have received a copy of the GNU General Public License along with GridStuffer; if not, write to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
+/*
+ Implementation is very simple
+ 
+ * lazy instantiation of the singleton instance
+ * lazy instantiation of the unique ivar for this class = netServiceBrowser, when starting the browser
+ * a few callbacks = delegate methods for the NSNetServiceBrowser
+ * calling the XGSServer initialization methods to create XGSServer methods as they appear in the local network
+ * it also knows a little bit about the internals of XGServer to set up the flags accordingly for 'isAvailable', 'wasAvailable...'
+
+ 
+*/
+
 #import "XGSServerBrowser.h"
 #import "XGSServer.h"
 
@@ -80,7 +92,6 @@ XGSServerBrowser *sharedServerBrowser = nil;
 {
 	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
 
-	
 	XGSServer *aServer;	
     aServer = [XGSServer serverWithAddress:[netService name]];
 	[aServer setValue:[NSNumber numberWithBool:YES] forKey:@"isAvailable"];
