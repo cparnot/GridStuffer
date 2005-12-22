@@ -126,6 +126,11 @@ NSMutableDictionary *serverConnectionInstances=nil;
 	[super dealloc];
 }
 
+- (NSString *)shortDescription
+{
+	return [NSString stringWithFormat:@"Server Connection to '%@' (state %d)", serverName, serverConnectionState];
+}
+
 #pragma mark *** Accessors ***
 
 //public
@@ -412,6 +417,8 @@ NSMutableDictionary *serverConnectionInstances=nil;
 //so we call a timer with interval 0 to be back when all the instance variables are set (e.g. grids,...)
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
+	DLog(NSStringFromClass([self class]),10,@"[%@:%p %s] - %@\nObject = <%@:%p>\nKey Path = %@\nChange = %@",[self class],self,_cmd, [self shortDescription], [object class], object, keyPath, [change description]);
+
 	if ( serverConnectionState == XGSServerConnectionStateConnected ) {
 		if ( [xgridController state] == XGResourceStateAvailable ) {
 			[xgridController removeObserver:self forKeyPath:@"state"];
@@ -425,6 +432,8 @@ NSMutableDictionary *serverConnectionInstances=nil;
 //callback on the iteration of the run loop following the change in the state of the XGController
 - (void)controllerDidLoadInstanceVariables:(NSTimer *)aTimer
 {
+	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
+
 	if ( serverConnectionState == XGSServerConnectionStateConnected && [xgridController state] == XGResourceStateAvailable ) {
 		serverConnectionState = XGSServerConnectionStateLoaded;
 		[[NSNotificationCenter defaultCenter] postNotificationName:XGSServerConnectionDidLoadNotification object:self];
@@ -433,6 +442,18 @@ NSMutableDictionary *serverConnectionInstances=nil;
 
 
 #pragma mark *** Public connection methods ***
+
+//function used to decide is an address string is likely to be that of a remote host or of a local (Bonjour) server
+BOOL isRemoteHost (NSString *anAddress)
+{
+	if ( [anAddress isEqualToString:@"localhost"] )
+		return YES;
+	else
+		return ( [anAddress rangeOfString:@"."].location != NSNotFound );
+	
+}
+
+
 
 - (void)connectWithoutAuthentication
 {
@@ -448,8 +469,7 @@ NSMutableDictionary *serverConnectionInstances=nil;
 	//decide on the successive attempts that will be made to connect
 	//the choice depends on the address name (Bonjour or remote?) and on the password
 	NSArray *selectors = nil;
-	BOOL isRemoteHost = ( [serverName rangeOfString:@"."].location != NSNotFound );
-	if ( isRemoteHost )
+	if ( isRemoteHost(serverName) )
 		selectors = [NSArray arrayWithObjects:@"H1",@"H2",@"B1",@"B2",nil];
 	else
 		selectors = [NSArray arrayWithObjects:@"B1",@"B2",@"H1",@"H2",nil];
@@ -473,11 +493,10 @@ NSMutableDictionary *serverConnectionInstances=nil;
 	//decide on the successive attempts that will be made to connect
 	//the choice depends on the address name (Bonjour or remote?) and on the password
 	NSArray *selectors = nil;
-	BOOL isRemoteHost = ( [serverName rangeOfString:@"."].location != NSNotFound );
-	if ( isRemoteHost )
-		selectors = [NSArray arrayWithObjects:@"H2",@"B2",nil];
+	if ( isRemoteHost(serverName) )
+		selectors = [NSArray arrayWithObjects:@"H3",@"B3",nil];
 	else
-		selectors = [NSArray arrayWithObjects:@"B2",@"H2",nil];
+		selectors = [NSArray arrayWithObjects:@"B3",@"H3",nil];
 	[self setConnectionSelectors:selectors];
 	
 	//start the connection process
@@ -498,8 +517,7 @@ NSMutableDictionary *serverConnectionInstances=nil;
 	//decide on the successive attempts that will be made to connect
 	//the choice depends on the address name (Bonjour or remote?) and on the password
 	NSArray *selectors = nil;
-	BOOL isRemoteHost = ( [serverName rangeOfString:@"."].location != NSNotFound );
-	if ( isRemoteHost )
+	if ( isRemoteHost(serverName) )
 		selectors = [NSArray arrayWithObjects:@"H2",@"B2",@"H3",@"B3",nil];
 	else
 		selectors = [NSArray arrayWithObjects:@"B2",@"H2",@"B3",@"H3",nil];
@@ -523,15 +541,15 @@ NSMutableDictionary *serverConnectionInstances=nil;
 	//decide on the successive attempts that will be made to connect
 	//the choice depends on the address name (Bonjour or remote?) and on the password
 	NSArray *selectors = nil;
-	BOOL isRemoteHost = ( [serverName rangeOfString:@"."].location != NSNotFound );
+	BOOL remoteHost = isRemoteHost(serverName);
 	BOOL usePassword = ( [serverPassword length] > 0 );
-	if ( usePassword && isRemoteHost )
+	if ( usePassword && remoteHost )
 		selectors = [NSArray arrayWithObjects:@"H2",@"B2",@"H1",@"H3",@"B1",@"B3",nil];
-	else if ( usePassword && !isRemoteHost )
+	else if ( usePassword && !remoteHost )
 		selectors = [NSArray arrayWithObjects:@"B2",@"H2",@"B1",@"B3",@"H1",@"H3",nil];
-	else if ( !usePassword && isRemoteHost )
+	else if ( !usePassword && remoteHost )
 		selectors = [NSArray arrayWithObjects:@"H1",@"H3",@"B1",@"B3",nil];
-	else if ( !usePassword && !isRemoteHost )
+	else if ( !usePassword && !remoteHost )
 		selectors = [NSArray arrayWithObjects:@"B1",@"B3",@"H1",@"H3",nil];
 	[self setConnectionSelectors:selectors];
 	
