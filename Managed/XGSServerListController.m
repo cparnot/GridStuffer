@@ -169,34 +169,6 @@
 }
 
 
-/*
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
-{
-	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s\nObject = <%@:%p>\nKey Path = %@",[self class],self,_cmd,[object class], object, keyPath);
-	
-	if ( object != currentServer )
-		return;
-		
-	//the currentServer has successfully connected
-	if ( [currentServer isConnected] )
-		[self endConnectionProcess];
-	
-	//the currentServer has failed to connect
-	else if ( [currentServer isConnecting]==NO ) {
-		[self setValue:[NSNumber numberWithBool:NO] forKey:@"isConnecting"];
-		//if the authentication sheet is already on, then it means the authentication failed
-		if ( [[self window] attachedSheet] )
-			[authenticationFailedTextField setHidden:NO];
-		//otherwise, it means we need to ask authentication from the user
-		else {
-			[authenticationFailedTextField setHidden:YES];
-			[serverNameField setStringValue:[currentServer valueForKey:@"name"]];
-			[NSApp beginSheet:connectSheet modalForWindow:[self window] modalDelegate:self didEndSelector:NULL contextInfo:NULL];
-		}
-	}
-}
-*/
-
 #pragma mark *** User actions ***
 
 - (IBAction)connect:(id)sender

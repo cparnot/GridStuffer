@@ -177,7 +177,7 @@ APPKIT_EXTERN NSString *XGSJobDidLoadNotification;
 /* XGSGrid.h */
 
 //a grid is considered loaded after all its attributes (name, jobs,...) have been uploaded from the server
-APPKIT_EXTERN NSString *XGSServerDidLoadNotification;
+APPKIT_EXTERN NSString *XGSGridDidLoadNotification;
 
 @interface XGSGrid : NSManagedObject
 {}
@@ -199,7 +199,7 @@ APPKIT_EXTERN NSString *XGSServerDidLoadNotification;
 - (BOOL)isConnecting;
 - (BOOL)isConnected;
 - (BOOL)isLoaded;
-- (NSString *)statusString;
+- (NSString *)status;
 
 //low-level accessors
 - (XGGrid *)xgridGrid;

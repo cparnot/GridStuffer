@@ -22,7 +22,7 @@
 #import "XGSOutputInterface.h"
 #import "XGSInputInterface.h"
 #import "XGSToolbarController.h"
-#import "XGSFrameworkSettings.h"
+#import "XGSSettings.h"
 
 @implementation GridStufferAppDelegate
 
@@ -249,7 +249,7 @@
 
 - (NSManagedObjectContext *) managedObjectContext
 {
-	return [XGSFrameworkSettings sharedManagedObjectContext];
+	return [XGSSettings sharedManagedObjectContext];
 	
     NSError *error;
     NSString *applicationSupportFolder = nil;

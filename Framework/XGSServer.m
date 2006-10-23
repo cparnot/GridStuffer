@@ -18,18 +18,18 @@
 #import "XGSGrid.h"
 #import "XGSGridPrivate.h"
 #import "XGSServerBrowser.h"
-#import "XGSFrameworkSettings.h"
+#import "XGSSettings.h"
 
 //global constants used for notifications
 NSString *XGSServerDidConnectNotification = @"XGSServerDidConnectNotification";
-NSString *XGSServerDidLoadNotification = @"XGSServerDidLoadNotification";
 NSString *XGSServerDidNotConnectNotification = @"XGSServerDidNotConnectNotification";
 NSString *XGSServerDidDisconnectNotification = @"XGSServerDidDisconnectNotification";
+
+NSString *XGSServerDidLoadNotification = @"XGSServerDidLoadNotification";
 
 
 //static NSString *XgridServiceType = @"_xgrid._tcp.";
 //static NSString *XgridServiceDomain = @"local.";
-
 
 @interface XGSServer (XGSServerPrivate)
 - (XGSGrid *)gridWithID:(NSString *)gridID;
@@ -74,7 +74,7 @@ NSString *XGSServerDidDisconnectNotification = @"XGSServerDidDisconnectNotificat
 	NSFetchRequest *request;
 	NSArray *results;
 	NSError *error;
-	NSManagedObjectContext *context = [XGSFrameworkSettings sharedManagedObjectContext];
+	NSManagedObjectContext *context = [XGSSettings sharedManagedObjectContext];
 	request = [[[NSFetchRequest alloc] init] autorelease];
 	[request setEntity:[NSEntityDescription entityForName:@"Server" inManagedObjectContext:context]];
 	[request setPredicate:[NSPredicate predicateWithFormat:@"(name != "")"]];
@@ -86,7 +86,7 @@ NSString *XGSServerDidDisconnectNotification = @"XGSServerDidDisconnectNotificat
 + (XGSServer *)serverWithAddress:(NSString *)address
 {
 	DLog(NSStringFromClass([self class]),12,@"<%@:%p> %s",[self class],self,_cmd);
-	return [XGSServer serverWithAddress:address inManagedObjectContext:[XGSFrameworkSettings sharedManagedObjectContext]];
+	return [XGSServer serverWithAddress:address inManagedObjectContext:[XGSSettings sharedManagedObjectContext]];
 }
 
 + (XGSServer *)serverWithAddress:(NSString *)address inManagedObjectContext:(NSManagedObjectContext *)context

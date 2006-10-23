@@ -109,7 +109,7 @@ XGSSettings *sharedFrameworkSettings = nil;
 #pragma mark *** Public class methods ***
 + (NSManagedObjectContext *)sharedManagedObjectContext
 {
-	return [[self sharedFrameworkSettings] managedObjectContext];
+	return [[self sharedSettings] managedObjectContext];
 }
 
 

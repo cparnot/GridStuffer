@@ -16,8 +16,8 @@
 /*
 The XGSServer instances are managed objects that expose a simple interface for Xgrid Controllers. Behind the scenes, this class uses a number of other private classes for the server connections, the creation of an application-wide shared managed object context and browsing the local network for servers advertising their services.
 
-Because of all these things happening behind the scenes, instances of XGSServer should only be created/retrieved using the public methods listed here. There are three ways to create/retrieve XGSServer instances:
- - using the class method '+allServers'. The returned array contain servers already connected, but also servers that were connected to in previous sessions (saved in a persistent store) and servers found on the local network (if browsing was started using the 'startBrowsing').
+To make sure everything works as expected, instances of XGSServer should only be created/retrieved using the public methods listed here. There are three ways to create/retrieve XGSServer instances:
+ - using the class method '+allServers'. The returned array contain servers already connected, but also servers that were connected to in previous sessions (saved in a persistent store) and "available" servers found on the local network (when browsing was started using the 'startBrowsing', found servers are automatically added).
  - using the class method '+serverWithAddress:', which may create a new instance or retrieve an existing record from the shared managed object context created by the framework
  - using the class method '+serverWithAddress:managedObjectContext:', which you can use to create and retrieve server objects in a custom managed object context; to "copy" an existing XGSServer into a different managed object context, you can use '-serverInManagedObjectContext:'
  
@@ -29,14 +29,20 @@ Then use a delegate or notifications to keep track of the connection status asyn
 IMPORTANT: in the current implementation, the password will NOT be saved to disk.
 */
 
-//Constants to use to subscribe to notifications
+
+//Constants to use to subscribe to notifications received in response to the connect call
+//no delegate as there is only one instance of server per address; thus, several client objects trying to be delegate could overwrite each other in unpredictable ways
 APPKIT_EXTERN NSString *XGSServerDidConnectNotification;
-APPKIT_EXTERN NSString *XGSServerDidLoadNotification;
 APPKIT_EXTERN NSString *XGSServerDidNotConnectNotification;
 APPKIT_EXTERN NSString *XGSServerDidDisconnectNotification;
 
+//after connection, it might take a while before the object loads all the information from the server: how many grids,...
+APPKIT_EXTERN NSString *XGSServerDidLoadNotification;
+
+
 @class XGSServerConnection;
 @class XGSGrid;
+@class XGSJob;
 
 @interface XGSServer : XGSManagedObject
 {
@@ -44,42 +50,60 @@ APPKIT_EXTERN NSString *XGSServerDidDisconnectNotification;
 	id delegate;
 }
 
-// The browser methods will automatically detect servers advertising on the Bonjour network. These will be asynchronously added to the list returned by allServers
+//Creating server instances
+//Server instances are added to the default persistent store (see XGSFrameworkSettings), that can be used with bindings to display an automatically updated list of all the servers in the GUI
 + (void)startBrowsing;
 + (void)stopBrowsing;
-
-// This is the recommanded way to retrieve servers (which might also trigger the creation of a new server if it does not exist yet)
 + (NSArray *)allServers;
 + (XGSServer *)serverWithAddress:(NSString *)address;
 
-// The XGSServer instances returned by the above methods live in a managed object context set up by the framework, and this context is unique for the whole application. If you want to use XGSServer objects in a custom managed object context, do not create them yourself but use one of the methods below. These methods will set up the connection properly and they guarantee that there is only one XGSServer object per server address and per context.
+//New instances are always added to the default persistent store (see XGSFrameworkSettings), but using this method, a server can in addition be attached to a custom context (e.g. for document-based app)
+//Instances are guaranteed to be unique for a given address and a given managed object context, but you will get two different instances for servers with the same addresses on 2 separate contexts 
 + (XGSServer *)serverWithAddress:(NSString *)address inManagedObjectContext:(NSManagedObjectContext *)context;
-- (XGSServer *)serverInManagedObjectContext:(NSManagedObjectContext *)context;
 
-//accessors
+//Connecting (either automatically or using a specific protocol)
+- (void)connect;
+- (void)disconnect;
+- (void)connectWithoutAuthentication;
+- (void)connectWithSingleSignOnCredentials;
+- (void)connectWithPassword:(NSString *)password;
+
+//Submitting jobs using the default grid (notifications received by the XGSJob object, see header for that class)
+//The XGSJob is added to the same managed object context as the server
+//To submit jobs to different grids, use XGSGrid class instead
+- (XGSJob *)submitJobWithSpecifications:(NSDictionary *)specs;
+
+
+//KVO/KVC-compliant accessors
 - (NSString *)address;
-- (XGController *)xgridController;
 - (XGSGrid *)defaultGrid;
+- (NSSet *)grids; //XGSGrid objects, not XGGrid
+- (NSSet *)jobs; //XGSJob objects, not XGJob
+- (BOOL)isAvailable;
+- (BOOL)isConnecting;
+- (BOOL)isConnected;
+- (BOOL)isLoaded;
+- (NSString *)statusString;
+- (BOOL)shouldRememberPassword;
+- (void)setShouldRememberPassword:(BOOL)flag;
+- (void)setPassword:(NSString *)aString;
+
+//low-level accessors
+- (XGController *)xgridController;
+- (XGConnection *)xgridConnection;
+- (NSArray *)xgridGrids; //array of XGGrid
+- (NSArray *)xgridJobs;  //array of XGJob
+
+
 
 //see below, the informal protocol for the delegate and notifications
 - (id)delegate;
 - (void)setDelegate:(id)newDelegate;
 
-//after calling these methods, use the delegate or the notifications to be notified asynchronously of the connection results
-- (void)connectWithoutAuthentication;
-- (void)connectWithSingleSignOnCredentials;
-- (void)connectWithPassword:(NSString *)password;
-- (void)disconnect;
-
-//These keys can be observed with KVO
-//To get a notification that the connection is ready, observe isConnecting until NO, then check if isConnected is YES
-- (BOOL)isAvailable;
-- (BOOL)isConnected;
-- (BOOL)isConnecting;
-- (NSString *)statusString;
 
 @end
 
+/*
 //methods that can be implemented by the delegate
 @interface NSObject (XGSServerDelegate)
 - (void)serverDidConnect:(XGSServer *)aServer;
@@ -88,3 +112,4 @@ APPKIT_EXTERN NSString *XGSServerDidDisconnectNotification;
 //- (void)server:(XGSServer *)aServer didAddGrid:(XGSGrid *)aGrid;
 //- (void)server:(XGSServer *)aServer didRemoveGrid:(XGSGrid *)aGrid;
 @end
+*/

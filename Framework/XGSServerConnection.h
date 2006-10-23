@@ -39,6 +39,7 @@ APPKIT_EXTERN NSString *XGSServerConnectionDidLoadNotification;
 - (id)initWithAddress:(NSString *)address password:(NSString *)password;
 + (XGSServerConnection *)serverConnectionWithAddress:(NSString *)address password:(NSString *)password;
 
+
 //accessors
 - (XGConnection *)xgridConnection;
 - (XGController *)xgridController;

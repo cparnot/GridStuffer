@@ -270,7 +270,11 @@ static NSString *StateStrings[XGSJobStateDeleted+1];
 {
 	XGSGrid *grid;
 	XGSServer *server;
+	
+	//temporary
+	return NO;
 
+	/*
 	DLog(NSStringFromClass([self class]),10,@"[%@:%p %s] - %@",[self class],self,_cmd,[self shortDescription]);
 
 	//increment the submission count (even if no job can actually be submitted because of connection failure)
@@ -294,6 +298,7 @@ static NSString *StateStrings[XGSJobStateDeleted+1];
 	[submissionMonitor retain];
 	[submissionMonitor addObserver:self forKeyPath:@"outcome" options:NSKeyValueObservingOptionNew context:NULL];
 	return YES;
+	 */
 }
 
 //this method really starts the submission process after everything has been set up:
