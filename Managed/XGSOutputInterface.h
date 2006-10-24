@@ -59,18 +59,5 @@
 //- (BOOL)saveString:(NSString *)aString fileName:(NSString *)fileName;
 //- (BOOL)appendString:(NSString *)aString fileName:(NSString *)fileName;
 
-/*
- Log levels:
- * 0 = normally not used
- * 1 = timestamps on job submissions, results and failures
- * 2 = syntax errors in the input files, paths mising,..
- * 3 = timestamps on low level operations (start/end parse, ...)
- * 4 = full description of all parsing steps and results
-*/
-
-//logging
-- (void)logString:(NSString *)message;
-- (void)logLevel:(unsigned int)level string:(NSString *)message;
-- (void)logLevel:(unsigned int)level format:(NSString *)format, ...;
 
 @end

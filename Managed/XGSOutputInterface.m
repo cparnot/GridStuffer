@@ -251,40 +251,5 @@ static NSString *UniqueNameWithPath(NSString *path, unsigned int *suffix)
 
 
 
-#pragma mark *** logging methods ***
-
-- (unsigned int)logVerboseLevelInteger
-{
-	return [[self valueForKey:@"logVerboseLevel"] intValue];
-}
-
-- (void)writeString:(NSString *)message
-{
-	//NEED CODE!!!
-	DLog(nil,0,message);
-}
-
-- (void)logString:(NSString *)message
-{
-	[self logLevel:1 format:message];
-}
-
-
-- (void)logLevel:(unsigned int)level string:(NSString *)message
-{
-	if (level>=[self logVerboseLevelInteger])
-		[self writeString:message];
-}
-
-- (void)logLevel:(unsigned int)level format:(NSString *)format, ...
-{
-    va_list ap;
-	NSString *message;
-	if (level>=[self logVerboseLevelInteger]) {
-		va_start(ap,format);
-		message=[NSString stringWithFormat:format,ap];
-		[self writeString:message];
-	}
-}
 
 @end

@@ -512,17 +512,29 @@
 		indexTemplatePath = "";
 	};
 	561FF4C9086BD372004DEAF4 /* XGSManagedObject.h */ = {
+		isa = PBXFileReference;
+		fileEncoding = 4;
+		lastKnownFileType = sourcecode.c.h;
+		name = XGSManagedObject.h;
+		path = /Users/charles/Docs/Development/cocoa_dev/GridStuffer/Managed/XGSManagedObject.h;
+		sourceTree = "<absolute>";
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {746, 658}}";
-			sepNavSelRange = "{1256, 2}";
-			sepNavVisRect = "{{0, 269}, {746, 389}}";
+			sepNavIntBoundsRect = "{{0, 0}, {827, 655}}";
+			sepNavSelRange = "{1238, 0}";
+			sepNavVisRect = "{{0, 0}, {827, 655}}";
 		};
 	};
 	561FF4CA086BD372004DEAF4 /* XGSManagedObject.m */ = {
+		isa = PBXFileReference;
+		fileEncoding = 4;
+		lastKnownFileType = sourcecode.c.objc;
+		name = XGSManagedObject.m;
+		path = /Users/charles/Docs/Development/cocoa_dev/GridStuffer/Managed/XGSManagedObject.m;
+		sourceTree = "<absolute>";
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {827, 938}}";
 			sepNavSelRange = "{1000, 0}";
-			sepNavVisRect = "{{0, 0}, {827, 655}}";
+			sepNavVisRect = "{{0, 275}, {827, 655}}";
 		};
 	};
 	561FF568086BDC4E004DEAF4 /* -valueForUndefinedKey: */ = {
@@ -579,17 +591,16 @@
 		vrLoc = 3719;
 	};
 	562F55A308AFC40C00D92CC0 /* XGSSettings.h */ = {
+		isa = PBXFileReference;
+		fileEncoding = 4;
+		lastKnownFileType = sourcecode.c.h;
+		name = XGSSettings.h;
+		path = /Users/charles/Docs/Development/cocoa_dev/GridStuffer/Framework/XGSSettings.h;
+		sourceTree = "<absolute>";
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {827, 499}}";
+			sepNavIntBoundsRect = "{{0, 0}, {827, 655}}";
 			sepNavSelRange = "{145, 772}";
-			sepNavVisRect = "{{0, 0}, {827, 499}}";
-		};
-	};
-	562F55A408AFC40C00D92CC0 /* XGSSettings.m */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {827, 1638}}";
-			sepNavSelRange = "{423, 0}";
-			sepNavVisRect = "{{0, 72}, {827, 655}}";
+			sepNavVisRect = "{{0, 0}, {827, 655}}";
 		};
 	};
 	562F564F08B0714C00D92CC0 /* XGSServerListController.m:91 */ = {
@@ -1409,12 +1420,18 @@
 		fRef = 32CA4F630368D1EE00C91783 /* GridStuffer_Prefix.pch */;
 		name = "GridStuffer_Prefix.pch: 12";
 		rLen = 0;
-		rLoc = 251;
+		rLoc = 221;
 		rType = 0;
 		vrLen = 251;
 		vrLoc = 0;
 	};
 	5667FA5A0869CA45009705CB /* XGSJobPrivate.h */ = {
+		isa = PBXFileReference;
+		fileEncoding = 4;
+		lastKnownFileType = sourcecode.c.h;
+		name = XGSJobPrivate.h;
+		path = /Users/charles/Docs/Development/cocoa_dev/GridStuffer/Framework/XGSJobPrivate.h;
+		sourceTree = "<absolute>";
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {827, 655}}";
 			sepNavSelRange = "{991, 395}";
@@ -1462,6 +1479,12 @@
 		vrLoc = 1478;
 	};
 	5684209E08A040080078AFB7 /* XGSServerConnection.h */ = {
+		isa = PBXFileReference;
+		fileEncoding = 4;
+		lastKnownFileType = sourcecode.c.h;
+		name = XGSServerConnection.h;
+		path = /Users/charles/Docs/Development/cocoa_dev/GridStuffer/Framework/XGSServerConnection.h;
+		sourceTree = "<absolute>";
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {827, 896}}";
 			sepNavSelRange = "{1834, 0}";
@@ -1469,6 +1492,12 @@
 		};
 	};
 	5684209F08A040080078AFB7 /* XGSServerConnection.m */ = {
+		isa = PBXFileReference;
+		fileEncoding = 4;
+		lastKnownFileType = sourcecode.c.objc;
+		name = XGSServerConnection.m;
+		path = /Users/charles/Docs/Development/cocoa_dev/GridStuffer/Framework/XGSServerConnection.m;
+		sourceTree = "<absolute>";
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {827, 8330}}";
 			sepNavSelRange = "{19184, 0}";
@@ -1527,10 +1556,16 @@
 		vrLoc = 0;
 	};
 	568A029808ED08AA00C77691 /* Dream framework.h */ = {
+		isa = PBXFileReference;
+		fileEncoding = 4;
+		lastKnownFileType = sourcecode.c.h;
+		name = "Dream framework.h";
+		path = "/Users/charles/Docs/Development/cocoa_dev/GridStuffer/Framework-doc/Dream framework.h";
+		sourceTree = "<absolute>";
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {827, 3528}}";
 			sepNavSelRange = "{6538, 500}";
-			sepNavVisRect = "{{0, 1397}, {827, 655}}";
+			sepNavVisRect = "{{0, 2873}, {827, 655}}";
 			sepNavWindowFrame = "{{174, 33}, {999, 763}}";
 		};
 	};
@@ -1564,6 +1599,12 @@
 		state = 2;
 	};
 	5697593A08635C2200A09FB5 /* XGSGrid.h */ = {
+		isa = PBXFileReference;
+		fileEncoding = 30;
+		lastKnownFileType = sourcecode.c.h;
+		name = XGSGrid.h;
+		path = /Users/charles/Docs/Development/cocoa_dev/GridStuffer/Framework/XGSGrid.h;
+		sourceTree = "<absolute>";
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {827, 655}}";
 			sepNavSelRange = "{1187, 0}";
@@ -1571,6 +1612,12 @@
 		};
 	};
 	5697593B08635C2200A09FB5 /* XGSGrid.m */ = {
+		isa = PBXFileReference;
+		fileEncoding = 30;
+		lastKnownFileType = sourcecode.c.objc;
+		name = XGSGrid.m;
+		path = /Users/charles/Docs/Development/cocoa_dev/GridStuffer/Framework/XGSGrid.m;
+		sourceTree = "<absolute>";
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {827, 3346}}";
 			sepNavSelRange = "{1783, 163}";
@@ -1578,6 +1625,12 @@
 		};
 	};
 	5697593C08635C2200A09FB5 /* XGSJob.h */ = {
+		isa = PBXFileReference;
+		fileEncoding = 30;
+		lastKnownFileType = sourcecode.c.h;
+		name = XGSJob.h;
+		path = /Users/charles/Docs/Development/cocoa_dev/GridStuffer/Framework/XGSJob.h;
+		sourceTree = "<absolute>";
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {827, 1610}}";
 			sepNavSelRange = "{1610, 31}";
@@ -1585,6 +1638,12 @@
 		};
 	};
 	5697593D08635C2200A09FB5 /* XGSJob.m */ = {
+		isa = PBXFileReference;
+		fileEncoding = 30;
+		lastKnownFileType = sourcecode.c.objc;
+		name = XGSJob.m;
+		path = /Users/charles/Docs/Development/cocoa_dev/GridStuffer/Framework/XGSJob.m;
+		sourceTree = "<absolute>";
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {827, 12208}}";
 			sepNavSelRange = "{19917, 1346}";
@@ -1593,6 +1652,12 @@
 		};
 	};
 	5697593E08635C2200A09FB5 /* XGSMetaJobAccessors.m */ = {
+		isa = PBXFileReference;
+		fileEncoding = 30;
+		lastKnownFileType = sourcecode.c.objc;
+		name = XGSMetaJobAccessors.m;
+		path = /Users/charles/Docs/Development/cocoa_dev/GridStuffer/Managed/XGSMetaJobAccessors.m;
+		sourceTree = "<absolute>";
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {827, 1218}}";
 			sepNavSelRange = "{863, 0}";
@@ -1600,6 +1665,12 @@
 		};
 	};
 	5697593F08635C2200A09FB5 /* XGSMetaJobPrivateAccessors.h */ = {
+		isa = PBXFileReference;
+		fileEncoding = 30;
+		lastKnownFileType = sourcecode.c.h;
+		name = XGSMetaJobPrivateAccessors.h;
+		path = /Users/charles/Docs/Development/cocoa_dev/GridStuffer/Managed/XGSMetaJobPrivateAccessors.h;
+		sourceTree = "<absolute>";
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {827, 655}}";
 			sepNavSelRange = "{870, 0}";
@@ -1608,6 +1679,12 @@
 		};
 	};
 	5697594008635C2200A09FB5 /* XGSMetaJobPrivateAccessors.m */ = {
+		isa = PBXFileReference;
+		fileEncoding = 30;
+		lastKnownFileType = sourcecode.c.objc;
+		name = XGSMetaJobPrivateAccessors.m;
+		path = /Users/charles/Docs/Development/cocoa_dev/GridStuffer/Managed/XGSMetaJobPrivateAccessors.m;
+		sourceTree = "<absolute>";
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {827, 1344}}";
 			sepNavSelRange = "{909, 0}";
@@ -1653,6 +1730,12 @@
 		fRef = 56975A400865551600A09FB5 /* GridStufferIcon.icns */;
 	};
 	56975A850868B97B00A09FB5 /* XGSGridPrivate.h */ = {
+		isa = PBXFileReference;
+		fileEncoding = 4;
+		lastKnownFileType = sourcecode.c.h;
+		name = XGSGridPrivate.h;
+		path = /Users/charles/Docs/Development/cocoa_dev/GridStuffer/Framework/XGSGridPrivate.h;
+		sourceTree = "<absolute>";
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {827, 518}}";
 			sepNavSelRange = "{1113, 0}";
@@ -1833,7 +1916,7 @@
 			"Xdesign Model Editor Bookmark Key" = {
 				UIContextForDetailArea = {
 					_indexOfSelectedPane = 0;
-					_indexOfSelectedView = 0;
+					_indexOfSelectedView = 1;
 				};
 				UIContextForEntityArea = {
 					_indexOfSelectedView = 0;
@@ -1849,12 +1932,12 @@
 						name,
 					);
 					chosenTableColumnns_sortSelectors = (
-						"compare:",
+						"_xdcaseInsensitiveNumericCompare:",
 					);
 					chosenTableWidths = (
 						103.000000,
 						22.000000,
-						124.080078,
+						76.080078,
 					);
 				};
 				UIContextForLayoutManager = {
@@ -1864,8 +1947,8 @@
 						_percentageOfCollapsedView = 0;
 						isCollapsed = yes;
 						sizes = (
-							"{{0, 0}, {584, 208}}",
-							"{{589, 0}, {283, 208}}",
+							"{{0, 0}, {584, 220}}",
+							"{{589, 0}, {283, 220}}",
 						);
 					};
 					diagramSplitGeometry = {
@@ -1874,8 +1957,8 @@
 						_percentageOfCollapsedView = 0;
 						isCollapsed = yes;
 						sizes = (
-							"{{0, 0}, {872, 208}}",
-							"{{0, 213}, {872, 286}}",
+							"{{0, 0}, {872, 220}}",
+							"{{0, 225}, {872, 430}}",
 						);
 					};
 					tableSplitGeometry = {
@@ -1884,8 +1967,8 @@
 						_percentageOfCollapsedView = 0;
 						isCollapsed = yes;
 						sizes = (
-							"{{0, 0}, {226, 208}}",
-							"{{231, 0}, {352, 208}}",
+							"{{0, 0}, {226, 220}}",
+							"{{231, 0}, {352, 220}}",
 						);
 					};
 				};
@@ -1896,20 +1979,26 @@
 						"FT Predicate",
 					);
 					chosenTableColumnnFRTs_sortDirections = (
+						YES,
 					);
 					chosenTableColumnnFRTs_sortKeys = (
+						name,
 					);
 					chosenTableColumnnFRTs_sortSelectors = (
+						"_xdcaseInsensitiveNumericCompare:",
 					);
 					chosenTableColumnnsAT = (
 						"AT Attribute",
 						"AT Type",
 					);
 					chosenTableColumnnsAT_sortDirections = (
+						YES,
 					);
 					chosenTableColumnnsAT_sortKeys = (
+						name,
 					);
 					chosenTableColumnnsAT_sortSelectors = (
+						"_xdcaseInsensitiveNumericCompare:",
 					);
 					chosenTableColumnnsFPT = (
 						"FP FetchedProperty",
@@ -1917,10 +2006,13 @@
 						"FP Predicate",
 					);
 					chosenTableColumnnsFPT_sortDirections = (
+						YES,
 					);
 					chosenTableColumnnsFPT_sortKeys = (
+						name,
 					);
 					chosenTableColumnnsFPT_sortSelectors = (
+						"_xdcaseInsensitiveNumericCompare:",
 					);
 					chosenTableColumnnsPT = (
 						"PT Property",
@@ -1934,17 +2026,20 @@
 						name,
 					);
 					chosenTableColumnnsPT_sortSelectors = (
-						"compare:",
+						"_xdcaseInsensitiveNumericCompare:",
 					);
 					chosenTableColumnnsRT = (
 						"RT Relationship",
 						"RT Destination",
 					);
 					chosenTableColumnnsRT_sortDirections = (
+						YES,
 					);
 					chosenTableColumnnsRT_sortKeys = (
+						name,
 					);
 					chosenTableColumnnsRT_sortSelectors = (
+						"_xdcaseInsensitiveNumericCompare:",
 					);
 					chosenTableWidthsAT = (
 						128.000000,
@@ -1970,7 +2065,7 @@
 					);
 				};
 				"xdesign model browser state key - shown/hidden" = 1;
-				"xdesign model diagram view visible rect key" = "{{-105, 573}, {857, 271}}";
+				"xdesign model diagram view visible rect key" = "{{-105, 0}, {857, 415}}";
 			};
 			sepNavWindowFrame = "{{22, 67}, {1008, 760}}";
 		};
@@ -2472,7 +2567,7 @@
 	56F42317083BBBA90011D12B /* XGSNewJobController.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {827, 655}}";
-			sepNavSelRange = "{863, 0}";
+			sepNavSelRange = "{868, 0}";
 			sepNavVisRect = "{{0, 0}, {827, 655}}";
 		};
 	};
@@ -2499,40 +2594,52 @@
 	};
 	56F4232D083BBC170011D12B /* XGSCategories.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {827, 546}}";
-			sepNavSelRange = "{1194, 0}";
-			sepNavVisRect = "{{0, 11}, {827, 499}}";
+			sepNavIntBoundsRect = "{{0, 0}, {827, 655}}";
+			sepNavSelRange = "{787, 0}";
+			sepNavVisRect = "{{0, 0}, {827, 655}}";
 		};
 	};
 	56F4232E083BBC170011D12B /* XGSCategories.m */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {827, 1204}}";
 			sepNavSelRange = "{143, 0}";
-			sepNavVisRect = "{{0, 0}, {827, 499}}";
+			sepNavVisRect = "{{0, 535}, {827, 655}}";
 		};
 	};
 	56F42332083BBC6D0011D12B /* XGSInputInterface.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {827, 655}}";
-			sepNavSelRange = "{861, 0}";
+			sepNavSelRange = "{937, 45}";
 			sepNavVisRect = "{{0, 0}, {827, 655}}";
 		};
 	};
 	56F42333083BBC6D0011D12B /* XGSInputInterface.m */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {827, 1722}}";
-			sepNavSelRange = "{891, 0}";
-			sepNavVisRect = "{{0, 0}, {827, 655}}";
+			sepNavSelRange = "{896, 0}";
+			sepNavVisRect = "{{0, 1067}, {827, 655}}";
 		};
 	};
 	56F42334083BBC6D0011D12B /* XGSIntegerArray.h */ = {
+		isa = PBXFileReference;
+		fileEncoding = 30;
+		lastKnownFileType = sourcecode.c.h;
+		name = XGSIntegerArray.h;
+		path = /Users/charles/Docs/Development/cocoa_dev/GridStuffer/Managed/XGSIntegerArray.h;
+		sourceTree = "<absolute>";
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {827, 655}}";
-			sepNavSelRange = "{859, 0}";
+			sepNavSelRange = "{864, 0}";
 			sepNavVisRect = "{{0, 0}, {827, 655}}";
 		};
 	};
 	56F42335083BBC6D0011D12B /* XGSIntegerArray.m */ = {
+		isa = PBXFileReference;
+		fileEncoding = 30;
+		lastKnownFileType = sourcecode.c.objc;
+		name = XGSIntegerArray.m;
+		path = /Users/charles/Docs/Development/cocoa_dev/GridStuffer/Managed/XGSIntegerArray.m;
+		sourceTree = "<absolute>";
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {827, 2310}}";
 			sepNavSelRange = "{859, 0}";
@@ -2541,6 +2648,12 @@
 		};
 	};
 	56F42336083BBC6D0011D12B /* XGSMetaJob.h */ = {
+		isa = PBXFileReference;
+		fileEncoding = 30;
+		lastKnownFileType = sourcecode.c.h;
+		name = XGSMetaJob.h;
+		path = /Users/charles/Docs/Development/cocoa_dev/GridStuffer/Managed/XGSMetaJob.h;
+		sourceTree = "<absolute>";
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {746, 2100}}";
 			sepNavSelRange = "{1461, 2}";
@@ -2548,6 +2661,12 @@
 		};
 	};
 	56F42337083BBC6D0011D12B /* XGSMetaJob.m */ = {
+		isa = PBXFileReference;
+		fileEncoding = 30;
+		lastKnownFileType = sourcecode.c.objc;
+		name = XGSMetaJob.m;
+		path = /Users/charles/Docs/Development/cocoa_dev/GridStuffer/Managed/XGSMetaJob.m;
+		sourceTree = "<absolute>";
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {872, 15722}}";
 			sepNavSelRange = "{1501, 10}";
@@ -2556,16 +2675,16 @@
 	};
 	56F42338083BBC6D0011D12B /* XGSOutputInterface.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {827, 1148}}";
-			sepNavSelRange = "{862, 0}";
-			sepNavVisRect = "{{0, 0}, {827, 655}}";
+			sepNavIntBoundsRect = "{{0, 0}, {827, 966}}";
+			sepNavSelRange = "{2823, 0}";
+			sepNavVisRect = "{{0, 260}, {827, 655}}";
 		};
 	};
 	56F42339083BBC6D0011D12B /* XGSOutputInterface.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {827, 4130}}";
-			sepNavSelRange = "{3900, 116}";
-			sepNavVisRect = "{{0, 1622}, {827, 655}}";
+			sepNavIntBoundsRect = "{{0, 0}, {827, 3640}}";
+			sepNavSelRange = "{8076, 0}";
+			sepNavVisRect = "{{0, 2985}, {827, 655}}";
 		};
 	};
 	56F4233A083BBC6D0011D12B /* XGSParser.h */ = {
@@ -2597,6 +2716,12 @@
 		};
 	};
 	56F423EC083BE6F50011D12B /* XGSServerBrowser.h */ = {
+		isa = PBXFileReference;
+		fileEncoding = 4;
+		lastKnownFileType = sourcecode.c.h;
+		name = XGSServerBrowser.h;
+		path = /Users/charles/Docs/Development/cocoa_dev/GridStuffer/Framework/XGSServerBrowser.h;
+		sourceTree = "<absolute>";
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {827, 616}}";
 			sepNavSelRange = "{1497, 0}";
@@ -2604,6 +2729,12 @@
 		};
 	};
 	56F423ED083BE6F50011D12B /* XGSServerBrowser.m */ = {
+		isa = PBXFileReference;
+		fileEncoding = 4;
+		lastKnownFileType = sourcecode.c.objc;
+		name = XGSServerBrowser.m;
+		path = /Users/charles/Docs/Development/cocoa_dev/GridStuffer/Framework/XGSServerBrowser.m;
+		sourceTree = "<absolute>";
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {827, 1736}}";
 			sepNavSelRange = "{1361, 0}";
@@ -2611,6 +2742,12 @@
 		};
 	};
 	56F42436083BFA850011D12B /* XGSServer.h */ = {
+		isa = PBXFileReference;
+		fileEncoding = 4;
+		lastKnownFileType = sourcecode.c.h;
+		name = XGSServer.h;
+		path = /Users/charles/Docs/Development/cocoa_dev/GridStuffer/Framework/XGSServer.h;
+		sourceTree = "<absolute>";
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {827, 1876}}";
 			sepNavSelRange = "{140, 5761}";
@@ -2619,6 +2756,12 @@
 		};
 	};
 	56F42437083BFA850011D12B /* XGSServer.m */ = {
+		isa = PBXFileReference;
+		fileEncoding = 4;
+		lastKnownFileType = sourcecode.c.objc;
+		name = XGSServer.m;
+		path = /Users/charles/Docs/Development/cocoa_dev/GridStuffer/Framework/XGSServer.m;
+		sourceTree = "<absolute>";
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {827, 7294}}";
 			sepNavSelRange = "{4858, 0}";
@@ -2626,13 +2769,25 @@
 		};
 	};
 	56F42475083C0C100011D12B /* XGSServerListController.h */ = {
+		isa = PBXFileReference;
+		fileEncoding = 4;
+		lastKnownFileType = sourcecode.c.h;
+		name = XGSServerListController.h;
+		path = /Users/charles/Docs/Development/cocoa_dev/GridStuffer/Managed/XGSServerListController.h;
+		sourceTree = "<absolute>";
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {827, 714}}";
-			sepNavSelRange = "{1010, 461}";
-			sepNavVisRect = "{{0, 14}, {827, 655}}";
+			sepNavSelRange = "{1172, 0}";
+			sepNavVisRect = "{{0, 51}, {827, 655}}";
 		};
 	};
 	56F42476083C0C100011D12B /* XGSServerListController.m */ = {
+		isa = PBXFileReference;
+		fileEncoding = 4;
+		lastKnownFileType = sourcecode.c.objc;
+		name = XGSServerListController.m;
+		path = /Users/charles/Docs/Development/cocoa_dev/GridStuffer/Managed/XGSServerListController.m;
+		sourceTree = "<absolute>";
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {827, 3472}}";
 			sepNavSelRange = "{2063, 44}";
@@ -2642,16 +2797,16 @@
 	};
 	56F425A5083D55280011D12B /* XGSStringToImageTransformer.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {827, 499}}";
-			sepNavSelRange = "{157, 719}";
-			sepNavVisRect = "{{0, 0}, {827, 499}}";
+			sepNavIntBoundsRect = "{{0, 0}, {827, 655}}";
+			sepNavSelRange = "{963, 0}";
+			sepNavVisRect = "{{0, 0}, {827, 655}}";
 		};
 	};
 	56F425A6083D55280011D12B /* XGSStringToImageTransformer.m */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {827, 700}}";
 			sepNavSelRange = "{875, 0}";
-			sepNavVisRect = "{{0, 0}, {827, 499}}";
+			sepNavVisRect = "{{0, 0}, {827, 655}}";
 		};
 	};
 	56F426AF083D92260011D12B /* PBXTextBookmark */ = {
@@ -2856,7 +3011,7 @@
 		fRef = 32CA4F630368D1EE00C91783 /* GridStuffer_Prefix.pch */;
 		name = "GridStuffer_Prefix.pch: 12";
 		rLen = 0;
-		rLoc = 251;
+		rLoc = 221;
 		rType = 0;
 		vrLen = 251;
 		vrLoc = 0;
@@ -2945,16 +3100,16 @@
 	};
 	56FFEF460879016600FF6E8D /* XGSToolbarController.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {827, 499}}";
+			sepNavIntBoundsRect = "{{0, 0}, {827, 655}}";
 			sepNavSelRange = "{871, 0}";
-			sepNavVisRect = "{{0, 0}, {827, 499}}";
+			sepNavVisRect = "{{0, 0}, {827, 655}}";
 		};
 	};
 	56FFEF470879016600FF6E8D /* XGSToolbarController.m */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {827, 1582}}";
-			sepNavSelRange = "{899, 0}";
-			sepNavVisRect = "{{0, 0}, {827, 655}}";
+			sepNavSelRange = "{904, 0}";
+			sepNavVisRect = "{{0, 651}, {827, 655}}";
 			sepNavWindowFrame = "{{15, 64}, {999, 763}}";
 		};
 	};
@@ -3021,14 +3176,14 @@
 	56FFF114087B571600FF6E8D /* XGSJobListController.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {827, 655}}";
-			sepNavSelRange = "{890, 0}";
+			sepNavSelRange = "{895, 0}";
 			sepNavVisRect = "{{0, 0}, {827, 655}}";
 		};
 	};
 	56FFF115087B571600FF6E8D /* XGSJobListController.m */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {827, 655}}";
-			sepNavSelRange = "{899, 0}";
+			sepNavSelRange = "{904, 0}";
 			sepNavVisRect = "{{0, 0}, {827, 655}}";
 		};
 	};

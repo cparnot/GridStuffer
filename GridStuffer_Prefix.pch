@@ -6,6 +6,5 @@
     #import <Cocoa/Cocoa.h>
 	#import <XgridFoundation/XgridFoundation.h>
 	#import "DebugLog.h"
-	#import "XGSManagedObject.h"
 #endif
 
