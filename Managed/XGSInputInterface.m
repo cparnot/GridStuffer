@@ -30,13 +30,10 @@
 }
 
 
-NSString *filePath;
-
 - (NSString *)filePath
 {
-	NSString *filePathLocal;
 	[self willAccessValueForKey:@"filePath"];
-	filePathLocal = [self primitiveValueForKey:@"filePath"];
+	NSString *filePathLocal = [self primitiveValueForKey:@"filePath"];
 	[self didAccessValueForKey:@"filePath"];
 	return filePathLocal;
 }
@@ -59,15 +56,12 @@ NSString *filePath;
 
 - (NSString *)stringWithFileContents
 {
-	BOOL storeFlag;
-	NSString *path, *contents;
-	//NSError *error;
-	//NSStringEncoding encoding;
-
 	DLog(NSStringFromClass([self class]),10,@"[%@:%p %s] - %@",[self class],self,_cmd,[self shortDescription]);
 
+	NSString *contents = nil;
+
 	//already in store
-	storeFlag = [[self valueForKey:@"shouldStoreFileContents"] boolValue];
+	BOOL storeFlag = [[self valueForKey:@"shouldStoreFileContents"] boolValue];
 	if ( storeFlag ) {
 		contents = [self valueForKey:@"fileContents"];
 		if ( contents!=nil )
@@ -75,7 +69,7 @@ NSString *filePath;
 	}
 	
 	//read the file and make a string with it
-	path = [self valueForKey:@"filePath"];
+	NSString *path = [self valueForKey:@"filePath"];
 	/*** THIS METHOD IS DEPCRECATED BUT I COULD NOT GET THE RECOMMANDED METHOD TO WORK ***/
 	contents = [NSString stringWithContentsOfFile:path];
 	if ( storeFlag )
@@ -85,11 +79,10 @@ NSString *filePath;
 
 - (void)resetLines
 {
-	NSString *commands;
 	DLog(NSStringFromClass([self class]),15,@"[%@:%p %s] - %@",[self class],self,_cmd,[self shortDescription]);
 	[self setLines:nil];
-	commands=[self stringWithFileContents];
-	if (commands==nil)
+	NSString *commands = [self stringWithFileContents];
+	if ( commands == nil )
 		[self setLines:[NSArray array]];
 	else
 		[self setLines:[commands componentsSeparatedByString:@"\n"]];

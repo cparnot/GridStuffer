@@ -13,6 +13,7 @@
  You should have received a copy of the GNU General Public License along with GridStuffer; if not, write to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
+/* Used to read a text file, line by line. Could be optimized later to better handle very large files */
 
 @interface XGSInputInterface : NSManagedObject
 {

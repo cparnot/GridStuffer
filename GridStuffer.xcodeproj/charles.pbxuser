@@ -718,7 +718,7 @@
 		fRef = 56F42333083BBC6D0011D12B /* XGSInputInterface.m */;
 		name = "- (NSString *)lineAtIndex:(unsigned int)index";
 		rLen = 46;
-		rLoc = 3166;
+		rLoc = 3072;
 		rType = 0;
 		vrLen = 1278;
 		vrLoc = 1119;
@@ -2083,7 +2083,7 @@
 		fRef = 56F42332083BBC6D0011D12B /* XGSInputInterface.h */;
 		name = "//- (void)setInputFilePath:(NSString *)path;";
 		rLen = 45;
-		rLoc = 936;
+		rLoc = 981;
 		rType = 0;
 		vrLen = 1122;
 		vrLoc = 0;
@@ -2318,7 +2318,7 @@
 		fRef = 56F42332083BBC6D0011D12B /* XGSInputInterface.h */;
 		name = "//- (void)setInputFilePath:(NSString *)path;";
 		rLen = 45;
-		rLoc = 936;
+		rLoc = 981;
 		rType = 0;
 		vrLen = 1122;
 		vrLoc = 0;
@@ -3492,16 +3492,16 @@
 	};
 	56F42332083BBC6D0011D12B /* XGSInputInterface.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {827, 655}}";
-			sepNavSelRange = "{937, 45}";
-			sepNavVisRect = "{{0, 0}, {827, 655}}";
+			sepNavIntBoundsRect = "{{0, 0}, {827, 462}}";
+			sepNavSelRange = "{934, 0}";
+			sepNavVisRect = "{{0, 0}, {827, 453}}";
 		};
 	};
 	56F42333083BBC6D0011D12B /* XGSInputInterface.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {827, 1722}}";
-			sepNavSelRange = "{931, 0}";
-			sepNavVisRect = "{{0, 0}, {827, 453}}";
+			sepNavIntBoundsRect = "{{0, 0}, {827, 1624}}";
+			sepNavSelRange = "{896, 0}";
+			sepNavVisRect = "{{0, 103}, {827, 453}}";
 		};
 	};
 	56F42335083BBC6D0011D12B /* XGSIntegerArray.m */ = {
@@ -3620,7 +3620,7 @@
 	56F425A6083D55280011D12B /* XGSStringToImageTransformer.m */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {827, 812}}";
-			sepNavSelRange = "{1207, 0}";
+			sepNavSelRange = "{934, 27}";
 			sepNavVisRect = "{{0, 168}, {827, 453}}";
 		};
 	};
@@ -3786,7 +3786,7 @@
 		fRef = 56F42332083BBC6D0011D12B /* XGSInputInterface.h */;
 		name = "{";
 		rLen = 2;
-		rLoc = 914;
+		rLoc = 959;
 		rType = 0;
 		vrLen = 337;
 		vrLoc = 0;
