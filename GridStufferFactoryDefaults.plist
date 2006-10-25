@@ -5,29 +5,6 @@
 
 	<key>DebugLogVerboseLevel</key>
 	<string>10</string>
-	
-	<key>DebugIdentifiers</key>
-	<array>
-		<string>GEZJob</string>
-		<string>GEZGrid</string>
-		<string>GEZServer</string>
-		<string>GEZServerListController</string>
-		<string>GEZServerConnection</string>
-		<string>XGSServerBrowser</string>
-		<string>GridStufferAppDelegate</string>
-	</array>
-
-	<key>NoDebugIdentifiers</key>
-	<array>
-		<string>GEZMetaJob</string>
-		<string>GEZMetaJobArrayController</string>
-		<string>XGSTaskSource</string>
-
-		<string>GEZIntegerArray</string>
-		<string>XGSInputInterface</string>
-		<string>XGSOutputInterface</string>
-		<string>XGSParser</string>
-	</array>
 
 </dict>
 </plist>
