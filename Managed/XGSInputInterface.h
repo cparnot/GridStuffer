@@ -14,7 +14,7 @@
  */
 
 
-@interface XGSInputInterface : XGSManagedObject
+@interface XGSInputInterface : NSManagedObject
 {
 	NSArray *lines;
 }

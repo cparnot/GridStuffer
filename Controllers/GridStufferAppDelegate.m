@@ -13,16 +13,11 @@
 
 #import "GridStufferAppDelegate.h"
 #import "XGSNewJobController.h"
-#import "XGSServerBrowser.h"
-#import "XGSServerListController.h"
 #import "XGSJobListController.h"
-#import "XGSMetaJob.h"
-#import "XGSMetaJobPrivateAccessors.h"
 #import "XGSTaskSource.h"
 #import "XGSOutputInterface.h"
 #import "XGSInputInterface.h"
 #import "XGSToolbarController.h"
-#import "XGSSettings.h"
 
 @implementation GridStufferAppDelegate
 
@@ -97,7 +92,7 @@
 	return [jobArrayController selectedObjects];
 }
 
-- (XGSMetaJob *)uniquelySelectedMetaJobInTheTableView
+- (GEZMetaJob *)uniquelySelectedMetaJobInTheTableView
 {
 	NSArray *jobs;
 	jobs = [jobArrayController selectedObjects];
@@ -120,7 +115,7 @@
 
 - (IBAction)startMetaJob:(id)sender
 {
-	XGSMetaJob *selectedJob;
+	GEZMetaJob *selectedJob;
 	
 	DLog(NSStringFromClass([self class]),10,@"[<%@:%p> %s]",[self class],self,_cmd);
 	
@@ -133,7 +128,7 @@
 
 - (IBAction)suspendMetaJob:(id)sender
 {
-	XGSMetaJob *selectedJob;
+	GEZMetaJob *selectedJob;
 	
 	DLog(NSStringFromClass([self class]),10,@"[<%@:%p> %s]",[self class],self,_cmd);
 	
@@ -147,7 +142,7 @@
 {
 	NSEnumerator *e;
 	NSArray *metaJobs;
-	XGSJob *aMetaJob;
+	GEZJob *aMetaJob;
 	
 	metaJobs = [self selectedMetaJobsInTheTableView];
 	e = [metaJobs objectEnumerator];
@@ -172,7 +167,7 @@
 	if (tag==OPEN_INPUT_FILE)
 		path = [[[[self uniquelySelectedMetaJobInTheTableView] dataSource] inputInterface] filePath];
 	else if (tag==OPEN_OUTPUT_FOLDER)
-		path = [[[self uniquelySelectedMetaJobInTheTableView] outputInterface] folderPath];
+		path = [[[[self uniquelySelectedMetaJobInTheTableView] dataSource] outputInterface] folderPath];
 	
 	//open the path in the finder
 	[[NSWorkspace sharedWorkspace] openFile:[path stringByStandardizingPath]];
@@ -193,10 +188,7 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-	//ask the user for a connection
-	serverListController = [[XGSServerListController alloc] init];
-	[serverListController showWindow:self];
-	[serverListController connectToFirstAvailableServer:self];
+	[GEZManager showServerWindow];
 }
 
 #pragma mark *** CoreData stuff ***
@@ -249,35 +241,7 @@
 
 - (NSManagedObjectContext *) managedObjectContext
 {
-	return [XGSSettings sharedManagedObjectContext];
-	
-    NSError *error;
-    NSString *applicationSupportFolder = nil;
-    NSURL *url;
-    NSFileManager *fileManager;
-    NSPersistentStoreCoordinator *coordinator;
-    
-    if (managedObjectContext) {
-        return managedObjectContext;
-    }
-    
-    fileManager = [NSFileManager defaultManager];
-    applicationSupportFolder = [self applicationSupportFolder];
-    if ( ![fileManager fileExistsAtPath:applicationSupportFolder isDirectory:NULL] ) {
-        [fileManager createDirectoryAtPath:applicationSupportFolder attributes:nil];
-    }
-    
-    url = [NSURL fileURLWithPath: [applicationSupportFolder stringByAppendingPathComponent: @"GridStuffer.db"]];
-    coordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel: [self managedObjectModel]];
-    if ([coordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:url options:nil error:&error]){
-        managedObjectContext = [[NSManagedObjectContext alloc] init];
-        [managedObjectContext setPersistentStoreCoordinator: coordinator];
-    } else {
-        [[NSApplication sharedApplication] presentError:error];
-    }    
-    [coordinator release];
-    
-    return managedObjectContext;
+	return [GEZManager managedObjectContext];
 }
 
 - (NSUndoManager *)windowWillReturnUndoManager:(NSWindow *)window {
@@ -349,7 +313,7 @@
 		return [NSImage imageNamed:[[self uniquelySelectedMetaJobInTheTableView] statusStringForTaskAtIndex:rowIndex]];
 	
 	int integerValue = 0;
-	XGSMetaJob *selectedJob = [self uniquelySelectedMetaJobInTheTableView];
+	GEZMetaJob *selectedJob = [self uniquelySelectedMetaJobInTheTableView];
 	if ([idf isEqualToString:@"successes"])
 		integerValue = [selectedJob countSuccessesForTaskAtIndex:rowIndex];
 	else if ([idf isEqualToString:@"failures"])
@@ -374,7 +338,7 @@
 	}
 	else if ( selectedTableView == taskInspectorTableView ) {
 		DLog(NSStringFromClass([self class]),10,@"[<%@:%p> %s] for Tasks table",[self class],self,_cmd);
-		XGSMetaJob *selectedJob = [self uniquelySelectedMetaJobInTheTableView];
+		GEZMetaJob *selectedJob = [self uniquelySelectedMetaJobInTheTableView];
 		int index = [taskInspectorTableView selectedRow];
 		NSString *taskString = @"No Selection";;
 		if ( index >= 0 )
@@ -386,15 +350,15 @@
 
 #pragma mark *** MetaJob delegate methods --> used for the GUI ***
 
-//- (void)metaJobDidStart:(XGSMetaJob *)metaJob;
-//- (void)metaJobDidSuspend:(XGSMetaJob *)metaJob;
+//- (void)metaJobDidStart:(GEZMetaJob *)metaJob;
+//- (void)metaJobDidSuspend:(GEZMetaJob *)metaJob;
 
--(void)metaJob:(XGSMetaJob *)metaJob didSubmitTaskAtIndex:(int)index
+-(void)metaJob:(GEZMetaJob *)metaJob didSubmitTaskAtIndex:(int)index
 {
 	[taskInspectorTableView reloadData];
 }
 
-- (void)metaJob:(XGSMetaJob *)metaJob didProcessTaskAtIndex:(int)index
+- (void)metaJob:(GEZMetaJob *)metaJob didProcessTaskAtIndex:(int)index
 {
 	[taskInspectorTableView reloadData];
 }

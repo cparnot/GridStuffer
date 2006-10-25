@@ -27,7 +27,7 @@
  each other.
  */
 
-@interface XGSOutputInterface : XGSManagedObject
+@interface XGSOutputInterface : NSManagedObject
 {
 
 }

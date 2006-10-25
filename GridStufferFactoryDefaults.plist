@@ -8,22 +8,22 @@
 	
 	<key>DebugIdentifiers</key>
 	<array>
-		<string>XGSJob</string>
-		<string>XGSGrid</string>
-		<string>XGSServer</string>
-		<string>XGSServerListController</string>
-		<string>XGSServerConnection</string>
+		<string>GEZJob</string>
+		<string>GEZGrid</string>
+		<string>GEZServer</string>
+		<string>GEZServerListController</string>
+		<string>GEZServerConnection</string>
 		<string>XGSServerBrowser</string>
 		<string>GridStufferAppDelegate</string>
 	</array>
 
 	<key>NoDebugIdentifiers</key>
 	<array>
-		<string>XGSMetaJob</string>
-		<string>XGSMetaJobArrayController</string>
+		<string>GEZMetaJob</string>
+		<string>GEZMetaJobArrayController</string>
 		<string>XGSTaskSource</string>
 
-		<string>XGSIntegerArray</string>
+		<string>GEZIntegerArray</string>
 		<string>XGSInputInterface</string>
 		<string>XGSOutputInterface</string>
 		<string>XGSParser</string>

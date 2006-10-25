@@ -14,7 +14,6 @@
  */
 
 #import "XGSNewJobController.h"
-#import "XGSMetaJob.h"
 
 //description of the demos is stored in a plist as an array of dictionaries
 static NSArray *demoDictionaries = nil;
@@ -323,7 +322,7 @@ static NSArray *demoDictionaries = nil;
 - (void)addMetaJobToManagedObjectContext
 {
 	NSManagedObjectContext *context;
-	XGSMetaJob *metaJob;
+	GEZMetaJob *metaJob;
 	NSManagedObject *taskSource, *failures,*successes, *submissions, *input, *output, *filter;
 		
 	//get the context

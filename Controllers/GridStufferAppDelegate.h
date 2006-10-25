@@ -11,7 +11,7 @@
  You should have received a copy of the GNU General Public License along with GridStuffer; if not, write to the Free Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-@class XGSServerListController;
+@class GEZServerListController;
 @class XGSJobListController;
 @class XGSToolbarController;
 
@@ -24,7 +24,7 @@
     NSManagedObjectModel *managedObjectModel;
     NSManagedObjectContext *managedObjectContext;
 	
-	XGSServerListController *serverListController;
+	GEZServerListController *serverListController;
 	XGSJobListController *jobListController;
 	IBOutlet NSArrayController *jobArrayController;
 	IBOutlet NSTableView *metaJobTableView;

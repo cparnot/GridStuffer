@@ -5,6 +5,7 @@
 #ifdef __OBJC__
     #import <Cocoa/Cocoa.h>
 	#import <XgridFoundation/XgridFoundation.h>
+	#import <GridEZ/GridEZ.h>
 	#import "DebugLog.h"
 #endif
 

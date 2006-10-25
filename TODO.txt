@@ -2,16 +2,16 @@ Agenda
 -------
 
 * is XGSServerBrowser done?
-* is XGSServerConnection done?
-* is XGSServer done?
+* is GEZServerConnection done?
+* is GEZServer done?
 
 then I can start testing things, maybe with some minor changes in the controller/view code.
 
-then I can look at XGSJob
+then I can look at GEZJob
 
 ----------------------------
 TODO for version 0.3
-* use a delegate with XGSServer
+* use a delegate with GEZServer
 * refactor to better separate GridStuffer model and views, and to separate it from the app delegate --> ultimately a framework
  --> this means I will also need a separate class to play the role of the application delegate in the framework, e.g. class 'GridStufferInterface'
 * entity names need also a suffix, like class names, if GridStuffer is going to be a framework..

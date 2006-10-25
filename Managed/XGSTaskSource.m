@@ -255,7 +255,7 @@ static NSString *OutputPathKey=@"Output path";
 		isDir=NO;
 		exists=[fileManager fileExistsAtPath:aPath isDirectory:&isDir];
 		if ( exists==NO || isDir==NO )
-			[[self valueForKey:@"outputInterface"] logLevel:2 format:@"Task %d, -in option: no working directory at path %@\n",commandIndex,aPath];
+			;//[[self valueForKey:@"outputInterface"] logLevel:2 format:@"Task %d, -in option: no working directory at path %@\n",commandIndex,aPath];
 		else
 			[commandDictionary setObject:aPath forKey:WorkingDirectoryKey];
 
@@ -270,7 +270,7 @@ static NSString *OutputPathKey=@"Output path";
 		isDir=NO;
 		exists=[fileManager fileExistsAtPath:anotherPath isDirectory:&isDir];
 		if ( exists==NO || isDir==NO )
-			[[self valueForKey:@"outputInterface"] logLevel:2 format:@"Task %d, -dirs option: no directory at path %@\n", commandIndex,aPath];
+			;//[[self valueForKey:@"outputInterface"] logLevel:2 format:@"Task %d, -dirs option: no directory at path %@\n", commandIndex,aPath];
 		else
 			[basepaths addObject:anotherPath];
 	}
@@ -382,7 +382,7 @@ static NSString *OutputPathKey=@"Output path";
 		else if (anotherPath=[shortcutDictionary objectForKey:aPath])
 			[paths addObject:anotherPath];
 		else
-			[[self valueForKey:@"outputInterface"] logLevel:2 format:@"Task %d: the file %@ could not be found\n",commandIndex,aPath];
+			;//Error [[self valueForKey:@"outputInterface"] logLevel:2 format:@"Task %d: the file %@ could not be found\n",commandIndex,aPath];
 	}
 	
 	//scan the command string for relative paths and shortcuts, otherwise keep the string as is
@@ -441,16 +441,16 @@ static NSString *OutputPathKey=@"Output path";
 	return [NSDictionary dictionaryWithDictionary:finalDictionary];
 }
 
-#pragma mark *** data source methods for XGSMetaJob ***
+#pragma mark *** data source methods for GEZMetaJob ***
 
-- (unsigned int)numberOfTasksForMetaJob:(XGSMetaJob *)aJob
+- (unsigned int)numberOfTasksForMetaJob:(GEZMetaJob *)aJob
 {
 	DLog(NSStringFromClass([self class]),10,@"[%@:%p %s] - %@",[self class],self,_cmd,[self shortDescription]);
 	[[self inputInterface] loadFile];
 	return [[[self inputInterface] valueForKey:@"countLines"] unsignedIntValue];
 }
 
-- (id)metaJob:(XGSMetaJob *)metaJob taskAtIndex:(unsigned int)taskIndex
+- (id)metaJob:(GEZMetaJob *)metaJob taskAtIndex:(unsigned int)taskIndex
 {
 	DLog(NSStringFromClass([self class]),15,@"[%@:%p %s] - %@",[self class],self,_cmd,[self shortDescription]);
 	if ( taskIndex > [self numberOfTasksForMetaJob:metaJob] || taskIndex < 0 )
@@ -459,38 +459,38 @@ static NSString *OutputPathKey=@"Output path";
 		return [self finalDictionaryForCommandAtIndex:taskIndex];
 }
 
-- (NSString *)metaJob:(XGSMetaJob *)metaJob commandStringForTask:(id)task
+- (NSString *)metaJob:(GEZMetaJob *)metaJob commandStringForTask:(id)task
 {
 	DLog(NSStringFromClass([self class]),15,@"[%@:%p %s] - %@",[self class],self,_cmd,[self shortDescription]);
 	return [task objectForKey:CommandKey];
 }
 
-- (NSArray *)metaJob:(XGSMetaJob *)metaJob argumentStringsForTask:(id)task
+- (NSArray *)metaJob:(GEZMetaJob *)metaJob argumentStringsForTask:(id)task
 {
 	DLog(NSStringFromClass([self class]),15,@"[%@:%p %s] - %@",[self class],self,_cmd,[self shortDescription]);
 	return [task objectForKey:ArgumentsKey];
 }
 
-- (NSArray *)metaJob:(XGSMetaJob *)metaJob pathsToUploadForTask:(id)task
+- (NSArray *)metaJob:(GEZMetaJob *)metaJob pathsToUploadForTask:(id)task
 {
 	DLog(NSStringFromClass([self class]),15,@"[%@:%p %s] - %@",[self class],self,_cmd,[self shortDescription]);
 	return [task objectForKey:PathsKey];
 }
 
-- (NSString *)metaJob:(XGSMetaJob *)metaJob stdinPathForTask:(id)task;
+- (NSString *)metaJob:(GEZMetaJob *)metaJob stdinPathForTask:(id)task;
 {
 	DLog(NSStringFromClass([self class]),15,@"[%@:%p %s] - %@",[self class],self,_cmd,[self shortDescription]);
 	return [task objectForKey:StdinPathKey];
 }
 
-- (BOOL)metaJob:(XGSMetaJob *)metaJob validateResultsWithFiles:(NSDictionary *)files standardOutput:(NSData *)stdoutData standardError:(NSData *)stderrData forTask:(id)task;
+- (BOOL)metaJob:(GEZMetaJob *)metaJob validateResultsWithFiles:(NSDictionary *)files standardOutput:(NSData *)stdoutData standardError:(NSData *)stderrData forTask:(id)task;
 {
 	BOOL resultsAreGood = [[self valueForKey:@"validator"] validateFiles:files standardOutput:stdoutData standardError:stderrData];
 	DLog(NSStringFromClass([self class]),10,@"[%@:%p %s] - %@ --> %@",[self class],self,_cmd,[self shortDescription],resultsAreGood?@"SUCCESS":@"FAILURE");
 	return resultsAreGood;
 }
 
-- (BOOL)metaJob:(XGSMetaJob *)metaJob saveStandardOutput:(NSData *)data forTask:(id)task
+- (BOOL)metaJob:(GEZMetaJob *)metaJob saveStandardOutput:(NSData *)data forTask:(id)task
 {
 	DLog(NSStringFromClass([self class]),15,@"[%@:%p %s]",[self class],self,_cmd);
 	DLog(NSStringFromClass([self class]),15,@"\nTask:\n%@",[task description]);	
@@ -505,7 +505,7 @@ static NSString *OutputPathKey=@"Output path";
 	return [[self outputInterface] saveData:data withPath:stdoutPath];
 }
 
-- (BOOL)metaJob:(XGSMetaJob *)metaJob saveStandardError:(NSData *)data forTask:(id)task
+- (BOOL)metaJob:(GEZMetaJob *)metaJob saveStandardError:(NSData *)data forTask:(id)task
 {
 	DLog(NSStringFromClass([self class]),15,@"[%@:%p %s]",[self class],self,_cmd);
 	DLog(NSStringFromClass([self class]),15,@"\nTask:\n%@",[task description]);	
@@ -520,7 +520,7 @@ static NSString *OutputPathKey=@"Output path";
 	return [[self outputInterface] saveData:data withPath:stderrPath];
 }
 
-- (BOOL)metaJob:(XGSMetaJob *)metaJob saveOutputFiles:(NSDictionary *)dictionaryRepresentation forTask:(id)task
+- (BOOL)metaJob:(GEZMetaJob *)metaJob saveOutputFiles:(NSDictionary *)dictionaryRepresentation forTask:(id)task
 {
 	DLog(NSStringFromClass([self class]),15,@"[%@:%p %s]",[self class],self,_cmd);
 	DLog(NSStringFromClass([self class]),15,@"\nTask:\n%@",[task description]);	
@@ -551,8 +551,8 @@ static NSString *OutputPathKey=@"Output path";
 
 //unused data source methods
 /*
-- (BOOL)initializeTasksForMetaJob:(XGSMetaJob *)metaJob;
-- (NSData *)metaJob:(XGSMetaJob *)metaJob stdinDataForTask:(id)task 
+- (BOOL)initializeTasksForMetaJob:(GEZMetaJob *)metaJob;
+- (NSData *)metaJob:(GEZMetaJob *)metaJob stdinDataForTask:(id)task 
 */
 
 @end
