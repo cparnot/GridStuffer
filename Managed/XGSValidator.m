@@ -17,8 +17,9 @@
 
 @implementation XGSValidator
 
-- (BOOL)validateFiles:(NSDictionary *)files standardOutput:(NSData *)stdoutData standardError:(NSData *)stderrData
+- (BOOL)validateFiles:(NSDictionary *)files
 {
+	//use local variables for readability of the code
 	BOOL failureIfAllFilesEmpty		= [self failureIfAllFilesEmpty];
 	BOOL failureIfNoFile			= [self failureIfNoFile];
 	BOOL failureIfNothing			= [self failureIfNothing];
@@ -28,9 +29,19 @@
 	BOOL failureIfStdoutEmpty		= [self failureIfStdoutEmpty];
 	BOOL failureIfStdoutNonEmpty	= [self failureIfStdoutNonEmpty];
 	
+	//get stdout and stderr streams
+	NSData *stdoutData = [files objectForKey:GEZJobResultsStandardOutputKey];
+	NSData *stderrData = [files objectForKey:GEZJobResultsStandardErrorKey];
 	BOOL stdoutIsEmpty = ( [stdoutData length] == 0 );
 	BOOL stderrIsEmpty = ( [stderrData length] == 0 );
 	BOOL theResultsAreGood = YES;
+
+	//remove stdout and stderr from files
+	if ( stdoutIsEmpty == NO || stderrIsEmpty == NO ) {
+		NSMutableDictionary *temp = [NSMutableDictionary dictionaryWithDictionary:files];
+		[temp removeObjectsForKeys:[NSArray arrayWithObjects:GEZJobResultsStandardErrorKey,GEZJobResultsStandardOutputKey,nil]];
+		files = [NSDictionary dictionaryWithDictionary:temp];
+	}
 	
 	if ( failureIfNothing && ( [files count] == 0 ) && stdoutIsEmpty && stderrIsEmpty )
 		theResultsAreGood = NO;
@@ -66,72 +77,64 @@
 
 - (BOOL)failureIfAllFilesEmpty
 {
-	BOOL failureIfAllFilesEmptyLocal;
 	[self willAccessValueForKey:@"failureIfAllFilesEmpty"];
-	failureIfAllFilesEmptyLocal = [[self primitiveValueForKey:@"failureIfAllFilesEmpty"] boolValue];
+	BOOL failureIfAllFilesEmptyLocal = [[self primitiveValueForKey:@"failureIfAllFilesEmpty"] boolValue];
 	[self didAccessValueForKey:@"failureIfAllFilesEmpty"];
 	return failureIfAllFilesEmptyLocal;
 }
 
 - (BOOL)failureIfNoFile
 {
-	BOOL failureIfNoFileLocal;
 	[self willAccessValueForKey:@"failureIfNoFile"];
-	failureIfNoFileLocal = [[self primitiveValueForKey:@"failureIfNoFile"] boolValue];
+	BOOL failureIfNoFileLocal = [[self primitiveValueForKey:@"failureIfNoFile"] boolValue];
 	[self didAccessValueForKey:@"failureIfNoFile"];
 	return failureIfNoFileLocal;
 }
 
 - (BOOL)failureIfNothing
 {
-	BOOL failureIfNothingLocal;
 	[self willAccessValueForKey:@"failureIfNothing"];
-	failureIfNothingLocal = [[self primitiveValueForKey:@"failureIfNothing"] boolValue];
+	BOOL failureIfNothingLocal = [[self primitiveValueForKey:@"failureIfNothing"] boolValue];
 	[self didAccessValueForKey:@"failureIfNothing"];
 	return failureIfNothingLocal;
 }
 
 - (BOOL)failureIfOneFileEmpty
 {
-	BOOL failureIfOneFileEmptyLocal;
 	[self willAccessValueForKey:@"failureIfOneFileEmpty"];
-	failureIfOneFileEmptyLocal = [[self primitiveValueForKey:@"failureIfOneFileEmpty"] boolValue];
+	BOOL failureIfOneFileEmptyLocal = [[self primitiveValueForKey:@"failureIfOneFileEmpty"] boolValue];
 	[self didAccessValueForKey:@"failureIfOneFileEmpty"];
 	return failureIfOneFileEmptyLocal;
 }
 
 - (BOOL)failureIfStderrEmpty
 {
-	BOOL failureIfStderrEmptyLocal;
 	[self willAccessValueForKey:@"failureIfStderrEmpty"];
-	failureIfStderrEmptyLocal = [[self primitiveValueForKey:@"failureIfStderrEmpty"] boolValue];
+	BOOL failureIfStderrEmptyLocal = [[self primitiveValueForKey:@"failureIfStderrEmpty"] boolValue];
 	[self didAccessValueForKey:@"failureIfStderrEmpty"];
 	return failureIfStderrEmptyLocal;
 }
 
 - (BOOL)failureIfStderrNonEmpty
 {
-	BOOL failureIfStderrNonEmptyLocal;
 	[self willAccessValueForKey:@"failureIfStderrNonEmpty"];
-	failureIfStderrNonEmptyLocal = [[self primitiveValueForKey:@"failureIfStderrNonEmpty"] boolValue];
+	BOOL failureIfStderrNonEmptyLocal = [[self primitiveValueForKey:@"failureIfStderrNonEmpty"] boolValue];
 	[self didAccessValueForKey:@"failureIfStderrNonEmpty"];
 	return failureIfStderrNonEmptyLocal;
 }
 
 - (BOOL)failureIfStdoutEmpty
 {
-	BOOL failureIfStdoutEmptyLocal;
 	[self willAccessValueForKey:@"failureIfStdoutEmpty"];
-	failureIfStdoutEmptyLocal = [[self primitiveValueForKey:@"failureIfStdoutEmpty"] boolValue];
+	BOOL failureIfStdoutEmptyLocal = [[self primitiveValueForKey:@"failureIfStdoutEmpty"] boolValue];
 	[self didAccessValueForKey:@"failureIfStdoutEmpty"];
 	return failureIfStdoutEmptyLocal;
 }
 
 - (BOOL)failureIfStdoutNonEmpty
 {
-	BOOL failureIfStdoutNonEmptyLocal;
 	[self willAccessValueForKey:@"failureIfStdoutNonEmpty"];
-	failureIfStdoutNonEmptyLocal = [[self primitiveValueForKey:@"failureIfStdoutNonEmpty"] boolValue];
+	BOOL failureIfStdoutNonEmptyLocal = [[self primitiveValueForKey:@"failureIfStdoutNonEmpty"] boolValue];
 	[self didAccessValueForKey:@"failureIfStdoutNonEmpty"];
 	return failureIfStdoutNonEmptyLocal;
 }

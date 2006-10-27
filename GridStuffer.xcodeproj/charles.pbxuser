@@ -1190,7 +1190,7 @@
 	5643E84E0870C01D000838CF /* XGSValidator.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {827, 655}}";
-			sepNavSelRange = "{856, 0}";
+			sepNavSelRange = "{904, 0}";
 			sepNavVisRect = "{{0, 0}, {827, 655}}";
 		};
 	};
@@ -2083,7 +2083,7 @@
 		fRef = 56F42332083BBC6D0011D12B /* XGSInputInterface.h */;
 		name = "//- (void)setInputFilePath:(NSString *)path;";
 		rLen = 45;
-		rLoc = 981;
+		rLoc = 1041;
 		rType = 0;
 		vrLen = 1122;
 		vrLoc = 0;
@@ -2318,7 +2318,7 @@
 		fRef = 56F42332083BBC6D0011D12B /* XGSInputInterface.h */;
 		name = "//- (void)setInputFilePath:(NSString *)path;";
 		rLen = 45;
-		rLoc = 981;
+		rLoc = 1041;
 		rType = 0;
 		vrLen = 1122;
 		vrLoc = 0;
@@ -3492,9 +3492,9 @@
 	};
 	56F42332083BBC6D0011D12B /* XGSInputInterface.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {827, 462}}";
-			sepNavSelRange = "{934, 0}";
-			sepNavVisRect = "{{0, 0}, {827, 453}}";
+			sepNavIntBoundsRect = "{{0, 0}, {827, 476}}";
+			sepNavSelRange = "{1040, 0}";
+			sepNavVisRect = "{{0, 12}, {827, 453}}";
 		};
 	};
 	56F42333083BBC6D0011D12B /* XGSInputInterface.m */ = {
@@ -3559,15 +3559,15 @@
 	56F4233C083BBC6D0011D12B /* XGSTaskSource.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {827, 714}}";
-			sepNavSelRange = "{929, 0}";
-			sepNavVisRect = "{{0, 0}, {827, 655}}";
+			sepNavSelRange = "{934, 0}";
+			sepNavVisRect = "{{0, 223}, {827, 453}}";
 		};
 	};
 	56F4233D083BBC6D0011D12B /* XGSTaskSource.m */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {827, 8050}}";
 			sepNavSelRange = "{15320, 0}";
-			sepNavVisRect = "{{0, 5290}, {827, 453}}";
+			sepNavVisRect = "{{0, 5182}, {827, 655}}";
 		};
 	};
 	56F423EC083BE6F50011D12B /* XGSServerBrowser.h */ = {
@@ -3786,7 +3786,7 @@
 		fRef = 56F42332083BBC6D0011D12B /* XGSInputInterface.h */;
 		name = "{";
 		rLen = 2;
-		rLoc = 959;
+		rLoc = 1019;
 		rType = 0;
 		vrLen = 337;
 		vrLoc = 0;
@@ -3905,16 +3905,16 @@
 	};
 	56FFEF460879016600FF6E8D /* XGSToolbarController.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {827, 655}}";
+			sepNavIntBoundsRect = "{{0, 0}, {827, 453}}";
 			sepNavSelRange = "{871, 0}";
-			sepNavVisRect = "{{0, 0}, {827, 655}}";
+			sepNavVisRect = "{{0, 0}, {827, 453}}";
 		};
 	};
 	56FFEF470879016600FF6E8D /* XGSToolbarController.m */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {827, 1582}}";
 			sepNavSelRange = "{904, 0}";
-			sepNavVisRect = "{{0, 651}, {827, 655}}";
+			sepNavVisRect = "{{0, 251}, {827, 453}}";
 			sepNavWindowFrame = "{{15, 64}, {999, 763}}";
 		};
 	};
