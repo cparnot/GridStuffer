@@ -10,7 +10,7 @@
 		<string>106 655 421 44 0 0 1280 832 </string>
 	</dict>
 	<key>IBFramework Version</key>
-	<string>439.0</string>
+	<string>446.1</string>
 	<key>IBLockedObjects</key>
 	<array/>
 	<key>IBOpenObjects</key>
@@ -18,7 +18,7 @@
 		<integer>244</integer>
 	</array>
 	<key>IBSystem Version</key>
-	<string>8B15</string>
+	<string>8L127</string>
 	<key>IBUsesTextArchiving</key>
 	<true/>
 </dict>

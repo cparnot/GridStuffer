@@ -21,9 +21,6 @@
 	IBOutlet NSPanel *metaJobInspectorPanel;
 	XGSToolbarController *metaJobToolbarController;
     
-    NSManagedObjectModel *managedObjectModel;
-    NSManagedObjectContext *managedObjectContext;
-	
 	GEZServerListController *serverListController;
 	XGSJobListController *jobListController;
 	IBOutlet NSArrayController *jobArrayController;
@@ -44,8 +41,7 @@
 - (IBAction)showJobListWindow:(id)sender;
 - (IBAction)openWithFinder:(id)sender;
 
-// CoreData stuff
-- (NSManagedObjectModel *)managedObjectModel;
+// CoreData
 - (NSManagedObjectContext *)managedObjectContext;
 - (IBAction)saveAction:sender;
 

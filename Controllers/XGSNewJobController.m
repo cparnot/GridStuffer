@@ -14,6 +14,10 @@
  */
 
 #import "XGSNewJobController.h"
+#import "XGSOutputInterface.h"
+#import "XGSInputInterface.h"
+#import "XGSValidator.h"
+#import "XGSTaskSource.h"
 
 //description of the demos is stored in a plist as an array of dictionaries
 static NSArray *demoDictionaries = nil;
@@ -321,37 +325,26 @@ static NSArray *demoDictionaries = nil;
 //convenience method called to add a job to the managed object context
 - (void)addMetaJobToManagedObjectContext
 {
-	NSManagedObjectContext *context;
-	GEZMetaJob *metaJob;
-	NSManagedObject *taskSource, *failures,*successes, *submissions, *input, *output, *filter;
-		
 	//get the context
-	context=[[NSApp delegate] managedObjectContext];
+	NSManagedObjectContext *context = [GEZManager managedObjectContext];
 
 	//set up the input and output interface first
-	input       = [NSEntityDescription insertNewObjectForEntityForName:@"InputInterface" inManagedObjectContext:context];
-	output      = [NSEntityDescription insertNewObjectForEntityForName:@"OutputInterface" inManagedObjectContext:context];
-	[input   setValue:[inputFileTextField stringValue]    forKey:@"filePath"];
-	[output  setValue:[outputFolderTextField stringValue] forKey:@"folderPath"];
+	XGSInputInterface *input = [NSEntityDescription insertNewObjectForEntityForName:@"InputInterface" inManagedObjectContext:context];
+	XGSOutputInterface *output = [NSEntityDescription insertNewObjectForEntityForName:@"OutputInterface" inManagedObjectContext:context];
+	[input setValue:[inputFileTextField stringValue] forKey:@"filePath"];
+	[output setValue:[outputFolderTextField stringValue] forKey:@"folderPath"];
 	
 	//... then the task source ...
-	filter      = [NSEntityDescription insertNewObjectForEntityForName:@"Validator" inManagedObjectContext:context];
-	taskSource  = [NSEntityDescription insertNewObjectForEntityForName:@"TaskSource" inManagedObjectContext:context];
+	XGSValidator *filter = [NSEntityDescription insertNewObjectForEntityForName:@"Validator" inManagedObjectContext:context];
+	XGSTaskSource *taskSource = [NSEntityDescription insertNewObjectForEntityForName:@"TaskSource" inManagedObjectContext:context];
 	[taskSource setValue:input       forKey:@"inputInterface"];
 	[taskSource setValue:output      forKey:@"outputInterface"];
 	[taskSource setValue:filter      forKey:@"validator"];
 		
 	//then the metaJob
-	submissions = [NSEntityDescription insertNewObjectForEntityForName:@"IntegerArray" inManagedObjectContext:context];
-	successes   = [NSEntityDescription insertNewObjectForEntityForName:@"IntegerArray" inManagedObjectContext:context];
-	failures    = [NSEntityDescription insertNewObjectForEntityForName:@"IntegerArray" inManagedObjectContext:context];
-	metaJob     = [NSEntityDescription insertNewObjectForEntityForName:@"MetaJob" inManagedObjectContext:context];
+	GEZMetaJob *metaJob = [NSEntityDescription insertNewObjectForEntityForName:GEZMetaJobEntityName inManagedObjectContext:context];
 	[metaJob setName:[jobNameTextField stringValue]];
-	[metaJob    setDataSource:taskSource];
-	[metaJob    setValue:output      forKey:@"outputInterface"];
-	[metaJob    setValue:successes   forKey:@"successCounts"];
-	[metaJob    setValue:failures    forKey:@"failureCounts"];
-	[metaJob    setValue:submissions forKey:@"submissionCounts"];
+	[metaJob setDataSource:taskSource];
 	
 	//self suicide (that's a pleonasm)
 	[[self window] performClose:self];
