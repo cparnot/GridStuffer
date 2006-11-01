@@ -181,7 +181,7 @@ static NSArray *demoDictionaries = nil;
 - (void)windowWillClose:(NSNotification *)notification
 {
 	if ([self window]==[notification object]) {
-		DLog(NSStringFromClass([self class]),10,@"<%@:%p> closing window and autorelease", [self class], self);
+		DDLog(NSStringFromClass([self class]),10,@"<%@:%p> closing window and autorelease", [self class], self);
 		[self autorelease];
 	}
 }
@@ -265,7 +265,7 @@ static NSArray *demoDictionaries = nil;
 	NSEnumerator *e;
 	BOOL flag,isDir;
 
-	DLog(NSStringFromClass([self class]),10,@"[%@:%p %s]",[self class],self,_cmd);
+	DDLog(NSStringFromClass([self class]),10,@"[%@:%p %s]",[self class],self,_cmd);
 
 	//get the demo dictionary where all the info for the chosen demo is stored
 	demos = [self demoDictionaries];

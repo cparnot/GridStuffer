@@ -47,7 +47,7 @@
 
 - (void)setLines:(NSArray *)newArray
 {
-	DLog(NSStringFromClass([self class]),15,@"[%@:%p %s] - %@",[self class],self,_cmd,[self shortDescription]);
+	DDLog(NSStringFromClass([self class]),15,@"[%@:%p %s] - %@",[self class],self,_cmd,[self shortDescription]);
 	[newArray retain];
 	[lines release];
 	lines=newArray;
@@ -56,7 +56,7 @@
 
 - (NSString *)stringWithFileContents
 {
-	DLog(NSStringFromClass([self class]),10,@"[%@:%p %s] - %@",[self class],self,_cmd,[self shortDescription]);
+	DDLog(NSStringFromClass([self class]),10,@"[%@:%p %s] - %@",[self class],self,_cmd,[self shortDescription]);
 
 	NSString *contents = nil;
 
@@ -79,7 +79,7 @@
 
 - (void)resetLines
 {
-	DLog(NSStringFromClass([self class]),15,@"[%@:%p %s] - %@",[self class],self,_cmd,[self shortDescription]);
+	DDLog(NSStringFromClass([self class]),15,@"[%@:%p %s] - %@",[self class],self,_cmd,[self shortDescription]);
 	[self setLines:nil];
 	NSString *commands = [self stringWithFileContents];
 	if ( commands == nil )
@@ -90,7 +90,7 @@
 
 - (NSArray *)lines
 {
-	DLog(NSStringFromClass([self class]),15,@"[%@:%p %s] - %@",[self class],self,_cmd,[self shortDescription]);
+	DDLog(NSStringFromClass([self class]),15,@"[%@:%p %s] - %@",[self class],self,_cmd,[self shortDescription]);
 	if ( lines == nil )
 		[self resetLines];
 	return lines;
@@ -98,13 +98,13 @@
 
 - (NSString *)lineAtIndex:(unsigned int)index
 {
-	DLog(NSStringFromClass([self class]),10,@"[%@:%p %s] - %@",[self class],self,_cmd,[self shortDescription]);
+	DDLog(NSStringFromClass([self class]),10,@"[%@:%p %s] - %@",[self class],self,_cmd,[self shortDescription]);
 	return [[self lines] objectAtIndex:index];
 }
 
 - (void)loadFile
 {
-	DLog(NSStringFromClass([self class]),15,@"[%@:%p %s] - %@",[self class],self,_cmd,[self shortDescription]);
+	DDLog(NSStringFromClass([self class]),15,@"[%@:%p %s] - %@",[self class],self,_cmd,[self shortDescription]);
 	if ( lines == nil )
 		[self resetLines];
 }

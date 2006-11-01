@@ -74,7 +74,7 @@ static NSString *OutputPathKey=@"Output path";
 - (XGSOutputInterface *)outputInterface;
 {
 	XGSOutputInterface *result;
-	DLog(NSStringFromClass([self class]),15,@"[%@:%p %s] - %@",[self class],self,_cmd,[self shortDescription]);
+	DDLog(NSStringFromClass([self class]),15,@"[%@:%p %s] - %@",[self class],self,_cmd,[self shortDescription]);
 	[self willAccessValueForKey:@"outputInterface"];
 	result = [self primitiveValueForKey:@"outputInterface"];
 	[self didAccessValueForKey:@"outputInterface"];
@@ -104,7 +104,7 @@ static NSString *OutputPathKey=@"Output path";
 - (NSString *)workingDirectoryPath
 {
 	NSString *result;
-	DLog (NSStringFromClass([self class]),15,@"[%@:%p %s] - %@",[self class],self,_cmd,[self shortDescription]);
+	DDLog (NSStringFromClass([self class]),15,@"[%@:%p %s] - %@",[self class],self,_cmd,[self shortDescription]);
 	result = [self valueForKeyPath:@"inputInterface.filePath"];
 	result = [result stringByStandardizingPath];
 	result = [result stringByDeletingLastPathComponent];
@@ -115,7 +115,7 @@ static NSString *OutputPathKey=@"Output path";
 - (NSString *)absolutePathForString:(NSString *)relativePath
 {
 	NSString *finalPath;
-	DLog (NSStringFromClass([self class]),15,@"[%@:%p %s] - %@",[self class],self,_cmd,[self shortDescription]);
+	DDLog (NSStringFromClass([self class]),15,@"[%@:%p %s] - %@",[self class],self,_cmd,[self shortDescription]);
 	
 	//a path relative to the home folder is considered relative and will become an absolute path
 	finalPath = [relativePath stringByExpandingTildeInPath];
@@ -139,7 +139,7 @@ static NSString *OutputPathKey=@"Output path";
 	NSString *finalPath;
 	NSFileManager *fileManager=[NSFileManager defaultManager];
 	
-	DLog(NSStringFromClass([self class]),15,@"[%@:%p %s] - %@",[self class],self,_cmd,[self shortDescription]);
+	DDLog(NSStringFromClass([self class]),15,@"[%@:%p %s] - %@",[self class],self,_cmd,[self shortDescription]);
 	//try to resolve the path in the simple way
 	finalPath=[self absolutePathForString:relativePath];
 	if ([fileManager fileExistsAtPath:finalPath])
@@ -174,7 +174,7 @@ static NSString *OutputPathKey=@"Output path";
 	NSArray *components;
 	int i,n;
 
-	DLog(NSStringFromClass([self class]),15,@"[%@:%p %s] - %@",[self class],self,_cmd,[self shortDescription]);
+	DDLog(NSStringFromClass([self class]),15,@"[%@:%p %s] - %@",[self class],self,_cmd,[self shortDescription]);
 
 	shortcutDictionary = [NSMutableDictionary dictionary];
 	fileManager=[NSFileManager defaultManager];
@@ -215,7 +215,7 @@ static NSString *OutputPathKey=@"Output path";
 	BOOL exists,isDir;
 	NSEnumerator *e;
 
-	DLog(NSStringFromClass([self class]),10,@"[%@:%p %s %d]",[self class],self,_cmd,commandIndex);
+	DDLog(NSStringFromClass([self class]),10,@"[%@:%p %s %d]",[self class],self,_cmd,commandIndex);
 
 	//final dictionary to send
 	commandDictionary=[NSMutableDictionary dictionaryWithCapacity:9];
@@ -313,7 +313,7 @@ static NSString *OutputPathKey=@"Output path";
 //the command dictionary for the prototype is cached (an example of too early optimization??)
 - (NSDictionary *)prototypeCommandDictionary
 {
-	DLog(NSStringFromClass([self class]),10,@"[%@:%p %s] - %@",[self class],self,_cmd,[self shortDescription]);
+	DDLog(NSStringFromClass([self class]),10,@"[%@:%p %s] - %@",[self class],self,_cmd,[self shortDescription]);
 	if (prototypeCommandDictionary==nil) {
 		prototypeCommandDictionary=[[self dictionaryForCommandAtIndex:0] copy];
 	}
@@ -324,7 +324,7 @@ static NSString *OutputPathKey=@"Output path";
 - (NSDictionary *)prototypeShortcutDictionary
 {
 	NSDictionary *temp;
-	DLog(NSStringFromClass([self class]),10,@"[%@:%p %s] - %@",[self class],self,_cmd,[self shortDescription]);
+	DDLog(NSStringFromClass([self class]),10,@"[%@:%p %s] - %@",[self class],self,_cmd,[self shortDescription]);
 	if (prototypeShortcutDictionary==nil) {
 		temp=[self prototypeCommandDictionary];
 		temp=[self shortcutDictionaryForBasePaths:[temp objectForKey:BasePathsKey]];
@@ -337,7 +337,7 @@ static NSString *OutputPathKey=@"Output path";
 //and then resolving potential relative paths and shortcuts
 - (NSDictionary *)finalDictionaryForCommandAtIndex:(unsigned int)commandIndex
 {
-	DLog(NSStringFromClass([self class]),10,@"[%@:%p %s %d]",[self class],self,_cmd,commandIndex);
+	DDLog(NSStringFromClass([self class]),10,@"[%@:%p %s %d]",[self class],self,_cmd,commandIndex);
 
 	//this is the returned dictionary, for now it is mutable
 	NSMutableDictionary *finalDictionary;
@@ -454,7 +454,7 @@ static NSString *OutputPathKey=@"Output path";
 
 - (unsigned int)numberOfTasksForMetaJob:(GEZMetaJob *)aJob
 {
-	DLog(NSStringFromClass([self class]),10,@"[%@:%p %s] - %@",[self class],self,_cmd,[self shortDescription]);
+	DDLog(NSStringFromClass([self class]),10,@"[%@:%p %s] - %@",[self class],self,_cmd,[self shortDescription]);
 	[[self inputInterface] loadFile];
 	return [[[self inputInterface] valueForKey:@"countLines"] unsignedIntValue];
 }
@@ -463,7 +463,7 @@ static NSString *OutputPathKey=@"Output path";
 //this implementation is a left-over from previous version where taskDescription could be directly handed over to GEZMetaJob; the implementation of MetaJob has been changed, so the dictionary has to be actually different, so the whole thing looks a bit awkward now
 - (id)metaJob:(GEZMetaJob *)metaJob taskAtIndex:(unsigned int)taskIndex
 {
-	DLog(NSStringFromClass([self class]),15,@"[%@:%p %s] - %@",[self class],self,_cmd,[self shortDescription]);
+	DDLog(NSStringFromClass([self class]),15,@"[%@:%p %s] - %@",[self class],self,_cmd,[self shortDescription]);
 	if ( taskIndex > [self numberOfTasksForMetaJob:metaJob] || taskIndex < 0 )
 		return nil;
 	
@@ -561,7 +561,7 @@ static NSString *OutputPathKey=@"Output path";
 	}
 	
 		//for debug purposes
-	DLog(NSStringFromClass([self class]),10,@"[%@:%p %s] - %@ --> %@",[self class],self,_cmd,[self shortDescription],resultsAreValid?@"SUCCESS":@"FAILURE");
+	DDLog(NSStringFromClass([self class]),10,@"[%@:%p %s] - %@ --> %@",[self class],self,_cmd,[self shortDescription],resultsAreValid?@"SUCCESS":@"FAILURE");
 
 	return resultsAreValid;
 }

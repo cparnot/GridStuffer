@@ -123,8 +123,8 @@ static NSString *UniqueNameWithPath(NSString *path, unsigned int *suffix)
 	NSEnumerator *e;
 	unsigned int suffix;
 
-	DLog(NSStringFromClass([self class]),10,@"[<%@:%p> %s]",[self class],self,_cmd);
-	DLog(NSStringFromClass([self class]),10,@"\nFiles:\n%@",[files description]);
+	DDLog(NSStringFromClass([self class]),10,@"[<%@:%p> %s]",[self class],self,_cmd);
+	DDLog(NSStringFromClass([self class]),10,@"\nFiles:\n%@",[files description]);
 
 	//determine the root path
 	if ( [path isAbsolutePath] )

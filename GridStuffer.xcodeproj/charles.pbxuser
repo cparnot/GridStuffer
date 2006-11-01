@@ -273,6 +273,7 @@
 			563400C40AF820F300096189 /* PBXTextBookmark */ = 563400C40AF820F300096189 /* PBXTextBookmark */;
 			563400C50AF820F300096189 /* PBXTextBookmark */ = 563400C50AF820F300096189 /* PBXTextBookmark */;
 			563400C60AF820F300096189 /* PBXTextBookmark */ = 563400C60AF820F300096189 /* PBXTextBookmark */;
+			563400CA0AF8215D00096189 /* PBXTextBookmark */ = 563400CA0AF8215D00096189 /* PBXTextBookmark */;
 			5634C949090450190037230A = 5634C949090450190037230A /* PBXTextBookmark */;
 			5634C94B090450190037230A = 5634C94B090450190037230A /* PBXDocBookmark */;
 			5634FFD00AF6D44000096189 /* PBXTextBookmark */ = 5634FFD00AF6D44000096189 /* PBXTextBookmark */;
@@ -740,7 +741,7 @@
 		fRef = 56F4233D083BBC6D0011D12B /* XGSTaskSource.m */;
 		name = "- (NSString *)absolutePathForString:(NSString *)relativePath";
 		rLen = 61;
-		rLoc = 3798;
+		rLoc = 3800;
 		rType = 0;
 		vrLen = 1972;
 		vrLoc = 2923;
@@ -823,7 +824,7 @@
 		fRef = 56F4233D083BBC6D0011D12B /* XGSTaskSource.m */;
 		name = "XGSTaskSource.m: 470";
 		rLen = 0;
-		rLoc = 20223;
+		rLoc = 20234;
 		rType = 0;
 		vrLen = 1677;
 		vrLoc = 18180;
@@ -869,7 +870,7 @@
 		fRef = 56F4233D083BBC6D0011D12B /* XGSTaskSource.m */;
 		name = "XGSTaskSource.m: 479";
 		rLen = 0;
-		rLoc = 20186;
+		rLoc = 20197;
 		rType = 0;
 		vrLen = 1766;
 		vrLoc = 18063;
@@ -899,7 +900,7 @@
 		fRef = 56F42316083BBBA90011D12B /* GridStufferAppDelegate.m */;
 		name = "GridStufferAppDelegate.m: 267";
 		rLen = 0;
-		rLoc = 6106;
+		rLoc = 6110;
 		rType = 0;
 		vrLen = 1016;
 		vrLoc = 7734;
@@ -909,7 +910,7 @@
 		fRef = 56F42318083BBBA90011D12B /* XGSNewJobController.m */;
 		name = NSManagedObjectContext;
 		rLen = 22;
-		rLoc = 10640;
+		rLoc = 10642;
 		rType = 0;
 		vrLen = 1363;
 		vrLoc = 10162;
@@ -919,7 +920,7 @@
 		fRef = 56FFF115087B571600FF6E8D /* XGSJobListController.m */;
 		name = "XGSJobListController.m: initWithManagedObjectContext:";
 		rLen = 0;
-		rLoc = 1329;
+		rLoc = 1330;
 		rType = 0;
 		vrLen = 538;
 		vrLoc = 904;
@@ -959,7 +960,7 @@
 		fRef = 56F42316083BBBA90011D12B /* GridStufferAppDelegate.m */;
 		name = "GridStufferAppDelegate.m: 267";
 		rLen = 0;
-		rLoc = 6106;
+		rLoc = 6110;
 		rType = 0;
 		vrLen = 1016;
 		vrLoc = 7734;
@@ -979,7 +980,7 @@
 		fRef = 56FFF115087B571600FF6E8D /* XGSJobListController.m */;
 		name = NSManagedObjectContext;
 		rLen = 22;
-		rLoc = 1284;
+		rLoc = 1285;
 		rType = 0;
 		vrLen = 538;
 		vrLoc = 904;
@@ -989,7 +990,7 @@
 		fRef = 56F42318083BBBA90011D12B /* XGSNewJobController.m */;
 		name = NSManagedObjectContext;
 		rLen = 22;
-		rLoc = 10640;
+		rLoc = 10642;
 		rType = 0;
 		vrLen = 1363;
 		vrLoc = 10162;
@@ -1009,7 +1010,7 @@
 		fRef = 56FFF115087B571600FF6E8D /* XGSJobListController.m */;
 		name = "XGSJobListController.m: initWithManagedObjectContext:";
 		rLen = 0;
-		rLoc = 1329;
+		rLoc = 1330;
 		rType = 0;
 		vrLen = 538;
 		vrLoc = 904;
@@ -1055,7 +1056,7 @@
 		fRef = 56F42339083BBC6D0011D12B /* XGSOutputInterface.m */;
 		name = "XGSOutputInterface.m: 132";
 		rLen = 0;
-		rLoc = 4410;
+		rLoc = 4412;
 		rType = 0;
 		vrLen = 1847;
 		vrLoc = 3719;
@@ -1287,7 +1288,7 @@
 		fRef = 56F42339083BBC6D0011D12B /* XGSOutputInterface.m */;
 		name = "XGSOutputInterface.m: 132";
 		rLen = 0;
-		rLoc = 4410;
+		rLoc = 4412;
 		rType = 0;
 		vrLen = 1847;
 		vrLoc = 3719;
@@ -1307,7 +1308,7 @@
 		fRef = 56F4233D083BBC6D0011D12B /* XGSTaskSource.m */;
 		name = "XGSTaskSource.m: 548";
 		rLen = 0;
-		rLoc = 22563;
+		rLoc = 22574;
 		rType = 0;
 		vrLen = 2157;
 		vrLoc = 21642;
@@ -1482,7 +1483,7 @@
 		fRef = 56F4233D083BBC6D0011D12B /* XGSTaskSource.m */;
 		name = "XGSTaskSource.m: 559";
 		rLen = 0;
-		rLoc = 23245;
+		rLoc = 23256;
 		rType = 0;
 		vrLen = 1854;
 		vrLoc = 21723;
@@ -1512,7 +1513,7 @@
 		fRef = 56F42318083BBBA90011D12B /* XGSNewJobController.m */;
 		name = "XGSNewJobController.m: 359";
 		rLen = 0;
-		rLoc = 12106;
+		rLoc = 12108;
 		rType = 0;
 		vrLen = 1333;
 		vrLoc = 6832;
@@ -1599,7 +1600,7 @@
 		fRef = 56F42339083BBC6D0011D12B /* XGSOutputInterface.m */;
 		name = "XGSOutputInterface.m: 132";
 		rLen = 0;
-		rLoc = 4410;
+		rLoc = 4412;
 		rType = 0;
 		vrLen = 1844;
 		vrLoc = 3719;
@@ -1715,7 +1716,7 @@
 		fRef = 56F42339083BBC6D0011D12B /* XGSOutputInterface.m */;
 		name = "XGSOutputInterface.m: 132";
 		rLen = 0;
-		rLoc = 4410;
+		rLoc = 4412;
 		rType = 0;
 		vrLen = 1844;
 		vrLoc = 3719;
@@ -1795,7 +1796,7 @@
 		fRef = 56F42316083BBBA90011D12B /* GridStufferAppDelegate.m */;
 		name = "GridStufferAppDelegate.m: applicationDidFinishLaunching:";
 		rLen = 0;
-		rLoc = 5595;
+		rLoc = 5598;
 		rType = 0;
 		vrLen = 1118;
 		vrLoc = 5461;
@@ -1855,7 +1856,7 @@
 		fRef = 56FFF115087B571600FF6E8D /* XGSJobListController.m */;
 		name = "XGSJobListController.m: 28";
 		rLen = 0;
-		rLoc = 1278;
+		rLoc = 1279;
 		rType = 0;
 		vrLen = 1442;
 		vrLoc = 0;
@@ -1925,7 +1926,7 @@
 		fRef = 56F42316083BBBA90011D12B /* GridStufferAppDelegate.m */;
 		name = "GridStufferAppDelegate.m: shouldEnableLevelIndicator";
 		rLen = 0;
-		rLoc = 5406;
+		rLoc = 5409;
 		rType = 0;
 		vrLen = 661;
 		vrLoc = 5164;
@@ -1945,12 +1946,22 @@
 		fRef = 56F42316083BBBA90011D12B /* GridStufferAppDelegate.m */;
 		name = "GridStufferAppDelegate.m: shouldEnableLevelIndicator";
 		rLen = 0;
-		rLoc = 5406;
+		rLoc = 5409;
 		rType = 0;
 		vrLen = 661;
 		vrLoc = 5164;
 	};
 	563400C60AF820F300096189 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 56F42315083BBBA90011D12B /* GridStufferAppDelegate.h */;
+		name = "GridStufferAppDelegate.h: 29";
+		rLen = 0;
+		rLoc = 1340;
+		rType = 0;
+		vrLen = 964;
+		vrLoc = 927;
+	};
+	563400CA0AF8215D00096189 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 56F42315083BBBA90011D12B /* GridStufferAppDelegate.h */;
 		name = "GridStufferAppDelegate.h: 29";
@@ -2003,7 +2014,7 @@
 		fRef = 56F4233D083BBC6D0011D12B /* XGSTaskSource.m */;
 		name = "XGSTaskSource.m: 470";
 		rLen = 0;
-		rLoc = 20223;
+		rLoc = 20234;
 		rType = 0;
 		vrLen = 1223;
 		vrLoc = 18393;
@@ -2013,7 +2024,7 @@
 		fRef = 56F4233D083BBC6D0011D12B /* XGSTaskSource.m */;
 		name = "XGSTaskSource.m: 470";
 		rLen = 0;
-		rLoc = 20223;
+		rLoc = 20234;
 		rType = 0;
 		vrLen = 1223;
 		vrLoc = 18393;
@@ -2039,7 +2050,7 @@
 		fRef = 56F4233D083BBC6D0011D12B /* XGSTaskSource.m */;
 		name = "XGSTaskSource.m: 470";
 		rLen = 0;
-		rLoc = 20223;
+		rLoc = 20234;
 		rType = 0;
 		vrLen = 1158;
 		vrLoc = 18393;
@@ -2059,7 +2070,7 @@
 		fRef = 56F4232B083BBC170011D12B /* DebugLog.h */;
 		name = "DebugLog.h: 16";
 		rLen = 0;
-		rLoc = 386;
+		rLoc = 388;
 		rType = 0;
 		vrLen = 464;
 		vrLoc = 0;
@@ -2133,7 +2144,7 @@
 		fRef = 56F42333083BBC6D0011D12B /* XGSInputInterface.m */;
 		name = "- (NSString *)lineAtIndex:(unsigned int)index";
 		rLen = 46;
-		rLoc = 3072;
+		rLoc = 3076;
 		rType = 0;
 		vrLen = 1278;
 		vrLoc = 1119;
@@ -2143,7 +2154,7 @@
 		fRef = 56F42316083BBBA90011D12B /* GridStufferAppDelegate.m */;
 		name = "GridStufferAppDelegate.m: 377";
 		rLen = 0;
-		rLoc = 8564;
+		rLoc = 8571;
 		rType = 0;
 		vrLen = 1245;
 		vrLoc = 10829;
@@ -2153,7 +2164,7 @@
 		fRef = 56F4233D083BBC6D0011D12B /* XGSTaskSource.m */;
 		name = "XGSTaskSource.m: 543";
 		rLen = 0;
-		rLoc = 23571;
+		rLoc = 23583;
 		rType = 0;
 		vrLen = 267;
 		vrLoc = 20887;
@@ -2563,7 +2574,7 @@
 		fRef = 56F4232C083BBC170011D12B /* DebugLog.m */;
 		name = NSLogv;
 		rLen = 6;
-		rLoc = 566;
+		rLoc = 567;
 		rType = 0;
 		vrLen = 644;
 		vrLoc = 30;
@@ -3478,7 +3489,7 @@
 		fRef = 56F42339083BBC6D0011D12B /* XGSOutputInterface.m */;
 		name = "XGSOutputInterface.m: 254";
 		rLen = 0;
-		rLoc = 8076;
+		rLoc = 8078;
 		rType = 0;
 		vrLen = 973;
 		vrLoc = 7109;
@@ -3538,7 +3549,7 @@
 		fRef = 56F4232C083BBC170011D12B /* DebugLog.m */;
 		name = NSLogv;
 		rLen = 6;
-		rLoc = 566;
+		rLoc = 567;
 		rType = 0;
 		vrLen = 674;
 		vrLoc = 0;
@@ -3713,7 +3724,7 @@
 		fRef = 56F42339083BBC6D0011D12B /* XGSOutputInterface.m */;
 		name = "XGSOutputInterface.m: 254";
 		rLen = 0;
-		rLoc = 8076;
+		rLoc = 8078;
 		rType = 0;
 		vrLen = 973;
 		vrLoc = 7109;
@@ -3773,7 +3784,7 @@
 		fRef = 56F4232C083BBC170011D12B /* DebugLog.m */;
 		name = NSLogv;
 		rLen = 6;
-		rLoc = 566;
+		rLoc = 567;
 		rType = 0;
 		vrLen = 674;
 		vrLoc = 0;
@@ -3832,7 +3843,7 @@
 		isa = PBXTextBookmark;
 		fRef = 56F425A6083D55280011D12B /* XGSStringToImageTransformer.m */;
 		rLen = 27;
-		rLoc = 1582;
+		rLoc = 1583;
 		rType = 0;
 	};
 	56E43CF40AEF2C1E00011401 /* PBXTextBookmark */ = {
@@ -3850,7 +3861,7 @@
 		fRef = 56F425A6083D55280011D12B /* XGSStringToImageTransformer.m */;
 		name = XGSStringToImageTransformer;
 		rLen = 27;
-		rLoc = 1582;
+		rLoc = 1583;
 		rType = 0;
 		vrLen = 1026;
 		vrLoc = 0;
@@ -3944,7 +3955,7 @@
 		fRef = 56F4233D083BBC6D0011D12B /* XGSTaskSource.m */;
 		name = "XGSTaskSource.m: 385";
 		rLen = 0;
-		rLoc = 15609;
+		rLoc = 15618;
 		rType = 0;
 		vrLen = 1600;
 		vrLoc = 14640;
@@ -3971,7 +3982,7 @@
 		fRef = 56F42316083BBBA90011D12B /* GridStufferAppDelegate.m */;
 		name = "GridStufferAppDelegate.m: 170";
 		rLen = 0;
-		rLoc = 5025;
+		rLoc = 5028;
 		rType = 0;
 		vrLen = 992;
 		vrLoc = 4478;
@@ -3986,7 +3997,7 @@
 		fRef = 56F4232B083BBC170011D12B /* DebugLog.h */;
 		name = "DebugLog.h: 16";
 		rLen = 0;
-		rLoc = 386;
+		rLoc = 388;
 		rType = 0;
 		vrLen = 464;
 		vrLoc = 0;
@@ -3996,7 +4007,7 @@
 		fRef = 56F4232C083BBC170011D12B /* DebugLog.m */;
 		name = "DebugLog.m: 24";
 		rLen = 0;
-		rLoc = 584;
+		rLoc = 585;
 		rType = 0;
 		vrLen = 672;
 		vrLoc = 0;
@@ -4076,7 +4087,7 @@
 		fRef = 56FFF115087B571600FF6E8D /* XGSJobListController.m */;
 		name = "[managedObjectContext release];";
 		rLen = 33;
-		rLoc = 1383;
+		rLoc = 1384;
 		rType = 0;
 		vrLen = 1011;
 		vrLoc = 431;
@@ -4086,7 +4097,7 @@
 		fRef = 56FFF115087B571600FF6E8D /* XGSJobListController.m */;
 		name = "XGSJobListController.m: 26";
 		rLen = 0;
-		rLoc = 1261;
+		rLoc = 1262;
 		rType = 0;
 		vrLen = 1011;
 		vrLoc = 431;
@@ -4106,7 +4117,7 @@
 		fRef = 56FFF115087B571600FF6E8D /* XGSJobListController.m */;
 		name = "XGSJobListController.m: 26";
 		rLen = 0;
-		rLoc = 1261;
+		rLoc = 1262;
 		rType = 0;
 		vrLen = 1116;
 		vrLoc = 326;
@@ -4126,7 +4137,7 @@
 		fRef = 56FFF115087B571600FF6E8D /* XGSJobListController.m */;
 		name = "XGSJobListController.m: 26";
 		rLen = 0;
-		rLoc = 1261;
+		rLoc = 1262;
 		rType = 0;
 		vrLen = 1116;
 		vrLoc = 326;
@@ -4156,7 +4167,7 @@
 		fRef = 56F4233D083BBC6D0011D12B /* XGSTaskSource.m */;
 		name = "- (NSString *)absolutePathForString:(NSString *)relativePath";
 		rLen = 61;
-		rLoc = 3798;
+		rLoc = 3800;
 		rType = 0;
 		vrLen = 1285;
 		vrLoc = 2924;
@@ -4193,7 +4204,7 @@
 		fRef = 56F4233D083BBC6D0011D12B /* XGSTaskSource.m */;
 		name = "XGSTaskSource.m: 385";
 		rLen = 0;
-		rLoc = 15609;
+		rLoc = 15618;
 		rType = 0;
 		vrLen = 1600;
 		vrLoc = 14640;
@@ -4203,7 +4214,7 @@
 		fRef = 56F42316083BBBA90011D12B /* GridStufferAppDelegate.m */;
 		name = "GridStufferAppDelegate.m: 170";
 		rLen = 0;
-		rLoc = 5025;
+		rLoc = 5028;
 		rType = 0;
 		vrLen = 992;
 		vrLoc = 4478;
@@ -4218,7 +4229,7 @@
 		fRef = 56F4232B083BBC170011D12B /* DebugLog.h */;
 		name = "DebugLog.h: 16";
 		rLen = 0;
-		rLoc = 386;
+		rLoc = 388;
 		rType = 0;
 		vrLen = 464;
 		vrLoc = 0;
@@ -4228,7 +4239,7 @@
 		fRef = 56F4232C083BBC170011D12B /* DebugLog.m */;
 		name = "DebugLog.m: 24";
 		rLen = 0;
-		rLoc = 584;
+		rLoc = 585;
 		rType = 0;
 		vrLen = 672;
 		vrLoc = 0;
@@ -4238,7 +4249,7 @@
 		fRef = 56F4232B083BBC170011D12B /* DebugLog.h */;
 		name = "DebugLog.h: 16";
 		rLen = 0;
-		rLoc = 386;
+		rLoc = 388;
 		rType = 0;
 		vrLen = 464;
 		vrLoc = 0;
@@ -4248,7 +4259,7 @@
 		fRef = 56F4232C083BBC170011D12B /* DebugLog.m */;
 		name = "DebugLog.m: 24";
 		rLen = 0;
-		rLoc = 584;
+		rLoc = 585;
 		rType = 0;
 		vrLen = 672;
 		vrLoc = 0;
@@ -4258,7 +4269,7 @@
 		fRef = 56F4232B083BBC170011D12B /* DebugLog.h */;
 		name = "DebugLog.h: 16";
 		rLen = 0;
-		rLoc = 386;
+		rLoc = 388;
 		rType = 0;
 		vrLen = 464;
 		vrLoc = 0;
@@ -4268,7 +4279,7 @@
 		fRef = 56F4232C083BBC170011D12B /* DebugLog.m */;
 		name = "DebugLog.m: 24";
 		rLen = 0;
-		rLoc = 584;
+		rLoc = 585;
 		rType = 0;
 		vrLen = 672;
 		vrLoc = 0;
@@ -4318,7 +4329,7 @@
 		fRef = 56F425A6083D55280011D12B /* XGSStringToImageTransformer.m */;
 		name = "XGSStringToImageTransformer.m: 25";
 		rLen = 0;
-		rLoc = 1207;
+		rLoc = 1208;
 		rType = 0;
 		vrLen = 1030;
 		vrLoc = 436;
@@ -4408,7 +4419,7 @@
 		fRef = 56F42339083BBC6D0011D12B /* XGSOutputInterface.m */;
 		name = "XGSOutputInterface.m: 254";
 		rLen = 0;
-		rLoc = 8076;
+		rLoc = 8078;
 		rType = 0;
 		vrLen = 874;
 		vrLoc = 6987;
@@ -4578,7 +4589,7 @@
 		fRef = 56F4233D083BBC6D0011D12B /* XGSTaskSource.m */;
 		name = "XGSTaskSource.m: 385";
 		rLen = 0;
-		rLoc = 15609;
+		rLoc = 15618;
 		rType = 0;
 		vrLen = 2320;
 		vrLoc = 14121;
@@ -4708,7 +4719,7 @@
 		fRef = 56F42339083BBC6D0011D12B /* XGSOutputInterface.m */;
 		name = "XGSOutputInterface.m: 254";
 		rLen = 0;
-		rLoc = 8076;
+		rLoc = 8078;
 		rType = 0;
 		vrLen = 874;
 		vrLoc = 6987;
@@ -4718,7 +4729,7 @@
 		fRef = 56F4233D083BBC6D0011D12B /* XGSTaskSource.m */;
 		name = "BOOL resultsAreGood = [[self valueForKey:@\"validator\"] validateFiles:files standardOutput:stdoutData standardError:stderrData];";
 		rLen = 3029;
-		rLoc = 20359;
+		rLoc = 20370;
 		rType = 0;
 		vrLen = 1551;
 		vrLoc = 19159;
@@ -4728,7 +4739,7 @@
 		fRef = 56F42339083BBC6D0011D12B /* XGSOutputInterface.m */;
 		name = "XGSOutputInterface.m: 254";
 		rLen = 0;
-		rLoc = 8076;
+		rLoc = 8078;
 		rType = 0;
 		vrLen = 874;
 		vrLoc = 6987;
@@ -4768,7 +4779,7 @@
 		fRef = 56F4233D083BBC6D0011D12B /* XGSTaskSource.m */;
 		name = "XGSTaskSource.m: 484";
 		rLen = 0;
-		rLoc = 20357;
+		rLoc = 20368;
 		rType = 0;
 		vrLen = 1551;
 		vrLoc = 19159;
@@ -4788,7 +4799,7 @@
 		fRef = 56F4233D083BBC6D0011D12B /* XGSTaskSource.m */;
 		name = "XGSTaskSource.m: 487";
 		rLen = 0;
-		rLoc = 20358;
+		rLoc = 20369;
 		rType = 0;
 		vrLen = 1551;
 		vrLoc = 19159;
@@ -4808,7 +4819,7 @@
 		fRef = 56F4233D083BBC6D0011D12B /* XGSTaskSource.m */;
 		name = "XGSTaskSource.m: 489";
 		rLen = 0;
-		rLoc = 23568;
+		rLoc = 23580;
 		rType = 0;
 		vrLen = 1551;
 		vrLoc = 19159;
@@ -4828,7 +4839,7 @@
 		fRef = 56F4233D083BBC6D0011D12B /* XGSTaskSource.m */;
 		name = "XGSTaskSource.m: 86";
 		rLen = 0;
-		rLoc = 3197;
+		rLoc = 3198;
 		rType = 0;
 		vrLen = 1355;
 		vrLoc = 2046;
@@ -5095,9 +5106,9 @@
 	};
 	56F42316083BBBA90011D12B /* GridStufferAppDelegate.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {827, 4130}}";
-			sepNavSelRange = "{5406, 0}";
-			sepNavVisRect = "{{0, 2464}, {827, 454}}";
+			sepNavIntBoundsRect = "{{0, 0}, {872, 4130}}";
+			sepNavSelRange = "{2547, 28}";
+			sepNavVisRect = "{{0, 1116}, {872, 358}}";
 			sepNavWindowFrame = "{{15, 64}, {999, 763}}";
 		};
 	};
@@ -5312,7 +5323,7 @@
 		fRef = 56F425A6083D55280011D12B /* XGSStringToImageTransformer.m */;
 		name = "XGSStatusStringToImageTransformer.m: 14";
 		rLen = 0;
-		rLoc = 1772;
+		rLoc = 1773;
 		rType = 0;
 		vrLen = 288;
 		vrLoc = 0;
@@ -5660,7 +5671,7 @@
 		fRef = 56FFF115087B571600FF6E8D /* XGSJobListController.m */;
 		name = "XGSJobListController.m: 21";
 		rLen = 0;
-		rLoc = 1278;
+		rLoc = 1279;
 		rType = 0;
 		vrLen = 469;
 		vrLoc = 0;
@@ -5708,7 +5719,7 @@
 		fRef = 56F42318083BBBA90011D12B /* XGSNewJobController.m */;
 		name = "XGSNewJobController.m: 364";
 		rLen = 0;
-		rLoc = 11880;
+		rLoc = 11882;
 		rType = 0;
 		vrLen = 2094;
 		vrLoc = 10008;

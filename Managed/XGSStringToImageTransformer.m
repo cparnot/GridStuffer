@@ -20,7 +20,7 @@
 
 + (void)initialize
 {
-	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
+	DDLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
 	XGSStringToImageTransformer *transformer = [[[XGSStringToImageTransformer alloc] init] autorelease];
 	[NSValueTransformer setValueTransformer:transformer forName:@"XGSStringToImageTransformer"];
 }

@@ -19,7 +19,7 @@
 
 - (id)initWithManagedObjectContext:(NSManagedObjectContext *)context
 {
-	DLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
+	DDLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
 	self = [super initWithWindowNibName:@"JobList"];
 	if (self!=nil) {
 		[self setWindowFrameAutosaveName:@"XGSJobListWindow"];

@@ -104,7 +104,7 @@
 
 - (IBAction)insertNewMetaJob:(id)sender
 {
-	DLog(NSStringFromClass([self class]),10,@"[<%@:%p> %s]",[self class],self,_cmd);
+	DDLog(NSStringFromClass([self class]),10,@"[<%@:%p> %s]",[self class],self,_cmd);
 
 	//it is a rare case where the release is handled by the object itself
 	//so do not worry about the alloc below
@@ -117,7 +117,7 @@
 {
 	GEZMetaJob *selectedJob;
 	
-	DLog(NSStringFromClass([self class]),10,@"[<%@:%p> %s]",[self class],self,_cmd);
+	DDLog(NSStringFromClass([self class]),10,@"[<%@:%p> %s]",[self class],self,_cmd);
 	
 	selectedJob = [self uniquelySelectedMetaJobInTheTableView];
 	[selectedJob setDelegate:self];
@@ -130,7 +130,7 @@
 {
 	GEZMetaJob *selectedJob;
 	
-	DLog(NSStringFromClass([self class]),10,@"[<%@:%p> %s]",[self class],self,_cmd);
+	DDLog(NSStringFromClass([self class]),10,@"[<%@:%p> %s]",[self class],self,_cmd);
 	
 	selectedJob = [self uniquelySelectedMetaJobInTheTableView];
 	[[[selectedJob dataSource] inputInterface] loadFile];
@@ -206,7 +206,7 @@
 
 - (IBAction) saveAction:(id)sender
 {
-	DLog(NSStringFromClass([self class]),10,@"[<%@:%p> %s]",[self class],self,_cmd);
+	DDLog(NSStringFromClass([self class]),10,@"[<%@:%p> %s]",[self class],self,_cmd);
 	/*
     NSError *error = nil;
     if (![[self managedObjectContext] save:&error]) {
@@ -256,13 +256,13 @@
 - (void)tableViewSelectionDidChange:(NSNotification *)aNotification
 {
 	NSTableView *selectedTableView = [aNotification object];
-	DLog(NSStringFromClass([self class]),10,@"[<%@:%p> %s]",[self class],self,_cmd);
+	DDLog(NSStringFromClass([self class]),10,@"[<%@:%p> %s]",[self class],self,_cmd);
 	if ( selectedTableView == metaJobTableView ) {
-		DLog(NSStringFromClass([self class]),10,@"[<%@:%p> %s] for MetaJobs table",[self class],self,_cmd);
+		DDLog(NSStringFromClass([self class]),10,@"[<%@:%p> %s] for MetaJobs table",[self class],self,_cmd);
 		[taskInspectorTableView reloadData];		
 	}
 	else if ( selectedTableView == taskInspectorTableView ) {
-		DLog(NSStringFromClass([self class]),10,@"[<%@:%p> %s] for Tasks table",[self class],self,_cmd);
+		DDLog(NSStringFromClass([self class]),10,@"[<%@:%p> %s] for Tasks table",[self class],self,_cmd);
 		GEZMetaJob *selectedJob = [self uniquelySelectedMetaJobInTheTableView];
 		int index = [taskInspectorTableView selectedRow];
 		NSString *taskString = @"No Selection";;

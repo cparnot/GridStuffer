@@ -4,7 +4,7 @@
 //
 
 /*
-	DLog is equivalent to NSLog
+	DDLog is equivalent to NSLog
 	but is only used and compiled #ifdef DEBUG
  */
 
@@ -12,7 +12,7 @@
 //DEBUG is defined only for the Development Configuration, not Deployment
 
 #ifdef DEBUG
-void DLog(NSString *identifier, int level, NSString *fmt,...);
+void DDLog(NSString *identifier, int level, NSString *fmt,...);
 #else
-inline void DLog(NSString *identifier, int level, NSString *fmt,...);
+inline void DDLog(NSString *identifier, int level, NSString *fmt,...);
 #endif
