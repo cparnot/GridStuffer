@@ -65,10 +65,8 @@ static NSString *OutputPathKey=@"Output path";
 
 - (XGSInputInterface *)inputInterface;
 {
-	XGSInputInterface *result;
-	DLog(NSStringFromClass([self class]),15,@"[%@:%p %s] - %@",[self class],self,_cmd,[self shortDescription]);
 	[self willAccessValueForKey:@"inputInterface"];
-	result = [self primitiveValueForKey:@"inputInterface"];
+	XGSInputInterface *result = [self primitiveValueForKey:@"inputInterface"];
 	[self didAccessValueForKey:@"inputInterface"];
 	return result;
 }
@@ -81,6 +79,21 @@ static NSString *OutputPathKey=@"Output path";
 	result = [self primitiveValueForKey:@"outputInterface"];
 	[self didAccessValueForKey:@"outputInterface"];
 	return result;
+}
+
+- (XGSValidator *)validator
+{
+	[self willAccessValueForKey:@"validator"];
+	XGSValidator * value = [self primitiveValueForKey:@"validator"];
+	[self didAccessValueForKey:@"validator"];
+	return value;
+}
+
+- (void)setValidator:(XGSValidator *)aValue
+{
+	[self willChangeValueForKey:@"validator"];
+	[self setPrimitiveValue:aValue forKey:@"validator"];
+	[self didChangeValueForKey:@"validator"];
 }
 
 
@@ -324,28 +337,23 @@ static NSString *OutputPathKey=@"Output path";
 //and then resolving potential relative paths and shortcuts
 - (NSDictionary *)finalDictionaryForCommandAtIndex:(unsigned int)commandIndex
 {
-	NSDictionary *commandDictionary,*shortcutDictionary;
-	NSMutableDictionary *finalDictionary;
-	NSArray *basepaths,*files,*args;
-	NSMutableArray *paths,*finalArgs;
-	NSString *aPath,*anotherPath;
-	NSFileManager *fileManager;
-	NSDirectoryEnumerator *edir;
-	NSEnumerator *e;
-
 	DLog(NSStringFromClass([self class]),10,@"[%@:%p %s %d]",[self class],self,_cmd,commandIndex);
 
+	//this is the returned dictionary, for now it is mutable
+	NSMutableDictionary *finalDictionary;
+	
 	//merge prototype and command dictionaries
-	commandDictionary=[self dictionaryForCommandAtIndex:commandIndex];
-	if (commandIndex!=0) {
-		finalDictionary=[NSMutableDictionary dictionaryWithDictionary:[self prototypeCommandDictionary]];
+	NSDictionary *commandDictionary = [self dictionaryForCommandAtIndex:commandIndex];
+	if ( commandIndex != 0) {
+		finalDictionary = [NSMutableDictionary dictionaryWithDictionary:[self prototypeCommandDictionary]];
 		[finalDictionary addEntriesFromDictionary:commandDictionary];
 	} else
-		finalDictionary=[NSMutableDictionary dictionaryWithDictionary:commandDictionary];
+		finalDictionary = [NSMutableDictionary dictionaryWithDictionary:commandDictionary];
 	
 	//generate the shortcut dictionary from the basepaths of the current command or of the prototype
-	basepaths = [commandDictionary objectForKey:BasePathsKey];
-	if ( basepaths==nil ) {
+	NSArray *basepaths = [commandDictionary objectForKey:BasePathsKey];
+	NSDictionary *shortcutDictionary;
+	if ( basepaths == nil ) {
 		//try the prototype
 		basepaths = [[self prototypeCommandDictionary] objectForKey:BasePathsKey];
 		shortcutDictionary = [self prototypeShortcutDictionary];
@@ -354,25 +362,26 @@ static NSString *OutputPathKey=@"Output path";
 		shortcutDictionary = [self shortcutDictionaryForBasePaths:basepaths];
 	
 	//we will need the file manager to check if files exist
-	fileManager=[NSFileManager defaultManager];
+	NSFileManager *fileManager = [NSFileManager defaultManager];
 	
 	//the paths will ultimately hold all of the paths that need to be uploaded for the task
 	//these paths are all absolute
-	paths=[NSMutableArray array];
+	NSMutableArray *paths = [NSMutableArray array];
 	
 	//each base paths is added to the uploaded paths to ensure the agent will create at least the root directory of each basepath
 	[paths addObjectsFromArray:basepaths];
 	
 	//all the paths in the working directory are added (except for the root)
 	//(note there could be a bug/limitation here: if the working dir is part of one of the -dirs, the working dir will be sucked in the -dir and will not be the working directory on the agent --> to add to the docs!!)
-	aPath = [finalDictionary objectForKey:WorkingDirectoryKey];
-	edir = [fileManager enumeratorAtPath:aPath];
-	while (anotherPath = [edir nextObject])
+	NSString *aPath = [finalDictionary objectForKey:WorkingDirectoryKey];
+	NSDirectoryEnumerator *edir = [fileManager enumeratorAtPath:aPath];
+	NSString *anotherPath;
+	while ( anotherPath = [edir nextObject] )
 		[paths addObject:[aPath stringByAppendingPathComponent:anotherPath]];
 	
 	//scan the -files for relative paths and shortcuts (skip non existing files)
-	files=[finalDictionary objectForKey:FilesKey];
-	e=[files objectEnumerator];
+	NSArray *files = [finalDictionary objectForKey:FilesKey];
+	NSEnumerator *e=[files objectEnumerator];
 	while (aPath=[e nextObject]) {
 		//try to resolve the path the easy way
 		anotherPath=[self absolutePathForString:aPath];
@@ -407,10 +416,10 @@ static NSString *OutputPathKey=@"Output path";
 	}
 	
 	//Argument strings = same process as command string
-	args=[finalDictionary objectForKey:ArgumentsKey];
+	NSArray * args = [finalDictionary objectForKey:ArgumentsKey];
 	if ([args count]>0) {
-		finalArgs=[NSMutableArray arrayWithCapacity:[args count]];
-		e=[args objectEnumerator];
+		NSMutableArray *finalArgs = [NSMutableArray arrayWithCapacity:[args count]];
+		e = [args objectEnumerator];
 		//we call it 'aPath', but it could be anything; if it is indeed a path, then it is interesting
 		while (aPath=[e nextObject]) {
 			//if absolute path, use as is...
@@ -450,109 +459,112 @@ static NSString *OutputPathKey=@"Output path";
 	return [[[self inputInterface] valueForKey:@"countLines"] unsignedIntValue];
 }
 
+
+//this implementation is a left-over from previous version where taskDescription could be directly handed over to GEZMetaJob; the implementation of MetaJob has been changed, so the dictionary has to be actually different, so the whole thing looks a bit awkward now
 - (id)metaJob:(GEZMetaJob *)metaJob taskAtIndex:(unsigned int)taskIndex
 {
 	DLog(NSStringFromClass([self class]),15,@"[%@:%p %s] - %@",[self class],self,_cmd,[self shortDescription]);
 	if ( taskIndex > [self numberOfTasksForMetaJob:metaJob] || taskIndex < 0 )
 		return nil;
-	else
-		return [self finalDictionaryForCommandAtIndex:taskIndex];
-}
-
-- (NSString *)metaJob:(GEZMetaJob *)metaJob commandStringForTask:(id)task
-{
-	DLog(NSStringFromClass([self class]),15,@"[%@:%p %s] - %@",[self class],self,_cmd,[self shortDescription]);
-	return [task objectForKey:CommandKey];
-}
-
-- (NSArray *)metaJob:(GEZMetaJob *)metaJob argumentStringsForTask:(id)task
-{
-	DLog(NSStringFromClass([self class]),15,@"[%@:%p %s] - %@",[self class],self,_cmd,[self shortDescription]);
-	return [task objectForKey:ArgumentsKey];
-}
-
-- (NSArray *)metaJob:(GEZMetaJob *)metaJob pathsToUploadForTask:(id)task
-{
-	DLog(NSStringFromClass([self class]),15,@"[%@:%p %s] - %@",[self class],self,_cmd,[self shortDescription]);
-	return [task objectForKey:PathsKey];
-}
-
-- (NSString *)metaJob:(GEZMetaJob *)metaJob stdinPathForTask:(id)task;
-{
-	DLog(NSStringFromClass([self class]),15,@"[%@:%p %s] - %@",[self class],self,_cmd,[self shortDescription]);
-	return [task objectForKey:StdinPathKey];
-}
-
-- (BOOL)metaJob:(GEZMetaJob *)metaJob validateResultsWithFiles:(NSDictionary *)files standardOutput:(NSData *)stdoutData standardError:(NSData *)stderrData forTask:(id)task;
-{
-	BOOL resultsAreGood = [[self valueForKey:@"validator"] validateFiles:files standardOutput:stdoutData standardError:stderrData];
-	DLog(NSStringFromClass([self class]),10,@"[%@:%p %s] - %@ --> %@",[self class],self,_cmd,[self shortDescription],resultsAreGood?@"SUCCESS":@"FAILURE");
-	return resultsAreGood;
-}
-
-- (BOOL)metaJob:(GEZMetaJob *)metaJob saveStandardOutput:(NSData *)data forTask:(id)task
-{
-	DLog(NSStringFromClass([self class]),15,@"[%@:%p %s]",[self class],self,_cmd);
-	DLog(NSStringFromClass([self class]),15,@"\nTask:\n%@",[task description]);	
-	DLog(NSStringFromClass([self class]),15,@"\nStdout:\n%@",[[[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding:NSUTF8StringEncoding] autorelease]);
 	
-	//if there is no -so flag set in the command, return NO and let the metaJod save the stdout
-	NSString *stdoutPath = [task objectForKey:StdoutPathKey];
-	if ( stdoutPath == nil )
-		return NO;
-
-	//otherwise, let the outputInterface take care of it
-	return [[self outputInterface] saveData:data withPath:stdoutPath];
+	//this is the dictionary generated by self
+	NSDictionary *taskDescription = [self finalDictionaryForCommandAtIndex:taskIndex];
+	
+	//this is the dictionary needed by GEZMetaJob
+	NSMutableDictionary *taskObject = [NSMutableDictionary dictionaryWithCapacity:4];
+	
+	//only add entries that are releavant
+	NSString *stdinPath = [taskDescription objectForKey:StdinPathKey];
+	if ( stdinPath != nil )
+		[taskObject setObject:stdinPath forKey:GEZTaskSubmissionStandardInputKey];
+	NSString *commandString = [taskDescription objectForKey:CommandKey];
+	if ( commandString != nil )
+		[taskObject setObject:commandString forKey:GEZTaskSubmissionCommandKey];
+	NSArray *arguments = [taskDescription objectForKey:ArgumentsKey];
+	if ( arguments != nil )
+		[taskObject setObject:arguments forKey:GEZTaskSubmissionArgumentsKey];
+	NSArray *paths = [taskDescription objectForKey:PathsKey];
+	if  ( paths != nil )
+		[taskObject setObject:paths forKey:GEZTaskSubmissionUploadedPathsKey];
+	
+	return [NSDictionary dictionaryWithDictionary:taskObject];
 }
 
-- (BOOL)metaJob:(GEZMetaJob *)metaJob saveStandardError:(NSData *)data forTask:(id)task
-{
-	DLog(NSStringFromClass([self class]),15,@"[%@:%p %s]",[self class],self,_cmd);
-	DLog(NSStringFromClass([self class]),15,@"\nTask:\n%@",[task description]);	
-	DLog(NSStringFromClass([self class]),10,@"\nStderr:\n%@",[[[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding:NSUTF8StringEncoding] autorelease]);
-	
-	//if there is no -se flag set in the command, return NO and let the metaJod save the stderr
-	NSString *stderrPath = [task objectForKey:StderrPathKey];
-	if ( stderrPath == nil )
-		return NO;
-	
-	//otherwise, let the outputInterface take care of it
-	return [[self outputInterface] saveData:data withPath:stderrPath];
-}
 
-- (BOOL)metaJob:(GEZMetaJob *)metaJob saveOutputFiles:(NSDictionary *)dictionaryRepresentation forTask:(id)task
+- (BOOL)metaJob:(GEZMetaJob *)metaJob validateTaskAtIndex:(int)taskIndex results:(NSDictionary *)results;
 {
-	DLog(NSStringFromClass([self class]),15,@"[%@:%p %s]",[self class],self,_cmd);
-	DLog(NSStringFromClass([self class]),15,@"\nTask:\n%@",[task description]);	
-	DLog(NSStringFromClass([self class]),15,@"\nOutput files:\n%@",[dictionaryRepresentation description]);
+/*TODO : save to files*/
+
+	BOOL resultsAreValid = [[self validator] validateFiles:results];
 	
-	//if there is no -out flag set in the command, return NO and let the metaJod save the output files
-	NSString *outputPath = [task objectForKey:OutputPathKey];
-	if ( outputPath == nil )
-		return NO;
+	//I will need that information to process some of the results
+	NSDictionary *task = [self finalDictionaryForCommandAtIndex:taskIndex];
 	
-	//otherwise, let the outputInterface take care of the different files
-	/*
-	//Instead of being sent all at once to the ouput interface, they are sent one by one so that they are not put together in one folder in case of duplicates
-	BOOL allSaved = YES;
-	XGSOutputInterface *outputInterface = [self ouputInterface];
-	NSEnumerator *e = [dictionaryRepresentation keyEnumerator];
-	NSString *filePath;
-	NSData *fileData;
-	while ( filePath = [e nextObject] ) {
-		fileData = [dictionaryRepresentation objectForKey:filePath];
-		filePath = [outputPath stringByAppendingPathComponent:filePath];
-		allSaved = allSaved && [outputInterface saveData:fileData withPath:filePath];
+	//in this dictionary, all the files that will be saved in the default path (when not handled by -so, -se or -out)
+	NSMutableDictionary *resultsAutosaved = [NSMutableDictionary dictionaryWithCapacity:[results count]];
+	int streamCount = 0;
+	
+	//stdout might be handled by the -so flag, in which case stdoutPath != nil
+	NSData *stdoutData = [results objectForKey:GEZJobResultsStandardOutputKey];
+	if ( stdoutData != nil ) {
+		streamCount ++;
+		NSString *stdoutPath = [task objectForKey:StdoutPathKey];
+		if ( stdoutPath != nil )
+			[[self outputInterface] saveData:stdoutData withPath:stdoutPath];
+		else
+			[resultsAutosaved setObject:stdoutData forKey:GEZJobResultsStandardOutputKey];
 	}
-	return allSaved;
-	 */
-	return [[self outputInterface] saveFiles:dictionaryRepresentation inFolder:outputPath duplicatesInSubfolder:nil];
+
+	//stderr might be handled by the -so flag, in which case stderrPath != nil
+	NSData *stderrData = [results objectForKey:GEZJobResultsStandardErrorKey];
+	if ( stderrData != nil ) {
+		streamCount ++;
+		NSString *stderrPath = [task objectForKey:StderrPathKey];
+		if ( stderrPath != nil )
+			[[self outputInterface] saveData:stderrData withPath:stderrPath];
+		else
+			[resultsAutosaved setObject:stderrData forKey:GEZJobResultsStandardErrorKey];
+	}
+		
+	//results files might be handled by the -out flag, in which case outputPath != nil
+	if ( [results count] > streamCount ) {
+		//remove the streams from the results
+		NSMutableDictionary *filesOnly = [NSMutableDictionary dictionaryWithDictionary:results];
+		[filesOnly removeObjectForKey:GEZJobResultsStandardOutputKey];
+		[filesOnly removeObjectForKey:GEZJobResultsStandardErrorKey];
+		NSString *outputPath = [task objectForKey:OutputPathKey];
+		if ( outputPath == nil )
+			[[self outputInterface] saveFiles:filesOnly inFolder:outputPath];
+		else
+			[resultsAutosaved addEntriesFromDictionary:filesOnly];
+	}
+	
+	//whatever is left to be saved will be saved in the default output folder; the path to use for the output interface is different for valid and invalid results; results are grouped in subfolders if more than the max allowed
+	if ( [resultsAutosaved count] > 0 ) {
+		NSString *resultSubPath;
+		if ( resultsAreValid )
+			resultSubPath = @"";
+		else
+			resultSubPath = @"failures";
+		int total = [[[self inputInterface] valueForKey:@"countLines"] unsignedIntValue];
+		int max = [[self valueForKey:@"maxTasksPerFolder"] intValue];
+		if ( total > max ) {
+			int start, end;
+			start = taskIndex / max;
+			start *= max;
+			end = start + max - 1;
+			NSString *rangeSubPath = [NSString stringWithFormat:@"%d-%d/",start,end];
+			resultSubPath = [resultSubPath stringByAppendingPathComponent:rangeSubPath];
+		}
+		resultSubPath = [resultSubPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%d",taskIndex]];
+		[[self outputInterface] saveFiles:resultsAutosaved inFolder:resultSubPath duplicatesInSubfolder:@"results"];
+	}
+	
+		//for debug purposes
+	DLog(NSStringFromClass([self class]),10,@"[%@:%p %s] - %@ --> %@",[self class],self,_cmd,[self shortDescription],resultsAreValid?@"SUCCESS":@"FAILURE");
+
+	return resultsAreValid;
 }
 
-//unused data source methods
-/*
-- (BOOL)initializeTasksForMetaJob:(GEZMetaJob *)metaJob;
-- (NSData *)metaJob:(GEZMetaJob *)metaJob stdinDataForTask:(id)task 
-*/
 
 @end

@@ -16,6 +16,7 @@
 @class GEZMetaJob;
 @class XGSInputInterface;
 @class XGSOutputInterface;
+@class XGSValidator;
 
 @interface XGSTaskSource : NSManagedObject
 {
@@ -24,23 +25,15 @@
 }
 
 - (XGSInputInterface *)inputInterface;
+- (XGSValidator *)validator;
 - (XGSOutputInterface *)outputInterface;
 
 
 //MetaJob data source methods
-/* - (BOOL)initializeTasksForMetaJob:(GEZMetaJob *)metaJob; */
 - (unsigned int)numberOfTasksForMetaJob:(GEZMetaJob *)aJob;
 - (id)metaJob:(GEZMetaJob *)metaJob taskAtIndex:(unsigned int)taskIndex;
+- (BOOL)metaJob:(GEZMetaJob *)metaJob validateTaskAtIndex:(int)taskIndex results:(NSDictionary *)results;
 
-- (NSString *)metaJob:(GEZMetaJob *)metaJob commandStringForTask:(id)task;
-- (NSArray *)metaJob:(GEZMetaJob *)metaJob argumentStringsForTask:(id)task;
-- (NSArray *)metaJob:(GEZMetaJob *)metaJob pathsToUploadForTask:(id)task;
-- (NSString *)metaJob:(GEZMetaJob *)metaJob stdinPathForTask:(id)task;
-
-- (BOOL)metaJob:(GEZMetaJob *)metaJob validateResultsWithFiles:(NSDictionary *)dictionaryRepresentation standardOutput:(NSData *)stdoutData standardError:(NSData *)stderrData forTask:(id)task;
-- (BOOL)metaJob:(GEZMetaJob *)metaJob saveStandardOutput:(NSData *)data forTask:(id)task;
-- (BOOL)metaJob:(GEZMetaJob *)metaJob saveStandardError:(NSData *)data forTask:(id)task;
-- (BOOL)metaJob:(GEZMetaJob *)metaJob saveOutputFiles:(NSDictionary *)dictionaryRepresentation forTask:(id)task;
 
 
 @end
