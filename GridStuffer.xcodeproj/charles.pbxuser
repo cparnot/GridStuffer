@@ -8,7 +8,7 @@
 		};
 	};
 	29B97313FDCFA39411CA2CEA /* Project object */ = {
-		activeBuildConfigurationName = Deployment;
+		activeBuildConfigurationName = Debug;
 		activeExecutable = 561DF02B083175CA002E2457 /* GridStuffer */;
 		activeTarget = 8D1107260486CEB800E47090 /* GridStuffer */;
 		addToTargets = (
@@ -274,6 +274,17 @@
 			563400C50AF820F300096189 /* PBXTextBookmark */ = 563400C50AF820F300096189 /* PBXTextBookmark */;
 			563400C60AF820F300096189 /* PBXTextBookmark */ = 563400C60AF820F300096189 /* PBXTextBookmark */;
 			563400CA0AF8215D00096189 /* PBXTextBookmark */ = 563400CA0AF8215D00096189 /* PBXTextBookmark */;
+			563400CD0AF821C800096189 /* PBXTextBookmark */ = 563400CD0AF821C800096189 /* PBXTextBookmark */;
+			563400D00AF8221500096189 /* PBXTextBookmark */ = 563400D00AF8221500096189 /* PBXTextBookmark */;
+			563400D10AF8221500096189 /* PBXTextBookmark */ = 563400D10AF8221500096189 /* PBXTextBookmark */;
+			563400D20AF8221500096189 /* PBXTextBookmark */ = 563400D20AF8221500096189 /* PBXTextBookmark */;
+			563400D40AF8225E00096189 /* PBXTextBookmark */ = 563400D40AF8225E00096189 /* PBXTextBookmark */;
+			563400D50AF8225E00096189 /* PBXTextBookmark */ = 563400D50AF8225E00096189 /* PBXTextBookmark */;
+			563400D90AF8228900096189 /* PBXTextBookmark */ = 563400D90AF8228900096189 /* PBXTextBookmark */;
+			563400DD0AF822E800096189 /* PBXTextBookmark */ = 563400DD0AF822E800096189 /* PBXTextBookmark */;
+			5634010D0AF826B600096189 /* PBXTextBookmark */ = 5634010D0AF826B600096189 /* PBXTextBookmark */;
+			5634010E0AF826B600096189 /* PBXTextBookmark */ = 5634010E0AF826B600096189 /* PBXTextBookmark */;
+			563401100AF826CA00096189 /* PBXTextBookmark */ = 563401100AF826CA00096189 /* PBXTextBookmark */;
 			5634C949090450190037230A = 5634C949090450190037230A /* PBXTextBookmark */;
 			5634C94B090450190037230A = 5634C94B090450190037230A /* PBXDocBookmark */;
 			5634FFD00AF6D44000096189 /* PBXTextBookmark */ = 5634FFD00AF6D44000096189 /* PBXTextBookmark */;
@@ -1962,6 +1973,114 @@
 		vrLoc = 927;
 	};
 	563400CA0AF8215D00096189 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 56F42315083BBBA90011D12B /* GridStufferAppDelegate.h */;
+		name = "GridStufferAppDelegate.h: 29";
+		rLen = 0;
+		rLoc = 1340;
+		rType = 0;
+		vrLen = 964;
+		vrLoc = 927;
+	};
+	563400CD0AF821C800096189 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 56F42315083BBBA90011D12B /* GridStufferAppDelegate.h */;
+		name = "GridStufferAppDelegate.h: 29";
+		rLen = 0;
+		rLoc = 1340;
+		rType = 0;
+		vrLen = 964;
+		vrLoc = 927;
+	};
+	563400D00AF8221500096189 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		comments = "Compiling /Users/charles/Docs/Development/cocoa_dev/GridStuffer/Managed/XGSStringToImageTransformer.m";
+		fRef = 56F425A6083D55280011D12B /* XGSStringToImageTransformer.m */;
+		rLen = 0;
+		rLoc = 0;
+		rType = 1;
+	};
+	563400D10AF8221500096189 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 56F425A6083D55280011D12B /* XGSStringToImageTransformer.m */;
+		name = "XGSStringToImageTransformer.m: 23";
+		rLen = 0;
+		rLoc = 984;
+		rType = 0;
+		vrLen = 955;
+		vrLoc = 436;
+	};
+	563400D20AF8221500096189 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 56F42316083BBBA90011D12B /* GridStufferAppDelegate.m */;
+		name = initWithManagedObjectContext;
+		rLen = 28;
+		rLoc = 2547;
+		rType = 0;
+		vrLen = 622;
+		vrLoc = 2460;
+	};
+	563400D40AF8225E00096189 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 56F425A6083D55280011D12B /* XGSStringToImageTransformer.m */;
+		name = "XGSStringToImageTransformer.m: 23";
+		rLen = 0;
+		rLoc = 984;
+		rType = 0;
+		vrLen = 955;
+		vrLoc = 436;
+	};
+	563400D50AF8225E00096189 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 56F42316083BBBA90011D12B /* GridStufferAppDelegate.m */;
+		name = initWithManagedObjectContext;
+		rLen = 28;
+		rLoc = 2547;
+		rType = 0;
+		vrLen = 622;
+		vrLoc = 2460;
+	};
+	563400D90AF8228900096189 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 56F42315083BBBA90011D12B /* GridStufferAppDelegate.h */;
+		name = "GridStufferAppDelegate.h: 29";
+		rLen = 0;
+		rLoc = 1340;
+		rType = 0;
+		vrLen = 964;
+		vrLoc = 927;
+	};
+	563400DD0AF822E800096189 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 56F42315083BBBA90011D12B /* GridStufferAppDelegate.h */;
+		name = "GridStufferAppDelegate.h: 29";
+		rLen = 0;
+		rLoc = 1340;
+		rType = 0;
+		vrLen = 964;
+		vrLoc = 927;
+	};
+	5634010D0AF826B600096189 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 56F425A6083D55280011D12B /* XGSStringToImageTransformer.m */;
+		name = "XGSStringToImageTransformer.m: 23";
+		rLen = 0;
+		rLoc = 984;
+		rType = 0;
+		vrLen = 955;
+		vrLoc = 436;
+	};
+	5634010E0AF826B600096189 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 56F42316083BBBA90011D12B /* GridStufferAppDelegate.m */;
+		name = initWithManagedObjectContext;
+		rLen = 28;
+		rLoc = 2547;
+		rType = 0;
+		vrLen = 622;
+		vrLoc = 2460;
+	};
+	563401100AF826CA00096189 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 56F42315083BBBA90011D12B /* GridStufferAppDelegate.h */;
 		name = "GridStufferAppDelegate.h: 29";
@@ -5283,9 +5402,9 @@
 	};
 	56F425A6083D55280011D12B /* XGSStringToImageTransformer.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {827, 812}}";
-			sepNavSelRange = "{934, 27}";
-			sepNavVisRect = "{{0, 168}, {827, 453}}";
+			sepNavIntBoundsRect = "{{0, 0}, {746, 840}}";
+			sepNavSelRange = "{984, 0}";
+			sepNavVisRect = "{{0, 191}, {746, 389}}";
 		};
 	};
 	56F426D3083D92260011D12B /* PBXTextBookmark */ = {

@@ -616,7 +616,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		5611DEE308575AF3002462EA /* Development */ = {
+		5611DEE308575AF3002462EA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
@@ -643,11 +643,15 @@
 				WRAPPER_EXTENSION = app;
 				ZERO_LINK = YES;
 			};
-			name = Development;
+			name = Debug;
 		};
-		5611DEE408575AF3002462EA /* Deployment */ = {
+		5611DEE408575AF3002462EA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = (
+					ppc,
+					i386,
+				);
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -669,7 +673,7 @@
 				WRAPPER_EXTENSION = app;
 				ZERO_LINK = NO;
 			};
-			name = Deployment;
+			name = Release;
 		};
 		5611DEE508575AF3002462EA /* Default */ = {
 			isa = XCBuildConfiguration;
@@ -694,21 +698,24 @@
 			};
 			name = Default;
 		};
-		5611DEE708575AF3002462EA /* Development */ = {
+		5611DEE708575AF3002462EA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
 			};
-			name = Development;
+			name = Debug;
 		};
-		5611DEE808575AF3002462EA /* Deployment */ = {
+		5611DEE808575AF3002462EA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
 			};
-			name = Deployment;
+			name = Release;
 		};
 		5611DEE908575AF3002462EA /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				SDKROOT = /Developer/SDKs/MacOSX10.4u.sdk;
 			};
 			name = Default;
 		};
@@ -718,8 +725,8 @@
 		5611DEE208575AF3002462EA /* Build configuration list for PBXNativeTarget "GridStuffer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				5611DEE308575AF3002462EA /* Development */,
-				5611DEE408575AF3002462EA /* Deployment */,
+				5611DEE308575AF3002462EA /* Debug */,
+				5611DEE408575AF3002462EA /* Release */,
 				5611DEE508575AF3002462EA /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -728,8 +735,8 @@
 		5611DEE608575AF3002462EA /* Build configuration list for PBXProject "GridStuffer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				5611DEE708575AF3002462EA /* Development */,
-				5611DEE808575AF3002462EA /* Deployment */,
+				5611DEE708575AF3002462EA /* Debug */,
+				5611DEE808575AF3002462EA /* Release */,
 				5611DEE908575AF3002462EA /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
