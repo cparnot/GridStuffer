@@ -1,36 +1,13 @@
-Agenda
--------
 
-* is XGSServerBrowser done?
-* is GEZServerConnection done?
-* is GEZServer done?
-
-then I can start testing things, maybe with some minor changes in the controller/view code.
-
-then I can look at GEZJob
 
 ----------------------------
-TODO for version 0.3
-* use a delegate with GEZServer
-* refactor to better separate GridStuffer model and views, and to separate it from the app delegate --> ultimately a framework
- --> this means I will also need a separate class to play the role of the application delegate in the framework, e.g. class 'GridStufferInterface'
-* entity names need also a suffix, like class names, if GridStuffer is going to be a framework..
-* submit to several grids, take available agents into account
-* continuous auto-save of the store (?)
-* detect when a MetaJob is finished --> stop the timer and update statusString (and revert when changing some of the settings)
-* really honor maxBytesPerSubmission in MetaJob submissions
-* the data source of a metajob should not have any idea of indexes, but just 'nextTask'. Or maybe leave the possibility for two types of data source, one called with indexes and one called using 'nextTask'.
-* more comments in the class headers
-* Application Support folder: use a hierarchical structure instead of just different names for different versions/debug
-* Persistent store: there might be several different stores in use by different apps or the same app
+TODO for version 0.4
+* Bugs: one instance of an invalid GEZJob (because I disconnect while submitting) not deleted
 * drag-and-drop files from the Finder
 * copy contents from the tables in the GUI
 * allow to remove xgrid jobs
-* look more into xgrid jobs status: add 'Pending' state, and add 'Unknown' state when connected but no id found (?)
+* Add an icon for "Retrieving" status for the jobs
 
-* What happens when a server gets disconnected and then comes back? Can we connect again w/o password?
-
-* Merge revisions from branch 0.2 = rev 105, 100, 99, 92, 90
 
 ----------------------------
 
@@ -41,8 +18,6 @@ OTHER BUGS/FEATURES
 * when creating a new meta job, could check that it does not use an output folder shared with another metajob. In fact, it could work fine (if the same thread probably!).
 
 * clicking "Load Demo" deletes all the stuff that another job is potentially using
-
-* maybe the submission timer in meta jobs could be triggered only when needed --> in other words, use notifications rather than polling for job submissions
 
 * run the job submission and retrieval in a different thread if too much spinning wheel...
 

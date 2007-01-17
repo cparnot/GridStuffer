@@ -21,9 +21,8 @@
 	IBOutlet NSPanel *metaJobInspectorPanel;
 	XGSToolbarController *metaJobToolbarController;
     
-	GEZServerListController *serverListController;
 	XGSJobListController *jobListController;
-	IBOutlet NSArrayController *jobArrayController;
+	IBOutlet NSArrayController *metaJobArrayController;
 	IBOutlet NSTableView *metaJobTableView;
 	
 	//Progress tab
@@ -40,6 +39,9 @@
 - (IBAction)showServerListWindow:(id)sender;
 - (IBAction)showJobListWindow:(id)sender;
 - (IBAction)openWithFinder:(id)sender;
+
+//only available thru the Debug menu
+- (IBAction)showXgridPanel:(id)sender;
 
 // CoreData
 - (NSManagedObjectContext *)managedObjectContext;

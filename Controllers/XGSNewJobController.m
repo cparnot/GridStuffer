@@ -325,10 +325,12 @@ static NSArray *demoDictionaries = nil;
 //convenience method called to add a job to the managed object context
 - (void)addMetaJobToManagedObjectContext
 {
+	DDLog(NSStringFromClass([self class]),10,@"[%@:%p %s]",[self class],self,_cmd);
+
 	//get the context
 	NSManagedObjectContext *context = [GEZManager managedObjectContext];
 
-	//set up the input and output interface first
+	//set up the input and output interface first...
 	XGSInputInterface *input = [NSEntityDescription insertNewObjectForEntityForName:@"InputInterface" inManagedObjectContext:context];
 	XGSOutputInterface *output = [NSEntityDescription insertNewObjectForEntityForName:@"OutputInterface" inManagedObjectContext:context];
 	[input setValue:[inputFileTextField stringValue] forKey:@"filePath"];
@@ -336,22 +338,26 @@ static NSArray *demoDictionaries = nil;
 	
 	//... then the task source ...
 	XGSValidator *filter = [NSEntityDescription insertNewObjectForEntityForName:@"Validator" inManagedObjectContext:context];
-	XGSTaskSource *taskSource = [NSEntityDescription insertNewObjectForEntityForName:@"TaskSource" inManagedObjectContext:context];
+	XGSTaskSource *taskSource = [NSEntityDescription insertNewObjectForEntityForName:@"DataSource" inManagedObjectContext:context];
 	[taskSource setValue:input       forKey:@"inputInterface"];
 	[taskSource setValue:output      forKey:@"outputInterface"];
 	[taskSource setValue:filter      forKey:@"validator"];
 		
-	//then the metaJob
-	GEZMetaJob *metaJob = [NSEntityDescription insertNewObjectForEntityForName:GEZMetaJobEntityName inManagedObjectContext:context];
-	[metaJob setName:[jobNameTextField stringValue]];
+	//...then the metaJob
+	GEZMetaJob *metaJob = [GEZMetaJob metaJobWithName:[jobNameTextField stringValue]];
 	[metaJob setDataSource:taskSource];
 	
+	//this forces update of core data bindings in the GUI
+	[context processPendingChanges];
+
 	//self suicide (that's a pleonasm)
 	[[self window] performClose:self];
 }
 
 - (IBAction)addMetaJob:(id)sender
 {
+	DDLog(NSStringFromClass([self class]),10,@"[%@:%p %s]",[self class],self,_cmd);
+
 	//check the paths
 	if (![self checkPaths])
 		return;

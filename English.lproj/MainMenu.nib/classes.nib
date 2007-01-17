@@ -15,13 +15,14 @@
                 showJobListWindow = id; 
                 showMetaJobInspectorPanel = id; 
                 showServerListWindow = id; 
+                showXgridPanel = id; 
                 startMetaJob = id; 
                 suspendMetaJob = id; 
             }; 
             CLASS = GridStufferAppDelegate; 
             LANGUAGE = ObjC; 
             OUTLETS = {
-                jobArrayController = NSArrayController; 
+                metaJobArrayController = NSArrayController; 
                 metaJobInspectorPanel = NSPanel; 
                 metaJobListWindow = NSWindow; 
                 metaJobTableView = NSTableView; 
@@ -31,41 +32,9 @@
             SUPERCLASS = NSObject; 
         }, 
         {
-            ACTIONS = {addXgridController = id; cancelConnect = id; connect = id; }; 
-            CLASS = XGSGridsController; 
-            LANGUAGE = ObjC; 
-            OUTLETS = {
-                authenticationTypeMatrix = NSMatrix; 
-                connectSheet = NSWindow; 
-                gridListOutlineView = NSOutlineView; 
-                passwordField = NSSecureTextField; 
-            }; 
-            SUPERCLASS = NSWindowController; 
-        }, 
-        {
             CLASS = XGSMetaJobArrayController; 
             LANGUAGE = ObjC; 
             SUPERCLASS = NSArrayController; 
-        }, 
-        {
-            ACTIONS = {
-                cancelConnect = id; 
-                connect = id; 
-                connectToFirstAvailableServer = id; 
-                removeSelectedServer = id; 
-            }; 
-            CLASS = XGSServerListController; 
-            LANGUAGE = ObjC; 
-            OUTLETS = {
-                authenticationFailedTextField = NSTextField; 
-                authenticationTypeMatrix = NSMatrix; 
-                connectSheet = NSWindow; 
-                passwordField = NSSecureTextField; 
-                serverAddressTextField = NSTextField; 
-                serverArrayController = NSArrayController; 
-                serverNameField = NSTextField; 
-            }; 
-            SUPERCLASS = NSWindowController; 
         }
     ); 
     IBVersion = 1; 

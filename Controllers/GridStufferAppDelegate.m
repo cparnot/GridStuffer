@@ -19,32 +19,29 @@
 #import "XGSInputInterface.h"
 #import "XGSToolbarController.h"
 
+@class XGSStringToImageTransformer;
+
 @implementation GridStufferAppDelegate
 
 #pragma mark *** Initializations ***
 
 + (void)initialize
 {
-	NSBundle *myBundle;
-	NSString *thePath;
-	NSUserDefaults *defaults;
-	NSDictionary *factory;
-	
+	DDLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
+
 	//get the app factory defaults from the file GridStufferFactoryDefaults.plist in the resources
-	myBundle=[NSBundle bundleForClass:self];
-	thePath=[myBundle pathForResource:@"GridStufferFactoryDefaults" ofType:@"plist"];
-	factory=[[NSDictionary alloc] initWithContentsOfFile:thePath];
+	NSDictionary *factory=[[[NSDictionary alloc] initWithContentsOfFile:[[NSBundle bundleForClass:self] pathForResource:@"GridStufferFactoryDefaults" ofType:@"plist"]] autorelease];
+	[[NSUserDefaults standardUserDefaults] registerDefaults:factory];
 	
-	//set the factory defaults for the user defaults
-	defaults = [NSUserDefaults standardUserDefaults];
-	[defaults registerDefaults:factory];
+	//register the string to image transformer, used to display little icons in tables to indicate status of metajob
+	[NSValueTransformer setValueTransformer:[[[XGSStringToImageTransformer alloc] init] autorelease] forName:@"XGSStringToImageTransformer"];
+
 }
 
 - (id)init
 {
 	self = [super init];
 	if (self!=nil) {
-		serverListController = nil;
 		jobListController = nil;
 	}
 	return self;
@@ -52,7 +49,6 @@
 
 - (void)dealloc
 {
-	[serverListController release];
 	[jobListController release];
 	[super dealloc];
 }
@@ -63,18 +59,39 @@
 	[metaJobListWindow setToolbar:[metaJobToolbarController toolbar]];
 	[[[metaJobTableView tableColumnWithIdentifier:@"progress"] dataCell] setControlSize:NSMiniControlSize];
 	[taskInspectorTableView reloadData];
+	
+	//set all GEZMetaJob delegate to be 'self'
+	//to retrieve ALL records for a given entity, one can use a fetch request with no predicate
+	NSManagedObjectContext *context = [GEZManager managedObjectContext];
+	NSFetchRequest *request = [[[NSFetchRequest alloc] init] autorelease];
+	[request setEntity:[NSEntityDescription entityForName:GEZMetaJobEntityName inManagedObjectContext:context]];
+	NSError *error;
+	NSArray *allMetaJobs = [context executeFetchRequest:request error:&error];	
+	NSEnumerator *e = [allMetaJobs objectEnumerator];
+	GEZMetaJob *metaJob;
+	while ( metaJob = [e nextObject] )
+		[metaJob setDelegate:self];
 }
 
 
-#pragma mark *** grids controller and window ***
+#pragma mark *** window menu actions ***
+
+//only accessible via the Debug menu when EnableDebugMenu == YES in the user defaults
+- (IBAction)showXgridPanel:(id)sender
+{
+	DDLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
+	[GEZManager showXgridPanel];
+}
 
 - (IBAction)showServerListWindow:(id)sender
 {
+	DDLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
 	[GEZManager showServerWindow];
 }
 
 - (IBAction)showJobListWindow:(id)sender
 {
+	DDLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
 	if ( jobListController == nil )
 		jobListController = [[XGSJobListController alloc] initWithManagedObjectContext:[self managedObjectContext]];
 	[jobListController showWindow:self];
@@ -82,6 +99,7 @@
 
 - (IBAction)showMetaJobInspectorPanel:(id)sender;
 {
+	DDLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
 	[metaJobInspectorPanel makeKeyAndOrderFront:self];
 }
 
@@ -89,15 +107,15 @@
 
 - (NSArray *)selectedMetaJobsInTheTableView
 {
-	return [jobArrayController selectedObjects];
+	return [metaJobArrayController selectedObjects];
 }
 
 - (GEZMetaJob *)uniquelySelectedMetaJobInTheTableView
 {
-	NSArray *jobs;
-	jobs = [jobArrayController selectedObjects];
-	if ( [jobs count] == 1 )
-		return [jobs objectAtIndex:0];
+	NSArray *metaJobs;
+	metaJobs = [metaJobArrayController selectedObjects];
+	if ( [metaJobs count] == 1 )
+		return [metaJobs objectAtIndex:0];
 	else
 		return nil;
 }
@@ -115,37 +133,33 @@
 
 - (IBAction)startMetaJob:(id)sender
 {
-	GEZMetaJob *selectedJob;
+	GEZMetaJob *selectedMetaJob;
 	
 	DDLog(NSStringFromClass([self class]),10,@"[<%@:%p> %s]",[self class],self,_cmd);
 	
-	selectedJob = [self uniquelySelectedMetaJobInTheTableView];
-	[selectedJob setDelegate:self];
-	[[[selectedJob dataSource] inputInterface] loadFile];
-	[selectedJob start];
+	selectedMetaJob = [self uniquelySelectedMetaJobInTheTableView];
+	[selectedMetaJob setDelegate:self];
+	[[[selectedMetaJob dataSource] inputInterface] loadFile];
+	[selectedMetaJob start];
 	[taskInspectorTableView reloadData];
 }
 
 - (IBAction)suspendMetaJob:(id)sender
 {
-	GEZMetaJob *selectedJob;
-	
 	DDLog(NSStringFromClass([self class]),10,@"[<%@:%p> %s]",[self class],self,_cmd);
 	
-	selectedJob = [self uniquelySelectedMetaJobInTheTableView];
-	[[[selectedJob dataSource] inputInterface] loadFile];
-	[selectedJob suspend];
+	GEZMetaJob *selectedMetaJob = [self uniquelySelectedMetaJobInTheTableView];
+	[[[selectedMetaJob dataSource] inputInterface] loadFile];
+	[selectedMetaJob suspend];
 	[taskInspectorTableView reloadData];
 }
 
 - (IBAction)deleteSelectedMetaJobs:(id)sender
 {
-	NSEnumerator *e;
-	NSArray *metaJobs;
-	GEZJob *aMetaJob;
+	DDLog(NSStringFromClass([self class]),10,@"[<%@:%p> %s]",[self class],self,_cmd);
 	
-	metaJobs = [self selectedMetaJobsInTheTableView];
-	e = [metaJobs objectEnumerator];
+	GEZJob *aMetaJob;	
+	NSEnumerator *e = [[self selectedMetaJobsInTheTableView] objectEnumerator];
 	while ( aMetaJob = [e nextObject] )
 		[aMetaJob deleteFromStore];
 	[taskInspectorTableView reloadData];
@@ -183,13 +197,35 @@
 	return NO;
 }
 
-#pragma mark *** initializations ***
+#pragma mark *** NSApp delegate methods ***
 
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
 	[GEZManager showServerWindow];
+	//[GEZManager showXgridPanel];
+	
+	//set a timer that is going to be always there during the life of the application, and will save the store every xx seconds; the timer will call saveAction: with an NSTimer as argument, which is not exactly right; it is OK, we don't use the argument anyway
+	NSTimeInterval autosaveInterval = [[NSUserDefaults standardUserDefaults] integerForKey:@"AutosaveIntervalInSeconds"];
+	NSTimer *eternalTimer;
+	eternalTimer = [NSTimer scheduledTimerWithTimeInterval:autosaveInterval target:self selector:@selector(saveAction:) userInfo:nil repeats:YES];
+	
+	//disable Debug menu
+	if ( [[NSUserDefaults standardUserDefaults] boolForKey:@"EnableDebugMenu"] == NO ) {
+		NSMenu *mainMenu = [NSApp mainMenu];
+		NSMenuItem *debugSubmenu = [mainMenu itemWithTitle:@"Debug"];
+		[mainMenu removeItem:debugSubmenu];
+	}
+	
+	//
 }
+
+- (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender
+{
+	[self saveAction:self];
+    return YES;
+}
+
 
 #pragma mark *** CoreData ***
 
@@ -207,12 +243,19 @@
 - (IBAction) saveAction:(id)sender
 {
 	DDLog(NSStringFromClass([self class]),10,@"[<%@:%p> %s]",[self class],self,_cmd);
-	/*
     NSError *error = nil;
-    if (![[self managedObjectContext] save:&error]) {
-        [[NSApplication sharedApplication] presentError:error];
-    }
-	 */
+    if ( [[self managedObjectContext] save:&error] == NO ) {
+		NSLog(@"Error while attempting to save:\n%@",error);
+		// [[NSApplication sharedApplication] presentError:error];
+	}
+	//save again if changes made - temporary fix for a limitation in GEZProxy - this needs to be addressed in the framework!!
+	if ( [[self managedObjectContext] hasChanges] ) {
+		DDLog(NSStringFromClass([self class]),10,@"[<%@:%p> %s] SAVING AGAIN!!",[self class],self,_cmd);
+		if  ( [[self managedObjectContext] save:&error] == NO ) {
+			NSLog(@"Error while attempting to save:\n%@",error);
+			// [[NSApplication sharedApplication] presentError:error];
+		}
+	}
 }
 
 
@@ -280,11 +323,13 @@
 
 -(void)metaJob:(GEZMetaJob *)metaJob didSubmitTaskAtIndex:(int)index
 {
+	DDLog(NSStringFromClass([self class]),10,@"[<%@:%p> %s]",[self class],self,_cmd);
 	[taskInspectorTableView reloadData];
 }
 
 - (void)metaJob:(GEZMetaJob *)metaJob didProcessTaskAtIndex:(int)index
 {
+	DDLog(NSStringFromClass([self class]),10,@"[<%@:%p> %s]",[self class],self,_cmd);
 	[taskInspectorTableView reloadData];
 }
 

@@ -9,7 +9,7 @@
 	<key>CFBundleIconFile</key>
 	<string>GridStufferIcon</string>
 	<key>CFBundleIdentifier</key>
-	<string>parnot.charles.gridstuffer.0.3.0</string>
+	<string>parnot.charles.gridstuffer.0.4.0</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundlePackageType</key>
@@ -19,7 +19,9 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>0.3.0</string>
+	<string>0.4.0b1</string>
+	<key>GEZStoreType</key>
+	<string>XML</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>

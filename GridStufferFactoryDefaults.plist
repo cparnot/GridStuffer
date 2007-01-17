@@ -3,8 +3,28 @@
 <plist version="1.0">
 <dict>
 
+	<key>AutosaveIntervalInSeconds</key>
+	<string>60</string>
+
+	<key>EnableDebugMenu</key>
+	<true/>
+
 	<key>DebugLogVerboseLevel</key>
-	<string>10</string>
+	<string>12</string>
+
+	<key>DebugIdentifiers</key>
+	<array>
+		<string>GEZProxy</string>
+		<string>GEZMetaJob</string>
+		<string>GEZJob</string>
+		<string>GridStufferAppDelegate</string>
+	</array>
+
+	<key>NoDebugIdentifiers</key>
+	<array>
+		<string>GEZGrid</string>
+		<string>GEZManager</string>
+	</array>
 
 </dict>
 </plist>

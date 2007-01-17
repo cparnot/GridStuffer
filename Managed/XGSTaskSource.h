@@ -34,6 +34,4 @@
 - (id)metaJob:(GEZMetaJob *)metaJob taskAtIndex:(unsigned int)taskIndex;
 - (BOOL)metaJob:(GEZMetaJob *)metaJob validateTaskAtIndex:(int)taskIndex results:(NSDictionary *)results;
 
-
-
 @end

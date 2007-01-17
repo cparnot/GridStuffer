@@ -122,7 +122,7 @@ static NSString *OutputPathKey=@"Output path";
 	if ( [finalPath isAbsolutePath] )
 		return [finalPath stringByStandardizingPath];
 	
-	//yes, so we need to prefix it with the working directory path
+	//we have a relative path, so we need to prefix it with the working directory path
 	finalPath = [self workingDirectoryPath];
 	finalPath = [finalPath stringByAppendingPathComponent:relativePath];
 	finalPath = [finalPath stringByStandardizingPath];
@@ -446,6 +446,8 @@ static NSString *OutputPathKey=@"Output path";
 	//these paths are stored in the finalDictionary, PathsKey (different from the FilesKey = from the -files arguments)
 	[finalDictionary setObject:paths forKey:PathsKey];
 	
+	DDLog(NSStringFromClass([self class]),10,@"[%@:%p %s] --> %@",[self class],self,_cmd,finalDictionary);
+
 	//return a non-mutable dictionary
 	return [NSDictionary dictionaryWithDictionary:finalDictionary];
 }
@@ -500,11 +502,11 @@ static NSString *OutputPathKey=@"Output path";
 	//I will need that information to process some of the results
 	NSDictionary *task = [self finalDictionaryForCommandAtIndex:taskIndex];
 	
-	//in this dictionary, all the files that will be saved in the default path (when not handled by -so, -se or -out)
+	//in this dictionary, all the files that will be saved in the default path (not handled by -so, -se or -out)
 	NSMutableDictionary *resultsAutosaved = [NSMutableDictionary dictionaryWithCapacity:[results count]];
 	int streamCount = 0;
 	
-	//stdout might be handled by the -so flag, in which case stdoutPath != nil
+	//stdout might be handled by the -so flag
 	NSData *stdoutData = [results objectForKey:GEZJobResultsStandardOutputKey];
 	if ( stdoutData != nil ) {
 		streamCount ++;
@@ -515,7 +517,7 @@ static NSString *OutputPathKey=@"Output path";
 			[resultsAutosaved setObject:stdoutData forKey:GEZJobResultsStandardOutputKey];
 	}
 
-	//stderr might be handled by the -so flag, in which case stderrPath != nil
+	//stderr might be handled by the -se flag
 	NSData *stderrData = [results objectForKey:GEZJobResultsStandardErrorKey];
 	if ( stderrData != nil ) {
 		streamCount ++;
@@ -533,7 +535,7 @@ static NSString *OutputPathKey=@"Output path";
 		[filesOnly removeObjectForKey:GEZJobResultsStandardOutputKey];
 		[filesOnly removeObjectForKey:GEZJobResultsStandardErrorKey];
 		NSString *outputPath = [task objectForKey:OutputPathKey];
-		if ( outputPath == nil )
+		if ( outputPath != nil )
 			[[self outputInterface] saveFiles:filesOnly inFolder:outputPath];
 		else
 			[resultsAutosaved addEntriesFromDictionary:filesOnly];

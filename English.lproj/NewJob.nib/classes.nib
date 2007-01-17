@@ -3,7 +3,6 @@
         {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
         {
             ACTIONS = {
-                addAndStartMetaJob = id; 
                 addMetaJob = id; 
                 browse = id; 
                 cancel = id; 
