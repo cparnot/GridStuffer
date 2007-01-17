@@ -13,6 +13,15 @@
 
 #ifdef DEBUG
 void DDLog(NSString *identifier, int level, NSString *fmt,...);
+
+
 #else
-inline void DDLog(NSString *identifier, int level, NSString *fmt,...);
+
+//I struggle a bit to get Dlog to be completely gone when DEBUG is not defined, this is the best I could come up with: any occurence of DDLog is replaced by a ';' thanks to the #define 
+
+#define DDLog(...) ;
+
+//the following is what I had hoped would work, but it turns out the arguments are still evaluated
+//inline void DDLog(NSString *identifier, int level, NSString *fmt,...);
+
 #endif

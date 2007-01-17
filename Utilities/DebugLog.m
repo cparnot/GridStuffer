@@ -24,6 +24,6 @@ void DDLog(NSString *identifier, int level, NSString *fmt,...)
 
 #else
 
-inline void DDLog(NSString *identifier, int level, NSString *fmt,...) {}
+//inline void DDLog(NSString *identifier, int level, NSString *fmt,...) {}
 
 #endif
