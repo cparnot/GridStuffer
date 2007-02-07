@@ -76,10 +76,24 @@
 
 #pragma mark *** window menu actions ***
 
-//only accessible via the Debug menu when EnableDebugMenu == YES in the user defaults
 - (IBAction)showXgridPanel:(id)sender
 {
 	DDLog(NSStringFromClass([self class]),10,@"<%@:%p> %s",[self class],self,_cmd);
+	
+	//ask the user for confirmation the first time
+	if ( [[NSUserDefaults standardUserDefaults] boolForKey:@"EnableXgridPanelAccess"] == NO ) {
+		NSAlert *alert = [[[NSAlert alloc] init] autorelease];
+		[alert addButtonWithTitle:@"Open Xgrid Panel"];
+		[alert addButtonWithTitle:@"Cancel"];
+		[alert setMessageText:@"Open the Xgrid Panel?"];
+		[alert setInformativeText:@"The Xgrid Panel offers advanced features to manage your Xgrid controllers and jobs. It is more complicated to use than the Controllers window, and is even more experimental than the rest of GridStuffer. I will ask this only once: are you sure you want to open the Xgrid Panel?"];
+		[alert setAlertStyle:NSWarningAlertStyle];
+		if ([alert runModal] == NSAlertFirstButtonReturn)
+			[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"EnableXgridPanelAccess"];
+		else
+			return;
+	}	
+
 	[GEZManager showXgridPanel];
 }
 

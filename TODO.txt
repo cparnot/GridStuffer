@@ -1,13 +1,13 @@
 
 
 ----------------------------
-TODO for version 0.4
+TODO for version 0.4.1
 * Bugs: one instance of an invalid GEZJob (because I disconnect while submitting) not deleted
 * drag-and-drop files from the Finder
 * copy contents from the tables in the GUI
 * allow to remove xgrid jobs
 * Add an icon for "Retrieving" status for the jobs
-
+* Add a "clean" button for metajob: remove all memory of previous submissions, same for individual commands in the "Info" panel
 
 ----------------------------
 
