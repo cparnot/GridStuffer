@@ -30,6 +30,8 @@
 		
 		[toolbar setAllowsUserCustomization:YES];
 		[toolbar setAutosavesConfiguration:YES];
+		[toolbar setSizeMode:NSToolbarSizeModeSmall];
+		[toolbar setDisplayMode:NSToolbarDisplayModeIconOnly];
 		[toolbar setDelegate:self];
 	}
 	

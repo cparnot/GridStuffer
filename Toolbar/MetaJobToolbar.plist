@@ -3,19 +3,31 @@
 <plist version="1.0">
 <dict>
 
-	<key>XGSToolbar1NewJobItemIdentifier</key>
+	<key>XGSToolbar1StartJobItemIdentifier</key>
 	<dict>
 		<key>Label</key>
-		<string>New Job</string>
+		<string>Start</string>
 		<key>ImageName</key>
-		<string>New</string>
+		<string>Start</string>
 		<key>Action</key>
-		<string>insertNewMetaJob:</string>
+		<string>startMetaJob:</string>
 		<key>ToolTip</key>
-		<string>Add a new job defined by a list of commands in a text file</string>
+		<string>Submit to Xgrid the commands defined by the selected metajob</string>
 	</dict>
 
-	<key>XGSToolbar2InspectJobItemIdentifier</key>
+	<key>XGSToolbar2SuspendJobItemIdentifier</key>
+	<dict>
+		<key>Label</key>
+		<string>Suspend</string>
+		<key>ImageName</key>
+		<string>Suspend</string>
+		<key>Action</key>
+		<string>suspendMetaJob:</string>
+		<key>ToolTip</key>
+		<string>Suspend submissions of the commands defined by the selected metajob (commands already submitted will continue)</string>
+	</dict>
+
+	<key>XGSToolbar3InspectJobItemIdentifier</key>
 	<dict>
 		<key>Label</key>
 		<string>Settings</string>
@@ -27,28 +39,16 @@
 		<string>Change the job settings</string>
 	</dict>
 
-	<key>XGSToolbar3StartJobItemIdentifier</key>
+	<key>XGSToolbar4NewJobItemIdentifier</key>
 	<dict>
 		<key>Label</key>
-		<string>Start</string>
+		<string>New</string>
 		<key>ImageName</key>
-		<string>Start</string>
+		<string>New</string>
 		<key>Action</key>
-		<string>startMetaJob:</string>
+		<string>insertNewMetaJob:</string>
 		<key>ToolTip</key>
-		<string>Submit to Xgrid the commands defined by the selected job</string>
-	</dict>
-
-	<key>XGSToolbar4SuspendJobItemIdentifier</key>
-	<dict>
-		<key>Label</key>
-		<string>Suspend</string>
-		<key>ImageName</key>
-		<string>Suspend</string>
-		<key>Action</key>
-		<string>suspendMetaJob:</string>
-		<key>ToolTip</key>
-		<string>Suspend submissions of the commands defined by the selected job (commands already submitted will continue)</string>
+		<string>Add a new metajob, defined by a list of commands in a text file</string>
 	</dict>
 
 	<key>XGSToolbar5DeleteJobItemIdentifier</key>
@@ -60,7 +60,7 @@
 		<key>Action</key>
 		<string>deleteSelectedMetaJobs:</string>
 		<key>ToolTip</key>
-		<string>Delete the selected jobs</string>
+		<string>Delete the selected metajobs</string>
 	</dict>
 
 
