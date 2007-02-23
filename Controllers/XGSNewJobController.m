@@ -18,6 +18,8 @@
 #import "XGSInputInterface.h"
 #import "XGSValidator.h"
 #import "XGSTaskSource.h"
+#import "XGSPathUtilities.h"
+
 
 //description of the demos is stored in a plist as an array of dictionaries
 static NSArray *demoDictionaries = nil;
@@ -69,9 +71,14 @@ static NSArray *demoDictionaries = nil;
 		[[loadDemoPopUpButton lastItem] setToolTip:[oneDemo objectForKey:@"Description"]];
 		currentMenuItemTag++;
 	}
+	
+	//initial values for inputFile and outputFolder are stored in user defaults
+	[inputFileTextField setStringValue:[[NSUserDefaults standardUserDefaults] valueForKey:@"LastInputFilePath"]];
+	[outputFolderTextField setStringValue:[[NSUserDefaults standardUserDefaults] valueForKey:@"LastOutputFolderPath"]];
+	
+	//reset the GUI bindings
+	[self updateObservedKeys:nil];
 }
-
-#pragma mark *** accessors ***
 
 #pragma mark *** checking paths ***
 
@@ -195,19 +202,14 @@ static NSArray *demoDictionaries = nil;
 
 - (IBAction)browse:(id)sender
 {
-	NSOpenPanel *panel;	
-	int runResult;
-	NSString *logPath;
-	NSTextField *pathTextField=nil;
-	int tag;
 	
 	//tag value is dependent on which 'Browse' button was pressed
-	tag=[sender tag];
-	if ( (tag!=BROWSE_INPUT_FILE) && (tag!=BROWSE_OUTPUT_FOLDER) )
+	int tag = [sender tag];
+	if ( ( tag != BROWSE_INPUT_FILE ) && ( tag != BROWSE_OUTPUT_FOLDER ) )
 		return;
 	
 	//set up the open panel
-	panel=[NSOpenPanel openPanel];
+	NSOpenPanel *panel = [NSOpenPanel openPanel];
 	[panel setAccessoryView:nil];
 	[panel setAllowsMultipleSelection:NO];
 	[panel setCanChooseFiles:((tag==BROWSE_INPUT_FILE)?YES:NO)];		
@@ -215,14 +217,15 @@ static NSArray *demoDictionaries = nil;
 	[panel setCanCreateDirectories:YES];
 	
 	//from the result, populate the corresponding text field
-	runResult = [panel runModalForDirectory:nil file:nil types:nil];
-	if (runResult == NSOKButton) {
-		logPath=[panel filename];
-		if (tag==BROWSE_INPUT_FILE)
-			pathTextField=inputFileTextField;
-		else if (tag==BROWSE_OUTPUT_FOLDER)
-			pathTextField=outputFolderTextField;
-		[pathTextField setStringValue:logPath];
+	int runResult = [panel runModalForDirectory:nil file:nil types:nil];
+	if ( runResult == NSOKButton ) {
+		NSString *filePath = [panel filename];
+		NSTextField *pathTextField = nil;
+		if ( tag == BROWSE_INPUT_FILE )
+			pathTextField = inputFileTextField;
+		else if ( tag == BROWSE_OUTPUT_FOLDER )
+			pathTextField = outputFolderTextField;
+		[pathTextField setStringValue:filePath];
 	}
 	
 	//notify KVO
@@ -232,22 +235,18 @@ static NSArray *demoDictionaries = nil;
 //open the input file or output folder in the Finder
 - (IBAction)openWithFinder:(id)sender
 {
-	NSString *path;
-	NSTextField *pathTextField=nil;
-	int tag;
-	
 	//tag value is dependent on which 'Open' button was pressed
-	tag=[sender tag];
-	if ( (tag!=BROWSE_INPUT_FILE) && (tag!=BROWSE_OUTPUT_FOLDER) )
+	int tag = [sender tag];
+	if ( ( tag != BROWSE_INPUT_FILE) && ( tag != BROWSE_OUTPUT_FOLDER ) )
 		return;	
-	if (tag==BROWSE_INPUT_FILE)
-		pathTextField=inputFileTextField;
-	else if (tag==BROWSE_OUTPUT_FOLDER)
-		pathTextField=outputFolderTextField;
+	NSTextField *pathTextField = nil;
+	if ( tag == BROWSE_INPUT_FILE )
+		pathTextField = inputFileTextField;
+	else if ( tag == BROWSE_OUTPUT_FOLDER )
+		pathTextField = outputFolderTextField;
 	
 	//open the path set up in the GUI in the finder
-	path=[pathTextField stringValue];
-	[[NSWorkspace sharedWorkspace] openFile:[path stringByStandardizingPath]];
+	[[NSWorkspace sharedWorkspace] openFile:[[pathTextField stringValue] stringByStandardizingPath]];
 }
 
 
@@ -255,70 +254,64 @@ static NSArray *demoDictionaries = nil;
 //this will overwrite by default --> TO DO : ask the user before overwriting
 - (IBAction)loadDemo:(id)sender
 {
-	NSBundle *thisBundle;
-	NSArray *demos;
-	NSDictionary *demoInfo;
-	int demoIndex;
-	NSString *path1,*path2,*file,*demoPath;
-	NSFileManager *fileManager;
-	NSArray *files;
-	NSEnumerator *e;
-	BOOL flag,isDir;
-
 	DDLog(NSStringFromClass([self class]),10,@"[%@:%p %s]",[self class],self,_cmd);
 
 	//get the demo dictionary where all the info for the chosen demo is stored
-	demos = [self demoDictionaries];
-	demoIndex = [[sender selectedItem] tag];
+	NSArray *demos = [self demoDictionaries];
+	int demoIndex = [[sender selectedItem] tag];
 	if ( demoIndex < 0 || demoIndex > [demos count]-1 )
 		return;
-	demoInfo = [demos objectAtIndex:demoIndex];
+	NSDictionary *demoInfo = [demos objectAtIndex:demoIndex];
 
 	//reset the position of the 'Load Demo...' popup menu
 	[sender selectItemAtIndex:0];
 	
 	//this is the root path where all the files for the demo will be loaded
-	fileManager=[NSFileManager defaultManager];
-	thisBundle = [NSBundle mainBundle];
-	demoPath = [[demoInfo objectForKey:@"Path"] stringByStandardizingPath];
-	if ( [fileManager fileExistsAtPath:demoPath isDirectory:&flag] == NO )
-		flag = [fileManager createDirectoryAtPath:demoPath attributes:nil];
-	if ( flag == NO ) {
+	NSFileManager *fileManager=[NSFileManager defaultManager];
+	NSBundle *thisBundle = [NSBundle mainBundle];
+	NSString *demoPath = [[demoInfo objectForKey:@"Path"] stringByStandardizingPath];
+	BOOL success = YES;
+	if ( [fileManager fileExistsAtPath:demoPath isDirectory:&success] == NO )
+		success = [fileManager createDirectoryAtPath:demoPath attributes:nil];
+	if ( success == NO ) {
 		//there was a problem...
 		NSBeginAlertSheet(@"Error", @"OK", nil,  nil, [self window], nil, NULL, NULL, NULL, @"Could not create the folder needed to load the demo.");
 		return;
 	}
 	
 	//files to copy from the bundle
-	files = [demoInfo objectForKey:@"Files"];
+	NSArray *files = [demoInfo objectForKey:@"Files"];
 	files = [files arrayByAddingObject:[demoInfo objectForKey:@"Commands"]];
-	e = [files objectEnumerator];
-	flag = YES;
-	while ( file = [e nextObject] ) {
-		path1 = [thisBundle pathForResource:[file stringByDeletingPathExtension]
-									 ofType:[file pathExtension]];
-		path2 = [demoPath stringByAppendingPathComponent:file];
+	NSEnumerator *e = [files objectEnumerator];
+	success = YES;
+	NSString *filePath;
+	BOOL isDir;
+	while ( filePath = [e nextObject] ) {
+		//filePath may be a complex path that includes subdirectories, but to find the file in the bundle, we only need the filename
+		NSString *fileName = [filePath lastPathComponent];
+		NSString *path1 = [thisBundle pathForResource:[fileName stringByDeletingPathExtension] ofType:[fileName pathExtension]];
+		NSString *path2 = [demoPath stringByAppendingPathComponent:filePath];
+		success = CreateDirectory([path2 stringByDeletingLastPathComponent]);
 		if ( [fileManager fileExistsAtPath:path2 isDirectory:&isDir] )
-			flag = flag && [fileManager removeFileAtPath:path2 handler:nil];
-		flag = flag && [fileManager copyPath:path1 toPath:path2 handler:nil];
+			success = success && [fileManager removeFileAtPath:path2 handler:nil];
+		success = success && [fileManager copyPath:path1 toPath:path2 handler:nil];
 	}
 	
 	//set the input file value in the GUI
-	path2 = [demoPath stringByAppendingPathComponent:[demoInfo objectForKey:@"Commands"]];
-	[inputFileTextField setStringValue:path2];
+	[inputFileTextField setStringValue:[demoPath stringByAppendingPathComponent:[demoInfo objectForKey:@"Commands"]]];
 	
 	//set the output folder on disk and in the GUI
-	path2=[demoPath stringByAppendingPathComponent:@"output"];
-	if ( [fileManager fileExistsAtPath:path2 isDirectory:&isDir] )
-		flag = flag && [fileManager removeFileAtPath:path2 handler:nil];
-	flag = flag && [fileManager createDirectoryAtPath:path2 attributes:nil];
-	[outputFolderTextField setStringValue:path2];
+	NSString *outputPath = [demoPath stringByAppendingPathComponent:@"output"];
+	if ( [fileManager fileExistsAtPath:outputPath isDirectory:&isDir] )
+		success = success && [fileManager removeFileAtPath:outputPath handler:nil];
+	success = success && [fileManager createDirectoryAtPath:outputPath attributes:nil];
+	[outputFolderTextField setStringValue:outputPath];
 	
 	//notify KVO
 	[self updateObservedKeys:self];
 	
 	//error message?
-	if (flag==NO)
+	if ( success == NO )
 		NSBeginAlertSheet(@"Error", @"OK", nil,  nil, [self window], nil, NULL, NULL, NULL, @"Could not create some of the files needed for the demo.");
 }
 
@@ -349,7 +342,11 @@ static NSArray *demoDictionaries = nil;
 	
 	//this forces update of core data bindings in the GUI
 	[context processPendingChanges];
-
+	
+	//store the values to the NSUSerDefaults
+	[[NSUserDefaults standardUserDefaults] setValue:[inputFileTextField stringValue] forKey:@"LastInputFilePath"];
+	[[NSUserDefaults standardUserDefaults] setValue:[outputFolderTextField stringValue] forKey:@"LastOutputFolderPath"];
+	
 	//self suicide (that's a pleonasm)
 	[[self window] performClose:self];
 }
@@ -365,14 +362,5 @@ static NSArray *demoDictionaries = nil;
 	[self addMetaJobToManagedObjectContext];
 	[self close];
 }
-
-/*
-- (IBAction)addAndStartMetaJob:(id)sender
-{
-	[self addMetaJobToManagedObjectContext];
-	// SOME CODE MISSING !!!
-	[self close];
-}
-*/
 
 @end
