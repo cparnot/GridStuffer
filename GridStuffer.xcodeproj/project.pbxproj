@@ -20,6 +20,11 @@
 		563C845408839A99004B2D09 /* stdin44.txt in Resources */ = {isa = PBXBuildFile; fileRef = 563C845108839A99004B2D09 /* stdin44.txt */; };
 		563C867F0884847D004B2D09 /* commands_demo5.txt in Resources */ = {isa = PBXBuildFile; fileRef = 563C867D0884847D004B2D09 /* commands_demo5.txt */; };
 		563C86800884847D004B2D09 /* demo5.pl in Resources */ = {isa = PBXBuildFile; fileRef = 563C867E0884847D004B2D09 /* demo5.pl */; };
+		563DC4D30B8E14FC00FD8F7D /* commands_demo6.txt in Resources */ = {isa = PBXBuildFile; fileRef = 563DC4CF0B8E14FC00FD8F7D /* commands_demo6.txt */; };
+		563DC4D40B8E14FD00FD8F7D /* demo6_file1.txt in Resources */ = {isa = PBXBuildFile; fileRef = 563DC4D00B8E14FC00FD8F7D /* demo6_file1.txt */; };
+		563DC4D50B8E14FD00FD8F7D /* demo6_file2.txt in Resources */ = {isa = PBXBuildFile; fileRef = 563DC4D10B8E14FC00FD8F7D /* demo6_file2.txt */; };
+		563DC4D60B8E14FD00FD8F7D /* demo6.pl in Resources */ = {isa = PBXBuildFile; fileRef = 563DC4D20B8E14FC00FD8F7D /* demo6.pl */; };
+		563DC5160B8E174600FD8F7D /* XGSPathUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 563DC5140B8E174600FD8F7D /* XGSPathUtilities.m */; };
 		5643E8500870C01D000838CF /* XGSValidator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5643E84F0870C01D000838CF /* XGSValidator.m */; };
 		56975A410865551600A09FB5 /* GridStufferIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 56975A400865551600A09FB5 /* GridStufferIcon.icns */; };
 		56A1EAF8083520AB0073CA7F /* commands_demo1.txt in Resources */ = {isa = PBXBuildFile; fileRef = 56A1EAF3083520AB0073CA7F /* commands_demo1.txt */; };
@@ -110,6 +115,12 @@
 		563C845108839A99004B2D09 /* stdin44.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; name = stdin44.txt; path = Demo4/stdin44.txt; sourceTree = "<group>"; };
 		563C867D0884847D004B2D09 /* commands_demo5.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; name = commands_demo5.txt; path = Demo5/commands_demo5.txt; sourceTree = "<group>"; };
 		563C867E0884847D004B2D09 /* demo5.pl */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.perl; name = demo5.pl; path = Demo5/demo5.pl; sourceTree = "<group>"; };
+		563DC4CF0B8E14FC00FD8F7D /* commands_demo6.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; name = commands_demo6.txt; path = Demo6/commands_demo6.txt; sourceTree = "<group>"; };
+		563DC4D00B8E14FC00FD8F7D /* demo6_file1.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; name = demo6_file1.txt; path = Demo6/demo6_file1.txt; sourceTree = "<group>"; };
+		563DC4D10B8E14FC00FD8F7D /* demo6_file2.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; name = demo6_file2.txt; path = Demo6/demo6_file2.txt; sourceTree = "<group>"; };
+		563DC4D20B8E14FC00FD8F7D /* demo6.pl */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.perl; name = demo6.pl; path = Demo6/demo6.pl; sourceTree = "<group>"; };
+		563DC5130B8E174600FD8F7D /* XGSPathUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XGSPathUtilities.h; sourceTree = "<group>"; };
+		563DC5140B8E174600FD8F7D /* XGSPathUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XGSPathUtilities.m; sourceTree = "<group>"; };
 		5643E84E0870C01D000838CF /* XGSValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XGSValidator.h; path = Managed/XGSValidator.h; sourceTree = "<group>"; };
 		5643E84F0870C01D000838CF /* XGSValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XGSValidator.m; path = Managed/XGSValidator.m; sourceTree = "<group>"; };
 		56975A400865551600A09FB5 /* GridStufferIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = GridStufferIcon.icns; sourceTree = "<group>"; };
@@ -180,7 +191,7 @@
 		56FFF375087CA4E600FF6E8D /* Input-Format.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html.documentation; name = "Input-Format.html"; path = "Documentation/Input-Format.html"; sourceTree = "<group>"; };
 		77C82804067257F0000B614F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		8D1107320486CEB800E47090 /* GridStuffer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GridStuffer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D1107320486CEB800E47090 /* GridStuffer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = GridStuffer.app; path = /Users/charles/Xcode/Products/Debug/GridStuffer.app; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -233,7 +244,6 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8D1107320486CEB800E47090 /* GridStuffer.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -319,6 +329,7 @@
 				563C82B3087F3CE7004B2D09 /* Demo3 */,
 				563C840D08838A30004B2D09 /* Demo4 */,
 				563C867C08848464004B2D09 /* Demo5 */,
+				563DC4CE0B8E14E100FD8F7D /* Demo6 */,
 			);
 			name = Demos;
 			path = Demo;
@@ -362,6 +373,17 @@
 				563C867E0884847D004B2D09 /* demo5.pl */,
 			);
 			name = Demo5;
+			sourceTree = "<group>";
+		};
+		563DC4CE0B8E14E100FD8F7D /* Demo6 */ = {
+			isa = PBXGroup;
+			children = (
+				563DC4CF0B8E14FC00FD8F7D /* commands_demo6.txt */,
+				563DC4D00B8E14FC00FD8F7D /* demo6_file1.txt */,
+				563DC4D10B8E14FC00FD8F7D /* demo6_file2.txt */,
+				563DC4D20B8E14FC00FD8F7D /* demo6.pl */,
+			);
+			name = Demo6;
 			sourceTree = "<group>";
 		};
 		56A1EAF2083520AB0073CA7F /* Demo1 */ = {
@@ -410,6 +432,8 @@
 				56F4232E083BBC170011D12B /* XGSCategories.m */,
 				56F425A5083D55280011D12B /* XGSStringToImageTransformer.h */,
 				56F425A6083D55280011D12B /* XGSStringToImageTransformer.m */,
+				563DC5130B8E174600FD8F7D /* XGSPathUtilities.h */,
+				563DC5140B8E174600FD8F7D /* XGSPathUtilities.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -555,6 +579,10 @@
 				563C86800884847D004B2D09 /* demo5.pl in Resources */,
 				56E457AA088861410096D72B /* README.txt in Resources */,
 				56E27F130B556F720020F1C4 /* Retrieving.tiff in Resources */,
+				563DC4D30B8E14FC00FD8F7D /* commands_demo6.txt in Resources */,
+				563DC4D40B8E14FD00FD8F7D /* demo6_file1.txt in Resources */,
+				563DC4D50B8E14FD00FD8F7D /* demo6_file2.txt in Resources */,
+				563DC4D60B8E14FD00FD8F7D /* demo6.pl in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -579,6 +607,7 @@
 				5643E8500870C01D000838CF /* XGSValidator.m in Sources */,
 				56FFEF480879016600FF6E8D /* XGSToolbarController.m in Sources */,
 				56FFF116087B571600FF6E8D /* XGSJobListController.m in Sources */,
+				563DC5160B8E174600FD8F7D /* XGSPathUtilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

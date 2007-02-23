@@ -261,12 +261,12 @@ static NSString *OutputPathKey=@"Output path";
 	}
 		
 	//working directory
-	args=[options objectForKey:@"in"];
-	if ([args count]>0) {
-		aPath=[args objectAtIndex:0];
-		aPath=[self absolutePathForString:aPath];
-		isDir=NO;
-		exists=[fileManager fileExistsAtPath:aPath isDirectory:&isDir];
+	args = [options objectForKey:@"in"];
+	if ( [args count] > 0 ) {
+		aPath = [args objectAtIndex:0];
+		aPath = [self absolutePathForString:aPath];
+		isDir = NO;
+		exists = [fileManager fileExistsAtPath:aPath isDirectory:&isDir];
 		if ( exists==NO || isDir==NO )
 			;//[[self valueForKey:@"outputInterface"] logLevel:2 format:@"Task %d, -in option: no working directory at path %@\n",commandIndex,aPath];
 		else
