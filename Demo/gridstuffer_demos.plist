@@ -98,5 +98,22 @@
 		</array>
 	</dict>
 
+	<dict>
+		<key>Name</key>
+		<string>Testing -in</string>
+		<key>Description</key>
+		<string>Testing the -in flag to check that the working directory does load</string>
+		<key>Path</key>
+		<string>~/Desktop/gridstuffer_demo6</string>
+		<key>Commands</key>
+		<string>commands_demo6.txt</string>
+		<key>Files</key>
+		<array>
+			<string>demo6.pl</string>
+			<string>workingdir/demo6_file1.txt</string>
+			<string>workingdir/demo6_file2.txt</string>
+		</array>
+	</dict>
+
 </array>
 </plist>
