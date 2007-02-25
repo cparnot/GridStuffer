@@ -1,14 +1,14 @@
-GridStuffer version 0.2.1
+GridStuffer version 0.4.0
 
-Created by Charles Parnot, 2005.
-Copyright Charles Parnot 2005 . All rights reserved.
+Created by Charles Parnot.
+Copyright Charles Parnot 2005, 2006, 2007. All rights reserved.
 
 Contact:
 charles.parnot@gmail.com
 
 Read more on the web:
 http://cmgm.stanford.edu/~cparnot/xgrid-stanford
-http://cmgm.stanford.edu/~cparnot/xgrid-stanford/html/goodies/
+http://cmgm.stanford.edu/~cparnot/xgrid-stanford/html/goodies/goodies.html
 http://cmgm.stanford.edu/~cparnot/xgrid-stanford/html/goodies/GridStuffer-details.html
 
 
@@ -16,9 +16,41 @@ http://cmgm.stanford.edu/~cparnot/xgrid-stanford/html/goodies/GridStuffer-detail
 Change Log
 ----------
 
+version 0.4.0
+
+* All the Xgrid core functionality moved to GridEZ.framework, including the scheduling part of MetaJobs
+* Improved MetaJob scheduling implemented in GridEZ:
+	* Simplified options
+	* More dynamic submission process
+	* Reduced risk of overloading a grid with submission
+	* Submission to multiple grids in parallel
+* Improved connection process and syncing to controllers, as implemented in GridEZ.framework
+* Improved Controllers window, as implemented in GridEZ.framework
+* New Xgrid Panel, implemented in GridEZ.framework
+* Keychain support, as implemented in GridEZ.framework
+
+
+version 0.2.4.1
+* Autosave persistent store every minute instead of only doing it when quitting
+* Remove some superflous messages to the console, leftover from caveman debugging
+* Fixed a nasty memory leak, where the data of all the job results would never get realease. Really bad!! (big thanks to Espen for his patience in helping to crush that bug)
+
+
+version 0.2.2.1
+
+* Forgot to make the store compatible with version 0.2.0
+* From now on, versions will be considered compatible within a subversion (e.g. 0.2.x are all compatible but not with 0.3.x, etc...)
+
+
+version 0.2.2
+
+* The DLog function was still defined, and its arguments evaluated, even though the function itself was empty in Deployement release; this caused at least one reported crash, probably because of large file sizes that used up all the memory
+
+
 version 0.2.1
 
 * Bug fix: path with the ~ were considered absolute paths when used in the command or argument strings, when they should have been considered relative and should not have been used as is if they corresponded to an existing file on the client. Now, these paths are properly modified and the corresponding files are uploaded to the agents when needed.
+
 
 version 0.2
 

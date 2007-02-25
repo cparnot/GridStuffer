@@ -121,6 +121,7 @@
 		563DC4D20B8E14FC00FD8F7D /* demo6.pl */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.perl; name = demo6.pl; path = Demo6/demo6.pl; sourceTree = "<group>"; };
 		563DC5130B8E174600FD8F7D /* XGSPathUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XGSPathUtilities.h; sourceTree = "<group>"; };
 		563DC5140B8E174600FD8F7D /* XGSPathUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XGSPathUtilities.m; sourceTree = "<group>"; };
+		563DC66A0B8EBC4900FD8F7D /* GridStuffer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GridStuffer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5643E84E0870C01D000838CF /* XGSValidator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XGSValidator.h; path = Managed/XGSValidator.h; sourceTree = "<group>"; };
 		5643E84F0870C01D000838CF /* XGSValidator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XGSValidator.m; path = Managed/XGSValidator.m; sourceTree = "<group>"; };
 		56975A400865551600A09FB5 /* GridStufferIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = GridStufferIcon.icns; sourceTree = "<group>"; };
@@ -191,7 +192,6 @@
 		56FFF375087CA4E600FF6E8D /* Input-Format.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html.documentation; name = "Input-Format.html"; path = "Documentation/Input-Format.html"; sourceTree = "<group>"; };
 		77C82804067257F0000B614F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		8D1107320486CEB800E47090 /* GridStuffer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = GridStuffer.app; path = /Users/charles/Xcode/Products/Debug/GridStuffer.app; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -244,6 +244,7 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
+				563DC66A0B8EBC4900FD8F7D /* GridStuffer.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -506,7 +507,7 @@
 			name = GridStuffer;
 			productInstallPath = "$(HOME)/Applications";
 			productName = GridStuffer;
-			productReference = 8D1107320486CEB800E47090 /* GridStuffer.app */;
+			productReference = 563DC66A0B8EBC4900FD8F7D /* GridStuffer.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */

@@ -32,10 +32,10 @@
 	</array>
 
 	<key>LastInputFilePath</key>
-	<string>~/Desktop/input.txt</string>
+	<string>~/Desktop/input_file.txt</string>
 
 	<key>LastOutputFolderPath</key>
-	<string>~/Desktop/output</string>
+	<string>~/Desktop/output_folder</string>
 
 </dict>
 </plist>

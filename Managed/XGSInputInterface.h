@@ -3,7 +3,7 @@
 //  GridStuffer
 //
 //  Created by Charles Parnot on 5/14/05.
-//  Copyright 2005 Charles Parnot. All rights reserved.
+//  Copyright 2005, 2006, 2007 Charles Parnot. All rights reserved.
 //
 
 /*
