@@ -216,6 +216,7 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+	[GEZManager setMaxFileDownloads:[[NSUserDefaults standardUserDefaults] integerForKey:@"MaxFileDownloads"]];
 	[GEZManager showServerWindow];
 	//[GEZManager showXgridPanel];
 	

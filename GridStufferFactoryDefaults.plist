@@ -6,6 +6,9 @@
 	<key>AutosaveIntervalInSeconds</key>
 	<string>60</string>
 
+	<key>MaxFileDownloads</key>
+	<string>10</string>
+
 	<key>EnableDebugMenu</key>
 	<false/>
 
