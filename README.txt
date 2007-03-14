@@ -1,4 +1,4 @@
-GridStuffer version 0.4.2
+GridStuffer version 0.4.3
 
 Created by Charles Parnot.
 Copyright Charles Parnot 2005, 2006, 2007. All rights reserved.
@@ -15,6 +15,11 @@ http://cmgm.stanford.edu/~cparnot/xgrid-stanford/html/goodies/GridStuffer-detail
 ----------
 Change Log
 ----------
+
+version 0.4.3
+
+* Updated to version 0.4.3 version of GridEZ.framework
+
 
 version 0.4.2
 
