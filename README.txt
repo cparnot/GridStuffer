@@ -1,10 +1,12 @@
-GridStuffer version 0.4.3
+GridStuffer version 0.4.4
 
 Created by Charles Parnot.
 Copyright Charles Parnot 2005, 2006, 2007. All rights reserved.
 
-Contact:
-charles.parnot@gmail.com
+Contact by email:
+charles•parnot
+at
+gmail•com
 
 Read more on the web:
 http://cmgm.stanford.edu/~cparnot/xgrid-stanford
@@ -16,17 +18,27 @@ http://cmgm.stanford.edu/~cparnot/xgrid-stanford/html/goodies/GridStuffer-detail
 Change Log
 ----------
 
+version 0.4.4
+(April 2007)
+
+* Fixed a bug in the parser of the input file, that would consider that all parameters starting with a dash were a GridStuffer parameter, and would thus gobble up the command created by the user if it contained parameters with this format.
+
+
 version 0.4.3
+(March 2007)
 
 * Updated to version 0.4.3 version of GridEZ.framework
 
 
 version 0.4.2
+(March 2007)
 
 * Updated to version 0.4.2 version of GridEZ.framework
 * Skipped version 0.4.1 to match GridEZ numbering
 
+
 version 0.4.0
+(February 2007)
 
 * All the Xgrid core functionality moved to GridEZ.framework, including the scheduling part of MetaJobs
 * Improved MetaJob scheduling implemented in GridEZ:
