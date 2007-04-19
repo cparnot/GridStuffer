@@ -24,12 +24,37 @@ NSString *XGSParserResultsArgumentsKey=@"Arguments";
 
 @implementation XGSParser
 
+- (id)init
+{
+	self = [super init];
+	if ( self != nil ) {
+		//the defaults should work fine = { -so, -se, -out, -si, -in, -dirs, -files }
+		gridStufferOptions = [[NSArray alloc] initWithObjects:@"-so", @"-so", @"-se", @"-out", @"-si", @"-in", @"-dirs", @"-files", nil];
+	}
+	return  self;
+}
+
+- (void)dealloc
+{
+	[gridStufferOptions release];
+	[super dealloc];
+}
+
 + (XGSParser *)sharedParser
 {
 	if (sharedParser==nil)
 		sharedParser=[[self alloc] init];
 	return sharedParser;
 }
+
+- (void)setGridStufferOptions:(NSArray *)options
+{
+	[options retain];
+	[gridStufferOptions release];
+	gridStufferOptions = options;
+}
+
+
 
 #pragma mark *** parsing command strings ***
 
@@ -190,18 +215,18 @@ NSString *XGSParserResultsArgumentsKey=@"Arguments";
 	//otherwise, we will have something in the dictionary (up to 3 items)
 	results=[NSMutableDictionary dictionaryWithCapacity:3];
 	
-	//there are options to consider ONLY if the first block starts with a '-'
+	//there are options to consider ONLY if the first block is  one of gridstuffer options
 	//otherwise, there are no gridstuffer options, and it is just a command and arguments
 	block = [blocks objectAtIndex:0];
-	if ( ([block length] > 1) && [[block substringToIndex:1] isEqualToString:@"-"]) {
+	if ( [block length] > 1 && [gridStufferOptions indexOfObject:block] != NSNotFound ) {
 		//we have to loop the blocks and look for flags (start with '-') and their args
 		args=[NSMutableArray array]; //will hold the arguments for the different options
 		options=[NSMutableDictionary dictionary];
 		currentFlag=nil; //will hold the latest flag dicovered (initially none)
 		e=[blocks objectEnumerator];
 		while (block=[e nextObject]) {
-			//if this is a flag (e.g. -x), save the arguments for the previous flag and start a new one
-			if ( ([block length] > 1) && [[block substringToIndex:1] isEqualToString:@"-"]) {
+			//if this is another gridstuffer option, save the arguments for the previous option and start a new one
+			if ( [block length] > 1 && [gridStufferOptions indexOfObject:block] != NSNotFound ) {
 				if (currentFlag!=nil)
 					[options setValue:[NSArray arrayWithArray:args] forKey:currentFlag];
 				currentFlag=[block substringFromIndex:1];
@@ -210,7 +235,7 @@ NSString *XGSParserResultsArgumentsKey=@"Arguments";
 				//otherwise, add more args to the current flag/option
 				[args addObject:block];
 		}
-		//finish the last flag, taking only the first item in the args array, as the others items will be the command and argument strings
+		//finish the last gridstuffer option, taking only the first item in the args array, as the others items will be the command and argument strings
 		n=[args count];
 		if ( n>0 ) {
 			[options setValue:[NSArray arrayWithObject:[args objectAtIndex:0]] forKey:currentFlag];

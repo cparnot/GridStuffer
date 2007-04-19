@@ -46,10 +46,14 @@ extern NSString *XGSParserResultsArgumentsKey;
 
 @interface XGSParser : NSObject
 {
-
+	//list of the official xgrid options (to distinguish them from the user-specific options)
+	NSArray *gridStufferOptions;
 }
 
 + (XGSParser *)sharedParser;
 - (NSDictionary *)parsedCommandDictionaryWithCommandString:(NSString *)commandString;
+
+//the defaults should work fine = { -so, -se, -out, -si, -in, -dirs, -files }
+- (void)setGridStufferOptions:(NSArray *)options;
 
 @end
