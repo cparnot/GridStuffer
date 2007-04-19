@@ -1684,7 +1684,7 @@
 		fRef = 56F42A6F083E9AA80011D12B /* TODO.txt */;
 		name = "TODO.txt: 6";
 		rLen = 0;
-		rLoc = 174;
+		rLoc = 178;
 		rType = 0;
 		vrLen = 1280;
 		vrLoc = 0;
@@ -2448,7 +2448,7 @@
 		fRef = 56F42A6F083E9AA80011D12B /* TODO.txt */;
 		name = "TODO.txt: 42";
 		rLen = 0;
-		rLoc = 148;
+		rLoc = 152;
 		rType = 0;
 		vrLen = 1151;
 		vrLoc = 0;
@@ -2765,7 +2765,7 @@
 	};
 	56FFEE940875152900FF6E8D /* Input-Format.txt */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {827, 3710}}";
+			sepNavIntBoundsRect = "{{0, 0}, {827, 7420}}";
 			sepNavSelRange = "{6291, 0}";
 			sepNavVisRect = "{{0, 1764}, {827, 454}}";
 			sepNavWindowFrame = "{{15, 110}, {812, 717}}";
@@ -2901,7 +2901,7 @@
 	8D1107310486CEB800E47090 /* Info.plist */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {827, 454}}";
-			sepNavSelRange = "{449, 0}";
+			sepNavSelRange = "{568, 0}";
 			sepNavVisRect = "{{0, 0}, {827, 454}}";
 		};
 	};
