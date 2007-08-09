@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		561FF6D0086E0C09004DEAF4 /* commands_demo0.txt in Resources */ = {isa = PBXBuildFile; fileRef = 561FF6CE086E0C09004DEAF4 /* commands_demo0.txt */; };
 		561FF6D1086E0C09004DEAF4 /* demo0.pl in Resources */ = {isa = PBXBuildFile; fileRef = 561FF6CF086E0C09004DEAF4 /* demo0.pl */; };
+		5624BD060C67ED4C00E65377 /* commands_demo7.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5624BD050C67ED4C00E65377 /* commands_demo7.txt */; };
 		5634FFE20AF6D4B600096189 /* GridEZ.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 56E43C030AEEDEEC00011401 /* GridEZ.framework */; };
 		563C82C3087F4186004B2D09 /* commands_demo3.txt in Resources */ = {isa = PBXBuildFile; fileRef = 563C82C1087F4186004B2D09 /* commands_demo3.txt */; };
 		563C82C4087F4186004B2D09 /* demo3.pl in Resources */ = {isa = PBXBuildFile; fileRef = 563C82C2087F4186004B2D09 /* demo3.pl */; };
@@ -105,6 +106,7 @@
 		32CA4F630368D1EE00C91783 /* GridStuffer_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GridStuffer_Prefix.pch; sourceTree = "<group>"; };
 		561FF6CE086E0C09004DEAF4 /* commands_demo0.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; name = commands_demo0.txt; path = Demo0/commands_demo0.txt; sourceTree = "<group>"; };
 		561FF6CF086E0C09004DEAF4 /* demo0.pl */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.perl; name = demo0.pl; path = Demo0/demo0.pl; sourceTree = "<group>"; };
+		5624BD050C67ED4C00E65377 /* commands_demo7.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; name = commands_demo7.txt; path = Demo7/commands_demo7.txt; sourceTree = "<group>"; };
 		563C82C1087F4186004B2D09 /* commands_demo3.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; name = commands_demo3.txt; path = Demo3/commands_demo3.txt; sourceTree = "<group>"; };
 		563C82C2087F4186004B2D09 /* demo3.pl */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.perl; name = demo3.pl; path = Demo3/demo3.pl; sourceTree = "<group>"; };
 		563C841208838C29004B2D09 /* commands_demo4.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; name = commands_demo4.txt; path = Demo4/commands_demo4.txt; sourceTree = "<group>"; };
@@ -331,6 +333,7 @@
 				563C840D08838A30004B2D09 /* Demo4 */,
 				563C867C08848464004B2D09 /* Demo5 */,
 				563DC4CE0B8E14E100FD8F7D /* Demo6 */,
+				5624BCFD0C67ED3200E65377 /* Demo7 */,
 			);
 			name = Demos;
 			path = Demo;
@@ -343,6 +346,14 @@
 				561FF6CF086E0C09004DEAF4 /* demo0.pl */,
 			);
 			name = Demo0;
+			sourceTree = "<group>";
+		};
+		5624BCFD0C67ED3200E65377 /* Demo7 */ = {
+			isa = PBXGroup;
+			children = (
+				5624BD050C67ED4C00E65377 /* commands_demo7.txt */,
+			);
+			name = Demo7;
 			sourceTree = "<group>";
 		};
 		563C82B3087F3CE7004B2D09 /* Demo3 */ = {
@@ -584,6 +595,7 @@
 				563DC4D40B8E14FD00FD8F7D /* demo6_file1.txt in Resources */,
 				563DC4D50B8E14FD00FD8F7D /* demo6_file2.txt in Resources */,
 				563DC4D60B8E14FD00FD8F7D /* demo6.pl in Resources */,
+				5624BD060C67ED4C00E65377 /* commands_demo7.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -675,7 +687,7 @@
 				PREBINDING = NO;
 				PRODUCT_NAME = GridStuffer;
 				WRAPPER_EXTENSION = app;
-				ZERO_LINK = YES;
+				ZERO_LINK = NO;
 			};
 			name = Debug;
 		};

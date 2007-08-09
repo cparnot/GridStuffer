@@ -9,10 +9,22 @@ TODO for version 0.4.xx??
 * allow to remove xgrid jobs
 * Add an icon for "Retrieving" status for the jobs
 * Add a "clean" button for metajob: remove all memory of previous submissions, same for individual commands in the "Info" panel
+* add shouldLimitPendingJobs in GEZMetaJob, so that one can keep submitting jobs until all commands are submitted, and quit the client
+* Properly update GEZGrid objects when a grid is removed/renamed (probably in GridEZ)
+* Poll on a regular basis to check GEZJob in a GEZMetaJob, in  the rare cases where we don't get notified of Finished/Invalid jobs
 
 ----------------------------
 
 OTHER BUGS/FEATURES
+
+* apparently bug with the -dirs and -files argument:
+	* see the autodock project with the 'ligands' folder from Rob, metajob3, 2007-06-26
+	* -dirs with nested folders
+	* 2 files in the same nested folder, e.g. 'ligands/01/01.-EGFR1xx.dlg' and 'ligands/01/01.pdbqt
+	* file 1 is referenced in the argument list
+	* file 2 is referenced using the '-dirs' flag
+	* file1 and file2 end up in a different folder on the agent: file1 in the root, file2 in a subdir
+	* they should be in the same place: root working dir
 
 * have a 'default' metaJob, editable when no MetaJob is displayed. To do it, I could have the default metaJob in the store, and subclass NSArrayController and add one of NSPlaceholder methods. Well, I tried, it is not that easy... I may have to go to the user defaults. OK --> create a dictionary in the user defaults. If it does not exist, do not use it (!). A selected job can be used to 'Set Default Settings' in the menu or with a button
 

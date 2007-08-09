@@ -172,10 +172,17 @@
 {
 	DDLog(NSStringFromClass([self class]),10,@"[<%@:%p> %s]",[self class],self,_cmd);
 	
-	GEZJob *aMetaJob;	
+	GEZMetaJob *aMetaJob;	
 	NSEnumerator *e = [[self selectedMetaJobsInTheTableView] objectEnumerator];
-	while ( aMetaJob = [e nextObject] )
+	while ( aMetaJob = [e nextObject] ) {
+		XGSTaskSource *dataSource = [aMetaJob dataSource];
+		[aMetaJob setDataSource:nil];
+		[aMetaJob setDelegate:nil];
 		[aMetaJob deleteFromStore];
+		[[GEZManager managedObjectContext] deleteObject:dataSource];
+		//the dataSource was retained by the XGSNewJobController instance, and now needs to be released
+		[dataSource autorelease];
+	}
 	[taskInspectorTableView reloadData];
 }
 

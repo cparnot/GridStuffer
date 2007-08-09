@@ -43,17 +43,6 @@ static NSString *OutputPathKey=@"Output path";
 }
 
 
-- (id)initWithEntity:(NSEntityDescription*)entity insertIntoManagedObjectContext:(NSManagedObjectContext*)context
-{
-	self=[super initWithEntity:entity insertIntoManagedObjectContext:context];
-	if (self!=nil) {
-		//just to be sure
-		prototypeCommandDictionary=nil;
-		prototypeShortcutDictionary=nil;
-	}
-	return self;
-}
-
 - (void)dealloc
 {
 	[prototypeCommandDictionary release];

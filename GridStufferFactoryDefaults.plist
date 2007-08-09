@@ -16,15 +16,10 @@
 	<false/>
 
 	<key>DebugLogVerboseLevel</key>
-	<string>12</string>
+	<string>0</string>
 
 	<key>DebugIdentifiers</key>
 	<array>
-		<string>GEZMetaJob</string>
-		<string>GEZJob</string>
-		<string>GridStufferAppDelegate</string>
-		<string>XGSTaskSource</string>
-		<string>GEZXgridPanelController</string>
 	</array>
 
 	<key>NoDebugIdentifiers</key>
@@ -32,6 +27,11 @@
 		<string>GEZProxy</string>
 		<string>GEZGrid</string>
 		<string>GEZManager</string>
+		<string>GEZMetaJob</string>
+		<string>GEZJob</string>
+		<string>GridStufferAppDelegate</string>
+		<string>XGSTaskSource</string>
+		<string>GEZXgridPanelController</string>
 	</array>
 
 	<key>LastInputFilePath</key>

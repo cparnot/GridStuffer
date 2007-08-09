@@ -340,6 +340,10 @@ static NSArray *demoDictionaries = nil;
 	GEZMetaJob *metaJob = [GEZMetaJob metaJobWithName:[jobNameTextField stringValue]];
 	[metaJob setDataSource:taskSource];
 	
+	//the data source has to be retained, as it is only weakly coupled to the metaJob
+	//this is bad design, as the release will have to be done by a different object, the app delegate
+	[taskSource retain];
+	
 	//this forces update of core data bindings in the GUI
 	[context processPendingChanges];
 	

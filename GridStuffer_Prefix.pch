@@ -6,6 +6,18 @@
     #import <Cocoa/Cocoa.h>
 	#import <XgridFoundation/XgridFoundation.h>
 	#import <GridEZ/GridEZ.h>
+
+	//this will create real code only if DEBUG is set
 	#import "DebugLog.h"
+
+	//using the GRIDEZ_DEBUG_NSManagedObject intermediate object compiled in GridEZ framework (only in DEBUG builds)
+	#ifdef DEBUG
+	@interface GRIDEZ_DEBUG_NSManagedObject : NSManagedObject {
+		
+	}
+	@end
+	#define NSManagedObject GRIDEZ_DEBUG_NSManagedObject
+	#endif
+
 #endif
 
