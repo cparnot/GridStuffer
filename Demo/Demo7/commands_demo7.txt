@@ -1,0 +1,1 @@
+/bin/dd if=/dev/zero of=foo bs=1k count=20000

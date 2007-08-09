@@ -115,5 +115,19 @@
 		</array>
 	</dict>
 
+	<dict>
+		<key>Name</key>
+		<string>Test large output files</string>
+		<key>Description</key>
+		<string>Testing the behavior of GridStuffer when retrieving large files from job results</string>
+		<key>Path</key>
+		<string>~/Desktop/gridstuffer_demo7</string>
+		<key>Commands</key>
+		<string>commands_demo7.txt</string>
+		<key>Files</key>
+		<array>
+		</array>
+	</dict>
+
 </array>
 </plist>
