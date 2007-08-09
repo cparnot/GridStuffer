@@ -398,6 +398,7 @@
 			5615D7AA0C6ADE5D008A658B /* PBXTextBookmark */ = 5615D7AA0C6ADE5D008A658B /* PBXTextBookmark */;
 			5615D7AC0C6ADFC4008A658B /* PBXTextBookmark */ = 5615D7AC0C6ADFC4008A658B /* PBXTextBookmark */;
 			5615D7AD0C6ADFC7008A658B /* PBXTextBookmark */ = 5615D7AD0C6ADFC7008A658B /* PBXTextBookmark */;
+			5615D7B00C6B7B4C008A658B /* PBXTextBookmark */ = 5615D7B00C6B7B4C008A658B /* PBXTextBookmark */;
 			561FF59E086BE11E004DEAF4 = 561FF59E086BE11E004DEAF4 /* PBXTextBookmark */;
 			5623AF040AFC68B3009DACD6 = 5623AF040AFC68B3009DACD6 /* PBXTextBookmark */;
 			5624A1F00BA51A91005AE1E6 = 5624A1F00BA51A91005AE1E6 /* PBXTextBookmark */;
@@ -6976,6 +6977,16 @@
 		vrLen = 45;
 		vrLoc = 0;
 	};
+	5615D7B00C6B7B4C008A658B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 56F4233B083BBC6D0011D12B /* XGSParser.m */;
+		name = retain;
+		rLen = 6;
+		rLoc = 1713;
+		rType = 0;
+		vrLen = 687;
+		vrLoc = 1537;
+	};
 	5617D11F09621D8200505CDC /* GEZManager.m */ = {
 		isa = PBXFileReference;
 		fileEncoding = 4;
@@ -7114,9 +7125,9 @@
 	};
 	5624BD050C67ED4C00E65377 /* commands_demo7.txt */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {827, 656}}";
-			sepNavSelRange = "{41, 0}";
-			sepNavVisRect = "{{0, 0}, {827, 656}}";
+			sepNavIntBoundsRect = "{{0, 0}, {827, 454}}";
+			sepNavSelRange = "{45, 0}";
+			sepNavVisRect = "{{0, 0}, {827, 454}}";
 		};
 	};
 	562B32310B8BA96D00D79DF4 /* PBXBookmark */ = {
