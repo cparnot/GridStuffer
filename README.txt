@@ -1,12 +1,12 @@
-GridStuffer version 0.4.4
+GridStuffer version 0.4.5
 
 Created by Charles Parnot.
 Copyright Charles Parnot 2005, 2006, 2007. All rights reserved.
 
 Contact by email:
-charles•parnot
+charles parnot
 at
-gmail•com
+gmail com
 
 Read more on the web:
 http://cmgm.stanford.edu/~cparnot/xgrid-stanford
@@ -17,6 +17,18 @@ http://cmgm.stanford.edu/~cparnot/xgrid-stanford/html/goodies/GridStuffer-detail
 ----------
 Change Log
 ----------
+
+version 0.4.5
+(April 2007)
+
+* Numerous bug fixes in the underlying GridEZ framework:
+	* memory leaks fixed, in particular one that was directly related to the size of files created by the jobs and uploaded back to GridStuffer when jobs are completed. Many thanks to Bradley Lowekamp for reporting that one!
+	* the database file stored on disk, in ~/Library/Application Support/GridStuffer (not the job results in the output folder) will remain small (it used to grow over time)
+* Additional memory leaks fixed in GridStuffer code itself
+* Additional size reduction of the database file stored in ~/Library/Application Support/GridStuffer
+* Added a new test metajob to the "demos", that generates a large 20 MB file (thanks again to Bradley Lowekamp for an easy way to do this with /bin/dd), to test for potential memory leaks in the future and in general, test the behaviour with larger files when transfered by Xgrid.
+* Added automatic updates using the Sparkle framework
+
 
 version 0.4.4
 (April 2007)

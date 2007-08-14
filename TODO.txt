@@ -2,15 +2,13 @@
 
 
 ----------------------------
-TODO for version 0.4.xx??
-* Bugs: one instance of an invalid GEZJob (because I disconnect while submitting) not deleted
+TODO for version 0.5.xx
 * drag-and-drop files from the Finder
 * copy contents from the tables in the GUI
 * allow to remove xgrid jobs
 * Add an icon for "Retrieving" status for the jobs
 * Add a "clean" button for metajob: remove all memory of previous submissions, same for individual commands in the "Info" panel
 * add shouldLimitPendingJobs in GEZMetaJob, so that one can keep submitting jobs until all commands are submitted, and quit the client
-* Properly update GEZGrid objects when a grid is removed/renamed (probably in GridEZ)
 * Poll on a regular basis to check GEZJob in a GEZMetaJob, in  the rare cases where we don't get notified of Finished/Invalid jobs
 
 ----------------------------
@@ -28,7 +26,7 @@ OTHER BUGS/FEATURES
 
 * have a 'default' metaJob, editable when no MetaJob is displayed. To do it, I could have the default metaJob in the store, and subclass NSArrayController and add one of NSPlaceholder methods. Well, I tried, it is not that easy... I may have to go to the user defaults. OK --> create a dictionary in the user defaults. If it does not exist, do not use it (!). A selected job can be used to 'Set Default Settings' in the menu or with a button
 
-* when creating a new meta job, could check that it does not use an output folder shared with another metajob. In fact, it could work fine (if the same thread probably!).
+* when creating a new meta job, could check that it does not use an output folder shared with another metajob. In fact, it could work fine (if the same thread).
 
 * clicking "Load Demo" deletes all the stuff that another job is potentially using
 

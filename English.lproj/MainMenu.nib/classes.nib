@@ -32,6 +32,12 @@
             SUPERCLASS = NSObject; 
         }, 
         {
+            ACTIONS = {checkForUpdates = id; }; 
+            CLASS = SUUpdater; 
+            LANGUAGE = ObjC; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {
             CLASS = XGSMetaJobArrayController; 
             LANGUAGE = ObjC; 
             SUPERCLASS = NSArrayController; 

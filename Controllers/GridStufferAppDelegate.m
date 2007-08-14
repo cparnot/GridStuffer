@@ -19,6 +19,8 @@
 #import "XGSInputInterface.h"
 #import "XGSToolbarController.h"
 
+#import <Sparkle/Sparkle.h>
+
 @class XGSStringToImageTransformer;
 
 @implementation GridStufferAppDelegate

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5615D8580C6BBE20008A658B /* License-Sparkle.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5615D8570C6BBE20008A658B /* License-Sparkle.txt */; };
+		5615D87A0C6BBEDA008A658B /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5615D8790C6BBEDA008A658B /* Sparkle.framework */; };
+		5615D8A10C6BBFBB008A658B /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5615D8790C6BBEDA008A658B /* Sparkle.framework */; };
 		561FF6D0086E0C09004DEAF4 /* commands_demo0.txt in Resources */ = {isa = PBXBuildFile; fileRef = 561FF6CE086E0C09004DEAF4 /* commands_demo0.txt */; };
 		561FF6D1086E0C09004DEAF4 /* demo0.pl in Resources */ = {isa = PBXBuildFile; fileRef = 561FF6CF086E0C09004DEAF4 /* demo0.pl */; };
 		5624BD060C67ED4C00E65377 /* commands_demo7.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5624BD050C67ED4C00E65377 /* commands_demo7.txt */; };
@@ -90,6 +93,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				5615D8A10C6BBFBB008A658B /* Sparkle.framework in CopyFiles */,
 				5634FFE20AF6D4B600096189 /* GridEZ.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -104,6 +108,9 @@
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		32CA4F630368D1EE00C91783 /* GridStuffer_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GridStuffer_Prefix.pch; sourceTree = "<group>"; };
+		5615D82B0C6BBDCD008A658B /* developer-notes.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "developer-notes.markdown"; sourceTree = "<group>"; };
+		5615D8570C6BBE20008A658B /* License-Sparkle.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = "License-Sparkle.txt"; sourceTree = "<group>"; };
+		5615D8790C6BBEDA008A658B /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = /Library/Frameworks/Sparkle.framework; sourceTree = "<absolute>"; };
 		561FF6CE086E0C09004DEAF4 /* commands_demo0.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; name = commands_demo0.txt; path = Demo0/commands_demo0.txt; sourceTree = "<group>"; };
 		561FF6CF086E0C09004DEAF4 /* demo0.pl */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.perl; name = demo0.pl; path = Demo0/demo0.pl; sourceTree = "<group>"; };
 		5624BD050C67ED4C00E65377 /* commands_demo7.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; name = commands_demo7.txt; path = Demo7/commands_demo7.txt; sourceTree = "<group>"; };
@@ -204,6 +211,7 @@
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
 				56F42345083BBCC10011D12B /* XgridFoundation.framework in Frameworks */,
 				56E43C040AEEDEED00011401 /* GridEZ.framework in Frameworks */,
+				5615D87A0C6BBEDA008A658B /* Sparkle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -226,6 +234,7 @@
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5615D8790C6BBEDA008A658B /* Sparkle.framework */,
 				56E43C030AEEDEEC00011401 /* GridEZ.framework */,
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
 				56F42344083BBCC10011D12B /* XgridFoundation.framework */,
@@ -464,6 +473,8 @@
 				56FFEE940875152900FF6E8D /* Input-Format.txt */,
 				56FFF375087CA4E600FF6E8D /* Input-Format.html */,
 				56FFEE980875156400FF6E8D /* index.txt */,
+				5615D82B0C6BBDCD008A658B /* developer-notes.markdown */,
+				5615D8570C6BBE20008A658B /* License-Sparkle.txt */,
 			);
 			name = Documentation;
 			sourceTree = "<group>";
@@ -596,6 +607,7 @@
 				563DC4D50B8E14FD00FD8F7D /* demo6_file2.txt in Resources */,
 				563DC4D60B8E14FD00FD8F7D /* demo6.pl in Resources */,
 				5624BD060C67ED4C00E65377 /* commands_demo7.txt in Resources */,
+				5615D8580C6BBE20008A658B /* License-Sparkle.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
