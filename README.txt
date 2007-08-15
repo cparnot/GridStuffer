@@ -19,7 +19,7 @@ Change Log
 ----------
 
 version 0.4.5
-(April 2007)
+(August 2007)
 
 * Numerous bug fixes in the underlying GridEZ framework:
 	* memory leaks fixed, in particular one that was directly related to the size of files created by the jobs and uploaded back to GridStuffer when jobs are completed. Many thanks to Bradley Lowekamp for reporting that one!
@@ -27,7 +27,7 @@ version 0.4.5
 * Additional memory leaks fixed in GridStuffer code itself
 * Additional size reduction of the database file stored in ~/Library/Application Support/GridStuffer
 * Added a new test metajob to the "demos", that generates a large 20 MB file (thanks again to Bradley Lowekamp for an easy way to do this with /bin/dd), to test for potential memory leaks in the future and in general, test the behaviour with larger files when transfered by Xgrid.
-* Added automatic updates using the Sparkle framework
+* Added support for automatic updates using the Sparkle framework
 
 
 version 0.4.4
