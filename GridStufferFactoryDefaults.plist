@@ -20,6 +20,7 @@
 
 	<key>DebugIdentifiers</key>
 	<array>
+		<string>GEZManager</string>
 	</array>
 
 	<key>NoDebugIdentifiers</key>

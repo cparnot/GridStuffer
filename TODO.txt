@@ -32,3 +32,51 @@ OTHER BUGS/FEATURES
 
 * run the job submission and retrieval in a different thread if too much spinning wheel...
 
+----------------------------
+BUG 2007-10-25
+
+When I say I cancel the job I mean I use the "-" button at the top of the Metajobs window.
+When I kill the process, I kill the commands submitted to the grid.  For example if I submit a job containing a "find | grep" command I have to kill the "find" command manually, if I don't do it GridStuffer will crash every time I try to open it.
+I don't have any crash logs, there are no GridStuffer.crash. I don't know why, I haven't erase any.
+
+Most of the time when I used 0.4.5 it worked ok.  These problems show up if I start canceling unfinished jobs.
+
+luis
+
+
+
+On Oct 23, 2007, at 4:46 PM, Charles Parnot wrote:
+
+Thanks very much for the feedback, and I am glad that GridStuffer can help you in your job. And I hope it can continue to do so after I fix it!!
+
+I have a quick question about the description of the bug you make: when you said "kill the process", are you talking about GridStuffer? When you say "GridStuffer will keep crashing", do you in fact mean GridStuffer is locked up? It just seems the 2 actions are contradictorfy: you would not have to kill GridStuffer if it crashed, so I am not sure I understood fully the description.
+
+In addition, when you say "cancel a job", you mean cancel an Xgrid job (e.g. from Xgrid Admin), or you mean cancel a GridStuffer metajob?
+
+Finally, if you have time, I would be interested in the crash logs (in /Library/Logs/CrashReporter/GridStuffer.crash) so I can maybe get a sense of where things went wrong.
+
+I did fix some memory/CoreData leaks in 0.4.5, but it might have revealed some other underlying bugs. The only recommandation I would make with using 0.4.4 is to delete the GridStuffer database once in a while (the xml file in /Library/Application Support/GridStuffer/GridEZ), e.g. when you are done with a metajob, because this  file will grow bigger and bigger and it will eventually slow down GridStuffer (of course, once a metajob is finished, all your results are safe in the output folder that you set for the metajob; the xml file only keeps track of the progress and settings for the metajob). With Leopard, Apple improved CoreData efficiency, and I found that some of these issues might be exposed even more. I have a pretty good idea of what they are, and they mostly stem from initial misconceptions I had about CoreData, but your feedback could really help too. So I hope I can fix it and release 0.4.6 eventually...
+
+best regards,
+
+charles
+
+
+On Oct 23, 2007, at 11:55 AM, Luis M Martinez wrote:
+
+Hi, I have been using your GridStuffer for a research project in computer forensics. This tool has help me a lot simplifying the submission and retrieving of jobs. I just wanted to let you know I have been experiencing problems with version 0.4.5. Sometimes if I cancel a job while processing the job keeps running in memory, GridStuffer will keep crashing until I kill the process stuck in memory manually. I went back to version 0.4.4 and I haven't experienced the problem with this version.
+
+Thanks.
+
+--
+Xgrid-at-Stanford
+Help science move fast forward:
+http://cmgm.stanford.edu/~cparnot/xgrid-stanford
+
+Charles Parnot
+charles.parnot@gmail.com
+
+
+
+
+
