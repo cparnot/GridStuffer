@@ -29,6 +29,7 @@
     return YES;   
 }
 
+// NSString ––> NSImage
 - (id)transformedValue:(id)value;
 {
 	NSBundle *myBundle;
@@ -44,4 +45,9 @@
 	return result;
 }
 
+// NSImage ––> NSString
+- (id)reverseTransformedValue:(id)value
+{
+	return [value name];
+}
 @end

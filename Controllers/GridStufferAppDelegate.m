@@ -21,7 +21,7 @@
 
 #import <Sparkle/Sparkle.h>
 
-@class XGSStringToImageTransformer;
+#import "XGSStringToImageTransformer.h";
 
 @implementation GridStufferAppDelegate
 
@@ -270,6 +270,15 @@
     NSError *error = nil;
     if ( [[self managedObjectContext] save:&error] == NO ) {
 		NSLog(@"Error while attempting to save:\n%@",error);
+		NSArray *detailedErrors = [[error userInfo] objectForKey:NSDetailedErrorsKey];
+		unsigned numErrors = [detailedErrors count];
+		NSMutableString *errorString = [NSMutableString stringWithFormat:@"%u validation errors have occurred:\n", numErrors];
+		unsigned i;
+		for (i = 0; i < numErrors; i++) {
+			[errorString appendFormat:@"%@\n",
+			 [[detailedErrors objectAtIndex:i] localizedDescription]];
+		}
+		NSLog(@"%@", errorString);
 		// [[NSApplication sharedApplication] presentError:error];
 	}
 	//save again if changes made - temporary fix for a limitation in GEZProxy - this needs to be addressed in the framework!!
