@@ -146,7 +146,7 @@
 		56D80460084E7C4800E1A13E /* GridStufferFactoryDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = GridStufferFactoryDefaults.plist; sourceTree = "<group>"; };
 		56E27F120B556F720020F1C4 /* Retrieving.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Retrieving.tiff; sourceTree = "<group>"; };
 		56E43C030AEEDEEC00011401 /* GridEZ.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GridEZ.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		56E457A40888612E0096D72B /* License-GPL.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = "License-GPL.txt"; sourceTree = "<group>"; };
+		56E457A40888612E0096D72B /* License-GridStuffer.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = "License-GridStuffer.txt"; sourceTree = "<group>"; };
 		56E457A9088861410096D72B /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		56EE697D087DF94900DA99AF /* Completed.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Completed.tiff; sourceTree = "<group>"; };
 		56EE697E087DF94900DA99AF /* Dismissed.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Dismissed.tiff; sourceTree = "<group>"; };
@@ -268,7 +268,7 @@
 			isa = PBXGroup;
 			children = (
 				56F42A6F083E9AA80011D12B /* TODO.txt */,
-				56E457A40888612E0096D72B /* License-GPL.txt */,
+				56E457A40888612E0096D72B /* License-GridStuffer.txt */,
 				56E457A9088861410096D72B /* README.txt */,
 				56FFEE91087505AA00FF6E8D /* Documentation */,
 				56A1EB5B083523BC0073CA7F /* Utilities */,

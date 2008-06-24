@@ -232,6 +232,8 @@
 			<key>Layout</key>
 			<array>
 				<dict>
+					<key>BecomeActive</key>
+					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -287,8 +289,7 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>7</integer>
-									<integer>4</integer>
+									<integer>2</integer>
 									<integer>0</integer>
 								</array>
 							</array>
@@ -340,7 +341,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>56FB34500E107151008EC777</string>
+										<string>56FB34580E10724F008EC777</string>
 										<key>history</key>
 										<array>
 											<string>56F42A78083EA2500011D12B</string>
@@ -426,10 +427,9 @@
 											<string>56FB34020E107033008EC777</string>
 											<string>56FB34030E107033008EC777</string>
 											<string>56FB34050E107033008EC777</string>
-											<string>56FB34060E107033008EC777</string>
 											<string>56FB344B0E107106008EC777</string>
 											<string>56FB344C0E107106008EC777</string>
-											<string>56FB34070E107033008EC777</string>
+											<string>56FB34500E107151008EC777</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -479,7 +479,6 @@
 											<string>563C869808848825004B2D09</string>
 											<string>563C869C08848825004B2D09</string>
 											<string>56E457E10888623A0096D72B</string>
-											<string>56E458140888623A0096D72B</string>
 											<string>56E458150888623A0096D72B</string>
 											<string>563400870AF7335F00096189</string>
 											<string>5623AF040AFC68B3009DACD6</string>
@@ -506,52 +505,8 @@
 											<string>56B9D2CB0CB5EA3900658C26</string>
 											<string>56B1C4CD0CBA07D500737A36</string>
 											<string>56FB33BF0E106D70008EC777</string>
-											<string>56FB33C00E106D70008EC777</string>
-											<string>56FB33C10E106D70008EC777</string>
-											<string>56FB33C20E106D70008EC777</string>
-											<string>56FB33C30E106D70008EC777</string>
-											<string>56FB33C40E106D70008EC777</string>
-											<string>56FB33C50E106D70008EC777</string>
-											<string>56FB33C60E106D70008EC777</string>
-											<string>56FB33D70E106DDB008EC777</string>
-											<string>56FB34090E107033008EC777</string>
-											<string>56FB340A0E107033008EC777</string>
-											<string>56FB340B0E107033008EC777</string>
-											<string>56FB340C0E107033008EC777</string>
-											<string>56FB340D0E107033008EC777</string>
-											<string>56FB340E0E107033008EC777</string>
-											<string>56FB340F0E107033008EC777</string>
-											<string>56FB34100E107033008EC777</string>
-											<string>56FB34110E107033008EC777</string>
-											<string>56FB34120E107033008EC777</string>
-											<string>56FB34130E107033008EC777</string>
-											<string>56FB34140E107033008EC777</string>
-											<string>56FB34150E107033008EC777</string>
-											<string>56FB34160E107033008EC777</string>
-											<string>56FB34170E107033008EC777</string>
-											<string>56FB34180E107033008EC777</string>
-											<string>56FB34190E107033008EC777</string>
-											<string>56FB341A0E107033008EC777</string>
-											<string>56FB341B0E107033008EC777</string>
-											<string>56FB341C0E107033008EC777</string>
-											<string>56FB341D0E107033008EC777</string>
-											<string>56FB341E0E107033008EC777</string>
-											<string>56FB341F0E107033008EC777</string>
-											<string>56FB34200E107033008EC777</string>
 											<string>56FB34210E107033008EC777</string>
-											<string>56FB34220E107033008EC777</string>
-											<string>56FB34230E107033008EC777</string>
-											<string>56FB34240E107033008EC777</string>
-											<string>56FB34250E107033008EC777</string>
 											<string>56FB34260E107033008EC777</string>
-											<string>56FB34280E107033008EC777</string>
-											<string>56FB34290E107033008EC777</string>
-											<string>56FB342A0E107033008EC777</string>
-											<string>56FB342B0E107033008EC777</string>
-											<string>56FB342C0E107033008EC777</string>
-											<string>56FB342D0E107033008EC777</string>
-											<string>56FB344D0E107106008EC777</string>
-											<string>56FB344E0E107106008EC777</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -573,8 +528,6 @@
 							<string>483pt</string>
 						</dict>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -611,9 +564,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>56FB33C80E106D70008EC777</string>
+				<string>56FB34590E10724F008EC777</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>56FB33C90E106D70008EC777</string>
+				<string>56FB345A0E10724F008EC777</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -746,7 +699,6 @@
 	<key>WindowOrderList</key>
 	<array>
 		<string>56B9D2790CB5B3E800658C26</string>
-		<string>1C530D57069F1CE1000CFCEE</string>
 		<string>/Users/charles/Docs/Development/cocoa_dev/GridStuffer/GridStuffer.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
@@ -788,8 +740,6 @@
 							<string>399pt</string>
 						</dict>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -829,7 +779,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>56B9D2790CB5B3E800658C26</string>
-				<string>56FB342F0E107033008EC777</string>
+				<string>56FB345B0E10724F008EC777</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
