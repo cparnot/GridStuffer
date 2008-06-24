@@ -1,7 +1,7 @@
-GridStuffer version 0.4.7
+GridStuffer version 0.4.8
 
 Created by Charles Parnot.
-Copyright Charles Parnot 2005, 2006, 2007. All rights reserved.
+Copyright Charles Parnot 2005, 2006, 2007, 2008. All rights reserved.
 
 Contact by email:
 charles parnot
@@ -17,6 +17,12 @@ http://cmgm.stanford.edu/~cparnot/xgrid-stanford/html/goodies/GridStuffer-detail
 ----------
 Change Log
 ----------
+
+version 0.4.8
+(June 2008)
+
+* Updated to version 1.5 of the Sparkle framework
+* Released GridStuffer under the modified BSD license, instead of GPL
 
 version 0.4.7
 (December 2007)

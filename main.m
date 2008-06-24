@@ -3,7 +3,7 @@
 //  GridStuffer
 //
 //  Created by Charles Parnot on 5/10/05.
-//  Copyright Charles Parnot 2005, 2006, 2007. All rights reserved.
+//  Copyright Charles Parnot 2005, 2006, 2007, 2008. All rights reserved.
 //
 
 #import <Cocoa/Cocoa.h>
