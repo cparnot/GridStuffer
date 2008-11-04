@@ -141,7 +141,7 @@
 		56A1EAF4083520AB0073CA7F /* file1.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; name = file1.txt; path = Demo1/file1.txt; sourceTree = "<group>"; };
 		56A1EAF5083520AB0073CA7F /* file2.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; name = file2.txt; path = Demo1/file2.txt; sourceTree = "<group>"; };
 		56A1EAF6083520AB0073CA7F /* demo1.pl */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.script.perl; name = demo1.pl; path = Demo1/demo1.pl; sourceTree = "<group>"; };
-		56A1EAF7083520AB0073CA7F /* gridstuffer_demos.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.xml; path = gridstuffer_demos.plist; sourceTree = "<group>"; };
+		56A1EAF7083520AB0073CA7F /* gridstuffer_demos.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist.xml; path = gridstuffer_demos.plist; sourceTree = "<group>"; };
 		56A1EDD7083931510073CA7F /* GridStuffer_DataModel.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = wrapper.xcdatamodel; path = GridStuffer_DataModel.xcdatamodel; sourceTree = "<group>"; };
 		56D80460084E7C4800E1A13E /* GridStufferFactoryDefaults.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = GridStufferFactoryDefaults.plist; sourceTree = "<group>"; };
 		56E27F120B556F720020F1C4 /* Retrieving.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = Retrieving.tiff; sourceTree = "<group>"; };
@@ -179,7 +179,7 @@
 		56FFEDEC08726AB300FF6E8D /* commands_demo2.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; name = commands_demo2.txt; path = Demo2/commands_demo2.txt; sourceTree = "<group>"; };
 		56FFEE940875152900FF6E8D /* Input-Format.txt */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; name = "Input-Format.txt"; path = "Documentation/Input-Format.txt"; sourceTree = "<group>"; };
 		56FFEE980875156400FF6E8D /* index.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = index.txt; path = Documentation/index.txt; sourceTree = "<group>"; };
-		56FFEF070877BBBE00FF6E8D /* MetaJobToolbar.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = MetaJobToolbar.plist; path = Toolbar/MetaJobToolbar.plist; sourceTree = "<group>"; };
+		56FFEF070877BBBE00FF6E8D /* MetaJobToolbar.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = MetaJobToolbar.plist; path = Toolbar/MetaJobToolbar.plist; sourceTree = "<group>"; };
 		56FFEF460879016600FF6E8D /* XGSToolbarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XGSToolbarController.h; path = Toolbar/XGSToolbarController.h; sourceTree = "<group>"; };
 		56FFEF470879016600FF6E8D /* XGSToolbarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XGSToolbarController.m; path = Toolbar/XGSToolbarController.m; sourceTree = "<group>"; };
 		56FFEF8208790BBF00FF6E8D /* Start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Start.png; path = Toolbar/Start.png; sourceTree = "<group>"; };

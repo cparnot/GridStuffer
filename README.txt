@@ -1,4 +1,4 @@
-GridStuffer version 0.4.8
+GridStuffer version 0.4.9
 
 Created by Charles Parnot.
 Copyright Charles Parnot 2005, 2006, 2007, 2008. All rights reserved.
@@ -17,6 +17,12 @@ http://cmgm.stanford.edu/~cparnot/xgrid-stanford/html/goodies/GridStuffer-detail
 ----------
 Change Log
 ----------
+
+version 0.4.9
+(November 2008)
+
+* The version number was not propely set on the bundle in version 0.4.8, now corrected
+
 
 version 0.4.8
 (June 2008)
