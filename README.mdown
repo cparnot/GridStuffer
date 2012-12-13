@@ -1,3 +1,8 @@
+GridStuffer
+===========
+
+A Cocoa application to submit multi-task jobs to Xgrid using a very simple format that resembles very much the xgrid command-line format.
+
 GridStuffer version 0.4.9
 
 Created by Charles Parnot.
@@ -12,6 +17,8 @@ Read more on the web:
 http://cmgm.stanford.edu/~cparnot/xgrid-stanford
 http://cmgm.stanford.edu/~cparnot/xgrid-stanford/html/goodies/goodies.html
 http://cmgm.stanford.edu/~cparnot/xgrid-stanford/html/goodies/GridStuffer-details.html
+
+The GridStuffer source is released under the terms of the modified BSD License. Please read the text of the license included with the project for more details.
 
 
 ----------
